@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pukesmas Dashboard</title>
+
+    <!-- css boostrap v4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- custom app.css -->
+    <link rel="stylesheet" href="./assets/css/app.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="/pukesmas/posyandu/posyandu.html" class="btn btn-primary">back</a>
+
+        <h1>Data Anak Belum Imunisasi</h1>
+        <p>data anak belum imunisasi di bawah pukesmas x per 15 January 2021</p>
+        <form>
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04">
+                    <option selected>Pilih Posyandu</option>
+                    <option value="1">Semua</option>
+                    <option value="2">Amban</option>
+                    <option value="3">Wosi</option>
+                    <option value="3">Irmanjaya</option>
+                </select>
+                <div class="input-group-append">
+                    <a class="btn btn-outline-primary" type="button">Cari</a>
+                </div>
+            </div>
+
+
+        </form>
+        <br>
+        <a href="/pukesmas/dashboard.html" class="btn btn-primary">Print Data</a>
+        <br>
+        <br>
+        <br>
+        <!-- primitif -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Anak</th>
+                    <th scope="col">Usia</th>
+                    <th scope="col">Belum Imunisasi</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">No HP</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Hendry Marbela</td>
+                    <td>12 bulan</td>
+                    <td>
+                        HB0 <br>
+                        DPT <br>
+                        MR2
+
+                    </td>
+                    <td> jln ir.soekerno no 19, anjaya, Manokwari Papua Barat</td>
+                    <td>082300340012</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>ania nanda sita</td>
+                    <td>5 bulan</td>
+                    <td>
+                        HB0 <br>
+                        DPT <br>
+
+
+                    </td>
+                    <td> jln jendral sudriman no 920, mangga, Manokwari Papua Barat</td>
+                    <td>082100000123</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Hendry Marbela</td>
+                    <td>12 bulan</td>
+                    <td>
+                        HB0 <br>
+                        DPT <br>
+                        MR2
+
+                    </td>
+                    <td> jln arif rahman hakim, ambak, Manokwari Papua Barat</td>
+                    <td>082239004503</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+
+    <!-- boostrap js v4.6 mandatory -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <!-- biar auto formatnya gak rusak -->
+
+
+</body>
+
+</html>
