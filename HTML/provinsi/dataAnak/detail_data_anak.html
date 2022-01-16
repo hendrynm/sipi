@@ -12,7 +12,16 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <!-- custom app.css -->
-    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- error prevention -->
 </head>
 
 <body>
@@ -26,31 +35,36 @@
         <h2>Data Personal</h2>
 
 
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th scope="row">nama :</th>
-                    <td>Hendry Marbela</td>
-                </tr>
-                <tr>
-                    <th scope="row">Usia :</th>
-                    <td>12 Bulan</td>
-                </tr>
-                <tr>
-                    <th scope="row">Ibu Kandung :</th>
-                    <td>Pradnya Shita</td>
-                </tr>
-                <tr>
-                    <th scope="row">KTP :</th>
-                    <td>00023</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                            <th scope="row">nama :</th>
+                            <td>Hendry Marbela</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Usia :</th>
+                            <td>12 Bulan</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ibu Kandung :</th>
+                            <td>Pradnya Shita</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">KTP :</th>
+                            <td>00023</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
 
         <br>
         <br>
         <h2>Data Imunisasi</h2>
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col">No</th>
