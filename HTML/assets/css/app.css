@@ -45,3 +45,17 @@ h2{
 form{
     margin-bottom: 1rem
 }
+
+.table .thead-light th{
+    background-color: #F7F7F7;
+    border-bottom: 1px;
+}
+
+.page-item.active .page-link{
+    background-color: rgb(102, 103, 117);
+    border-color: rgb(102, 103, 117);
+}
+
+.page-link {
+    color: black;
+}
