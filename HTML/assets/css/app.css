@@ -11,10 +11,7 @@ h3{
     font-size: 1.5rem;
 }
 
-.jumbotron{
-    background-color: #F7F7F7;
-    /* background-color: whitesmoke; */
-}
+
 
 h1{
     text-align: center;
@@ -59,3 +56,39 @@ form{
 .page-link {
     color: black;
 }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 275px) {
+    .btn-primary{
+        margin-bottom: 15px;
+    }
+    .jumbotron{
+        background-color: #F7F7F7;
+        /* background-color: whitesmoke; */
+        /* box-shadow: 10px 5px 15px rgb(219, 219, 219); */
+    }
+}
+  
+   
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+    .btn-primary{
+        margin-bottom: 0px;
+    }
+    .jumbotron{
+        background-color: #F7F7F7;
+        /* background-color: whitesmoke; */
+        box-shadow: 5px 5px 10px rgb(219, 219, 219);
+    }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+ }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+ }
