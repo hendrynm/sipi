@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Dashboard Provinsi</title>
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -13,27 +13,45 @@
 
     <!-- custom app.css -->
     <link rel="stylesheet" href="./assets/css/app.css">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- error prevention -->
 </head>
 
 <body>
     <div class="container">
+        <div class="jumbotron">
+            <h1>Aplikasi Sistem Pelaporan Imunisasi </h1>
+            <h1>Provinsi Papua Barat</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" aria-describedby="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="passoword">Password</label>
+                            <input type="password" class="form-control" id="passoword">
+                        </div>
+                        <a href="./pukesmas/dashboard.html" class="btn btn-primary">Login</a>
+                        <a href="./kabupaten/dashboard.html" class="btn btn-primary">sementara - kabupaten</a>
+                        <a href="./provinsi/dashboard.html" class="btn btn-primary">sementara - provinsi</a>
+                        <div class="form-group">
+                            <a href="./lupa_password.html">lupa password</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="username">
-            </div>
-            <div class="form-group">
-                <label for="passoword">Password</label>
-                <input type="password" class="form-control" id="passoword">
-            </div>
-            <a href="./pukesmas/dashboard.html" class="btn btn-primary">Login</a>
-            <a href="./kabupaten/dasboard.html" class="btn btn-primary">sementara - kabupaten</a>
-            <a href="./provinsi/dasboard.html" class="btn btn-primary">sementara - provinsi</a>
-            <div class="form-group">
-                <a href="./lupa_password.html">lupa password</a>
-            </div>
-        </form>
+
     </div>
 
 

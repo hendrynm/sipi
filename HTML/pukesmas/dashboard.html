@@ -5,46 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pukesmas Dashboard</title>
+    <title>Manajemen Akun</title>
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <!-- custom app.css -->
-    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
 
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- error prevention -->
 </head>
 
 <body>
 
     <div class="container">
-        <a href="/login.html" class="btn btn-primary">log out</a>
-        <br>
+        <a href="../login.html" class="btn btn-primary">log out</a>
+        <hr>
         <h1>Dashboard Pukesmas x</h1>
-        <br>
-        <br>
-        <!-- primitif -->
-        <div class="col">
-            <div class="row">
-                <a href="./data_anak.html">data anak</a>
-            </div>
 
-            <div class="row">
-                <a href="./posyandu/posyandu.html">Posyandu</a>
-            </div>
+        <div class="jumbotron">
+            <h2>Laporan Pencapaian</h2>
+            <a href="./capaian/capaianPukesmas.html" class="btn btn-primary">Capaian Pukesmas</a>
+            <a href="./capaian/capaianKampung.html" class="btn btn-primary">Capaian Kampung</a>
 
-            <div class="row">
-                <a href="./laporan.html">Laporan ketercapaian</a>
-            </div>
-            <div class="row">
-                <a href="./regional/dashboard.html">Sararan dan Target Regional</a>
-            </div>
-
-            <div class="row">
-                <a href="/pukesmas/manajemen_akun/dashboard.html">Management akun</a>
-            </div>
         </div>
+
+        <div class="jumbotron">
+            <h2>Data Induvidu</h2>
+            <a href="./dataInduvidu/dashboard.html" class="btn btn-primary">Data Induvidu</a>
+
+        </div>
+
+        <div class="jumbotron">
+            <h2>Posyandu</h2>
+            <a href="./posyandu/dashboard.html" class="btn btn-primary">Posyandu</a>
+
+        </div>
+        <div class="jumbotron">
+            <h2>Sasaran Kampung dan Target Kampung</h2>
+            <a href="./regional/dashboard.html" class="btn btn-primary">Sararan dan Target Kampung</a>
+
+        </div>
+        <div class="jumbotron">
+            <h2>Manajemen Akun</h2>
+            <a href="./manajemen_akun/dashboard.html" class="btn btn-primary">Manajemen Akun</a>
+
+        </div>
+
     </div>
 
     <!-- boostrap js v4.6 mandatory -->
