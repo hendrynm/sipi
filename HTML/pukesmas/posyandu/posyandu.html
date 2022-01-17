@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- css boostrap v4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- custom app.css -->
+    <link rel="stylesheet" href="./assets/css/app.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <a href="/pukesmas/dashboard.html" class="btn btn-primary">back</a>
+        <h1>Posyandu</h1>
+        <br>
+        <hr>
+        <div class="jumbotron">
+            <h2>Notifikasi Imunisasi</h2>
+            <a href="./notifikasiPosyandu.html" class="btn btn-primary">Kirim Notifikasi Posyandu</a>
+            <hr>
+            <h2>Data anak belum Imunisasi</h2>
+            <a href="./anakBelumImunisasi.html" class="btn btn-primary">Cek data anak belum Imunisasi</a>
+        </div>
+
+        <hr>
+
+        <h2>Mulai Data Entri Imunisasi</h2>
+        <form>
+            <div class="form-group">
+                <label for="posyandu">Posyandu :</label>
+                <select class="custom-select" id="posyandu">
+                    <option selected>Pilih Posyandu...</option>
+                    <option value="1">Amban</option>
+                    <option value="2">Wosi</option>
+                    <option value="3">Warmare</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal Posyandu :</label>
+                <input type="date" class="form-control" id="tanggal">
+            </div>
+            <a href="./posyanduStarted.html" class="btn btn-primary">Mulai Posyandu</a>
+        </form>
+    </div>
+
+
+    <!-- boostrap js v4.6 mandatory -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
