@@ -16,15 +16,13 @@ class LoginModel extends Model
         $password = $request->password;
 
         $user = DB::table("user")->where("username","=",$username)->first();
-        if($user !== null)
-        {
-            $pass = Hash::check($password, $user->password);
-            if($pass === true)
-            {
-                $request->session()->flash("sukses","Selamat Datang " . $user->nama . "!");
-                $request->session()->put("id",$user->id);
-                return true;
-            }
+        if(($user !== null) && Hash::check($password, $user->password)) {
+            $level = DB::table("level")->where("id_level","=",$user->id_level)->first();
+
+            $request->session()->flash("sukses","Selamat Datang " . $user->nama . "!");
+            $request->session()->put("id",$user->id_user);
+            $request->session()->put("akses",$level->level);
+            return true;
         }
         $request->session()->flash("gagal","Username atau Password yang Anda masukkan salah");
         return false;

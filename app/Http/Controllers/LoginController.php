@@ -9,17 +9,34 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view("umum.index");
+        return view("umum.login");
     }
 
     public function login(Request $request)
     {
-        return (LoginModel::login($request)) ? view("umum.dash") : view("umum.index");
+        LoginModel::login($request);
+
+        switch(session()->get("akses"))
+        {
+            case (1):
+                return redirect("/provinsi");
+            case (2):
+                return redirect("/kabupaten");
+            case (3):
+                return redirect("posyandu");
+            default:
+                return redirect("/");
+        }
     }
 
     public function logout()
     {
         session()->flush();
-        return view("umum.index");
+        return redirect("/");
+    }
+
+    public function lupa()
+    {
+        return view("umum.lupa");
     }
 }
