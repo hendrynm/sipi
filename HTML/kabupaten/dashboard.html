@@ -12,7 +12,7 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <!-- custom app.css -->
-    <link rel="stylesheet" href="../../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,56 +24,44 @@
     <!-- error prevention -->
 </head>
 
+
 <body>
-
     <div class="container">
-        <a href="./posyanduStarted.html" class="btn btn-primary">back</a>
+        <a href="../login.html" class="btn btn-primary">log out</a>
+
         <hr>
-        <h1>Data Anak</h1>
-        <br>
+        <h1>Dasboard Kota Sorong selatan</h1>
+
         <div class="jumbotron">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Ibu Kandung</th>
+            <h2>Laporan Pencapaian</h2>
+            <a href="./capaian/capaianKabupatenKota.html" class="btn btn-primary">Capaian Kabupaten/Kota</a>
+            <a href="./capaian/capaianPukesmas.html" class="btn btn-primary">Capaian Pukesmas</a>
+            <a href="./capaian/capaianKampung.html" class="btn btn-primary">Capaian Kampung</a>
 
-                        <th scope="col">Usia</th>
-                        <th scope="col">Belum Imunisasi</th>
-                        <th scope="col">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>90002</td>
-                        <td>Hendry Marbela</td>
-                        <td>Pradnya sita</td>
-                        <td>12 bulan</td>
-                        <td>
-                            HB0 <br>
-                            DPT <br>
-                            MR2
+        </div>
+        <div class="jumbotron">
+            <h2>Data Induvidu</h2>
+            <a href="./dataInduvidu/dashboard.html" class="btn btn-primary">Data Induvidu</a>
 
-                        </td>
-                        <td>
-                            <a href="./entriImunisasi.html" class="btn btn-primary">Entri Imunisasi</a>
-                        </td>
-                    </tr>
 
-                </tbody>
-            </table>
+        </div>
+        <div class="jumbotron">
+            <h2>Data Regional</h2>
+            <h2>Data Regional</h2>
+            <a href="./regional/dashboard.html" class="btn btn-primary">Dashboard data Kampung</a>
+            <a href="./regionalPosyandu/dashboard.html" class="btn btn-primary">Dashboard data Posyandu</a>
+
+
+        </div>
+        <div class="jumbotron">
+            <h2>Manjemen Akun Kabupaten/Kota</h2>
+            <a href="./manajemen_akun/dashboard.html" class="btn btn-primary">dashboard manajemen akun</a>
+
         </div>
 
 
-
-
-
-
-
     </div>
+
 
     <!-- boostrap js v4.6 mandatory -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -82,9 +70,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
-    <!-- biar auto formatnya gak rusak -->
-
-
 </body>
 
 </html>
