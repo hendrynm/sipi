@@ -169,27 +169,30 @@ class ProvinsiController extends Controller
      */
     public function posyanduDashboard()
     {
-
-        return view("provinsi.regional.dashboard");
+        $kueri = ProvinsiModel::posyanduDashboard();
+        return view("provinsi.regionalPosyandu.dashboard",["data" => $kueri]);
     }
 
     public function posyanduEdit($id)
     {
-        return view("provinsi.regional.editData");
+        $kueri = ProvinsiModel::posyanduEdit($id);
+        return view("provinsi.regionalPosyandu.editData",["data" => $kueri]);
     }
 
     public function posyanduEditKirim(Request $request)
     {
-
+        ProvinsiModel::posyanduEditKirim($request);
+        return redirect("/provinsi/regional-posyandu/dashboard");
     }
 
     public function posyanduTambah()
     {
-        return view("provinsi.regional.tambahData");
+        return view("provinsi.regionalPosyandu.tambahData");
     }
 
     public function posyanduTambahKirim(Request $request)
     {
-
+        ProvinsiModel::posyanduTambahKirim($request);
+        return redirect("/provinsi/regional-posyandu/dashboard");
     }
 }

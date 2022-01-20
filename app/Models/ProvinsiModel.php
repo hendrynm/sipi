@@ -217,21 +217,35 @@ class ProvinsiModel extends Model
 
     public function posyanduDashboard()
     {
-
+        return DB::table("posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->get();
     }
 
     public function posyanduEdit($id)
     {
-
+        return DB::table("posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->where("id_posyandu","=",$id)
+            ->first();
     }
 
     public function posyanduEditKirim(Request $request)
     {
-
+        DB::table("posyandu")
+            ->where("id_posyandu","=",$request->idPosyandu)
+            ->update([
+                "nama_posyandu" => $request->namaPosyandu,
+                "alamat_posyandu" => $request->alamatLengkap
+            ]);
     }
 
     public function posyanduTambahKirim(Request $request)
     {
-
+        DB::table("posyandu")
+            ->insert([
+                "nama_posyandu" => $request->namaPosyandu,
+                "alamat_posyandu" => $request->alamatLengkap
+            ]);
     }
 }
