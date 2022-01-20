@@ -5,29 +5,37 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="./dashboard.html" class="btn btn-primary">Back</a>
-        <h1>Edit Data Antigen</h1>
+        <a href="../dashboard" class="btn btn-primary">Back</a>
+        <hr>
+        <h1>Tambah Data Antigen</h1>
         <br>
-        <form>
-            <div class="form-group">
-                <label for="namaKampung">Nama Antigen</label>
-                <input type="text" class="form-control" id="namaKampung">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="../tambah/kirim" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="idAntigen" value="{{ $data->id_antigen }}">
+                        <div class="form-group">
+                            <label for="namaKampung">Nama Antigen</label>
+                            <input type="text" class="form-control" name="namaAntigen">
+                        </div>
+                        <div class="form-group">
+                            <label for="kodeRegion">Waktu Pemberian</label>
+                            <input type="text" class="form-control" name="waktuPemberian">
+                        </div>
+                        <div class="form-group">
+                            <label for="kodeRegion">Interval Pemberian</label>
+                            <input type="text" class="form-control" name="intervalPemberian">
+                        </div>
+                        <div class="form-group">
+                            <label for="kodeRegion">Target Tahunan</label>
+                            <input type="text" class="form-control" name="targetTahunan">
+                        </div>
+                        <button class="btn btn-primary">Simpan</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="kodeRegion">Waktu Pemberian</label>
-                <input type="text" class="form-control" id="kodeRegion">
-            </div>
-            <div class="form-group">
-                <label for="kodeRegion">Interval Pemberian</label>
-                <input type="text" class="form-control" id="kodeRegion">
-            </div>
-            <div class="form-group">
-                <label for="kodeRegion">Target Tahunan</label>
-                <input type="text" class="form-control" id="kodeRegion">
-            </div>
-
-            <a href="./dashboard.html" class="btn btn-primary">Simpan</a>
-        </form>
+        </div>
     </div>
 @endsection
 </html>

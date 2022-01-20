@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard.html" class="btn btn-primary">back</a>
+        <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Dashboard Majemen Akun </h1>
 
@@ -15,9 +15,9 @@
             <p>
 
             </p>
-            <a href="./editAkun.html" class="btn btn-primary">Edit Akun Utama</a>
-            <a href="./gantiPassword.html" class="btn btn-primary">Ganti Password</a>
-            <a href="./tambahAkun.html" class="btn btn-primary">Tambah Akun</a>
+            <a href="./edit/1" class="btn btn-primary">Edit Akun Utama</a>
+            <a href="./ganti-pass/1" class="btn btn-primary">Ganti Password</a>
+            <a href="./tambah" class="btn btn-primary">Tambah Akun</a>
 
             <hr>
             <h3>Panduan akses level</h3>
@@ -132,44 +132,20 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $data)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>pandayani</td>
-                    <td>Pukermas Andayani</td>
-                    <td>pukesmas.adayani@gmail.com</td>
-                    <td>level 3</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $data->username }}</td>
+                    <td>{{ $data->nama }}</td>
+                    <td>{{ $data->email }}</td>
+                    <td>Level {{ $data->level }}</td>
                     <td>
-                        <a href="./editAkun.html" class="btn btn-primary">Edit</a>
-                        <a href="./gantiPassword.html" class="btn btn-primary">Ganti Password</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>rsdrsoetomo1</td>
-                    <td>Pukesmas soetomo</td>
-                    <td>rs.soetomo@gmail.com</td>
-                    <td>level 3</td>
-                    <td>
-                        <a href="./editAkun.html" class="btn btn-primary">Edit</a>
-                        <a href="./gantiPassword.html" class="btn btn-primary">Ganti Password</a>
+                        <a href="./edit/{{ $data->id_user }}" class="btn btn-primary">Edit</a>
+                        <a href="./ganti-pass/{{ $data->id_user }}" class="btn btn-primary">Ganti Password</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>UtamiMG</td>
-                    <td>Pukesmas Mangaprow</td>
-                    <td>utami.gm@gmail.com</td>
-                    <td>level 3</td>
-                    <td>
-                        <a href="./editAkun.html" class="btn btn-primary">Edit</a>
-                        <a href="./gantiPassword.html" class="btn btn-primary">Ganti Password</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

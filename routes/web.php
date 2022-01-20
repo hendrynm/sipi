@@ -41,10 +41,10 @@ Route::prefix("provinsi")->group(function (){
     Route::get  ("/antigen/tambah",             [ProvinsiController::class,     "antigenTambah"]);
     Route::post ("/antigen/tambah/kirim",       [ProvinsiController::class,     "antigenTambahKirim"]);
 
-    Route::get  ("/capaian/kabupaten/{id}",     [ProvinsiController::class,     "capaianKabupaten"]);
-    Route::get  ("/capaian/kampung/{id}",       [ProvinsiController::class,     "capaianKampung"]);
-    Route::get  ("/capaian/provinsi/{id}",      [ProvinsiController::class,     "capaianProvinsi"]);
-    Route::get  ("/capaian/puskesmas/{id}",     [ProvinsiController::class,     "capaianPuskesmas"]);
+    Route::get  ("/capaian/kabupaten",          [ProvinsiController::class,     "capaianKabupaten"]);
+    Route::get  ("/capaian/kampung",            [ProvinsiController::class,     "capaianKampung"]);
+    Route::get  ("/capaian/provinsi",           [ProvinsiController::class,     "capaianProvinsi"]);
+    Route::get  ("/capaian/puskesmas",          [ProvinsiController::class,     "capaianPuskesmas"]);
 
     Route::get  ("/data-anak/dashboard",        [ProvinsiController::class,     "anakDashboard"]);
     Route::get  ("/data-anak/detail/{id}",      [ProvinsiController::class,     "anakDetail"]);
@@ -57,11 +57,17 @@ Route::prefix("provinsi")->group(function (){
     Route::get  ("/akun/tambah",                [ProvinsiController::class,     "akunTambah"]);
     Route::post ("/akun/tambah/kirim",          [ProvinsiController::class,     "akunTambahKirim"]);
 
-    Route::get  ("/regional/dashboard",         [ProvinsiController::class,     "regionalDashboard"]);
-    Route::get  ("/regional/edit/{id}",         [ProvinsiController::class,     "regionalEdit"]);
-    Route::post ("/regional/edit/kirim",        [ProvinsiController::class,     "regionalEditKirim"]);
-    Route::get  ("/regional/tambah",            [ProvinsiController::class,     "regionalTambah"]);
-    Route::post ("/regional/tambah/kirim",      [ProvinsiController::class,     "regionalTambahKirim"]);
+    Route::get  ("/regional-kampung/dashboard",         [ProvinsiController::class,     "kampungDashboard"]);
+    Route::get  ("/regional-kampung/edit/{id}",         [ProvinsiController::class,     "kampungEdit"]);
+    Route::post ("/regional-kampung/edit/kirim",        [ProvinsiController::class,     "kampungEditKirim"]);
+    Route::get  ("/regional-kampung/tambah",            [ProvinsiController::class,     "kampungTambah"]);
+    Route::post ("/regional-kampung/tambah/kirim",      [ProvinsiController::class,     "kampungTambahKirim"]);
+
+    Route::get  ("/regional-posyandu/dashboard",         [ProvinsiController::class,     "posyanduDashboard"]);
+    Route::get  ("/regional-posyandu/edit/{id}",         [ProvinsiController::class,     "posyanduEdit"]);
+    Route::post ("/regional-posyandu/edit/kirim",        [ProvinsiController::class,     "posyanduEditKirim"]);
+    Route::get  ("/regional-posyandu/tambah",            [ProvinsiController::class,     "posyanduTambah"]);
+    Route::post ("/regional-posyandu/tambah/kirim",      [ProvinsiController::class,     "posyanduTambahKirim"]);
 });
 
 

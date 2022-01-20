@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard.html" class="btn btn-primary">Back</a>
+        <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Laporan Capaian Imunsasi Per Kabupanten Dan Kota</h1>
         <div class="jumbotron">

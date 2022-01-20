@@ -5,30 +5,30 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="./dashboard.html" class="btn btn-primary">Back</a>
+        <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-
         <h1>Buat Akun baru</h1>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
                     <h2>Data Akun Baru</h2>
-                    <form>
+                    <form action="./kirim" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="username">username</label>
-                            <input type="text" class="form-control" id="username">
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Instansi</label>
-                            <input type="text" class="form-control" id="nama">
+                            <input type="text" class="form-control" name="nama">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email">
+                            <input type="text" class="form-control" name="email">
                         </div>
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
-                            <select class="custom-select" id="level">
+                            <select class="custom-select" name="level">
                                 <option selected>Pilih akses level</option>
                                 <option value="1">level 1 - Provinsi Papua barat</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>
@@ -38,13 +38,13 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <div class="form-group">
                             <label for="password2">Ketik Ulang Password</label>
-                            <input type="password" class="form-control" id="password2">
+                            <input type="password" class="form-control" name="password2">
                         </div>
-                        <a href="./dashboard.html" class="btn btn-primary">Simpan</a>
+                        <button class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>

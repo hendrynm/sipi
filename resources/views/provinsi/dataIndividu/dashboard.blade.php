@@ -5,9 +5,9 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard.html" class="btn btn-primary">back</a>
+        <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
-        <h1>Data Anak</h1>
+        <h1>Data Induvidu</h1>
         <br>
 
         <form>
@@ -19,10 +19,7 @@
                     <input type="text" class="form-control" placeholder="NIK">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Ibu Kandung">
-                </div>
-                <div class="col">
-                    <a href="../dasboard.html" class="btn btn-primary">Cari Data</a>
+                    <a href="#" class="btn btn-primary">Cari Data</a>
                 </div>
             </div>
         </form>
@@ -43,43 +40,22 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $data)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>0000000000901</td>
-                    <td>Hendry Marbela</td>
-                    <td>12/10/2020</td>
-                    <td>12 bulan</td>
-                    <td>Kota Sorong</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $data->nik }}</td>
+                    <td>{{ $data->nama_lengkap }}</td>
+                    <td>{{ $data->tanggal_lahir }}</td>
+                    <td>{{ $data->tanggal_lahir }} bulan</td>
+                    <td>{{ $data->nama_kabupaten }}</td>
                     <td>
-                        <a href="./detail_data_anak.html" class="btn btn-primary">Detail</a>
+                        <a href="./detail/{{ $data->id_anak }}" class="btn btn-primary">Detail</a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>0000000000901</td>
-                    <td>Naufal Sunandar</td>
-                    <td>12/10/2020</td>
-                    <td>7 bulan</td>
-                    <td>Kota Sorong</td>
-                    <td>
-                        <a href="" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>0000000000901</td>
-                    <td>Pradnya Shita</td>
-                    <td>12/10/2020</td>
-                    <td>2 bulan</td>
-                    <td>Kota Sorong</td>
-                    <td>
-                        <a href="" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
-
 
         <nav aria-label="...">
             <ul class="pagination justify-content-center">
@@ -96,10 +72,6 @@
                 </li>
             </ul>
         </nav>
-
-
-
-
     </div>
 @endsection
 </html>

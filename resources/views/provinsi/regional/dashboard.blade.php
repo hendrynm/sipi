@@ -5,12 +5,10 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard.html" class="btn btn-primary">back</a>
+        <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Dasboard Data Kampung</h1>
         <br><br>
-
-
 
         <form>
             <div class="form-row">
@@ -21,7 +19,7 @@
                     <input type="text" class="form-control" placeholder="Nama Kampung">
                 </div>
                 <div class="col">
-                    <a href="../dasboard.html" class="btn btn-primary">Cari Data</a>
+                    <a href="#" class="btn btn-primary">Cari Data</a>
                     <a href="./tambahData.html" class="btn btn-primary">Tambah kampung</a>
                 </div>
 
@@ -34,36 +32,19 @@
                     <th scope="col">kode Region</th>
                     <th scope="col">Nama Kampung</th>
                     <th scope="col">#</th>
-
-
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $data)
                 <tr>
-                    <th scope="row">1002</th>
-                    <td>pandayani</td>
+                    <th scope="row">{{ $data->kode_kampung }}</th>
+                    <td>{{ $data->nama_kampung }}</td>
                     <td>
-                        <a href="./editData.html" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">1003</th>
-                    <td>Irmanjaya</td>
-                    <td>
-                        <a href="./editData.html" class="btn btn-primary">Edit</a>
+                        <a href="./edit/{{ $data->id_kampung }}" class="btn btn-primary">Edit</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">1012</th>
-                    <td>Irmanjaya</td>
-                    <td>
-                        <a href="./editData.html" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
 

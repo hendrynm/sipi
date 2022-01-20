@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProvinsiModel;
 
 class ProvinsiController extends Controller
 {
@@ -21,17 +22,20 @@ class ProvinsiController extends Controller
      */
     public function antigenDashboard()
     {
-        return view("provinsi.antigen.dashboard");
+        $kueri = ProvinsiModel::antigenDashboard();
+        return view("provinsi.antigen.dashboard",["data" => $kueri]);
     }
 
     public function antigenEdit($id)
     {
-        return view("provinsi.antigen.editAntigen");
+        $kueri = ProvinsiModel::antigenEdit($id);
+        return view("provinsi.antigen.editAntigen",["data" => $kueri]);
     }
 
     public function antigenEditKirim(Request $request)
     {
-        return ;
+        ProvinsiModel::antigenEditKirim($request);
+        return redirect("/provinsi/antigen/dashboard");
     }
 
     public function antigenTambah()
@@ -41,7 +45,8 @@ class ProvinsiController extends Controller
 
     public function antigenTambahKirim(Request $request)
     {
-
+        ProvinsiModel::antigenTambahKirim($request);
+        return redirect("/provinsi/antigen/dashboard");
     }
 
     /*
@@ -52,17 +57,17 @@ class ProvinsiController extends Controller
         return view("provinsi.capaian.capaianKabupaten");
     }
 
-    public function capaianKampung($id)
+    public function capaianKampung()
     {
         return view("provinsi.capaian.capaianKampung");
     }
 
-    public function capaianProvinsi($id)
+    public function capaianProvinsi()
     {
         return view("provinsi.capaian.capaianProvinsi");
     }
 
-    public function capaianPuskesmas($id)
+    public function capaianPuskesmas()
     {
         return view("provinsi.capaian.capaianPuskesmas");
     }
@@ -72,12 +77,15 @@ class ProvinsiController extends Controller
      */
     public function anakDashboard()
     {
-        return view("provinsi.dataAnak.dashboard");
+        $kueri = ProvinsiModel::anakDashboard();
+        return view("provinsi.dataIndividu.dashboard",["data" => $kueri]);
     }
 
     public function anakDetail($id)
     {
-        return view("provinsi.dataAnak.detailDataAnak");
+        $kueri = ProvinsiModel::anakDetail($id);
+        $kueri2 = ProvinsiModel::anakDetailImunisasi($id);
+        return view("provinsi.dataIndividu.detailDataIndividu",["data" => $kueri, "data2" => $kueri2]);
     }
 
     /*
@@ -85,22 +93,32 @@ class ProvinsiController extends Controller
      */
     public function akunDashboard()
     {
-        return view("provinsi.manajemenAkun.dashboard");
+        $kueri = ProvinsiModel::akunDashboard();
+        return view("provinsi.manajemenAkun.dashboard",["data" => $kueri]);
     }
 
     public function akunEdit($id)
     {
-        return view("provinsi.manajemenAkun.editAkun");
+        $kueri = ProvinsiModel::akunEdit($id);
+        return view("provinsi.manajemenAkun.editAkun",["data" => $kueri]);
+    }
+
+    public function akunEditKirim(Request $request)
+    {
+        ProvinsiModel::akunEditKirim($request);
+        return redirect("/provinsi/akun/dashboard");
     }
 
     public function akunGantiPass($id)
     {
-        return view("provinsi.manajemenAkun.gantiPassword");
+        $kueri = ProvinsiModel::akunGantiPass($id);
+        return view("provinsi.manajemenAkun.gantiPassword",["data" => $kueri]);
     }
 
     public function akunGantiPassKirim(Request $request)
     {
-
+        ProvinsiModel::akunGantiPassKirim($request);
+        return redirect("/provinsi/akun/dashboard");
     }
 
     public function akunTambah()
@@ -110,33 +128,67 @@ class ProvinsiController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-
+        ProvinsiModel::akunTambahKirim($request);
+        return redirect("/provinsi/akun/dashboard");
     }
 
     /*
-     * REGIONAL
+     * REGIONAL KAMPUNG
      */
-    public function regionalDashboard()
+    public function kampungDashboard()
     {
-        return view("provinsi.regional.dashboard");
+        $kueri = ProvinsiModel::kampungDashboard();
+        return view("provinsi.regional.dashboard",["data" => $kueri]);
     }
 
-    public function regionalEdit($id)
+    public function kampungEdit($id)
     {
-        return view("provinsi.regional.editData");
+        $kueri = ProvinsiModel::kampungEdit($id);
+        return view("provinsi.regional.editData",["data" => $kueri]);
     }
 
-    public function regionalEditKirim(Request $request)
+    public function kampungEditKirim(Request $request)
     {
-
+        ProvinsiModel::kampungEditKirim($request);
+        return redirect("/provinsi/regional-kampung/dashboard");
     }
 
-    public function regionalTambah()
+    public function kampungTambah()
     {
         return view("provinsi.regional.tambahData");
     }
 
-    public function regionalTambahKirim(Request $request)
+    public function kampungTambahKirim(Request $request)
+    {
+        ProvinsiModel::kampungTambahKirim($request);
+        return redirect("/provinsi/regional-kampung/dashboard");
+    }
+
+    /*
+     * REGIONAL POSYANDU
+     */
+    public function posyanduDashboard()
+    {
+
+        return view("provinsi.regional.dashboard");
+    }
+
+    public function posyanduEdit($id)
+    {
+        return view("provinsi.regional.editData");
+    }
+
+    public function posyanduEditKirim(Request $request)
+    {
+
+    }
+
+    public function posyanduTambah()
+    {
+        return view("provinsi.regional.tambahData");
+    }
+
+    public function posyanduTambahKirim(Request $request)
     {
 
     }

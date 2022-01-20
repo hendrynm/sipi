@@ -5,13 +5,12 @@
     <title>@yield("title") | SIPI Papua Barat</title>
 
     <link rel="icon" href="img/favicon.jpg">
-    <link rel="stylesheet" href="{{ asset("") }}">
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
     <!-- custom app.css -->
-    <link rel="stylesheet" href="{{ asset("app.css") }}">
+    <link rel="stylesheet" href="{{ asset("/css/app.css") }}">
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

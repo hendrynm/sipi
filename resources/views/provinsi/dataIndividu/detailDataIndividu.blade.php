@@ -5,14 +5,11 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-
-        <a href="./dashboard.html" class="btn btn-primary">back</a>
+        <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Data Anak</h1>
         <br>
         <br>
-
-
 
         <div class="row">
             <div class="col-md-6">
@@ -21,81 +18,72 @@
                     <tbody>
                     <tr>
                         <th scope="row">Nama Lengkap :</th>
-                        <td>Hendry Marbela</td>
+                        <td>{{ $data->nama_lengkap }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Nama Ibu Kandung :</th>
-                        <td>Pradnya</td>
+                        <td>{{ $data->nama_ibu }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Tanggal Lahir :</th>
-                        <td>27 Oktober 2023</td>
+                        <td>{{ $data->tanggal_lahir }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Usia :</th>
-                        <td>12 Bulan</td>
+                        <td>{{ $data->tanggal_lahir }} Bulan</td>
                     </tr>
                     <tr>
                         <th scope="row">Jenis Kelamin :</th>
-                        <td>Laki-Laki</td>
+                        <td>{{ ($data->jenis_kelamin === "L") ? "Laki-laki" : "Perempuan" }}</td>
                     </tr>
                     <tr>
                         <th scope="row">No HP :</th>
-                        <td>082000000010</td>
+                        <td>{{ $data->no_hp }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Kabupaten/Kota Tinggal :</th>
-                        <td>Sorong Selatan</td>
+                        <td>{{ $data->nama_kabupaten }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Alamat Tinggal :</th>
-                        <td>Laki-Laki</td>
+                        <td>{{ $data->alamat }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Posyandu :</th>
-                        <td>Laki-Laki</td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Ibu Kandung :</th>
-                        <td>Pradnya Shita</td>
+                        <td>{{ $data->nama_posyandu }}</td>
                     </tr>
                     <tr>
                         <th scope="row">KTP :</th>
-                        <td>00023</td>
+                        <td>{{ $data->nik }}</td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
-
         </div>
 
         <h2>Status Imunisasi</h2>
-
-
         <div class="row">
             <div class="col-md-6">
                 <table class="table ">
                     <tbody>
                     <tr>
                         <th scope="row">Imunisasi Dasar Lengkap :</th>
-                        <td>Sudah terpenuhi</td>
+                        <td>{{ ($data->idl === 0) ? "Belum Terpenuhi" : "Sudah terpenuhi" }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Imunisasi Rutin Lengkap :</th>
-                        <td>Belum Terpenuhi</td>
+                        <td>{{ ($data->irl === 0) ? "Belum Terpenuhi" : "Sudah terpenuhi" }}</td>
                     </tr>
 
+                    @if($data->jenis_kelamin === "P")
                     <!-- hanya berlaku untuk perempuan -->
                     <tr>
                         <th scope="row">Status T :</th>
-                        <td>T1</td>
+                        <td>{{ $data->status_t }}</td>
                     </tr>
-
+                    @endif
                     </tbody>
                 </table>
-
             </div>
         </div>
 
@@ -107,39 +95,23 @@
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Imunisasi</th>
-                <th scope="col">Status</th>
                 <th scope="col">Tanggal Imunisasi</th>
                 <th scope="col">Tempat Imunisasi</th>
+                <th scope="col">Status</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($data2 as $data2)
             <tr>
-                <th scope="row">1</th>
-                <td>HB0</td>
-                <td>sudah imunisasi</td>
-                <td>12/02/2022</td>
-                <td>Rumah Sakit Provinsi Papua Barat</td>
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td>{{ $data2->nama_antigen }}</td>
+                <td>{{ $data2->tanggal_pemberian }}</td>
+                <td>{{ $data2->tempat_imunisasi }}</td>
+                <td>{{ $data2->status }} imunisasi</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>SDT2</td>
-                <td>sudah imunisasi</td>
-                <td>14/04/2022</td>
-                <td>Posyandu Amban 1</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>CampakS1</td>
-                <td>Belum imunisasi</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
-
-
-
-
     </div>
 @endsection
 </html>
