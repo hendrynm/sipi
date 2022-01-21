@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\KabupatenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,44 +31,108 @@ Route::get  ("/lupa",       [LoginController::class,    "lupa"]);
  * PROVINSI
  * ------------------------------------------------------------------------
  */
-Route::prefix("provinsi")->group(function (){
+Route::prefix("/provinsi")->group(function ()
+{
     Route::redirect("/","/provinsi/dashboard");
+    Route::get  ("/dashboard",              [ProvinsiController::class,"index"]);
 
-    Route::get  ("/dashboard",                  [ProvinsiController::class,     "index"]);
+    Route::prefix("/antigen")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"antigenDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"antigenEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"antigenEditKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"antigenTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"antigenTambahKirim"]);
+    });
 
-    Route::get  ("/antigen/dashboard",          [ProvinsiController::class,     "antigenDashboard"]);
-    Route::get  ("/antigen/edit/{id}",          [ProvinsiController::class,     "antigenEdit"]);
-    Route::post ("/antigen/edit/kirim",         [ProvinsiController::class,     "antigenEditKirim"]);
-    Route::get  ("/antigen/tambah",             [ProvinsiController::class,     "antigenTambah"]);
-    Route::post ("/antigen/tambah/kirim",       [ProvinsiController::class,     "antigenTambahKirim"]);
+    Route::prefix("/capaian")->group(function ()
+    {
+        Route::get  ("/kabupaten",          [ProvinsiController::class,"capaianKabupaten"]);
+        Route::get  ("/kampung",            [ProvinsiController::class,"capaianKampung"]);
+        Route::get  ("/provinsi",           [ProvinsiController::class,"capaianProvinsi"]);
+        Route::get  ("/puskesmas",          [ProvinsiController::class,"capaianPuskesmas"]);
+    });
 
-    Route::get  ("/capaian/kabupaten",          [ProvinsiController::class,     "capaianKabupaten"]);
-    Route::get  ("/capaian/kampung",            [ProvinsiController::class,     "capaianKampung"]);
-    Route::get  ("/capaian/provinsi",           [ProvinsiController::class,     "capaianProvinsi"]);
-    Route::get  ("/capaian/puskesmas",          [ProvinsiController::class,     "capaianPuskesmas"]);
+    Route::prefix("/data-anak")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"anakDashboard"]);
+        Route::get  ("/detail/{id}",        [ProvinsiController::class,"anakDetail"]);
+    });
 
-    Route::get  ("/data-anak/dashboard",        [ProvinsiController::class,     "anakDashboard"]);
-    Route::get  ("/data-anak/detail/{id}",      [ProvinsiController::class,     "anakDetail"]);
+    Route::prefix("/akun")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"akunDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"akunEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"akunEditKirim"]);
+        Route::get  ("/ganti-pass/{id}",    [ProvinsiController::class,"akunGantiPass"]);
+        Route::post ("/ganti-pass/kirim",   [ProvinsiController::class,"akunGantiPassKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"akunTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"akunTambahKirim"]);
+    });
 
-    Route::get  ("/akun/dashboard",             [ProvinsiController::class,     "akunDashboard"]);
-    Route::get  ("/akun/edit/{id}",             [ProvinsiController::class,     "akunEdit"]);
-    Route::post ("/akun/edit/kirim",            [ProvinsiController::class,     "akunEditKirim"]);
-    Route::get  ("/akun/ganti-pass/{id}",       [ProvinsiController::class,     "akunGantiPass"]);
-    Route::post ("/akun/ganti-pass/kirim",      [ProvinsiController::class,     "akunGantiPassKirim"]);
-    Route::get  ("/akun/tambah",                [ProvinsiController::class,     "akunTambah"]);
-    Route::post ("/akun/tambah/kirim",          [ProvinsiController::class,     "akunTambahKirim"]);
+    Route::prefix("/regional-kampung")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"kampungDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"kampungEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"kampungEditKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"kampungTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"kampungTambahKirim"]);
+    });
 
-    Route::get  ("/regional-kampung/dashboard",         [ProvinsiController::class,     "kampungDashboard"]);
-    Route::get  ("/regional-kampung/edit/{id}",         [ProvinsiController::class,     "kampungEdit"]);
-    Route::post ("/regional-kampung/edit/kirim",        [ProvinsiController::class,     "kampungEditKirim"]);
-    Route::get  ("/regional-kampung/tambah",            [ProvinsiController::class,     "kampungTambah"]);
-    Route::post ("/regional-kampung/tambah/kirim",      [ProvinsiController::class,     "kampungTambahKirim"]);
-
-    Route::get  ("/regional-posyandu/dashboard",         [ProvinsiController::class,     "posyanduDashboard"]);
-    Route::get  ("/regional-posyandu/edit/{id}",         [ProvinsiController::class,     "posyanduEdit"]);
-    Route::post ("/regional-posyandu/edit/kirim",        [ProvinsiController::class,     "posyanduEditKirim"]);
-    Route::get  ("/regional-posyandu/tambah",            [ProvinsiController::class,     "posyanduTambah"]);
-    Route::post ("/regional-posyandu/tambah/kirim",      [ProvinsiController::class,     "posyanduTambahKirim"]);
+    Route::prefix("/regional-posyandu")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"posyanduDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"posyanduEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"posyanduEditKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"posyanduTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"posyanduTambahKirim"]);
+    });
 });
 
+Route::prefix("/kabupaten")->group(function ()
+{
+    Route::redirect("/","/kabupaten/dashboard");
+    Route::get("/dashboard",                [KabupatenController::class,"dashboard"]);
 
+    Route::prefix("/capaian")->group(function ()
+    {
+        Route::get("/kabupaten",            [KabupatenController::class,"capaianKabupaten"]);
+        Route::get("/kampung",              [KabupatenController::class,"capaianKampung"]);
+        Route::get("/puskesmas",            [KabupatenController::class,"capaianPuskesmas"]);
+    });
+
+    Route::prefix("/data")->group(function ()
+    {
+        Route::get("/dashboard",            [KabupatenController::class,"dataDashboard"]);
+        Route::get("/detail/{id}",          [KabupatenController::class,"dataDetail"]);
+    });
+
+    Route::prefix("akun")->group(function ()
+    {
+        Route::get("/dashboard",            [KabupatenController::class,"akunDashboard"]);
+        Route::get("/edit/{id}",            [KabupatenController::class,"akunEdit"]);
+        Route::post("/edit/kirim",          [KabupatenController::class,"akunEditKirim"]);
+        Route::get("/ganti-pass/{id}",      [KabupatenController::class,"akunGantiPass"]);
+        Route::post("/ganti-pass/kirim",    [KabupatenController::class,"akunGantiPassKirim"]);
+        Route::get("/tambah",               [KabupatenController::class,"akunTambah"]);
+        Route::post("/tambah/kirim",        [KabupatenController::class,"akunTambahKirim"]);
+    });
+
+    Route::prefix("regional-kampung")->group(function ()
+    {
+        Route::get("/dashboard",            [KabupatenController::class,"kampungDashboard"]);
+        Route::get("/edit/{id}",            [KabupatenController::class,"kampungEdit"]);
+        Route::post("/edit/kirim",          [KabupatenController::class,"kampungEditKirim"]);
+        Route::get("/tambah",               [KabupatenController::class,"kampungTambah"]);
+        Route::post("/tambah/kirim",        [KabupatenController::class,"kampungTambahKirim"]);
+    });
+
+    Route::prefix("regional-posyandu")->group(function ()
+    {
+        Route::get("/dashboard",            [KabupatenController::class,"posyanduDashboard"]);
+        Route::get("/edit/{id}",            [KabupatenController::class,"posyanduEdit"]);
+        Route::post("/edit/kirim",          [KabupatenController::class,"posyanduEditKirim"]);
+        Route::get("/tambah",               [KabupatenController::class,"posyanduTambah"]);
+        Route::post("/tambah/kirim",        [KabupatenController::class,"posyanduTambahKirim"]);
+    });
+});

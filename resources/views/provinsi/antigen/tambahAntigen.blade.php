@@ -14,7 +14,6 @@
                 <div class="col-md-6">
                     <form action="../tambah/kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="idAntigen" value="{{ $data->id_antigen }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Antigen</label>
                             <input type="text" class="form-control" name="namaAntigen">
