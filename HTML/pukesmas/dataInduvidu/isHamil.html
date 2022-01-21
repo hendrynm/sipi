@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Data Kampung</title>
+    <title>Detail Data Anak</title>
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -24,41 +24,71 @@
     <!-- error prevention -->
 </head>
 
+
 <body>
     <div class="container">
-        <a href="./dashboard.html" class="btn btn-primary">Back</a>
+        <a href="./detailDataInduvidu.html" class="btn btn-primary">back</a>
         <hr>
-        <h1>Edit Data kampung</h1>
 
+        <h1>Status Kehamilan x</h1>
         <br>
         <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-6">
+            <h2>Induvidu</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <table class="table .table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">No </th>
+                                <th scope="col">NIK </th>
+                                <th scope="col">Nama </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>0000000000901</td>
+                                <td>Hendry Marbela</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="jumbotron">
+            <h2>Status</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
                     <form>
                         <div class="form-group">
-                            <label for="namaPosyandu">Nama Posyandu</label>
-                            <input type="text" class="form-control" id="namaPosyandu">
-                        </div>
-                        <div class="form-group">
-                            <label for="kampung">Nama Kampung :</label>
-                            <select class="custom-select" id="kampung">
-                                <option selected>-- Pilih kampung --</option>
-                                <option value="1">amban pantai</option>
-                                <option value="2">irman jaya</option>
-                                <option value="3">jawa</option>
+                            <label for="isHamil">Status Kehamilan : </label>
+                            <select class="custom-select" id="isHamil">
+                                <option selected>---- Pilih Status ---</option>
+                                <option value="1">Hamil</option>
+                                <option value="1">Tidak Hamil</option>
 
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="alamatLengkap">Alamat Lengkap Posyandu :</label>
-                            <input type="text" class="form-control" id="alamatLengkap">
+                            <label for="tanggalKehamilan">Tanggal Kehamilan : </label>
+                            <input type="date" class="form-control" id="tanggalKehamilan">
                         </div>
-                        <a href="./dashboard.html" class="btn btn-primary">Simpan</a>
+
+                        <a href="./dashboard.html" class="btn btn-primary">Simpan Data </a>
                     </form>
                 </div>
             </div>
-
         </div>
+    </div>
+
+
+
     </div>
 
 

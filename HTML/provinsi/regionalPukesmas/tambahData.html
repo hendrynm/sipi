@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Kampung</title>
+    <title>Tambah Pukesmas</title>
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
     <div class="container">
         <a href="./dashboard.html" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Tambah Posyandu</h1>
+        <h1>Tambah Pukesmas</h1>
 
         <br>
         <div class="jumbotron">
@@ -36,17 +36,24 @@
                 <div class="col-md-6">
                     <form>
                         <div class="form-group">
-                            <label for="namaPosyandu">Nama Posyandu</label>
+                            <label for="namaPosyandu">Kode Pukesmas :</label>
                             <input type="text" class="form-control" id="namaPosyandu">
                         </div>
                         <div class="form-group">
-                            <label for="namaKampung">Nama Kampung :</label>
-                            <input type="text" class="form-control" id="namaKampung">
+                            <label for="namaPosyandu">Nama Pukesmas :</label>
+                            <input type="text" class="form-control" id="namaPosyandu">
                         </div>
                         <div class="form-group">
-                            <label for="alamatLengkap">Alamat Lengkap Posyandu :</label>
-                            <input type="text" class="form-control" id="alamatLengkap">
+                            <label for="kabupaten">Kabupaten/Kota Pukesmas :</label>
+                            <select class="custom-select" id="kabupatenKota">
+                                <option selected>Pilih Kabupaten/Kota</option>
+                                <option value="1">kota sorong</option>
+                                <option value="2">Kabupaten/Kota</option>
+                                <option value="3">pegunungan arfak</option>
+
+                            </select>
                         </div>
+
                         <a href="./dashboard.html" class="btn btn-primary">Simpan</a>
                     </form>
                 </div>
