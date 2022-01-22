@@ -10,21 +10,6 @@
         <h1>Data Induvidu</h1>
         <br>
 
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Anak">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="NIK">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                </div>
-            </div>
-        </form>
-
-        <!-- primitif -->
         <div class="jumbotron custom-table">
             <table class="table" id="dataIndividu">
                 <thead class="thead-light">
@@ -39,19 +24,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data1 as $data)
-                <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $data->nik }}</td>
-                    <td>{{ $data->nama_lengkap }}</td>
-                    <td>{{ $data->tanggal_lahir }}</td>
-                    <td>{{ $data->tanggal_lahir }} bulan</td>
-                    <td>{{ $data->nama_kabupaten }}</td>
-                    <td>
-                        <a href="./detail/{{ $data->id_anak }}" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
@@ -60,13 +32,27 @@
 </html>
 
 @section("js")
-<script>
-    $(document).ready( function () {
-        $('#dataIndividu').DataTable({
-            language: {
-                url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
-            }
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#dataIndividu').DataTable({
+                processing: true,
+                serverSide: true,
+                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
+                ajax: "{{ route('provinsi.dashboard') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'nik', name: 'nik'},
+                    {data: 'nama_lengkap', name: 'nama_lengkap'},
+                    {data: 'tanggal_lahir', name: 'tanggal_lahir'},
+                    {data: 'tanggal_lahir', name: 'usia'},
+                    {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+                    {data: 'id_anak', name:'action',
+                        render: function ( data, type, row, meta ) {
+                            return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a>'
+                        },
+                    }
+                ]
+            });
         });
-    } );
-</script>
+    </script>
 @endsection

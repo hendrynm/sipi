@@ -55,7 +55,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/data-anak")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"anakDashboard"]);
+        Route::get  ("/dashboard",          [ProvinsiController::class,"anakDashboard"])->name("anak.dashboard");
         Route::get  ("/detail/{id}",        [ProvinsiController::class,"anakDetail"]);
     });
 
@@ -72,7 +72,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/regional-kampung")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"kampungDashboard"]);
+        Route::get  ("/dashboard",          [ProvinsiController::class,"kampungDashboard"])->name("kampung.dashboard");
         Route::get  ("/edit/{id}",          [ProvinsiController::class,"kampungEdit"]);
         Route::post ("/edit/kirim",         [ProvinsiController::class,"kampungEditKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"kampungTambah"]);
@@ -81,7 +81,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/regional-posyandu")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"posyanduDashboard"]);
+        Route::get  ("/dashboard",          [ProvinsiController::class,"posyanduDashboard"])->name("posyandu.dashboard");
         Route::get  ("/edit/{id}",          [ProvinsiController::class,"posyanduEdit"]);
         Route::post ("/edit/kirim",         [ProvinsiController::class,"posyanduEditKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"posyanduTambah"]);
@@ -108,7 +108,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("sasaran")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"sasaranDashboard"]);
+        Route::get  ("/dashboard",          [ProvinsiController::class,"sasaranDashboard"])->name("sasaran.dashboard");
         Route::get  ("/detail/{id}",        [ProvinsiController::class,"sasaranTarget"]);
     });
 });

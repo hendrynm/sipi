@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProvinsiModel;
+use Yajra\DataTables\DataTables;
 
 class ProvinsiController extends Controller
 {
-    public function __construct()
-    {
-        if(session()->get("akses") !== 1) redirect("/");
-    }
-
     public function index()
     {
         return view("provinsi.dashboard");
@@ -75,10 +71,15 @@ class ProvinsiController extends Controller
     /*
      * DATA ANAK
      */
-    public function anakDashboard()
+    public function anakDashboard(Request $request)
     {
-        $kueri = ProvinsiModel::anakDashboard();
-        return view("provinsi.dataIndividu.dashboard",["data1" => $kueri]);
+        if ($request->ajax()) {
+            $data = ProvinsiModel::anakDashboard();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("provinsi.dataIndividu.dashboard");
     }
 
     public function anakDetail($id)
@@ -135,10 +136,15 @@ class ProvinsiController extends Controller
     /*
      * REGIONAL KAMPUNG
      */
-    public function kampungDashboard()
+    public function kampungDashboard(Request $request)
     {
-        $kueri = ProvinsiModel::kampungDashboard();
-        return view("provinsi.regional.dashboard",["data" => $kueri]);
+        if ($request->ajax()) {
+            $data = ProvinsiModel::kampungDashboard();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("provinsi.regional.dashboard");
     }
 
     public function kampungEdit($id)
@@ -169,10 +175,15 @@ class ProvinsiController extends Controller
     /*
      * REGIONAL POSYANDU
      */
-    public function posyanduDashboard()
+    public function posyanduDashboard(Request $request)
     {
-        $kueri = ProvinsiModel::posyanduDashboard();
-        return view("provinsi.regionalPosyandu.dashboard",["data" => $kueri]);
+        if ($request->ajax()) {
+            $data = ProvinsiModel::posyanduDashboard();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("provinsi.regionalPosyandu.dashboard");
     }
 
     public function posyanduEdit($id)
@@ -260,10 +271,15 @@ class ProvinsiController extends Controller
         return redirect("/provinsi/regional-puskesmas/dashboard");
     }
 
-    public function sasaranDashboard()
+    public function sasaranDashboard(Request $request)
     {
-        $kueri = ProvinsiModel::sasaranDashboard();
-        return view("provinsi.sasaran.dashboard",["data" => $kueri]);
+        if ($request->ajax()) {
+            $data = ProvinsiModel::sasaranDashboard();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("provinsi.sasaran.dashboard");
     }
 
     public function sasaranTarget($id)

@@ -46,7 +46,7 @@
                     <td>{{ $data->nik }}</td>
                     <td>{{ $data->nama_lengkap }}</td>
                     <td>{{ $data->tanggal_lahir }}</td>
-                    <td>{{ $data->tanggal_lahir }} bulan</td>
+                    <td>{{ (new DateTime())->diff(new DateTime($data->tanggal_lahir))->format("%y tahun %m bulan") }}</td>
                     <td>{{ $data->nama_kabupaten }}</td>
                     <td>
                         <a href="./detail/{{ $data->id_anak }}" class="btn btn-primary">Detail</a>

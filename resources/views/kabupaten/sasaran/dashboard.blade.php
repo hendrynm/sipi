@@ -32,6 +32,15 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $data)
+                <tr>
+                    <th scope="row">{{ $data->kode_kampung }}</th>
+                    <td>{{ $data->nama_kampung }}</td>
+                    <td>
+                        <a href="./detail/{{ $data->id_kampung }}" class="btn btn-primary">Sasaran dan Target</a>
+                    </td>
+                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -40,23 +49,13 @@
 </html>
 
 @section("js")
-    <script type="text/javascript">
-        $(function () {
-            var table = $('#sasaranKampung').DataTable({
-                processing: true,
-                serverSide: true,
-                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('sasaran.dashboard') }}",
-                columns: [
-                    {data: 'kode_kampung', name: 'nama_posyandu'},
-                    {data: 'nama_kampung', name: 'nama_kampung'},
-                    {data: 'id_kampung', name:'action',
-                        render: function ( data, type, row, meta ) {
-                            return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a>'
-                        },
-                    }
-                ]
+    <script>
+        $(document).ready( function () {
+            $('#sasaranKampung').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+                }
             });
-        });
+        } );
     </script>
 @endsection

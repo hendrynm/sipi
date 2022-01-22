@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Usia :</th>
-                        <td>{{ $data->tanggal_lahir }} Bulan</td>
+                        <td>{{ (new DateTime())->diff(new DateTime($data->tanggal_lahir))->format("%y tahun %m bulan") }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Jenis Kelamin :</th>

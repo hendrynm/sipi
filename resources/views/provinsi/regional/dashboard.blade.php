@@ -13,13 +13,6 @@
         <form>
             <div class="form-row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Kode Region">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Kampung">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
                     <a href="./tambah" class="btn btn-primary">Tambah kampung</a>
                 </div>
             </div>
@@ -35,17 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $data)
-                <tr>
-                    <th scope="row">{{ $data->kode_kampung }}</th>
-                    <td>{{ $data->nama_kampung }}</td>
-                    <td>{{ $data->nama_puskesmas }}</td>
-                    <td>
-                        <a href="./edit/{{ $data->id_kampung }}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                    </td>
-                </tr>
-                @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -54,13 +37,24 @@
 </html>
 
 @section("js")
-    <script>
-        $(document).ready( function () {
-            $('#dataKampung').DataTable({
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
-                }
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#dataKampung').DataTable({
+                processing: true,
+                serverSide: true,
+                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
+                ajax: "{{ route('kampung.dashboard') }}",
+                columns: [
+                    {data: 'kode_kampung', name: 'kode_kampung'},
+                    {data: 'nama_kampung', name: 'nama_kampung'},
+                    {data: 'nama_puskesmas', name: 'nama_puskesmas'},
+                    {data: 'id_kampung', name:'action',
+                        render: function ( data, type, row, meta ) {
+                            return '<a href="./edit/' + data + '" class="btn btn-primary">Detail</a>'
+                        },
+                    }
+                ]
             });
-        } );
+        });
     </script>
 @endsection
