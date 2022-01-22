@@ -44,7 +44,6 @@
                     <td>{{ $data->alamat_posyandu }}</td>
                     <td>
                         <a href="./edit/{{ $data->id_posyandu }}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach

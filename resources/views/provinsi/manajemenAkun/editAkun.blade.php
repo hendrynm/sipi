@@ -20,19 +20,19 @@
                         <input type="hidden" name="idLevel" value="{{ $data->id_level }}">
                         <div class="form-group">
                             <label for="username">Username :</label>
-                            <input type="text" class="form-control" name="username" value="{{ $data->username }}">
+                            <input type="text" class="form-control" id="username" name="username" value="{{ $data->username }}">
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Instansi :</label>
-                            <input type="text" class="form-control" name="nama" value="{{ $data->nama }}">
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}">
                         </div>
                         <div class="form-group">
                             <label for="nama">Email :</label>
-                            <input type="text" class="form-control" name="email" value="{{ $data->email }}">
+                            <input type="text" class="form-control" id="email" name="email" value="{{ $data->email }}">
                         </div>
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
-                            <select class="custom-select" name="level">
+                            <select class="custom-select" id="level" name="level">
                                 <option selected>Pilih akses level</option>
                                 <option value="1">level 1 - Provinsi Papua barat</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>

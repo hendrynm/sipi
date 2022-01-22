@@ -16,19 +16,19 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="username">username</label>
-                            <input type="text" class="form-control" name="username">
+                            <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Instansi</label>
-                            <input type="text" class="form-control" name="nama">
+                            <input type="text" class="form-control" id="nama" name="nama">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" id="email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
-                            <select class="custom-select" name="level">
+                            <select class="custom-select" id="level" name="level">
                                 <option selected>Pilih akses level</option>
                                 <option value="1">level 1 - Provinsi Papua barat</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>
@@ -38,11 +38,11 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="form-group">
                             <label for="password2">Ketik Ulang Password</label>
-                            <input type="password" class="form-control" name="password2">
+                            <input type="password" class="form-control" id="password2" name="password2">
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>

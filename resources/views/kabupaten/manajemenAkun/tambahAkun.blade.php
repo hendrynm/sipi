@@ -30,7 +30,6 @@
                             <label for="level">Akses Level :</label>
                             <select class="custom-select" name="level">
                                 <option selected>Pilih akses level</option>
-                                <option value="1">level 1 - Provinsi Papua barat</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>
                                 <option value="3">level 3 - Pukesmas</option>
                                 <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>

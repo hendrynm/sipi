@@ -87,6 +87,30 @@ Route::prefix("/provinsi")->group(function ()
         Route::get  ("/tambah",             [ProvinsiController::class,"posyanduTambah"]);
         Route::post ("/tambah/kirim",       [ProvinsiController::class,"posyanduTambahKirim"]);
     });
+
+    Route::prefix("/regional-kabupaten")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"kabupatenDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"kabupatenEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"kabupatenEditKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"kabupatenTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"kabupatenTambahKirim"]);
+    });
+
+    Route::prefix("/regional-puskesmas")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"puskesmasDashboard"]);
+        Route::get  ("/edit/{id}",          [ProvinsiController::class,"puskesmasEdit"]);
+        Route::post ("/edit/kirim",         [ProvinsiController::class,"puskesmasEditKirim"]);
+        Route::get  ("/tambah",             [ProvinsiController::class,"puskesmasTambah"]);
+        Route::post ("/tambah/kirim",       [ProvinsiController::class,"puskesmasTambahKirim"]);
+    });
+
+    Route::prefix("sasaran")->group(function ()
+    {
+        Route::get  ("/dashboard",          [ProvinsiController::class,"sasaranDashboard"]);
+        Route::get  ("/detail/{id}",        [ProvinsiController::class,"sasaranTarget"]);
+    });
 });
 
 Route::prefix("/kabupaten")->group(function ()
@@ -134,5 +158,20 @@ Route::prefix("/kabupaten")->group(function ()
         Route::post("/edit/kirim",          [KabupatenController::class,"posyanduEditKirim"]);
         Route::get("/tambah",               [KabupatenController::class,"posyanduTambah"]);
         Route::post("/tambah/kirim",        [KabupatenController::class,"posyanduTambahKirim"]);
+    });
+
+    Route::prefix("/regional-puskesmas")->group(function ()
+    {
+        Route::get  ("/dashboard",          [KabupatenController::class,"puskesmasDashboard"]);
+        Route::get  ("/edit/{id}",          [KabupatenController::class,"puskesmasEdit"]);
+        Route::post ("/edit/kirim",         [KabupatenController::class,"puskesmasEditKirim"]);
+        Route::get  ("/tambah",             [KabupatenController::class,"puskesmasTambah"]);
+        Route::post ("/tambah/kirim",       [KabupatenController::class,"puskesmasTambahKirim"]);
+    });
+
+    Route::prefix("sasaran")->group(function ()
+    {
+        Route::get  ("/dashboard",          [KabupatenController::class,"sasaranDashboard"]);
+        Route::get  ("/detail/{id}",        [KabupatenController::class,"sasaranTarget"]);
     });
 });

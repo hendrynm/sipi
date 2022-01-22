@@ -10,6 +10,30 @@ use Illuminate\Support\Facades\Hash;
 
 class ProvinsiModel extends Model
 {
+    public function daftarKabupaten()
+    {
+        return DB::table("kabupaten")
+            ->orderBy("nama_kabupaten")
+            ->select("id_kabupaten","nama_kabupaten")
+            ->get();
+    }
+
+    public function daftarPuskesmas()
+    {
+        return DB::table("puskesmas")
+            ->orderBy("nama_puskesmas")
+            ->select("id_puskesmas","nama_puskesmas")
+            ->get();
+    }
+
+    public function daftarKampung()
+    {
+        return DB::table("kampung")
+            ->orderBy("nama_kampung")
+            ->select("id_kampung","nama_kampung")
+            ->get();
+    }
+
     /*
      * ANTIGEN
      */
@@ -186,6 +210,7 @@ class ProvinsiModel extends Model
     public function kampungDashboard()
     {
         return DB::table("kampung")
+            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->get();
     }
 
@@ -202,7 +227,8 @@ class ProvinsiModel extends Model
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "nama_kampung" => $request->namaKampung,
-                "kode_kampung" => $request->kodeRegion
+                "kode_kampung" => $request->kodeRegion,
+                "id_puskesmas" => $request->puskesmas
             ]);
     }
 
@@ -211,7 +237,8 @@ class ProvinsiModel extends Model
         DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
-                "kode_kampung" => $request->kodeRegion
+                "kode_kampung" => $request->kodeRegion,
+                "id_puskesmas" => $request->puskesmas
             ]);
     }
 
@@ -247,5 +274,84 @@ class ProvinsiModel extends Model
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatLengkap
             ]);
+    }
+
+    public function kabupatenDashboard()
+    {
+        return DB::table("kabupaten")
+            ->get();
+    }
+
+    public function kabupatenEdit($id)
+    {
+        return DB::table("kabupaten")
+            ->where("id_kabupaten","=",$id)
+            ->first();
+    }
+
+    public function kabupatenEditKirim(Request $request)
+    {
+        DB::table("kabupaten")
+            ->where("id_kabupaten","=",$request->idKabupaten)
+            ->update([
+                "kode_kabupaten" => $request->kodeRegion,
+                "nama_kabupaten" => $request->namaKabupaten
+            ]);
+    }
+
+    public function kabupatenTambahKirim(Request $request)
+    {
+        DB::table("kabupaten")
+            ->insert([
+                "kode_kabupaten" => $request->kodeRegion,
+                "nama_kabupaten" => $request->namaKabupaten
+            ]);
+    }
+
+    public function puskesmasDashboard()
+    {
+        return DB::table("puskesmas")
+            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->get();
+    }
+
+    public function puskesmasEdit($id)
+    {
+        return DB::table("puskesmas")
+            ->where("id_puskesmas","=",$id)
+            ->first();
+    }
+
+    public function puskesmasEditKirim(Request $request)
+    {
+        DB::table("puskesmas")
+            ->where("id_puskesmas","=",$request->idPuskesmas)
+            ->update([
+                "kode_puskesmas" => $request->kodePuskesmas,
+                "nama_puskesmas" => $request->namaPuskesmas
+            ]);
+    }
+
+    public function puskesmasTambahKirim(Request $request)
+    {
+        DB::table("puskesmas")
+            ->insert([
+                "kode_puskesmas" => $request->kodePuskesmas,
+                "nama_puskesmas" => $request->namaPuskesmas
+            ]);
+    }
+
+    public function sasaranDashboard()
+    {
+        return DB::table("kampung")
+            ->select("id_kampung","kode_kampung","nama_kampung")
+            ->get();
+    }
+
+    public function sasaranTarget($id)
+    {
+        return DB::table("kampung")
+            ->where("id_kampung","=",$id)
+            ->first();
     }
 }
