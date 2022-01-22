@@ -7,8 +7,7 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Edit Data Posyandu</h1>
-
+        <h1>Tambah Data Posyandu</h1>
         <br>
         <div class="jumbotron">
             <div class="row">

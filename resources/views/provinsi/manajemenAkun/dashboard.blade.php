@@ -119,7 +119,7 @@
             </div>
         </form>
         <div class="jumbotron">
-            <table class="table">
+            <table class="table" id="dataUser">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">No</th>
@@ -149,26 +149,18 @@
                 </tbody>
             </table>
         </div>
-
-
-        <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-
-
-
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(document).ready( function () {
+            $('#dataUser').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+                }
+            });
+        } );
+    </script>
+@endsection

@@ -17,11 +17,20 @@
                         <input type="hidden" name="idKampung" value="{{ $data->id_kampung }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Kampung</label>
-                            <input type="text" class="form-control" name="namaKampung" value="{{ $data->nama_kampung }}">
+                            <input type="text" class="form-control" id="namaKampung" name="namaKampung" value="{{ $data->nama_kampung }}">
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Kode Region</label>
-                            <input type="text" class="form-control" name="kodeRegion" value="{{ $data->kode_kampung }}">
+                            <input type="text" class="form-control" id="kodeRegion" name="kodeRegion" value="{{ $data->kode_kampung }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="puskesmas">pukesmas :</label>
+                            <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled>Pilih Pukesmas</option>
+                                @foreach($data2 as $data2)
+                                <option data-tokens="{{ $data2->nama_puskesmas }}" value="{{ $data2->id_puskesmas }}"{{ ($data->id_puskesmas === $data2->id_puskesmas) ? " selected":" " }}>{{$data2->nama_puskesmas}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>
@@ -31,3 +40,11 @@
     </div>
 @endsection
 </html>
+
+@section("js")
+<script>
+    $(function() {
+        $('#puskesmas').selectpicker();
+    });
+</script>
+@endsection

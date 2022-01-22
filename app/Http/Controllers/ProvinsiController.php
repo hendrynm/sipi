@@ -78,7 +78,7 @@ class ProvinsiController extends Controller
     public function anakDashboard()
     {
         $kueri = ProvinsiModel::anakDashboard();
-        return view("provinsi.dataIndividu.dashboard",["data" => $kueri]);
+        return view("provinsi.dataIndividu.dashboard",["data1" => $kueri]);
     }
 
     public function anakDetail($id)
@@ -144,7 +144,8 @@ class ProvinsiController extends Controller
     public function kampungEdit($id)
     {
         $kueri = ProvinsiModel::kampungEdit($id);
-        return view("provinsi.regional.editData",["data" => $kueri]);
+        $kueri2 = ProvinsiModel::daftarPuskesmas();
+        return view("provinsi.regional.editData",["data" => $kueri,"data2" => $kueri2]);
     }
 
     public function kampungEditKirim(Request $request)
@@ -155,7 +156,8 @@ class ProvinsiController extends Controller
 
     public function kampungTambah()
     {
-        return view("provinsi.regional.tambahData");
+        $kueri = ProvinsiModel::daftarPuskesmas();
+        return view("provinsi.regional.tambahData",["data2"=>$kueri]);
     }
 
     public function kampungTambahKirim(Request $request)
@@ -176,7 +178,8 @@ class ProvinsiController extends Controller
     public function posyanduEdit($id)
     {
         $kueri = ProvinsiModel::posyanduEdit($id);
-        return view("provinsi.regionalPosyandu.editData",["data" => $kueri]);
+        $kueri2 = ProvinsiModel::daftarKampung();
+        return view("provinsi.regionalPosyandu.editData",["data" => $kueri, "data2" => $kueri2]);
     }
 
     public function posyanduEditKirim(Request $request)
@@ -187,12 +190,85 @@ class ProvinsiController extends Controller
 
     public function posyanduTambah()
     {
-        return view("provinsi.regionalPosyandu.tambahData");
+        $kueri = ProvinsiModel::daftarKampung();
+        return view("provinsi.regionalPosyandu.tambahData",["data2"=>$kueri]);
     }
 
     public function posyanduTambahKirim(Request $request)
     {
         ProvinsiModel::posyanduTambahKirim($request);
         return redirect("/provinsi/regional-posyandu/dashboard");
+    }
+
+    public function kabupatenDashboard()
+    {
+        $kueri = ProvinsiModel::kabupatenDashboard();
+        return view("provinsi.regionalKabupaten.dashboard",["data"=>$kueri]);
+    }
+
+    public function kabupatenEdit($id)
+    {
+        $kueri = ProvinsiModel::kabupatenEdit($id);
+        return view("provinsi.regionalKabupaten.editData",["data" => $kueri]);
+    }
+
+    public function kabupatenEditKirim(Request $request)
+    {
+        ProvinsiModel::kabupatenEditKirim($request);
+        return redirect("/provinsi/regional-kabupaten/dashboard");
+    }
+
+    public function kabupatenTambah()
+    {
+        return view("provinsi.regionalKabupaten.tambahData");
+    }
+
+    public function kabupatenTambahKirim(Request $request)
+    {
+        ProvinsiModel::kabupatenTambahKirim($request);
+        return redirect("/provinsi/regional-kabupaten/dashboard");
+    }
+
+    public function puskesmasDashboard()
+    {
+        $kueri = ProvinsiModel::puskesmasDashboard();
+        return view("provinsi.regionalPuskesmas.dashboard",["data"=>$kueri]);
+    }
+
+    public function puskesmasEdit($id)
+    {
+        $kueri = ProvinsiModel::puskesmasEdit($id);
+        $kueri2 = ProvinsiModel::daftarKabupaten();
+        return view("provinsi.regionalPuskesmas.editData",["data" => $kueri, "data2" => $kueri2]);
+    }
+
+    public function puskesmasEditKirim(Request $request)
+    {
+        ProvinsiModel::puskesmasEditKirim($request);
+        return redirect("/provinsi/regional-puskesmas/dashboard");
+    }
+
+    public function puskesmasTambah()
+    {
+        $kueri = ProvinsiModel::daftarKabupaten();
+        return view("provinsi.regionalPuskesmas.tambahData",["data2"=>$kueri]);
+    }
+
+    public function puskesmasTambahKirim(Request $request)
+    {
+        ProvinsiModel::puskesmasTambahKirim($request);
+        return redirect("/provinsi/regional-puskesmas/dashboard");
+    }
+
+    public function sasaranDashboard()
+    {
+        $kueri = ProvinsiModel::sasaranDashboard();
+        return view("provinsi.sasaran.dashboard",["data" => $kueri]);
+    }
+
+    public function sasaranTarget($id)
+    {
+        $kueri = ProvinsiModel::sasaranTarget($id);
+        return view("provinsi.sasaran.target",["data" => $kueri]);
     }
 }

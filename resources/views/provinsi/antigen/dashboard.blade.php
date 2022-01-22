@@ -33,7 +33,6 @@
                         <td>{{ $data->target_tahunan }}%</td>
                         <td>
                             <a href="./edit/{{ $data->id_antigen }}" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                 @endforeach

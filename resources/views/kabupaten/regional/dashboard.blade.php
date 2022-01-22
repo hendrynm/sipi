@@ -31,6 +31,7 @@
                 <tr>
                     <th scope="col">kode Region</th>
                     <th scope="col">Nama Kampung</th>
+                    <th scope="col">pukesmas</th>
                     <th scope="col">#</th>
                 </tr>
                 </thead>
@@ -39,9 +40,9 @@
                 <tr>
                     <th scope="row">{{ $data->kode_kampung }}</th>
                     <td>{{ $data->nama_kampung }}</td>
+                    <td>{{ $data->nama_puskesmas }}</td>
                     <td>
                         <a href="./edit/{{ $data->id_kampung }}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach

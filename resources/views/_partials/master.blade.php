@@ -9,5 +9,7 @@
     @show
 </main>
 @include("_partials.js")
+@section("js")
+@show
 </body>
 </html>

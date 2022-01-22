@@ -7,8 +7,7 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
-        <h1>Dasboard Data Posyandu</h1>
-        <br><br>
+        <h1>Dasboard data regional</h1>
         <form>
             <div class="form-row">
                 <div class="col">
@@ -19,40 +18,32 @@
                 </div>
                 <div class="col">
                     <a href="#" class="btn btn-primary">Cari Data</a>
-                    <a href="./tambah" class="btn btn-primary">Tambah Posyandu</a>
                 </div>
-
             </div>
         </form>
+        <hr>
         <div class="jumbotron">
-            <table class="table" id="dataPosyandu">
-                <thead class="thead-light">
+            <table class="table" id="sasaranKampung">
+                <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Posyadu</th>
-                    <th scope="col">Kampung</th>
-                    <th scope="col">Alamat Lengkap</th>
+                    <th scope="col">kode Region</th>
+                    <th scope="col">Nama Kampung</th>
                     <th scope="col">#</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $data)
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $data->nama_posyandu }}</td>
+                    <th scope="row">{{ $data->kode_kampung }}</th>
                     <td>{{ $data->nama_kampung }}</td>
-                    <td>{{ $data->alamat_posyandu }}</td>
                     <td>
-                        <a href="./edit/{{ $data->id_posyandu }}" class="btn btn-primary">Edit</a>
+                        <a href="./detail/{{ $data->id_kampung }}" class="btn btn-primary">Sasaran dan Target</a>
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
-
         </div>
-
-
     </div>
 @endsection
 </html>
@@ -60,7 +51,7 @@
 @section("js")
     <script>
         $(document).ready( function () {
-            $('#dataPosyandu').DataTable({
+            $('#sasaranKampung').DataTable({
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
                 }

@@ -24,10 +24,9 @@
             </div>
         </form>
 
-
         <!-- primitif -->
         <div class="jumbotron custom-table">
-            <table class="table .table-bordered">
+            <table class="table" id="dataIndividu">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">No</th>
@@ -40,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $data)
+                @foreach($data1 as $data)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $data->nik }}</td>
@@ -56,22 +55,18 @@
                 </tbody>
             </table>
         </div>
-
-        <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
     </div>
 @endsection
 </html>
+
+@section("js")
+<script>
+    $(document).ready( function () {
+        $('#dataIndividu').DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+            }
+        });
+    } );
+</script>
+@endsection

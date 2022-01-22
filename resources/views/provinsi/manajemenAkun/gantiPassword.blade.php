@@ -26,15 +26,15 @@
                     <form action="../kirim" method="post">
                         <div class="form-group">
                             <label for="PasswordLama">Password Lama :</label>
-                            <input type="password" class="form-control" name="PasswordLama">
+                            <input type="password" class="form-control" id="PasswordLama" name="PasswordLama">
                         </div>
                         <div class="form-group">
                             <label for="PasswordBaru">Password Baru :</label>
-                            <input type="password" class="form-control" name="PasswordBaru">
+                            <input type="password" class="form-control" id="PasswordBaru" name="PasswordBaru">
                         </div>
                         <div class="form-group">
                             <label for="PasswordBaru2">Ketik Ulang Password Baru :</label>
-                            <input type="password" class="form-control" name="PasswordBaru2">
+                            <input type="password" class="form-control" id="PasswordBaru2" name="PasswordBaru2">
                         </div>
 
                         <button class="btn btn-primary">Ganti Password</button>

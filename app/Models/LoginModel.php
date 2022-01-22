@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginModel extends Model
 {
-    public function login(Request $request): bool
+    public function login(Request $request)
     {
         $username = $request->username;
         $password = $request->password;

@@ -16,19 +16,19 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Antigen</label>
-                            <input type="text" class="form-control" name="namaAntigen">
+                            <input type="text" class="form-control" id="namaAntigen" name="namaAntigen">
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Waktu Pemberian</label>
-                            <input type="text" class="form-control" name="waktuPemberian">
+                            <input type="text" class="form-control" id="waktuPemberian" name="waktuPemberian">
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Interval Pemberian</label>
-                            <input type="text" class="form-control" name="intervalPemberian">
+                            <input type="text" class="form-control" id="intervalPemberian" name="intervalPemberian">
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Target Tahunan</label>
-                            <input type="text" class="form-control" name="targetTahunan">
+                            <input type="text" class="form-control" id="targetTahunan" name="targetTahunan">
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>
