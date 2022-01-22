@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- css boostrap v4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- custom app.css -->
+    <link rel="stylesheet" href="../assets/css/app.css">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- error prevention -->
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-blue">
+        <a class="navbar-brand" href="#">
+            <img class="img-fluid" src="../assets/images/logo-kemenkes-header.png" width="200" height="200" alt="">
+        </a>
+        <a class="navbar-brand" href="#">
+            <img class="img-fluid" src="../assets/images/app-header.png" width="250" height="250" alt="">
+        </a>
+        <a class="navbar-brand" href="#">
+            <img class="img-fluid" src="../assets/images/logo-pabar-header.png" width="180" height="180" alt="">
+        </a>
+    </nav>
+    <div class="container main">
+
+        <a href="./dashboard.html" class="btn btn-primary">back</a>
+        <hr>
+        <h1>Data Anak</h1>
+        <br>
+        <br>
+
+
+        <h2>Data Personal</h2>
+        <div class="row">
+            <div class="col-md-6">
+
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Nama Lengkap :</th>
+                            <td>Hendry Marbela</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nama Ibu Kandung :</th>
+                            <td>Pradnya</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tanggal Lahir :</th>
+                            <td>27 Oktober 2023</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Usia :</th>
+                            <td>12 Bulan</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jenis Kelamin :</th>
+                            <td>Laki-Laki</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">No HP :</th>
+                            <td>082000000010</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Kabupaten/Kota Tinggal :</th>
+                            <td>Sorong Selatan</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Alamat Tinggal :</th>
+                            <td>Laki-Laki</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Posyandu :</th>
+                            <td>Laki-Laki</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Ibu Kandung :</th>
+                            <td>Pradnya Shita</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">KTP :</th>
+                            <td>00023</td>
+                        </tr>
+                        <!-- ini kalau di perempuan -->
+                        <tr>
+                            <th scope="row">Status Kehamilan :</th>
+                            <td>Hamil 6 bulan</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <a href="./editDataInduvidu.html" class="btn btn-primary">Edit Data Personal</a>
+
+
+                <br>
+                <br>
+
+            </div>
+
+        </div>
+
+
+
+
+        <h2>Status Imunisasi</h2>
+        <div class="row">
+            <div class="col-md-6">
+
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Imunisasi Dasar Lengkap :</th>
+                            <td>Sudah terpenuhi</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Imunisasi Rutin Lengkap :</th>
+                            <td>Belum Terpenuhi</td>
+                        </tr>
+
+                        <!-- hanya berlaku untuk perempuan -->
+                        <tr>
+                            <th scope="row">Status T :</th>
+                            <td>T1</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <h2>Data Imunisasi</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Imunisasi</th>
+                    <th scope="col">Tanggal Imunisasi</th>
+                    <th scope="col">Tempat Imunisasi</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>HB0</td>
+                    <td>12/02/2022</td>
+                    <td>Rumah Sakit Provinsi Papua Barat</td>
+                    <td>sudah imunisasi</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>SDT2</td>
+                    <td>14/04/2022</td>
+                    <td>Posyandu Amban 1</td>
+                    <td>sudah imunisasi</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>CampakS1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>Belum imunisasi</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+    <div class="container-fluid footer">
+        <div class="row justify-content-center align-content-center">
+            <div class="col-2">
+                <img class="img-fluid d-block m-auto" src="../assets/images/logo-kemenkes.png" width="150" height="150"
+                    alt="">
+            </div>
+
+            <div class="col-2">
+                <img class="img-fluid d-block m-auto" src="../assets/images/logo-pabar.png" width="150" height="150"
+                    alt="">
+            </div>
+            <div class="col-2">
+                <img class="img-fluidd-block m-auto" src="../assets/images/app.png" width="150" height="150" alt="">
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-6 footer-text">
+                <hr>
+                <p>
+                    <b>Alamat :</b><br>
+                    Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
+                    Bar., Anday,
+                    Manokwari Sel., Kabupaten Manokwari, Papua Bar. 98315
+                </p>
+                <p>
+                    <b>Kontak :</b> <br>
+                    dinaskesehatanprovpapuabarat@gmail.com <br>
+                    rsudpapuabarat@gmail.com
+                </p>
+                <hr>
+                <p>
+
+                    Aplikasi Dikembangkan dan Dimilik Oleh Dinas Kesehatan Provinsi Papua Barat
+
+
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- boostrap js v4.6 mandatory -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <!-- biar auto formatnya gak rusak -->
+
+
+</body>
+
+</html>
