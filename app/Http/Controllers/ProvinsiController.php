@@ -133,6 +133,12 @@ class ProvinsiController extends Controller
         return redirect("/provinsi/akun/dashboard");
     }
 
+    public function akunHapusKirim($id)
+    {
+        (new ProvinsiModel)->akunHapusKirim($id);
+        return redirect("/provinsi/akun/dashboard");
+    }
+
     /*
      * REGIONAL KAMPUNG
      */
@@ -240,10 +246,15 @@ class ProvinsiController extends Controller
         return redirect("/provinsi/regional-kabupaten/dashboard");
     }
 
-    public function puskesmasDashboard()
+    public function puskesmasDashboard(Request $request)
     {
-        $kueri = (new ProvinsiModel)->puskesmasDashboard();
-        return view("provinsi.regionalPuskesmas.dashboard",["data"=>$kueri]);
+        if ($request->ajax()) {
+            $data = (new ProvinsiModel)->puskesmasDashboard();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("provinsi.regionalPuskesmas.dashboard");
     }
 
     public function puskesmasEdit($id)

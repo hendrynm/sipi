@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Dashboard Data Posyandu")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -50,7 +50,7 @@
                     {data: 'alamat_posyandu', name: 'alamat_posyandu'},
                     {data: 'id_posyandu', name:'action',
                         render: function ( data, type, row, meta ) {
-                            return '<a href="./edit/' + data + '" class="btn btn-primary">Detail</a>'
+                            return '<a href="./edit/' + data + '" class="btn btn-primary">Edit</a>'
                         },
                     }
                 ]

@@ -191,10 +191,10 @@ class ProvinsiModel extends Model
             DB::table("level")
                 ->insert([
                     "level" => $request->level,
-                    "nama_level" => "default"
+                    "nama_level" => $request->nama
                 ]);
             $kueri = DB::table("level")
-                ->orderByDesc("id_user")
+                ->orderByDesc("id_level")
                 ->first();
             DB::table("user")
                 ->insert([
@@ -205,6 +205,20 @@ class ProvinsiModel extends Model
                     "id_level" => $kueri->id_level
                 ]);
         }
+    }
+
+    public function akunHapusKirim($id)
+    {
+        $kueri = DB::table("user")
+            ->where("id_user","=",$id)
+            ->select("id_level")
+            ->first();
+        DB::table("user")
+            ->where("id_user","=",$id)
+            ->delete();
+        DB::table("level")
+            ->where("id_level","=",$kueri->id_level)
+            ->delete();
     }
 
     public function kampungDashboard()
@@ -272,7 +286,8 @@ class ProvinsiModel extends Model
         DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
-                "alamat_posyandu" => $request->alamatLengkap
+                "alamat_posyandu" => $request->alamatLengkap,
+                "id_kampung" => $request->kampung
             ]);
     }
 
@@ -294,7 +309,7 @@ class ProvinsiModel extends Model
         DB::table("kabupaten")
             ->where("id_kabupaten","=",$request->idKabupaten)
             ->update([
-                "kode_kabupaten" => $request->kodeRegion,
+                "kode_kabupaten" => $request->kodeRegional,
                 "nama_kabupaten" => $request->namaKabupaten
             ]);
     }
@@ -303,7 +318,7 @@ class ProvinsiModel extends Model
     {
         DB::table("kabupaten")
             ->insert([
-                "kode_kabupaten" => $request->kodeRegion,
+                "kode_kabupaten" => $request->kodeRegional,
                 "nama_kabupaten" => $request->namaKabupaten
             ]);
     }
@@ -328,7 +343,8 @@ class ProvinsiModel extends Model
             ->where("id_puskesmas","=",$request->idPuskesmas)
             ->update([
                 "kode_puskesmas" => $request->kodePuskesmas,
-                "nama_puskesmas" => $request->namaPuskesmas
+                "nama_puskesmas" => $request->namaPuskesmas,
+                "id_kabupaten" => $request->kabupaten
             ]);
     }
 
@@ -337,7 +353,8 @@ class ProvinsiModel extends Model
         DB::table("puskesmas")
             ->insert([
                 "kode_puskesmas" => $request->kodePuskesmas,
-                "nama_puskesmas" => $request->namaPuskesmas
+                "nama_puskesmas" => $request->namaPuskesmas,
+                "id_kabupaten" => $request->kabupaten
             ]);
     }
 

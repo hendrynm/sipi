@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProvinsiModel;
 use Illuminate\Http\Request;
 use App\Models\KabupatenModel;
-use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 
 class KabupatenController extends Controller

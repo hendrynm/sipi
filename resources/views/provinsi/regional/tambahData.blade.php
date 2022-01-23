@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Tambah Data Regional")
+@section("title","Tambah Data Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,12 +7,13 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Tambah kampung</h1>
+        <h1>Tambah Data kampung</h1>
         <br>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="../kirim" method="post">
+                    <form action="./tambah/kirim" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Kampung</label>
                             <input type="text" class="form-control" name="namaKampung">
@@ -22,7 +23,7 @@
                             <input type="text" class="form-control" name="kodeRegion">
                         </div>
                         <div class="form-group">
-                            <label for="puskesmas">pukesmas :</label>
+                            <label for="puskesmas">Nama Puskesmas :</label>
                             <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled>Pilih Pukesmas</option>
                                 @foreach($data2 as $data2)

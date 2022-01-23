@@ -33,18 +33,17 @@
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
                             <select class="custom-select" id="level" name="level">
-                                <option selected>Pilih akses level</option>
-                                <option value="1">level 1 - Provinsi Papua barat</option>
-                                <option value="2">level 2 - Kabupaten/Kota</option>
-                                <option value="3">level 3 - Pukesmas</option>
-                                <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
+                                <option disabled>Pilih akses level</option>
+                                <option value="1" {{ $data->level === 1 ? "selected" : ""}}>level 1 - Provinsi Papua barat</option>
+                                <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
+                                <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
+                                <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                             </select>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

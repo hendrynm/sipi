@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Kampung")
+@section("title","Dashboard Data Kabupaten")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -9,21 +9,7 @@
         <hr>
         <h1>Dasboard Data Kabupaten</h1>
         <br><br>
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Kode Region">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Kabupaten">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                    <a href="./tambah" class="btn btn-primary">Tambah Kabupaten</a>
-                </div>
-
-            </div>
-        </form>
+        <a href="./tambah" class="btn btn-primary">Tambah Kabupaten</a>
         <div class="jumbotron">
             <table class="table" id="dataKabupaten">
                 <thead class="thead-light">

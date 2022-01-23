@@ -14,9 +14,10 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        session()->flush();
         (new LoginModel)->login($request);
 
-        switch(session()->get("akses"))
+        switch(session()->get("level"))
         {
             case (1):
                 return redirect("/provinsi");

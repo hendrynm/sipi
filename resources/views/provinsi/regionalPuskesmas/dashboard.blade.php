@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Dashboard Data Puskesmas")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -9,29 +9,8 @@
         <hr>
         <h1>Dasboard Data Puskesmas</h1>
         <br><br>
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Kode Puskesmas">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Puskesmas">
-                </div>
-                <div class="col">
-                    <select class="custom-select" id="kabupaten">
-                        <option selected>Kabupaten</option>
-                        <option value="1">manokwari</option>
-                        <option value="2">Sorong</option>
-                        <option value="3">Pegunungan Arfak</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                    <a href="./tambah" class="btn btn-primary">Tambah Puskesmas</a>
-                </div>
+        <a href="./tambah" class="btn btn-primary">Tambah Puskesmas</a>
 
-            </div>
-        </form>
         <div class="jumbotron">
             <table class="table" id="dataPuskesmas">
                 <thead class="thead-light">
@@ -44,17 +23,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $data)
-                <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $data->kode_puskesmas }}</td>
-                    <td>{{ $data->nama_puskesmas }}</td>
-                    <td>{{ $data->nama_kabupaten }}</td>
-                    <td>
-                        <a href="./edit/{{ $data->id_puskesmas }}" class="btn btn-primary">Edit</a>
-                    </td>
-                </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
@@ -63,13 +31,25 @@
 </html>
 
 @section("js")
-    <script>
-        $(document).ready( function () {
-            $('#dataPuskesmas').DataTable({
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
-                }
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#dataPuskesmas').DataTable({
+                processing: true,
+                serverSide: true,
+                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
+                ajax: "{{ route('prov.puskesmas') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'kode_puskesmas', name: 'kode_puskesmas'},
+                    {data: 'nama_puskesmas', name: 'nama_puskesmas'},
+                    {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+                    {data: 'id_puskesmas', name:'action',
+                        render: function ( data, type, row, meta ) {
+                            return '<a href="./edit/' + data + '" class="btn btn-primary">Edit</a>'
+                        },
+                    }
+                ]
             });
-        } );
+        });
     </script>
 @endsection

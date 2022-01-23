@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Data Target dan Sasaran Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -9,7 +9,6 @@
         <hr>
         <h1>Data target dan sasaran kampung {{ $data->nama_kampung }}</h1>
         <div class="jumbotron">
-
             <br>
             <br>
             <div class="row justify-content-center">

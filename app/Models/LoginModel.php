@@ -21,7 +21,7 @@ class LoginModel extends Model
 
             $request->session()->flash("sukses","Selamat Datang " . $user->nama . "!");
             $request->session()->put("id_user",$user->id_user);
-            $request->session()->put("akses",$level->level);
+            $request->session()->put("level",$level->level);
             switch($level->level)
             {
                 case(2):

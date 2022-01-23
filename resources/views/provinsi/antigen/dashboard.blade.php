@@ -7,14 +7,13 @@
     <div class="container">
         <a href=".." class="btn btn-primary">Back</a>
         <hr>
-        <h1>Dasboard Data Antigen Provinsi</h1>
+        <h1>Dasboard Data Antigen</h1>
 
         <div class="jumbotron">
             <a href="./tambah" class="btn btn-primary">Tambah Data Antigen</a>
             <br>
             <br>
-
-            <table class="table">
+            <table class="table" id="dataAntigen">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Nama Antigen</th>
@@ -42,3 +41,15 @@
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(document).ready( function () {
+            $('#dataAntigen').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+                }
+            });
+        } );
+    </script>
+@endsection

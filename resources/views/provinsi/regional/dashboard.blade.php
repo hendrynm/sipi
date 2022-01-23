@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Regional")
+@section("title","Dashboard Data Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -9,14 +9,8 @@
         <hr>
         <h1>Dasboard Data Kampung</h1>
         <br><br>
+        <a href="./tambah" class="btn btn-primary">Tambah kampung</a>
 
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <a href="./tambah" class="btn btn-primary">Tambah kampung</a>
-                </div>
-            </div>
-        </form>
         <div class="jumbotron">
             <table class="table" id="dataKampung">
                 <thead class="thead-light">
@@ -28,7 +22,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
             </table>
         </div>
@@ -50,7 +43,7 @@
                     {data: 'nama_puskesmas', name: 'nama_puskesmas'},
                     {data: 'id_kampung', name:'action',
                         render: function ( data, type, row, meta ) {
-                            return '<a href="./edit/' + data + '" class="btn btn-primary">Detail</a>'
+                            return '<a href="./edit/' + data + '" class="btn btn-primary">Edit</a>'
                         },
                     }
                 ]

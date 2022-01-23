@@ -16,14 +16,13 @@
                 <b>Email</b> : {{ $data->email }} <br>
             </p>
         </div>
-
         <div class="jumbotron">
             <h2>Ganti password</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="idUser" value="{{ $data->id_user }}">
-                    <form action="../kirim" method="post">
+                    <form action="./kirim" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="idUser" value="{{ $data->id_user }}">
                         <div class="form-group">
                             <label for="PasswordLama">Password Lama :</label>
                             <input type="password" class="form-control" id="PasswordLama" name="PasswordLama">
@@ -36,13 +35,11 @@
                             <label for="PasswordBaru2">Ketik Ulang Password Baru :</label>
                             <input type="password" class="form-control" id="PasswordBaru2" name="PasswordBaru2">
                         </div>
-
                         <button class="btn btn-primary">Ganti Password</button>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 </html>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AksesProvinsi;
+use App\Http\Middleware\AksesKabupaten;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KabupatenController;
@@ -31,7 +33,9 @@ Route::get  ("/lupa",       [LoginController::class,    "lupa"]);
  * PROVINSI
  * ------------------------------------------------------------------------
  */
-Route::prefix("/provinsi")->group(function ()
+Route::prefix("/provinsi")
+    ->middleware([AksesProvinsi::class])
+    ->group(function ()
 {
     Route::redirect("/","/provinsi/dashboard");
     Route::get  ("/dashboard",              [ProvinsiController::class,"index"]);
@@ -68,6 +72,7 @@ Route::prefix("/provinsi")->group(function ()
         Route::post ("/ganti-pass/kirim",   [ProvinsiController::class,"akunGantiPassKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"akunTambah"]);
         Route::post ("/tambah/kirim",       [ProvinsiController::class,"akunTambahKirim"]);
+        Route::get  ("/hapus/{id}",         [ProvinsiController::class,"akunHapusKirim"]);
     });
 
     Route::prefix("/regional-kampung")->group(function ()
@@ -99,7 +104,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/regional-puskesmas")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"puskesmasDashboard"]);
+        Route::get  ("/dashboard",          [ProvinsiController::class,"puskesmasDashboard"])->name("prov.puskesmas");
         Route::get  ("/edit/{id}",          [ProvinsiController::class,"puskesmasEdit"]);
         Route::post ("/edit/kirim",         [ProvinsiController::class,"puskesmasEditKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"puskesmasTambah"]);
@@ -113,7 +118,9 @@ Route::prefix("/provinsi")->group(function ()
     });
 });
 
-Route::prefix("/kabupaten")->group(function ()
+Route::prefix("/kabupaten")
+    ->middleware([AksesKabupaten::class])
+    ->group(function ()
 {
     Route::redirect("/","/kabupaten/dashboard");
     Route::get("/dashboard",                [KabupatenController::class,"dashboard"]);

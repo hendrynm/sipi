@@ -101,23 +101,6 @@
 
 
         <h2>Data Akun Terdaftar</h2>
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Email">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                </div>
-
-            </div>
-        </form>
         <div class="jumbotron">
             <table class="table" id="dataUser">
                 <thead class="thead-light">
@@ -128,7 +111,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">Access Level</th>
                     <th scope="col">#</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -142,7 +124,7 @@
                     <td>
                         <a href="./edit/{{ $data->id_user }}" class="btn btn-primary">Edit</a>
                         <a href="./ganti-pass/{{ $data->id_user }}" class="btn btn-primary">Ganti Password</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
+                        <a href="./hapus/{{ $data->id_user }}" onclick="return confirm('Hapus data ini?')" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach

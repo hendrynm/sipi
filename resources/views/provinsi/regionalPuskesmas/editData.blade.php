@@ -1,7 +1,7 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Edit Data Puskesmas")
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 @section("konten")
     <div class="container">
@@ -12,12 +12,12 @@
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="../kirim" method="post">
+                    <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idPuskesmas" value="{{ $data->id_puskesmas }}">
                         <div class="form-group">
                             <label for="kodePuskesmas">Kode Puskesmas :</label>
-                            <input type="text" class="form-control" id="kodePuskesmas" name="namaPuskesmas" value="{{ $data->kode_puskesmas }}">
+                            <input type="text" class="form-control" id="kodePuskesmas" name="kodePuskesmas" value="{{ $data->kode_puskesmas }}">
                         </div>
                         <div class="form-group">
                             <label for="namaPuskesmas">Nama Puskesmas :</label>
