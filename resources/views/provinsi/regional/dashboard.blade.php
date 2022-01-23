@@ -43,7 +43,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('kampung.dashboard') }}",
+                ajax: "{{ route('prov.kampung') }}",
                 columns: [
                     {data: 'kode_kampung', name: 'kode_kampung'},
                     {data: 'nama_kampung', name: 'nama_kampung'},

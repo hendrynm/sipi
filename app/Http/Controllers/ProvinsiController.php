@@ -18,19 +18,19 @@ class ProvinsiController extends Controller
      */
     public function antigenDashboard()
     {
-        $kueri = ProvinsiModel::antigenDashboard();
+        $kueri = (new ProvinsiModel)->antigenDashboard();
         return view("provinsi.antigen.dashboard",["data" => $kueri]);
     }
 
     public function antigenEdit($id)
     {
-        $kueri = ProvinsiModel::antigenEdit($id);
+        $kueri = (new ProvinsiModel)->antigenEdit($id);
         return view("provinsi.antigen.editAntigen",["data" => $kueri]);
     }
 
     public function antigenEditKirim(Request $request)
     {
-        ProvinsiModel::antigenEditKirim($request);
+        (new ProvinsiModel)->antigenEditKirim($request);
         return redirect("/provinsi/antigen/dashboard");
     }
 
@@ -41,7 +41,7 @@ class ProvinsiController extends Controller
 
     public function antigenTambahKirim(Request $request)
     {
-        ProvinsiModel::antigenTambahKirim($request);
+        (new ProvinsiModel)->antigenTambahKirim($request);
         return redirect("/provinsi/antigen/dashboard");
     }
 
@@ -74,7 +74,7 @@ class ProvinsiController extends Controller
     public function anakDashboard(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProvinsiModel::anakDashboard();
+            $data = (new ProvinsiModel)->anakDashboard();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
@@ -84,8 +84,8 @@ class ProvinsiController extends Controller
 
     public function anakDetail($id)
     {
-        $kueri = ProvinsiModel::anakDetail($id);
-        $kueri2 = ProvinsiModel::anakDetailImunisasi($id);
+        $kueri = (new ProvinsiModel)->anakDetail($id);
+        $kueri2 = (new ProvinsiModel)->anakDetailImunisasi($id);
         return view("provinsi.dataIndividu.detailDataIndividu",["data" => $kueri, "data2" => $kueri2]);
     }
 
@@ -94,31 +94,31 @@ class ProvinsiController extends Controller
      */
     public function akunDashboard()
     {
-        $kueri = ProvinsiModel::akunDashboard();
+        $kueri = (new ProvinsiModel)->akunDashboard();
         return view("provinsi.manajemenAkun.dashboard",["data" => $kueri]);
     }
 
     public function akunEdit($id)
     {
-        $kueri = ProvinsiModel::akunEdit($id);
+        $kueri = (new ProvinsiModel)->akunEdit($id);
         return view("provinsi.manajemenAkun.editAkun",["data" => $kueri]);
     }
 
     public function akunEditKirim(Request $request)
     {
-        ProvinsiModel::akunEditKirim($request);
+        (new ProvinsiModel)->akunEditKirim($request);
         return redirect("/provinsi/akun/dashboard");
     }
 
     public function akunGantiPass($id)
     {
-        $kueri = ProvinsiModel::akunGantiPass($id);
+        $kueri = (new ProvinsiModel)->akunGantiPass($id);
         return view("provinsi.manajemenAkun.gantiPassword",["data" => $kueri]);
     }
 
     public function akunGantiPassKirim(Request $request)
     {
-        ProvinsiModel::akunGantiPassKirim($request);
+        (new ProvinsiModel)->akunGantiPassKirim($request);
         return redirect("/provinsi/akun/dashboard");
     }
 
@@ -129,7 +129,7 @@ class ProvinsiController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-        ProvinsiModel::akunTambahKirim($request);
+        (new ProvinsiModel)->akunTambahKirim($request);
         return redirect("/provinsi/akun/dashboard");
     }
 
@@ -139,7 +139,7 @@ class ProvinsiController extends Controller
     public function kampungDashboard(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProvinsiModel::kampungDashboard();
+            $data = (new ProvinsiModel)->kampungDashboard();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
@@ -149,26 +149,26 @@ class ProvinsiController extends Controller
 
     public function kampungEdit($id)
     {
-        $kueri = ProvinsiModel::kampungEdit($id);
-        $kueri2 = ProvinsiModel::daftarPuskesmas();
+        $kueri = (new ProvinsiModel)->kampungEdit($id);
+        $kueri2 = (new ProvinsiModel)->daftarPuskesmas();
         return view("provinsi.regional.editData",["data" => $kueri,"data2" => $kueri2]);
     }
 
     public function kampungEditKirim(Request $request)
     {
-        ProvinsiModel::kampungEditKirim($request);
+        (new ProvinsiModel)->kampungEditKirim($request);
         return redirect("/provinsi/regional-kampung/dashboard");
     }
 
     public function kampungTambah()
     {
-        $kueri = ProvinsiModel::daftarPuskesmas();
+        $kueri = (new ProvinsiModel)->daftarPuskesmas();
         return view("provinsi.regional.tambahData",["data2"=>$kueri]);
     }
 
     public function kampungTambahKirim(Request $request)
     {
-        ProvinsiModel::kampungTambahKirim($request);
+        (new ProvinsiModel)->kampungTambahKirim($request);
         return redirect("/provinsi/regional-kampung/dashboard");
     }
 
@@ -178,7 +178,7 @@ class ProvinsiController extends Controller
     public function posyanduDashboard(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProvinsiModel::posyanduDashboard();
+            $data = (new ProvinsiModel)->posyanduDashboard();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
@@ -188,44 +188,44 @@ class ProvinsiController extends Controller
 
     public function posyanduEdit($id)
     {
-        $kueri = ProvinsiModel::posyanduEdit($id);
-        $kueri2 = ProvinsiModel::daftarKampung();
+        $kueri = (new ProvinsiModel)->posyanduEdit($id);
+        $kueri2 = (new ProvinsiModel)->daftarKampung();
         return view("provinsi.regionalPosyandu.editData",["data" => $kueri, "data2" => $kueri2]);
     }
 
     public function posyanduEditKirim(Request $request)
     {
-        ProvinsiModel::posyanduEditKirim($request);
+        (new ProvinsiModel)->posyanduEditKirim($request);
         return redirect("/provinsi/regional-posyandu/dashboard");
     }
 
     public function posyanduTambah()
     {
-        $kueri = ProvinsiModel::daftarKampung();
+        $kueri = (new ProvinsiModel)->daftarKampung();
         return view("provinsi.regionalPosyandu.tambahData",["data2"=>$kueri]);
     }
 
     public function posyanduTambahKirim(Request $request)
     {
-        ProvinsiModel::posyanduTambahKirim($request);
+        (new ProvinsiModel)->posyanduTambahKirim($request);
         return redirect("/provinsi/regional-posyandu/dashboard");
     }
 
     public function kabupatenDashboard()
     {
-        $kueri = ProvinsiModel::kabupatenDashboard();
+        $kueri = (new ProvinsiModel)->kabupatenDashboard();
         return view("provinsi.regionalKabupaten.dashboard",["data"=>$kueri]);
     }
 
     public function kabupatenEdit($id)
     {
-        $kueri = ProvinsiModel::kabupatenEdit($id);
+        $kueri = (new ProvinsiModel)->kabupatenEdit($id);
         return view("provinsi.regionalKabupaten.editData",["data" => $kueri]);
     }
 
     public function kabupatenEditKirim(Request $request)
     {
-        ProvinsiModel::kabupatenEditKirim($request);
+        (new ProvinsiModel)->kabupatenEditKirim($request);
         return redirect("/provinsi/regional-kabupaten/dashboard");
     }
 
@@ -236,45 +236,45 @@ class ProvinsiController extends Controller
 
     public function kabupatenTambahKirim(Request $request)
     {
-        ProvinsiModel::kabupatenTambahKirim($request);
+        (new ProvinsiModel)->kabupatenTambahKirim($request);
         return redirect("/provinsi/regional-kabupaten/dashboard");
     }
 
     public function puskesmasDashboard()
     {
-        $kueri = ProvinsiModel::puskesmasDashboard();
+        $kueri = (new ProvinsiModel)->puskesmasDashboard();
         return view("provinsi.regionalPuskesmas.dashboard",["data"=>$kueri]);
     }
 
     public function puskesmasEdit($id)
     {
-        $kueri = ProvinsiModel::puskesmasEdit($id);
-        $kueri2 = ProvinsiModel::daftarKabupaten();
+        $kueri = (new ProvinsiModel)->puskesmasEdit($id);
+        $kueri2 = (new ProvinsiModel)->daftarKabupaten();
         return view("provinsi.regionalPuskesmas.editData",["data" => $kueri, "data2" => $kueri2]);
     }
 
     public function puskesmasEditKirim(Request $request)
     {
-        ProvinsiModel::puskesmasEditKirim($request);
+        (new ProvinsiModel)->puskesmasEditKirim($request);
         return redirect("/provinsi/regional-puskesmas/dashboard");
     }
 
     public function puskesmasTambah()
     {
-        $kueri = ProvinsiModel::daftarKabupaten();
+        $kueri = (new ProvinsiModel)->daftarKabupaten();
         return view("provinsi.regionalPuskesmas.tambahData",["data2"=>$kueri]);
     }
 
     public function puskesmasTambahKirim(Request $request)
     {
-        ProvinsiModel::puskesmasTambahKirim($request);
+        (new ProvinsiModel)->puskesmasTambahKirim($request);
         return redirect("/provinsi/regional-puskesmas/dashboard");
     }
 
     public function sasaranDashboard(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProvinsiModel::sasaranDashboard();
+            $data = (new ProvinsiModel)->sasaranDashboard();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
@@ -284,7 +284,7 @@ class ProvinsiController extends Controller
 
     public function sasaranTarget($id)
     {
-        $kueri = ProvinsiModel::sasaranTarget($id);
+        $kueri = (new ProvinsiModel)->sasaranTarget($id);
         return view("provinsi.sasaran.target",["data" => $kueri]);
     }
 }

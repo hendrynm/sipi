@@ -7,7 +7,7 @@
     <div class="container">
         <a href="/logout" class="btn btn-primary">log out</a>
         <hr>
-        <h1>Dasboard {{ (strtolower(substr($data->nama_kabupaten,0,4)) === "kota") ? $data->nama_kabupaten : "Kabupaten " . $data->nama_kabupaten }}</h1>
+        <h1>Dasboard {{ $data->nama_kabupaten }}</h1>
 
         <div class="jumbotron">
             <h2>Laporan Pencapaian</h2>
@@ -20,13 +20,19 @@
             <h2>Data Induvidu</h2>
             <a href="./data/dashboard" class="btn btn-primary">Data Induvidu</a>
         </div>
+
         <div class="jumbotron">
             <h2>Data Regional</h2>
+            <a href="./regional-puskesmas/dashboard" class="btn btn-primary">Dashboard data Puskesmas</a>
             <a href="./regional-kampung/dashboard" class="btn btn-primary">Dashboard data Kampung</a>
             <a href="./regional-posyandu/dashboard" class="btn btn-primary">Dashboard data Posyandu</a>
-
-
         </div>
+
+        <div class="jumbotron">
+            <h2>Data Sasaran</h2>
+            <a href="./sasaran/dashboard" class="btn btn-primary">Sasaran per kampung</a>
+        </div>
+
         <div class="jumbotron">
             <h2>Manjemen Akun Kabupaten/Kota</h2>
             <a href="./akun/dashboard" class="btn btn-primary">dashboard manajemen akun</a>

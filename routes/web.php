@@ -55,7 +55,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/data-anak")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"anakDashboard"])->name("anak.dashboard");
+        Route::get  ("/dashboard",          [ProvinsiController::class,"anakDashboard"])->name("prov.anak");
         Route::get  ("/detail/{id}",        [ProvinsiController::class,"anakDetail"]);
     });
 
@@ -72,7 +72,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/regional-kampung")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"kampungDashboard"])->name("kampung.dashboard");
+        Route::get  ("/dashboard",          [ProvinsiController::class,"kampungDashboard"])->name("prov.kampung");
         Route::get  ("/edit/{id}",          [ProvinsiController::class,"kampungEdit"]);
         Route::post ("/edit/kirim",         [ProvinsiController::class,"kampungEditKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"kampungTambah"]);
@@ -81,7 +81,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("/regional-posyandu")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"posyanduDashboard"])->name("posyandu.dashboard");
+        Route::get  ("/dashboard",          [ProvinsiController::class,"posyanduDashboard"])->name("prov.posyandu");
         Route::get  ("/edit/{id}",          [ProvinsiController::class,"posyanduEdit"]);
         Route::post ("/edit/kirim",         [ProvinsiController::class,"posyanduEditKirim"]);
         Route::get  ("/tambah",             [ProvinsiController::class,"posyanduTambah"]);
@@ -108,7 +108,7 @@ Route::prefix("/provinsi")->group(function ()
 
     Route::prefix("sasaran")->group(function ()
     {
-        Route::get  ("/dashboard",          [ProvinsiController::class,"sasaranDashboard"])->name("sasaran.dashboard");
+        Route::get  ("/dashboard",          [ProvinsiController::class,"sasaranDashboard"])->name("prov.sasaran");
         Route::get  ("/detail/{id}",        [ProvinsiController::class,"sasaranTarget"]);
     });
 });
@@ -127,7 +127,7 @@ Route::prefix("/kabupaten")->group(function ()
 
     Route::prefix("/data")->group(function ()
     {
-        Route::get("/dashboard",            [KabupatenController::class,"dataDashboard"]);
+        Route::get("/dashboard",            [KabupatenController::class,"dataDashboard"])->name("kab.anak");
         Route::get("/detail/{id}",          [KabupatenController::class,"dataDetail"]);
     });
 
@@ -171,7 +171,7 @@ Route::prefix("/kabupaten")->group(function ()
 
     Route::prefix("sasaran")->group(function ()
     {
-        Route::get  ("/dashboard",          [KabupatenController::class,"sasaranDashboard"]);
+        Route::get  ("/dashboard",          [KabupatenController::class,"sasaranDashboard"])->name("kab.sasaran");
         Route::get  ("/detail/{id}",        [KabupatenController::class,"sasaranTarget"]);
     });
 });

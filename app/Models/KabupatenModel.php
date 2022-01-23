@@ -14,6 +14,7 @@ class KabupatenModel extends Model
     {
         return DB::table("kabupaten")
             ->where("id_kabupaten","=",$id_kab)
+            ->select("nama_kabupaten")
             ->first();
     }
 
@@ -198,5 +199,48 @@ class KabupatenModel extends Model
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatPosyandu
             ]);
+    }
+
+    public function puskesmasDashboard($id_kab)
+    {
+        return DB::table("puskesmas")
+            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->where("puskesmas.id_kabupaten","=",$id_kab)
+            ->get();
+    }
+
+    public function puskesmasEdit($id)
+    {
+        return DB::table("puskesmas")
+            ->where("id_puskesmas","=",$id)
+            ->first();
+    }
+
+    public function puskesmasEditKirim(Request $request)
+    {
+        DB::table("puskesmas")
+            ->where("id_puskesmas","=",$request->idPuskesmas)
+            ->update([
+                "kode_puskesmas" => $request->kodePuskesmas,
+                "nama_puskesmas" => $request->namaPuskesmas
+            ]);
+    }
+
+    public function puskesmasTambahKirim(Request $request, $id_kab)
+    {
+        DB::table("puskesmas")
+            ->insert([
+                "kode_puskesmas" => $request->kodePuskesmas,
+                "nama_puskesmas" => $request->namaPuskesmas,
+                "id_kabupaten" => $id_kab
+            ]);
+    }
+
+    public function sasaranDashboard($id_kab)
+    {
+        return DB::table("kampung")
+            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
+            ->where("id_kabupaten","=",$id_kab)
+            ->get();
     }
 }

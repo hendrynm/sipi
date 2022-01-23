@@ -27,7 +27,7 @@
 
         <!-- primitif -->
         <div class="jumbotron custom-table">
-            <table class="table .table-bordered">
+            <table class="table" id="dataIndividu">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">No</th>
@@ -40,38 +40,35 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $data)
-                <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $data->nik }}</td>
-                    <td>{{ $data->nama_lengkap }}</td>
-                    <td>{{ $data->tanggal_lahir }}</td>
-                    <td>{{ (new DateTime())->diff(new DateTime($data->tanggal_lahir))->format("%y tahun %m bulan") }}</td>
-                    <td>{{ $data->nama_kabupaten }}</td>
-                    <td>
-                        <a href="./detail/{{ $data->id_anak }}" class="btn btn-primary">Detail</a>
-                    </td>
-                </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
-
-        <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#dataIndividu').DataTable({
+                processing: true,
+                serverSide: true,
+                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
+                ajax: "{{ route('prov.anak') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'nik', name: 'nik'},
+                    {data: 'nama_lengkap', name: 'nama_lengkap'},
+                    {data: 'tanggal_lahir', name: 'tanggal_lahir'},
+                    {data: 'tanggal_lahir', name: 'usia'},
+                    {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+                    {data: 'id_anak', name:'action',
+                        render: function ( data, type, row, meta ) {
+                            return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a>'
+                        },
+                    }
+                ]
+            });
+        });
+    </script>
+@endsection

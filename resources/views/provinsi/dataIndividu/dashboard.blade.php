@@ -38,7 +38,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('provinsi.dashboard') }}",
+                ajax: "{{ route('prov.anak') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nik', name: 'nik'},

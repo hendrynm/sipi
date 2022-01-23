@@ -6,6 +6,7 @@ use App\Models\ProvinsiModel;
 use Illuminate\Http\Request;
 use App\Models\KabupatenModel;
 use Illuminate\Support\Facades\Session;
+use Yajra\DataTables\DataTables;
 
 class KabupatenController extends Controller
 {
@@ -16,50 +17,56 @@ class KabupatenController extends Controller
 
     public function dashboard()
     {
-        $kueri = KabupatenModel::dashboard($this->id_kab());
+        $kueri = (new KabupatenModel)->dashboard($this->id_kab());
         return view("kabupaten.dashboard",["data"=>$kueri]);
     }
 
-    public function dataDashboard()
+    public function dataDashboard(Request $request)
     {
-        $kueri = KabupatenModel::dataDashboard($this->id_kab());
-        return view("kabupaten.dataIndividu.dashboard",["data"=>$kueri]);
+        if ($request->ajax())
+        {
+            $data = (new KabupatenModel())->dataDashboard($this->id_kab());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("kabupaten.dataIndividu.dashboard");
     }
 
     public function dataDetail($id)
     {
-        $kueri = KabupatenModel::dataDetail($id);
-        $kueri2 = KabupatenModel::dataDetailImunisasi($id);
+        $kueri = (new KabupatenModel)->dataDetail($id);
+        $kueri2 = (new KabupatenModel)->dataDetailImunisasi($id);
         return view("kabupaten.dataIndividu.detailDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
     public function akunDashboard()
     {
-        $kueri = KabupatenModel::akunDashboard($this->id_kab());
+        $kueri = (new KabupatenModel)->akunDashboard($this->id_kab());
         return view("kabupaten.manajemenAkun.dashboard",["data"=>$kueri]);
     }
 
     public function akunEdit($id)
     {
-        $kueri = KabupatenModel::akunEdit($id);
+        $kueri = (new KabupatenModel)->akunEdit($id);
         return view("kabupaten.manajemenAkun.editAkun",["data"=>$kueri]);
     }
 
     public function akunEditKirim(Request $request)
     {
-        KabupatenModel::akunEditKirim($request);
+        (new KabupatenModel)->akunEditKirim($request);
         return redirect("/kabupaten/akun/dashboard");
     }
 
     public function akunGantiPass($id)
     {
-        $kueri = KabupatenModel::akunGantiPass($id);
+        $kueri = (new KabupatenModel)->akunGantiPass($id);
         return view("kabupaten.manajemenAkun.gantiPassword",["data" => $kueri]);
     }
 
     public function akunGantiPassKirim(Request $request)
     {
-        KabupatenModel::akunGantiPassKirim($request);
+        (new KabupatenModel)->akunGantiPassKirim($request);
         return redirect("/kabupaten/akun/dashboard");
     }
 
@@ -70,25 +77,25 @@ class KabupatenController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-        KabupatenModel::akunTambahKirim($request);
+        (new KabupatenModel)->akunTambahKirim($request);
         return redirect("/kabupaten/akun/dashboard");
     }
 
     public function kampungDashboard()
     {
-        $kueri = KabupatenModel::kampungDashboard($this->id_kab());
+        $kueri = (new KabupatenModel)->kampungDashboard($this->id_kab());
         return view("kabupaten.regional.dashboard",["data" => $kueri]);
     }
 
     public function kampungEdit($id)
     {
-        $kueri = KabupatenModel::kampungEdit($id);
+        $kueri = (new KabupatenModel)->kampungEdit($id);
         return view("kabupaten.regional.editData",["data"=>$kueri]);
     }
 
     public function kampungEditKirim(Request $request)
     {
-        KabupatenModel::kampungEditKirim($request);
+        (new KabupatenModel)->kampungEditKirim($request);
         return redirect("/kabupaten/regional-kampung/dashboard");
     }
 
@@ -99,25 +106,25 @@ class KabupatenController extends Controller
 
     public function kampungTambahKirim(Request $request)
     {
-        KabupatenModel::kampungTambahKirim($request);
+        (new KabupatenModel)->kampungTambahKirim($request);
         return redirect("/kabupaten/regional-kampung/dashboard");
     }
 
     public function posyanduDashboard()
     {
-        $kueri = KabupatenModel::posyanduDashboard($this->id_kab());
+        $kueri = (new KabupatenModel)->posyanduDashboard($this->id_kab());
         return view("kabupaten.regionalPosyandu.dashboard",["data" => $kueri]);
     }
 
     public function posyanduEdit($id)
     {
-        $kueri = KabupatenModel::posyanduEdit($id);
+        $kueri = (new KabupatenModel)->posyanduEdit($id);
         return view("kabupaten.regionalPosyandu.editData",["data"=>$kueri]);
     }
 
     public function posyanduEditKirim(Request $request)
     {
-        KabupatenModel::posyanduEditKirim($request);
+        (new KabupatenModel)->posyanduEditKirim($request);
         return redirect("/kabupaten/regional-posyandu/dashboard");
     }
 
@@ -128,7 +135,48 @@ class KabupatenController extends Controller
 
     public function posyanduTambahKirim(Request $request)
     {
-        KabupatenModel::posyanduTambahKirim($request);
+        (new KabupatenModel)->posyanduTambahKirim($request);
         return redirect("/kabupaten/regional-posyandu/dashboard");
+    }
+
+    public function puskesmasDashboard()
+    {
+        $kueri = (new KabupatenModel)->puskesmasDashboard($this->id_kab());
+        return view("kabupaten.regionalPuskesmas.dashboard",["data" => $kueri]);
+    }
+
+    public function puskesmasEdit($id)
+    {
+        $kueri = (new KabupatenModel)->puskesmasEdit($id);
+        return view("kabupaten.regionalPuskesmas.editData",["data"=>$kueri]);
+    }
+
+    public function puskesmasEditKirim(Request $request)
+    {
+        (new KabupatenModel)->puskesmasEditKirim($request);
+        return redirect("/kabupaten/regional-puskesmas/dashboard");
+    }
+
+    public function puskesmasTambah()
+    {
+        return view("kabupaten.regionalPuskesmas.tambahData");
+    }
+
+    public function puskesmasTambahKirim(Request $request)
+    {
+        (new KabupatenModel)->puskesmasTambahKirim($request, $this->id_kab());
+        return redirect("/kabupaten/regional-puskesmas/dashboard");
+    }
+
+    public function sasaranDashboard(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new KabupatenModel())->sasaranDashboard($this->id_kab());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("kabupaten.sasaran.dashboard");
     }
 }

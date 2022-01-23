@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        LoginModel::login($request);
+        (new LoginModel)->login($request);
 
         switch(session()->get("akses"))
         {

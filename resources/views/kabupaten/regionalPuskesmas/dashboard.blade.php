@@ -12,24 +12,8 @@
         <form>
             <div class="form-row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Kode Puskesmas">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Puskesmas">
-                </div>
-                <div class="col">
-                    <select class="custom-select" id="kabupaten">
-                        <option selected>Kabupaten</option>
-                        <option value="1">manokwari</option>
-                        <option value="2">Sorong</option>
-                        <option value="3">Pegunungan Arfak</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
                     <a href="./tambah" class="btn btn-primary">Tambah Puskesmas</a>
                 </div>
-
             </div>
         </form>
         <div class="jumbotron">

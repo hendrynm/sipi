@@ -46,7 +46,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('sasaran.dashboard') }}",
+                ajax: "{{ route('prov.sasaran') }}",
                 columns: [
                     {data: 'kode_kampung', name: 'nama_posyandu'},
                     {data: 'nama_kampung', name: 'nama_kampung'},
