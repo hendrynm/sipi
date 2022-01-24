@@ -147,11 +147,12 @@ Route::prefix("/kabupaten")
         Route::post("/ganti-pass/kirim",    [KabupatenController::class,"akunGantiPassKirim"]);
         Route::get("/tambah",               [KabupatenController::class,"akunTambah"]);
         Route::post("/tambah/kirim",        [KabupatenController::class,"akunTambahKirim"]);
+        Route::get("/hapus/{id}",           [KabupatenController::class,"akunHapusKirim"]);
     });
 
     Route::prefix("regional-kampung")->group(function ()
     {
-        Route::get("/dashboard",            [KabupatenController::class,"kampungDashboard"]);
+        Route::get("/dashboard",            [KabupatenController::class,"kampungDashboard"])->name("kab.kampung");
         Route::get("/edit/{id}",            [KabupatenController::class,"kampungEdit"]);
         Route::post("/edit/kirim",          [KabupatenController::class,"kampungEditKirim"]);
         Route::get("/tambah",               [KabupatenController::class,"kampungTambah"]);

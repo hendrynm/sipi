@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Hash;
 
 class KabupatenModel extends Model
 {
+    public function daftarPuskesmas($id_kab)
+    {
+        return DB::table("puskesmas")
+            ->where("id_kabupaten","=",$id_kab)
+            ->select("id_puskesmas","nama_puskesmas")
+            ->get();
+    }
+
+    public function daftarKampung($id_kab)
+    {
+        return DB::table("kampung")
+            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
+            ->where("id_kabupaten","=",$id_kab)
+            ->select("id_kampung","nama_kampung")
+            ->get();
+    }
+
     public function dashboard($id_kab)
     {
         return DB::table("kabupaten")
@@ -61,8 +78,9 @@ class KabupatenModel extends Model
     {
         return DB::table("user")
             ->join("level","user.id_level","=","level.id_level")
+            ->join("kabupaten","user.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("id_user","=",$id)
-            ->select("user.id_level","id_user","username","nama","email")
+            ->select("nama_kabupaten","user.id_level","id_user","level","username","nama","email")
             ->first();
     }
 
@@ -118,7 +136,7 @@ class KabupatenModel extends Model
                     "nama_level" => "default"
                 ]);
             $kueri = DB::table("level")
-                ->orderByDesc("id_user")
+                ->orderByDesc("id_level")
                 ->first();
             DB::table("user")
                 ->insert([
@@ -129,6 +147,20 @@ class KabupatenModel extends Model
                     "id_level" => $kueri->id_level
                 ]);
         }
+    }
+
+    public function akunHapusKirim($id)
+    {
+        $kueri = DB::table("user")
+            ->where("id_user","=",$id)
+            ->select("id_level")
+            ->first();
+        DB::table("user")
+            ->where("id_user","=",$id)
+            ->delete();
+        DB::table("level")
+            ->where("id_level","=",$kueri->id_level)
+            ->delete();
     }
 
     public function kampungDashboard($id_kab)
@@ -161,7 +193,8 @@ class KabupatenModel extends Model
         DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
-                "kode_kampung" => $request->kodeRegion
+                "kode_kampung" => $request->kodeRegion,
+                "id_puskesmas" => $request->puskesmas
             ]);
     }
 
@@ -188,7 +221,8 @@ class KabupatenModel extends Model
             ->where("id_posyandu","=",$request->idPosyandu)
             ->update([
                 "nama_posyandu" => $request->namaPosyandu,
-                "alamat_posyandu" => $request->alamatPosyandu
+                "alamat_posyandu" => $request->alamatLengkap,
+                "id_kampung" => $request->kampung
             ]);
     }
 
@@ -197,7 +231,8 @@ class KabupatenModel extends Model
         DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
-                "alamat_posyandu" => $request->alamatPosyandu
+                "alamat_posyandu" => $request->alamatLengkap,
+                "id_kampung" => $request->kampung
             ]);
     }
 

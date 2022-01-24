@@ -5,14 +5,14 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard" class="btn btn-primary">Back</a>
+        <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Buat Akun baru</h1>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
                     <h2>Data Akun Baru</h2>
-                    <form action="./kirim" method="post">
+                    <form action="./tambah/kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="username">username</label>

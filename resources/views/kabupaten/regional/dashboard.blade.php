@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Regional")
+@section("title","Dashboard Data Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -22,21 +22,11 @@
                 <tr>
                     <th scope="col">kode Region</th>
                     <th scope="col">Nama Kampung</th>
-                    <th scope="col">pukesmas</th>
+                    <th scope="col">Puskesmas</th>
                     <th scope="col">#</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data as $data)
-                <tr>
-                    <th scope="row">{{ $data->kode_kampung }}</th>
-                    <td>{{ $data->nama_kampung }}</td>
-                    <td>{{ $data->nama_puskesmas }}</td>
-                    <td>
-                        <a href="./edit/{{ $data->id_kampung }}" class="btn btn-primary">Edit</a>
-                    </td>
-                </tr>
-                @endforeach
                 </tbody>
             </table>
         </div>
@@ -45,13 +35,24 @@
 </html>
 
 @section("js")
-    <script>
-        $(document).ready( function () {
-            $('#dataKampung').DataTable({
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
-                }
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#dataKampung').DataTable({
+                processing: true,
+                serverSide: true,
+                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
+                ajax: "{{ route('kab.kampung') }}",
+                columns: [
+                    {data: 'kode_kampung', name: 'kode_kampung'},
+                    {data: 'nama_kampung', name: 'nama_kampung'},
+                    {data: 'nama_puskesmas', name: 'nama_puskesmas'},
+                    {data: 'id_kampung', name:'action',
+                        render: function ( data, type, row, meta ) {
+                            return '<a href="./edit/' + data + '" class="btn btn-primary">Edit</a>'
+                        },
+                    }
+                ]
             });
-        } );
+        });
     </script>
 @endsection

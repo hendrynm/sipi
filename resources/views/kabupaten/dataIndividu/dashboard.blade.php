@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Data Anak")
+@section("title","Dashboard Data Individu")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -10,22 +10,6 @@
         <h1>Data Induvidu</h1>
         <br>
 
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama Anak">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="NIK">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                </div>
-            </div>
-        </form>
-
-
-        <!-- primitif -->
         <div class="jumbotron custom-table">
             <table class="table" id="dataIndividu">
                 <thead class="thead-light">
@@ -54,7 +38,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('prov.anak') }}",
+                ajax: "{{ route('kab.anak') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nik', name: 'nik'},

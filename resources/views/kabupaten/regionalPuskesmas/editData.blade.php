@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Edit Data Puskesmas")
 
     <!DOCTYPE html>
 <html lang="id">
@@ -12,7 +12,7 @@
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="../kirim" method="post">
+                    <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idPuskesmas" value="{{ $data->id_puskesmas }}">
                         <div class="form-group">

@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Dashboard Kabupaten")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +7,7 @@
     <div class="container">
         <a href="/logout" class="btn btn-primary">log out</a>
         <hr>
-        <h1>Dasboard {{ $data->nama_kabupaten }}</h1>
+        <h1>Dasboard Kabupaten/Kota {{ $data->nama_kabupaten }}</h1>
 
         <div class="jumbotron">
             <h2>Laporan Pencapaian</h2>

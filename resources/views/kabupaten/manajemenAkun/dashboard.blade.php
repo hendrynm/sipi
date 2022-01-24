@@ -89,36 +89,15 @@
                             <li>Melakukan penambahan data anak dan bayi</li>
                             <li>Melakukan imunisasi terbatas</li>
                         </ul>
-
                     </td>
-
                 </tr>
                 </tbody>
             </table>
-
         </div>
 
-
         <h2>Data Akun Terdaftar</h2>
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nama">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Email">
-                </div>
-                <div class="col">
-                    <a href="#" class="btn btn-primary">Cari Data</a>
-                </div>
-
-            </div>
-        </form>
         <div class="jumbotron">
-            <table class="table">
+            <table class="table" id="dataUser">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">No</th>
@@ -140,29 +119,25 @@
                     <td>
                         <a href="./edit/{{ $data->id_user }}" class="btn btn-primary">Edit</a>
                         <a href="./ganti-pass/{{ $data->id_user }}" class="btn btn-primary">Ganti Password</a>
-                        <a href="#" class="btn btn-danger">Hapus</a>
+                        <a href="./hapus/{{ $data->id_user }}" onclick="return confirm('Hapus data ini?')" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
-
-        <nav aria-label="...">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(document).ready( function () {
+            $('#dataUser').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+                }
+            });
+        } );
+    </script>
+@endsection

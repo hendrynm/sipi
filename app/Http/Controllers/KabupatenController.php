@@ -79,16 +79,29 @@ class KabupatenController extends Controller
         return redirect("/kabupaten/akun/dashboard");
     }
 
-    public function kampungDashboard()
+    public function akunHapusKirim($id)
     {
-        $kueri = (new KabupatenModel)->kampungDashboard($this->id_kab());
-        return view("kabupaten.regional.dashboard",["data" => $kueri]);
+        (new KabupatenModel)->akunHapusKirim($id);
+        return redirect("/kabupaten/akun/dashboard");
+    }
+
+    public function kampungDashboard(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new KabupatenModel)->kampungDashboard($this->id_kab());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("kabupaten.regional.dashboard");
     }
 
     public function kampungEdit($id)
     {
         $kueri = (new KabupatenModel)->kampungEdit($id);
-        return view("kabupaten.regional.editData",["data"=>$kueri]);
+        $kueri2 = (new KabupatenModel)->daftarPuskesmas($this->id_kab());
+        return view("kabupaten.regional.editData",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
     public function kampungEditKirim(Request $request)
@@ -99,7 +112,8 @@ class KabupatenController extends Controller
 
     public function kampungTambah()
     {
-        return view("kabupaten.regional.tambahData");
+        $kueri = (new KabupatenModel)->daftarPuskesmas($this->id_kab());
+        return view("kabupaten.regional.tambahData",["data2"=>$kueri]);
     }
 
     public function kampungTambahKirim(Request $request)
@@ -117,7 +131,8 @@ class KabupatenController extends Controller
     public function posyanduEdit($id)
     {
         $kueri = (new KabupatenModel)->posyanduEdit($id);
-        return view("kabupaten.regionalPosyandu.editData",["data"=>$kueri]);
+        $kueri2 = (new KabupatenModel)->daftarKampung($this->id_kab());
+        return view("kabupaten.regionalPosyandu.editData",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
     public function posyanduEditKirim(Request $request)
@@ -128,7 +143,8 @@ class KabupatenController extends Controller
 
     public function posyanduTambah()
     {
-        return view("kabupaten.regionalPosyandu.tambahData");
+        $kueri = (new KabupatenModel)->daftarKampung($this->id_kab());
+        return view("kabupaten.regionalPosyandu.tambahData",["data2"=>$kueri]);
     }
 
     public function posyanduTambahKirim(Request $request)

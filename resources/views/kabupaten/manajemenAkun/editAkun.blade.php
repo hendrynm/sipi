@@ -5,15 +5,12 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard" class="btn btn-primary">Back</a>
+        <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-
-        <h1>Akun Kabupaten x</h1>
+        <h1>Edit Akun Kabupaten {{ $data->nama_kabupaten }}</h1>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>Edit Akun</h2>
-                    <br>
                     <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idUser" value="{{ $data->id_user }}">
@@ -33,10 +30,10 @@
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
                             <select class="custom-select" name="level">
-                                <option selected>Pilih akses level</option>
-                                <option value="2">level 2 - Kabupaten/Kota</option>
-                                <option value="3">level 3 - Pukesmas</option>
-                                <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
+                                <option disabled>Pilih akses level</option>
+                                <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
+                                <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
+                                <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                             </select>
                         </div>
                         <button class="btn btn-primary">Simpan</button>

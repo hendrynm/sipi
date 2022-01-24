@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Dashboard Data Posyandu")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -9,11 +9,7 @@
         <hr>
         <h1>Dasboard Data Posyandu</h1>
         <br><br>
-        <div class="form-row">
-            <div class="col">
-                <a href="./tambah" class="btn btn-primary">Tambah Posyandu</a>
-            </div>
-        </div>
+        <a href="./tambah" class="btn btn-primary">Tambah Posyandu</a>
         <div class="jumbotron">
             <table class="table" id="dataPosyandu">
                 <thead class="thead-light">
