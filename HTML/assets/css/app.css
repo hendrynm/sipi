@@ -80,6 +80,20 @@ form{
         /* box-shadow: 10px 5px 15px rgb(219, 219, 219); */
     }
 
+
+    /* puskesmas / data induvidu / edit */
+    .form-hamil{
+        margin-top: 1rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 4px #d6d6d6;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-hamil-button{
+        margin-bottom: 2rem ;
+    }
+
     /* footer all */
     .footer{
         margin-top: 2rem;
