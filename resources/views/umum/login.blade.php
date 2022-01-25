@@ -1,10 +1,13 @@
-@extends("_partials.master")
+@extends("_partials.master-login")
 @section("title","Login")
 
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container">
+
+    <!-- testing -->
+
+    <div class="container login">
         @if(session()->has("gagal"))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -15,23 +18,53 @@
             </div>
         @endif
 
-        <form action="/login" method="post">
+        <div class="jumbotron login-box">
+            <div class="container-fluid login-header">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" alt="">
+                    </div>
+                    <div class="col-6">
+                        <h1>Aplikasi Sistem Pelaporan Imunisasi </h1>
+                        <h1>Provinsi Papua Barat</h1>
+                    </div>
+                    <div class="col-3">
+                    <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-pabar.png")}}" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+
+                <div class="row justify-content-center">
+                <div class="col-md-6">
+                <form action="/login" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
+                        <div class="form-group">
+                            <label for="username" class="login-label">Username :</label>
+                           <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="login-label">Password :</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-4">
+                                <button type="submit" class="btn btn-primary login-button">Login</button>   
+                                <a href="./lupa_password.html" class="text-center">lupa password</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="./kabupaten/dasboard.html" class="btn btn-primary">sementara - kabupaten</a>
-            <a href="./provinsi/dasboard.html" class="btn btn-primary">sementara - provinsi</a>
-            <div class="form-group">
-                <a href="./lupa_password.html">lupa password</a>
-            </div>
-        </form>
+        </div>
+
+
     </div>
+
+
 @endsection
 </html>

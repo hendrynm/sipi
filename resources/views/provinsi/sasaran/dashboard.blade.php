@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container">
+<div class="container main-dashboard">
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Dasboard Data Sasaran</h1>
