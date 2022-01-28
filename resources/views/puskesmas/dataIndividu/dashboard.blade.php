@@ -9,7 +9,7 @@
         <hr>
         <h1>Data Induvidu</h1>
         <br>
-
+        <a href="./tambah" class="btn btn-primary">Tambah Data</a>
         <div class="jumbotron custom-table">
             <table class="table" id="dataIndividu">
                 <thead class="thead-light">
@@ -38,7 +38,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('prov.anak') }}",
+                ajax: "{{ route('pus.anak') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nik', name: 'nik'},
@@ -59,7 +59,8 @@
                     {data: 'nama_kabupaten', name: 'nama_kabupaten'},
                     {data: 'id_anak', name:'action',
                         render: function ( data, type, row, meta ) {
-                            return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a>'
+                            return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a> <a href="./edit/'
+                                + data + '" class="btn btn-primary">Edit</a>'
                         },
                     }
                 ]

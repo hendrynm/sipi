@@ -44,7 +44,18 @@
                     {data: 'nik', name: 'nik'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'tanggal_lahir', name: 'tanggal_lahir'},
-                    {data: 'tanggal_lahir', name: 'usia'},
+                    {data: 'tanggal_lahir', name: 'usia',
+                        render: function ( data, type, row, meta ){
+                            let tahun = (new Date().getFullYear()) - (new Date(data).getFullYear())
+                            let bulan = (new Date().getMonth()) - (new Date(data).getMonth())
+                            if(bulan < 0)
+                                return (tahun-1) + " tahun " + (bulan+12) + " bulan"
+                            else if(bulan === 0)
+                                return tahun + " tahun " + bulan + " bulan"
+                            else
+                                return tahun + " tahun " + (bulan+12) + " bulan"
+                        },
+                    },
                     {data: 'nama_kabupaten', name: 'nama_kabupaten'},
                     {data: 'id_anak', name:'action',
                         render: function ( data, type, row, meta ) {

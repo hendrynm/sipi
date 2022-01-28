@@ -1,0 +1,264 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\PuskesmasModel;
+use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Deprecated;
+use Yajra\DataTables\DataTables;
+
+class PuskesmasController extends Controller
+{
+    public function id_pus()
+    {
+        return session()->get("id_puskesmas");
+    }
+
+    public function dashboard()
+    {
+        $kueri = (new PuskesmasModel)->dashboard($this->id_pus());
+        return view("puskesmas.dashboard",["data"=>$kueri]);
+    }
+
+    public function dataDashboard(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel())->dataDashboard($this->id_pus());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("puskesmas.dataIndividu.dashboard");
+    }
+
+    public function dataDetail($id)
+    {
+        $kueri = (new PuskesmasModel)->dataDetail($id);
+        $kueri2 = (new PuskesmasModel)->dataDetailImunisasi($id);
+        return view("puskesmas.dataIndividu.detailDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
+    }
+
+    public function dataEdit($id)
+    {
+        $kueri = (new PuskesmasModel)->dataEdit($id);
+        $kueri2 = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
+        return view("puskesmas.dataIndividu.editDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
+    }
+
+    public function dataEditKirim(Request $request)
+    {
+        (new PuskesmasModel)->dataEditKirim($request);
+        return redirect("/puskesmas/data-anak/dashboard");
+    }
+
+    public function dataTambah()
+    {
+        $kueri = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
+        $kueri2 = (new PuskesmasModel)->daftarKampung($this->id_pus());
+        return view("puskesmas.dataIndividu.tambahDataIndividu",["data2"=>$kueri,"data"=>$kueri2]);
+    }
+
+    public function dataTambahKirim(Request $request)
+    {
+        (new PuskesmasModel)->dataTambahKirim($request);
+        return redirect("/puskesmas/data-anak/dashboard");
+    }
+
+    public function akunDashboard()
+    {
+        $kueri = (new PuskesmasModel)->akunDashboard($this->id_pus());
+        return view("puskesmas.manajemenAkun.dashboard",["data"=>$kueri]);
+    }
+
+    public function akunEdit($id)
+    {
+        $kueri = (new PuskesmasModel)->akunEdit($id);
+        return view("puskesmas.manajemenAkun.editAkun",["data"=>$kueri]);
+    }
+
+    public function akunEditKirim(Request $request)
+    {
+        (new PuskesmasModel)->akunEditKirim($request);
+        return redirect("/puskesmas/akun/dashboard");
+    }
+
+    public function akunGantiPass($id)
+    {
+        $kueri = (new PuskesmasModel)->akunGantiPass($id);
+        return view("puskesmas.manajemenAkun.gantiPassword",["data" => $kueri]);
+    }
+
+    public function akunGantiPassKirim(Request $request)
+    {
+        (new PuskesmasModel)->akunGantiPassKirim($request);
+        return redirect("/puskesmas/akun/dashboard");
+    }
+
+    public function akunTambah()
+    {
+        return view("puskesmas.manajemenAkun.tambahAkun");
+    }
+
+    public function akunTambahKirim(Request $request)
+    {
+        (new PuskesmasModel)->akunTambahKirim($request);
+        return redirect("/puskesmas/akun/dashboard");
+    }
+
+    public function akunHapusKirim($id)
+    {
+        (new PuskesmasModel)->akunHapusKirim($id);
+        return redirect("/puskesmas/akun/dashboard");
+    }
+
+    public function kampungDashboard(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel)->kampungDashboard($this->id_pus());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("puskesmas.regional.dashboard");
+    }
+
+    public function kampungEdit($id)
+    {
+        $kueri = (new PuskesmasModel)->kampungEdit($id);
+        return view("puskesmas.regional.editData",["data"=>$kueri]);
+    }
+
+    public function kampungEditKirim(Request $request)
+    {
+        (new PuskesmasModel)->kampungEditKirim($request);
+        return redirect("/puskesmas/regional-kampung/dashboard");
+    }
+
+    public function kampungTambah()
+    {
+        $kueri = (new PuskesmasModel)->daftarPuskesmas($this->id_pus());
+        return view("puskesmas.regional.tambahData",["data2"=>$kueri]);
+    }
+
+    public function kampungTambahKirim(Request $request)
+    {
+        (new PuskesmasModel)->kampungTambahKirim($request, $this->id_pus());
+        return redirect("/puskesmas/regional-kampung/dashboard");
+    }
+
+    public function kampungSasaranDetail($id)
+    {
+        $kueri = (new PuskesmasModel)->kampungSasaranDetail($id);
+        return view("puskesmas.regional.target",["data"=>$kueri]);
+    }
+
+    public function kampungSasaranUbah($id)
+    {
+        $kueri = (new PuskesmasModel)->kampungSasaranUbah($id);
+        return view("puskesmas.regional.ubah",["data"=>$kueri]);
+    }
+
+    public function kampungSasaranUbahKirim(Request $request)
+    {
+        (new PuskesmasModel)->kampungSasaranUbahKirim($request);
+        return redirect("/puskesmas/regional-kampung/dashboard");
+    }
+
+    public function posyanduDashboard(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel)->posyanduDashboard($this->id_pus());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("puskesmas.regionalPosyandu.dashboard");
+    }
+
+    public function posyanduEdit($id)
+    {
+        $kueri = (new PuskesmasModel)->posyanduEdit($id);
+        $kueri2 = (new PuskesmasModel)->daftarKampung($this->id_pus());
+        return view("puskesmas.regionalPosyandu.editData",["data"=>$kueri,"data2"=>$kueri2]);
+    }
+
+    public function posyanduEditKirim(Request $request)
+    {
+        (new PuskesmasModel)->posyanduEditKirim($request);
+        return redirect("/puskesmas/regional-posyandu/dashboard");
+    }
+
+    public function posyanduTambah()
+    {
+        $kueri = (new PuskesmasModel)->daftarKampung($this->id_pus());
+        return view("puskesmas.regionalPosyandu.tambahData",["data2"=>$kueri]);
+    }
+
+    public function posyanduTambahKirim(Request $request)
+    {
+        (new PuskesmasModel)->posyanduTambahKirim($request);
+        return redirect("/puskesmas/regional-posyandu/dashboard");
+    }
+
+    public function posDashboard()
+    {
+        $kueri = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
+        return view("puskesmas.posyandu.dashboard",["data"=>$kueri]);
+    }
+
+    public function posBelumImunisasi(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel)->posBelumImunisasi($this->id_pus());
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        $kueri2 = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
+        return view("puskesmas.posyandu.belumImunisasi",["data2"=>$kueri2]);
+    }
+
+    public function posMulai(Request $request)
+    {
+        return view("puskesmas.posyandu.mulai");
+    }
+
+    public function posCari()
+    {
+        return view("puskesmas.posyandu.cari");
+    }
+
+    public function posTambah()
+    {
+        return view();
+    }
+
+    public function posTambahKirim()
+    {
+        return ;
+    }
+
+    public function posEdit($id)
+    {
+        return ;
+    }
+
+    public function posEditKirim(Request $request)
+    {
+        return ;
+    }
+
+    public function posEntri($id, $tanggal)
+    {
+        return ;
+    }
+
+    public function posEntriKirim(Request $request)
+    {
+        return ;
+    }
+}

@@ -24,7 +24,7 @@ class LoginController extends Controller
             case (2):
                 return redirect("/kabupaten");
             case (3):
-                return redirect("posyandu");
+                return redirect("/puskesmas");
             default:
                 return redirect("/");
         }

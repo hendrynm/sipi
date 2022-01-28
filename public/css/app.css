@@ -9,6 +9,7 @@ body {
 h3{
     text-align: center;
     font-size: 1.5rem;
+
 }
 
 
@@ -22,6 +23,7 @@ h1{
 
 h2{
     font-size: 2rem;
+    font-weight: 600;
     color: rgb(81, 134, 231);
     /* font-weight: 600; */
 }
@@ -60,6 +62,12 @@ form{
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 275px) {
+
+    /* hide */
+    .hide{
+        display: none;
+    }
+
     .btn-danger{
         background-color: #E25A56;
     }
@@ -99,15 +107,29 @@ form{
     .main-dashboard .jumbotron > h2{
         /* color: #274C7F; */
         color: #89a5ee;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1.8rem;
         /* border-bottom: 1px dashed #89a5ee; */
         margin-bottom: 1rem;
-        
+
     }
     .main-dashboard .jumbotron > a{
-       margin-bottom: 1rem;
-        
+        margin-bottom: 1rem;
+        padding: 0;
+        border-radius: 0.5rem;
+        background-color: #ffffff;
+        border: 1px solid white;
+        color: #274C7E;
+        transition: box-shadow .5s ease-out;
+
+    }
+    .main-dashboard .jumbotron> a:hover{
+        box-shadow: 0px 0px 10px rgb(118, 143, 195);
+        /* border: 2px solid rgb(100, 122, 170); */
+
+    }
+    .main-dashboard .jumbotron> a:active{
+        background-color: white;
     }
 
     /* konten middle */
@@ -131,13 +153,13 @@ form{
     .jumbotron form{
         margin-top: 2rem;
     }
-  
+
     .login-header{
         background-color: #D7E3F9;
         padding: 0;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
-        
+
     }
     .login-header h1{
         color: #274C7E;
@@ -149,10 +171,10 @@ form{
         padding: 0 0 4rem 0;
         margin-top: 2rem;
         border-radius: 2rem;
-        
-        
+
+
     }
-    
+
     .login-label{
         color: #274C7E;
         font-size: 1.2rem;
@@ -164,13 +186,13 @@ form{
         border: 1px solid #89a5ee;
         border-radius: 5rem;
     }
-    
+
     .login-button{
         padding: 0.5rem 2rem;
         font-size: 1.2rem;
         margin: 0 0 2rem 0;
         border-radius: 5rem;
-        
+
     }
 
     /* all botton */
@@ -187,6 +209,10 @@ form{
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
+    /* hide */
+    .hide{
+        display: inline;
+    }
     .btn-primary{
         margin-bottom: 0px;
     }
