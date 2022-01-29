@@ -4,6 +4,7 @@
 <body>
 @include("_partials.topbar")
 @include("_partials.sidebar")
+@include("_partials.chartjs")
 <main>
     @section("konten")
     @show

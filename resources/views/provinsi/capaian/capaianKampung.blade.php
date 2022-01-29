@@ -11,7 +11,6 @@
         <div class="jumbotron">
             <p>di bawah kodingan chart Js</p>
         </div>
-
     </div>
 @endsection
 </html>
