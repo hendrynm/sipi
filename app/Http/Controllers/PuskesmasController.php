@@ -227,8 +227,15 @@ class PuskesmasController extends Controller
         return view("puskesmas.posyandu.belumImunisasiCari");
     }
 
-    public function posMulai(Request $request)
+    public function posMulaiPilih(Request $request)
     {
+        $id = $request->posyandu;
+        return redirect("/puskesmas/posyandu/mulai/.$id.");
+    }
+
+    public function posMulai($id)
+    {
+//        $kueri = (new PuskesmasModel)->daftarPosyandu();
         return view("puskesmas.posyandu.mulai");
     }
 

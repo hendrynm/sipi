@@ -41,7 +41,7 @@
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('pus.belum',  }}",
+                ajax: "{{ route('pus.belum'}}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},

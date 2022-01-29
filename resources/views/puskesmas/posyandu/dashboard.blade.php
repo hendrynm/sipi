@@ -24,7 +24,7 @@
             <br>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form action="./mulai" method="post">
+                    <form action="./pilih" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="posyandu">Posyandu :</label>
