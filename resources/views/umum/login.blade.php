@@ -39,7 +39,7 @@
                 <div class="row justify-content-center">
                 <div class="col-md-6">
                 <form action="/login" method="post">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @csrf
                         <div class="form-group">
                             <label for="username" class="login-label">Username :</label>
                            <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-4">
-                                <button type="submit" class="btn btn-primary login-button">Login</button>   
+                                <button type="submit" class="btn btn-primary login-button">Login</button>
                                 <a href="./lupa_password.html" class="text-center">lupa password</a>
                                 </div>
                             </div>
