@@ -209,17 +209,22 @@ class PuskesmasController extends Controller
         return view("puskesmas.posyandu.dashboard",["data"=>$kueri]);
     }
 
-    public function posBelumImunisasi(Request $request)
+    public function posBelumImunisasi()
+    {
+        $kueri = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
+        return view("puskesmas.posyandu.belumImunisasi",["data2"=>$kueri]);
+    }
+
+    public function posBelumImunisasiCari(Request $request, $id)
     {
         if ($request->ajax())
         {
-            $data = (new PuskesmasModel)->posBelumImunisasi($this->id_pus());
+            $data = (new PuskesmasModel)->posBelumImunisasi($id);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
         }
-        $kueri2 = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
-        return view("puskesmas.posyandu.belumImunisasi",["data2"=>$kueri2]);
+        return view("puskesmas.posyandu.belumImunisasiCari");
     }
 
     public function posMulai(Request $request)

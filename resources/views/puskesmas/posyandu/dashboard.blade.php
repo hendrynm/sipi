@@ -35,10 +35,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal Posyandu :</label>
-                            <input type="date" class="form-control" id="tanggal">
-                        </div>
                         <button class="btn btn-primary">Mulai Posyandu</button>
                     </form>
                 </div>

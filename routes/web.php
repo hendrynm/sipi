@@ -246,15 +246,15 @@ Route::prefix("/puskesmas")
         Route::prefix("posyandu")->group(function ()
         {
             Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"]);
-            Route::get("/belum-imunisasi",      [PuskesmasController::class,"posBelumImunisasi"])->name("pus.belum");
-            Route::post("/belum-imunisasi/cari",      [PuskesmasController::class,"posBelumImunisasiCari"]);
-            Route::post("/mulai",               [PuskesmasController::class,"posMulai"]);
+            Route::get("/belum-imunisasi",      [PuskesmasController::class,"posBelumImunisasi"]);
+            Route::get("/belum-imunisasi/{id}", [PuskesmasController::class,"posBelumImunisasiCari"])->name("pus.belum");
+            Route::post("/mulai/{id}",          [PuskesmasController::class,"posMulai"]);
             Route::get("/cari",                 [PuskesmasController::class,"posCari"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
             Route::post("/tambah/kirim",        [PuskesmasController::class,"posTambahKirim"]);
             Route::get("/edit/{id}",            [PuskesmasController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [PuskesmasController::class,"posEditKirim"]);
-            Route::get("/entri/{id}/{tanggal}", [PuskesmasController::class,"posEntri"]);
+            Route::get("/entri/{id}",           [PuskesmasController::class,"posEntri"]);
             Route::post("/entri/kirim",         [PuskesmasController::class,"posEntriKirim"]);
         });
     });

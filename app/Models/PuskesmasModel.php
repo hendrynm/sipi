@@ -332,11 +332,18 @@ class PuskesmasModel extends Model
             ]);
     }
 
-    public function posBelumImunisasi($id_pus)
+    public function posBelumImunisasi($id)
     {
+        if($id === -1)
+        {
+            return DB::table("data_individu")
+                ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
+                ->where("id_puskesmas","=",$id)
+                ->get();
+        }
         return DB::table("data_individu")
             ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-            ->where("id_puskesmas","=",$id_pus)
+            ->where("id_posyandu","=",$id)
             ->get();
     }
 }

@@ -8,75 +8,44 @@
         <a href="./dashboard" class="btn btn-primary">back</a>
 
         <h1>Data Anak Belum Imunisasi</h1>
-        <p>data anak belum imunisasi di bawah pukesmas per Hari ini</p>
-        <form action="./belum-imunisasi/cari" method="post">
-            <div class="input-group">
-                <select class="custom-select" id="inputGroupSelect04">
-                    <option selected disabled>Pilih Posyandu</option>
-                    <option value="-1">Semua</option>
-                    @foreach($data2 as $data2)
-                        <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>
-                    @endforeach
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="submit">Cari</button>
-                </div>
-            </div>
-        </form>
-        <br>
-        <a href="./belum-imunisasi/cetak" class="btn btn-primary">Print Data</a>
-        <br>
-        <br>
-        <br>
-
-
-        <!-- primitif -->
-        <table class="table">
+        <table class="table" id="posyandu">
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama Anak</th>
-                <th scope="col">Usia</th>
-                <th scope="col">Belum Imunisasi</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">No HP</th>
+                <th scope="col">Nama Posyandu</th>
+                <th scope="col">#</th>
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Semua posyandu</td>
+                <td><a href="./belum-imunisasi/-1" class="btn btn-primary">Cari</a></td>
+            </tr>
+            @foreach($data2 as $data2)
+                <tr>
+                    <th scope="row">{{ $loop->iteration+1 }}</th>
+                    <td>{{ $data2->nama_posyandu }}</td>
+                    <td><a href="./belum-imunisasi/{{ $data2->id_posyandu }}" class="btn btn-primary">Cari</a></td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
+        <br>
+        <br>
+        <br>
     </div>
 @endsection
 </html>
 
 @section("js")
-    <script type="text/javascript">
-        $(function () {
-            var table = $('#dataIndividu').DataTable({
-                processing: true,
-                serverSide: true,
-                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('pus.belum') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'nama_lengkap', name: 'nama_lengkap'},
-                    {data: 'tanggal_lahir', name: 'usia',
-                        render: function ( data, type, row, meta ){
-                            let tahun = (new Date().getFullYear()) - (new Date(data).getFullYear())
-                            let bulan = (new Date().getMonth()) - (new Date(data).getMonth())
-                            if(bulan < 0)
-                                return (tahun-1) + " tahun " + (bulan+12) + " bulan"
-                            else if(bulan === 0)
-                                return tahun + " tahun " + bulan + " bulan"
-                            else
-                                return tahun + " tahun " + (bulan+12) + " bulan"
-                        },
-                    },
-                    {data: 'id_kampung', name: 'belum_imunisasi'},
-                    {data: 'alamat', name: 'alamat'},
-                    {data: 'no_hp', name: 'no_hp'},
-                ]
+    <script>
+        $(document).ready( function () {
+            $('#posyandu').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json"
+                }
             });
-        });
+        } );
     </script>
 @endsection
