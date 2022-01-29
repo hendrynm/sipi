@@ -73,6 +73,7 @@
 }
 
 body {
+<<<<<<< Updated upstream
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -83,6 +84,14 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+=======
+    font-family: 'Source Sans Pro', sans-serif;
+ 
+}
+
+.container{
+    margin-top: 2rem;
+>>>>>>> Stashed changes
 }
 
 hr {
@@ -408,6 +417,7 @@ legend {
 @media (min-width: 1200px) {
   legend {
     font-size: 1.5rem;
+<<<<<<< Updated upstream
   }
 }
 legend + * {
@@ -422,6 +432,9 @@ legend + * {
 ::-webkit-datetime-edit-month-field,
 ::-webkit-datetime-edit-year-field {
   padding: 0;
+=======
+    
+>>>>>>> Stashed changes
 }
 
 ::-webkit-inner-spin-button {
@@ -479,6 +492,7 @@ progress {
   vertical-align: baseline;
 }
 
+<<<<<<< Updated upstream
 [hidden] {
   display: none !important;
 }
@@ -570,6 +584,203 @@ progress {
 .list-inline-item:not(:last-child) {
   margin-right: 0.5rem;
 }
+=======
+.page-link {
+    color: black;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 275px) {
+
+    /* hide */
+    .hide{
+        display: none;
+    }
+
+    .btn-danger{
+        background-color: #E25A56;
+    }
+    .btn-primary{
+        margin-bottom: 15px;
+    }
+    .jumbotron{
+        /* background-color: #F7F7F7; */
+        background-color: #fff;
+        /* background-color: whitesmoke; */
+        /* box-shadow: 10px 5px 15px rgb(219, 219, 219); */
+    }
+
+
+    /* custom nav */
+     /* navbar custom */
+     /* .navbar{
+        padding: 0.5rem 2rem;
+        max-height: 8rem;
+    }
+
+    .nav-logo{
+        max-height: 5rem;
+    } */
+
+    /* puskesmas / data induvidu / edit */
+    .form-hamil{
+        margin-top: 1rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 4px #d6d6d6;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-hamil-button{
+        margin-bottom: 2rem ;
+    }
+
+    /* footer all */
+    .footer{
+        margin-top: 2rem;
+        background-color: #D7E3F9;
+        padding : 1rem;
+
+    }
+
+    .footer-text p{
+        color: #274C7F;
+        font-size: 0.8rem;
+        text-align: center;
+
+    }
+    /* konten dashboard */
+    .main-dashboard{
+        margin-top: 2rem;
+        background-color: #ffff;
+    }
+    .main-dashboard .jumbotron{
+        background-color: #eff4fe;
+        padding: 2rem 2rem;
+        box-shadow: none;
+    }
+    .main-dashboard .jumbotron > h2{
+        /* color: #274C7F; */
+        color: #89a5ee;
+        font-weight: 600;
+        font-size: 1.8rem;
+        /* border-bottom: 1px dashed #89a5ee; */
+        margin-bottom: 1rem;
+        
+    }
+    .main-dashboard .jumbotron > a{
+       margin-bottom: 1rem;
+       padding: 0;
+       border-radius: 0.5rem;
+       background-color: #ffffff;
+       border: 1px solid white;
+       color: #274C7E;
+       transition: box-shadow .5s ease-out;
+        
+    }
+    .main-dashboard .jumbotron> a:hover{
+        box-shadow: 0px 0px 10px rgb(118, 143, 195);
+        /* border: 2px solid rgb(100, 122, 170); */
+
+    }
+    .main-dashboard .jumbotron> a:active{
+        background-color: white;
+    }
+
+    /* konten middle */
+    .main{
+        margin-top: 2rem;
+    }
+
+    /* header all */
+    .bg-blue{
+        background-color: #D7E3F9;
+
+    }
+
+
+    /* login all */
+
+    .login .jumbotron{
+        background-color: white;
+    }
+
+    .jumbotron form{
+        margin-top: 2rem;
+    }
+  
+    .login-header{
+        background-color: #D7E3F9;
+        padding: 0;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        
+    }
+    .login-header h1{
+        color: #274C7E;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .login-box{
+        padding: 0 0 4rem 0;
+        margin-top: 2rem;
+        border-radius: 2rem;
+        
+        
+    }
+    
+    .login-label{
+        color: #274C7E;
+        font-size: 1.2rem;
+    }
+
+    #password, #username{
+        background-color: #D7E3F9;
+        background-color: white;
+        border: 1px solid #89a5ee;
+        border-radius: 5rem;
+    }
+    
+    .login-button{
+        padding: 0.5rem 2rem;
+        font-size: 1.2rem;
+        margin: 0 0 2rem 0;
+        border-radius: 5rem;
+        
+    }
+
+    /* all botton */
+    .btn{
+        border-radius: 5rem;
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+    /* hide */
+    .hide{
+        display: inline;
+    }
+    .btn-primary{
+        margin-bottom: 0px;
+    }
+    .jumbotron{
+        background-color: #f7f7f7;
+        /* background-color: whitesmoke; */
+        box-shadow: 0px 0px 10px rgb(219, 219, 219);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+>>>>>>> Stashed changes
 
 .initialism {
   font-size: 0.875em;
