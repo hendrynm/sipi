@@ -15,7 +15,7 @@
         </div>
         <div class="jumbotron">
             <h2>Data anak belum Imunisasi</h2>
-            <a href="./belum-imunisasi" class="btn btn-primary">Cek data anak belum Imunisasi</a>
+            <a href="./belum" class="btn btn-primary">Cek data anak belum Imunisasi</a>
         </div>
 
         <div class="jumbotron">
@@ -28,7 +28,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="posyandu">Posyandu :</label>
-                            <select class="custom-select" id="posyandu">
+                            <select class="custom-select" id="posyandu" name="posyandu">
                                 <option selected disabled>Pilih Posyandu</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_posyandu }}">{{ $data->nama_posyandu }}</option>

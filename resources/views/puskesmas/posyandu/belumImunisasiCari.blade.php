@@ -5,17 +5,17 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="." class="btn btn-primary">back</a>
+        <a href="../dashboard" class="btn btn-primary">back</a>
 
         <h1>Data Anak Belum Imunisasi</h1>
         <br>
-        <a href="./belum-imunisasi/cetak" class="btn btn-primary">Print Data</a>
+        <a href="./belum/cetak" class="btn btn-primary">Print Data</a>
         <br>
         <br>
         <br>
 
         <!-- primitif -->
-        <table class="table">
+        <table class="table" id="belumImunisasi">
             <thead>
             <tr>
                 <th scope="col">No</th>
@@ -36,12 +36,11 @@
 @section("js")
     <script type="text/javascript">
         $(function () {
-            let path = window.location.pathname.split("/");
-            var table = $('#dataIndividu').DataTable({
+            var table = $('#belumImunisasi').DataTable({
                 processing: true,
                 serverSide: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: "{{ route('pus.belum'}}",
+                ajax: window.location.href,
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
@@ -57,7 +56,11 @@
                                 return tahun + " tahun " + (bulan+12) + " bulan";
                         },
                     },
-                    {data: 'nama_lengkap', name: 'belum_imunisasi'},
+                    {data: 'nama_antigen', name: 'belum_imunisasi',
+                        render: function (data, type, row, meta ){
+                            return data.split(", ").join("<br/>");
+                        }
+                    },
                     {data: 'alamat', name: 'alamat'},
                     {data: 'no_hp', name: 'no_hp'},
                 ]
