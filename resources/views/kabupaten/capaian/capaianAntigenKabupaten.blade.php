@@ -6,27 +6,13 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Imunsasi Per Kabupanten Dan Kota</h1>
+        <h1>Laporan Capaian Imunisasi Per Kabupaten Dan Kota</h1>
+
         <div class="jumbotron">
-            <p>di bawah kodingan chart Js</p>
             <form action="{{route("kabupaten.capaian.antigen.kabupaten")}}" method="get">
-                <div class="form-group">
-                    <label for="kabupatenForm">Kabupaten</label>
-                    <select required class="form-control" name="kabupatenForm">
-                        @foreach($kabupatens as $kab)
-                            <option value="{{$kab->id_kabupaten}}" {{$kab->id_kabupaten == (int)$kabupatenForm? 'selected': ''}}>{{$kab->nama_kabupaten}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tahunForm">Tahun</label>
-                    <select required class="form-control" name="tahunForm">
-                        <option value="{{date('Y') - 2}}" {{$tahunForm == date('Y') - 2 ? 'selected' : '' }}>{{date('Y') - 2}}</option>
-                        <option value="{{date('Y') - 1}}" {{$tahunForm == date('Y') - 1 ? 'selected' : '' }}>{{date('Y') - 1}}</option>
-                        <option value="{{date('Y')}}" {{$tahunForm == date('Y') ? 'selected' : '' }}>{{date('Y')}}</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
+                <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                <x-submit-button-form></x-submit-button-form>
             </form>
 
             <div style="height: 500px;">
