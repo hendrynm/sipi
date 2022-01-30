@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use function Symfony\Component\String\u;
 
 class PuskesmasModel extends Model
 {
@@ -332,23 +333,66 @@ class PuskesmasModel extends Model
             ]);
     }
 
-    public function posBelumImunisasi($id)
+    public function posBelumImunisasi($id, $id_pus)
     {
-        if($id === -1)
+        if($id == -1)
         {
             return DB::table("data_individu")
                 ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-                ->where("id_puskesmas","=",$id)
+                ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
+                ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
+                ->where("id_puskesmas","=",$id_pus)
+                ->where("status","=","belum")
+                ->groupBy("data_individu.id_anak")
+                ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
                 ->get();
         }
         return DB::table("data_individu")
-            ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
+            ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
+            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
             ->where("id_posyandu","=",$id)
+            ->where("status","=","belum")
+            ->groupBy("data_individu.id_anak")
+            ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
+            ->get();
+    }
+
+    public function posMulai($id)
+    {
+        return DB::table("data_individu")
+            ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
+            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
+            ->where("id_posyandu","=",$id)
+            ->where("status","=","belum")
+            ->groupBy("data_individu.id_anak")
+            ->select("data_individu.id_anak","nik","nama_lengkap","nama_ibu","tanggal_lahir",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
             ->get();
     }
 
     public function getListPuskesmas()
     {
         return DB::table("puskesmas")->select("id_puskesmas","nama_puskesmas")->get();
+    }
+
+    public function posEntri($id)
+    {
+        return DB::table("data_individu")
+            ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
+            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
+            ->where("imunisasi.id_anak","=",$id)
+            ->where("status","=","belum")
+            ->select("antigen.id_antigen","nama_antigen")
+            ->get();
+    }
+
+    public function posEntriKirim(Request $request)
+    {
+        DB::table("imunisasi")
+            ->where("id_anak","=",$request->id_anak)
+            ->where("id_antigen","=",$request->antigen)
+            ->update([
+                "tanggal_pemberian" => $request->tanggal,
+                "status" => "sudah"
+            ]);
     }
 }

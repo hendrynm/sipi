@@ -20,13 +20,13 @@
             <tr>
                 <th scope="row">1</th>
                 <td>Semua posyandu</td>
-                <td><a href="./belum-imunisasi/-1" class="btn btn-primary">Cari</a></td>
+                <td><a href="./belum/-1" class="btn btn-primary">Cari</a></td>
             </tr>
             @foreach($data2 as $data2)
                 <tr>
                     <th scope="row">{{ $loop->iteration+1 }}</th>
                     <td>{{ $data2->nama_posyandu }}</td>
-                    <td><a href="./belum-imunisasi/{{ $data2->id_posyandu }}" class="btn btn-primary">Cari</a></td>
+                    <td><a href="./belum/{{ $data2->id_posyandu }}" class="btn btn-primary">Cari</a></td>
                 </tr>
             @endforeach
             </tbody>

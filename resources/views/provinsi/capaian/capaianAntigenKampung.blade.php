@@ -1,15 +1,16 @@
 @extends("_partials.master")
-@section("title","Capaian Per Puskesmas")
+@section("title","Capaian Per Kampung")
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="id">
 @section("konten")
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Imunsasi Per Pukesmas</h1>
+        <h1>Laporan Capaian Imunsasi Per Kampung</h1>
         <div class="jumbotron">
-            <form action="{{route("kabupaten.capaian.antigen.puskesmas")}}" method="get">
+            <form action="{{route("provinsi.capaian.antigen.kampung")}}" method="get">
+                <x-puskesmas-form :puskesmasForm="$puskesmasForm" :puskesmas="$puskesmas"></x-puskesmas-form>
                 <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
@@ -20,6 +21,7 @@
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;
+                $kampung[] = $data->kampung;
                 $jumlah[] = $data->jumlah;
                 $jumlahP[] = $data->jumlahP;
                 $jumlahL[] = $data->jumlahL;
@@ -28,6 +30,7 @@
             foreach ($query1 as $data1) {
                 $kabupaten1[] = $data1->kabupaten;
                 $puskesmas1[] = $data1->puskesmas;
+                $kampung1[] = $data1->kampung;
                 $jumlah1[] = $data1->jumlah;
                 $jumlahP1[] = $data1->jumlahP;
                 $jumlahL1[] = $data1->jumlahL;
@@ -36,6 +39,7 @@
             foreach ($query2 as $data2) {
                 $kabupaten2[] = $data2->kabupaten;
                 $puskesmas2[] = $data2->puskesmas;
+                $kampung2[] = $data2->kampung;
                 $jumlah2[] = $data2->jumlah;
                 $jumlahP2[] = $data2->jumlahP;
                 $jumlahL2[] = $data2->jumlahL;
@@ -44,6 +48,7 @@
             foreach ($query3 as $data3) {
                 $kabupaten3[] = $data3->kabupaten;
                 $puskesmas3[] = $data3->puskesmas;
+                $kampung3[] = $data3->kampung;
                 $jumlah3[] = $data3->jumlah;
                 $jumlahP3[] = $data3->jumlahP;
                 $jumlahL3[] = $data3->jumlahL;
@@ -52,6 +57,7 @@
             foreach ($query4 as $data4) {
                 $kabupaten4[] = $data4->kabupaten;
                 $puskesmas4[] = $data4->puskesmas;
+                $kampung4[] = $data4->kampung;
                 $jumlah4[] = $data4->jumlah;
                 $jumlahP4[] = $data4->jumlahP;
                 $jumlahL4[] = $data4->jumlahL;
@@ -60,6 +66,7 @@
             foreach ($query5 as $data5) {
                 $kabupaten5[] = $data5->kabupaten;
                 $puskesmas5[] = $data5->puskesmas;
+                $kampung5[] = $data5->kampung;
                 $jumlah5[] = $data5->jumlah;
                 $jumlahP5[] = $data5->jumlahP;
                 $jumlahL5[] = $data5->jumlahL;
@@ -68,6 +75,7 @@
             foreach ($query6 as $data6) {
                 $kabupaten6[] = $data6->kabupaten;
                 $puskesmas6[] = $data6->puskesmas;
+                $kampung6[] = $data6->kampung;
                 $jumlah6[] = $data6->jumlah;
                 $jumlahP6[] = $data6->jumlahP;
                 $jumlahL6[] = $data6->jumlahL;
@@ -76,6 +84,7 @@
             foreach ($query7 as $data7) {
                 $kabupaten7[] = $data7->kabupaten;
                 $puskesmas7[] = $data7->puskesmas;
+                $kampung7[] = $data7->kampung;
                 $jumlah7[] = $data7->jumlah;
                 $jumlahP7[] = $data7->jumlahP;
                 $jumlahL7[] = $data7->jumlahL;
@@ -84,6 +93,7 @@
             foreach ($query8 as $data8) {
                 $kabupaten8[] = $data8->kabupaten;
                 $puskesmas8[] = $data8->puskesmas;
+                $kampung8[] = $data8->kampung;
                 $jumlah8[] = $data8->jumlah;
                 $jumlahP8[] = $data8->jumlahP;
                 $jumlahL8[] = $data8->jumlahL;
@@ -92,6 +102,7 @@
             foreach ($query9 as $data9) {
                 $kabupaten9[] = $data9->kabupaten;
                 $puskesmas9[] = $data9->puskesmas;
+                $kampung9[] = $data9->kampung;
                 $jumlah9[] = $data9->jumlah;
                 $jumlahP9[] = $data9->jumlahP;
                 $jumlahL9[] = $data9->jumlahL;
@@ -100,6 +111,7 @@
             foreach ($query10 as $data10) {
                 $kabupaten10[] = $data10->kabupaten;
                 $puskesmas10[] = $data10->puskesmas;
+                $kampung10[] = $data10->kampung;
                 $jumlah10[] = $data10->jumlah;
                 $jumlahP10[] = $data10->jumlahP;
                 $jumlahL10[] = $data10->jumlahL;
@@ -108,6 +120,7 @@
             foreach ($query11 as $data11) {
                 $kabupaten11[] = $data11->kabupaten;
                 $puskesmas11[] = $data11->puskesmas;
+                $kampung11[] = $data11->kampung;
                 $jumlah11[] = $data11->jumlah;
                 $jumlahP11[] = $data11->jumlahP;
                 $jumlahL11[] = $data11->jumlahL;
@@ -116,6 +129,7 @@
             foreach ($query12 as $data12) {
                 $kabupaten12[] = $data12->kabupaten;
                 $puskesmas12[] = $data12->puskesmas;
+                $kampung12[] = $data12->kampung;
                 $jumlah12[] = $data12->jumlah;
                 $jumlahP12[] = $data12->jumlahP;
                 $jumlahL12[] = $data12->jumlahL;
@@ -150,7 +164,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas) ?>,
+                labels: <?php echo json_encode($kampung) ?>,
                 datasets: [{
                     label: "Sudah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
@@ -192,13 +206,19 @@
                         stacked: false,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         },
                     }]
 
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan Tiap Puskesmas',
+                    text: 'Target dan Realisasi Tahunan',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -221,7 +241,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas1) ?>,
+                labels: <?php echo json_encode($kampung1) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -247,12 +267,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Januari',
+                    text: 'Imunisasi Bulan Januari',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -275,7 +301,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas2) ?>,
+                labels: <?php echo json_encode($kampung2) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -301,12 +327,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Februari',
+                    text: 'Imunisasi Bulan Februari',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -329,7 +361,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas3) ?>,
+                labels: <?php echo json_encode($kampung3) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -355,12 +387,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Maret',
+                    text: 'Imunisasi Bulan Maret',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -383,7 +421,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas4) ?>,
+                labels: <?php echo json_encode($kampung4) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -409,12 +447,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan April',
+                    text: 'Imunisasi Bulan April',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -437,7 +481,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas5) ?>,
+                labels: <?php echo json_encode($kampung5) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -463,12 +507,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Mei',
+                    text: 'Imunisasi Bulan Mei',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -491,7 +541,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas6) ?>,
+                labels: <?php echo json_encode($kampung6) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -517,12 +567,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juni',
+                    text: 'Imunisasi Bulan Juni',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -545,7 +601,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas7) ?>,
+                labels: <?php echo json_encode($kampung7) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -571,12 +627,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juli',
+                    text: 'Imunisasi Bulan Juli',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -599,7 +661,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas8) ?>,
+                labels: <?php echo json_encode($kampung8) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -625,12 +687,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Agustus',
+                    text: 'Imunisasi Bulan Agustus',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -653,7 +721,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas9) ?>,
+                labels: <?php echo json_encode($kampung9) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -679,12 +747,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan September',
+                    text: 'Imunisasi Bulan September',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -707,7 +781,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas10) ?>,
+                labels: <?php echo json_encode($kampung10) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -733,12 +807,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Oktober',
+                    text: 'Imunisasi Bulan Oktober',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -761,7 +841,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas11) ?>,
+                labels: <?php echo json_encode($kampung11) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -787,12 +867,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan November',
+                    text: 'Imunisasi Bulan November',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -815,7 +901,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas12) ?>,
+                labels: <?php echo json_encode($kampung12) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -841,12 +927,18 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            userCallback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+                            },
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Desember',
+                    text: 'Imunisasi Bulan Desember',
                     fontSize: 14,
                 },
                 responsive: true,

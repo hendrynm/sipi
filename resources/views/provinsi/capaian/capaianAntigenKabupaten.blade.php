@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Capaian Per Puskesmas")
+@section("title","Capaian Per Provinsi")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,11 +7,10 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Imunsasi Per Pukesmas</h1>
+        <h1>Laporan Ketercapaian Antigen Tiap Kabupaten</h1>
         <div class="jumbotron">
-            <form action="{{route("kabupaten.capaian.antigen.puskesmas")}}" method="get">
+            <form action="{{route("provinsi.capaian.antigen.kabupaten")}}" method="get">
                 <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
-                <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
             </form>
@@ -19,7 +18,6 @@
             <?php
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
-                $puskesmas[] = $data->puskesmas;
                 $jumlah[] = $data->jumlah;
                 $jumlahP[] = $data->jumlahP;
                 $jumlahL[] = $data->jumlahL;
@@ -27,7 +25,6 @@
             }
             foreach ($query1 as $data1) {
                 $kabupaten1[] = $data1->kabupaten;
-                $puskesmas1[] = $data1->puskesmas;
                 $jumlah1[] = $data1->jumlah;
                 $jumlahP1[] = $data1->jumlahP;
                 $jumlahL1[] = $data1->jumlahL;
@@ -35,7 +32,6 @@
             }
             foreach ($query2 as $data2) {
                 $kabupaten2[] = $data2->kabupaten;
-                $puskesmas2[] = $data2->puskesmas;
                 $jumlah2[] = $data2->jumlah;
                 $jumlahP2[] = $data2->jumlahP;
                 $jumlahL2[] = $data2->jumlahL;
@@ -43,7 +39,6 @@
             }
             foreach ($query3 as $data3) {
                 $kabupaten3[] = $data3->kabupaten;
-                $puskesmas3[] = $data3->puskesmas;
                 $jumlah3[] = $data3->jumlah;
                 $jumlahP3[] = $data3->jumlahP;
                 $jumlahL3[] = $data3->jumlahL;
@@ -51,7 +46,6 @@
             }
             foreach ($query4 as $data4) {
                 $kabupaten4[] = $data4->kabupaten;
-                $puskesmas4[] = $data4->puskesmas;
                 $jumlah4[] = $data4->jumlah;
                 $jumlahP4[] = $data4->jumlahP;
                 $jumlahL4[] = $data4->jumlahL;
@@ -59,7 +53,6 @@
             }
             foreach ($query5 as $data5) {
                 $kabupaten5[] = $data5->kabupaten;
-                $puskesmas5[] = $data5->puskesmas;
                 $jumlah5[] = $data5->jumlah;
                 $jumlahP5[] = $data5->jumlahP;
                 $jumlahL5[] = $data5->jumlahL;
@@ -67,7 +60,6 @@
             }
             foreach ($query6 as $data6) {
                 $kabupaten6[] = $data6->kabupaten;
-                $puskesmas6[] = $data6->puskesmas;
                 $jumlah6[] = $data6->jumlah;
                 $jumlahP6[] = $data6->jumlahP;
                 $jumlahL6[] = $data6->jumlahL;
@@ -75,7 +67,6 @@
             }
             foreach ($query7 as $data7) {
                 $kabupaten7[] = $data7->kabupaten;
-                $puskesmas7[] = $data7->puskesmas;
                 $jumlah7[] = $data7->jumlah;
                 $jumlahP7[] = $data7->jumlahP;
                 $jumlahL7[] = $data7->jumlahL;
@@ -83,7 +74,6 @@
             }
             foreach ($query8 as $data8) {
                 $kabupaten8[] = $data8->kabupaten;
-                $puskesmas8[] = $data8->puskesmas;
                 $jumlah8[] = $data8->jumlah;
                 $jumlahP8[] = $data8->jumlahP;
                 $jumlahL8[] = $data8->jumlahL;
@@ -91,7 +81,6 @@
             }
             foreach ($query9 as $data9) {
                 $kabupaten9[] = $data9->kabupaten;
-                $puskesmas9[] = $data9->puskesmas;
                 $jumlah9[] = $data9->jumlah;
                 $jumlahP9[] = $data9->jumlahP;
                 $jumlahL9[] = $data9->jumlahL;
@@ -99,7 +88,6 @@
             }
             foreach ($query10 as $data10) {
                 $kabupaten10[] = $data10->kabupaten;
-                $puskesmas10[] = $data10->puskesmas;
                 $jumlah10[] = $data10->jumlah;
                 $jumlahP10[] = $data10->jumlahP;
                 $jumlahL10[] = $data10->jumlahL;
@@ -107,7 +95,6 @@
             }
             foreach ($query11 as $data11) {
                 $kabupaten11[] = $data11->kabupaten;
-                $puskesmas11[] = $data11->puskesmas;
                 $jumlah11[] = $data11->jumlah;
                 $jumlahP11[] = $data11->jumlahP;
                 $jumlahL11[] = $data11->jumlahL;
@@ -115,7 +102,6 @@
             }
             foreach ($query12 as $data12) {
                 $kabupaten12[] = $data12->kabupaten;
-                $puskesmas12[] = $data12->puskesmas;
                 $jumlah12[] = $data12->jumlah;
                 $jumlahP12[] = $data12->jumlahP;
                 $jumlahL12[] = $data12->jumlahL;
@@ -150,7 +136,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas) ?>,
+                labels: <?php echo json_encode($kabupaten) ?>,
                 datasets: [{
                     label: "Sudah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
@@ -198,7 +184,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan Tiap Puskesmas',
+                    text: 'Target dan Realisasi Tahunan Tiap Kabupaten',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -221,7 +207,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas1) ?>,
+                labels: <?php echo json_encode($kabupaten1) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -252,7 +238,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Januari',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Januari',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -275,7 +261,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas2) ?>,
+                labels: <?php echo json_encode($kabupaten2) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -306,7 +292,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Februari',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Februari',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -329,7 +315,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas3) ?>,
+                labels: <?php echo json_encode($kabupaten3) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -360,7 +346,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Maret',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Maret',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -383,7 +369,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas4) ?>,
+                labels: <?php echo json_encode($kabupaten4) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -414,7 +400,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan April',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan April',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -437,7 +423,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas5) ?>,
+                labels: <?php echo json_encode($kabupaten5) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -468,7 +454,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Mei',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Mei',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -491,7 +477,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas6) ?>,
+                labels: <?php echo json_encode($kabupaten6) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -522,7 +508,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juni',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Juni',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -545,7 +531,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas7) ?>,
+                labels: <?php echo json_encode($kabupaten7) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -576,7 +562,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juli',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Juli',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -599,7 +585,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas8) ?>,
+                labels: <?php echo json_encode($kabupaten8) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -630,7 +616,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Agustus',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Agustus',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -653,7 +639,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas9) ?>,
+                labels: <?php echo json_encode($kabupaten9) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -684,7 +670,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan September',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan September',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -707,7 +693,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas10) ?>,
+                labels: <?php echo json_encode($kabupaten10) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -738,7 +724,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Oktober',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Oktober',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -761,7 +747,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas11) ?>,
+                labels: <?php echo json_encode($kabupaten11) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -792,7 +778,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan November',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan November',
                     fontSize: 14,
                 },
                 responsive: true,
@@ -815,7 +801,7 @@
 
         <script>
             var data = {
-                labels: <?php echo json_encode($puskesmas12) ?>,
+                labels: <?php echo json_encode($kabupaten12) ?>,
                 datasets: [{
                     label: "Perempuan",
                     backgroundColor: 'rgba(215, 160, 159)',
@@ -846,7 +832,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Desember',
+                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Desember',
                     fontSize: 14,
                 },
                 responsive: true,

@@ -15,7 +15,7 @@ class KabupatenCapaianController extends Controller
     {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         $query = DB::SELECT("SELECT kabupaten.nama_kabupaten as kabupaten,
           antigen.nama_antigen as antigen,
@@ -299,9 +299,9 @@ class KabupatenCapaianController extends Controller
         $puskesmasForm = $request->puskesmasForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
 
-        $antigens = (new \App\Models\AntigenModel)->getListAntigen();
-        $puskesmas = (new \App\Models\PuskesmasModel())->getListPuskesmas();
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $antigens = (new AntigenModel)->getListAntigen();
+        $puskesmas = (new PuskesmasModel())->getListPuskesmas();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("
@@ -2430,8 +2430,8 @@ class KabupatenCapaianController extends Controller
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
 
-        $antigens = (new \App\Models\AntigenModel)->getListAntigen();
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $antigens = (new AntigenModel)->getListAntigen();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("
@@ -4287,7 +4287,7 @@ class KabupatenCapaianController extends Controller
     public function capaianIDL(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -4365,7 +4365,7 @@ class KabupatenCapaianController extends Controller
     public function capaianIRL(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -4439,7 +4439,7 @@ class KabupatenCapaianController extends Controller
     public function capaianT (Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
-        $kabupatens = (new \App\Models\KabupatenModel)->getListKabupaten();
+        $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
