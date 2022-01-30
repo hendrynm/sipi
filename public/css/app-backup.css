@@ -124,6 +124,7 @@ form {
 
     .main-dashboard .jumbotron {
         background-color: #eff4fe;
+        /* background-color: #fff; */
         padding: 2rem 2rem;
         box-shadow: none;
     }
@@ -249,7 +250,8 @@ form {
     }
 
     .jumbotron {
-        background-color: #F7F7F7;
+        /* background-color: #F7F7F7; */
+        background-color: white;
         /* background-color: whitesmoke; */
         box-shadow: 5px 5px 10px rgb(219, 219, 219);
     }

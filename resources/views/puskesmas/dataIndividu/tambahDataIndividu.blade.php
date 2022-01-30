@@ -66,7 +66,7 @@
                             </select>
                         </div>
 
-                        {{-- ini blum di konfigurasi ya hend --}}
+                        {{-- ini belum di konfigurasi ya hend --}}
 
                         <br>
                         <a data-toggle="collapse" class="form-hamil-button" href="#isHamil" role="button"
