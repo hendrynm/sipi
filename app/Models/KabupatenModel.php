@@ -278,4 +278,9 @@ class KabupatenModel extends Model
             ->where("id_kabupaten","=",$id_kab)
             ->get();
     }
+
+    public function getListKabupaten()
+    {
+        return DB::table("kabupaten")->select("id_kabupaten","nama_kabupaten")->get();
+    }
 }

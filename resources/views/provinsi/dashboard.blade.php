@@ -11,54 +11,35 @@
 
         <div class="jumbotron">
             <h2>Laporan Pencapaian</h2>
-            <a href="./capaian/provinsi" class="btn btn-primary">
-            <div class="row justify-content-center">
-                    <div class="col-8">
-                        <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+
+            <?php
+            $capaians = [
+                ["Capaian Antigen Tiap Kabupaten", "provinsi.capaian.antigen.kabupaten"],
+                ["Capaian Antigen Tiap Kampung", "provinsi.capaian.antigen.kampung"],
+                ["Capaian Antigen Tiap Puskesmas", "provinsi.capaian.antigen.puskesmas"],
+                ["Anak IDL", "provinsi.capaian.idl"],
+                ["Anak IRL", "provinsi.capaian.irl"],
+                ["Performa T", "provinsi.capaian.t"],
+                ["Desa UCI", "provinsi.capaian.uci"]
+            ];
+            ?>
+            @foreach($capaians as $capaian)
+                <a href="{{ route($capaian[1]) }}" class="btn btn-primary">
+                    <div class="col justify-content-center">
+                    <div class="row justify-content-center" style="height: 60px">
+                        <div class="">
+                            <img class="mx-auto" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                        </div>
                     </div>
-            </div>
-            <div class="row justify-content-center">
-                    <div class="col-12">
-                        Capaian Provinsi
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            {{$capaian[0]}}
+                        </div>
                     </div>
-            </div>
-            </a>
-            <a href="./capaian/kabupaten" class="btn btn-primary">
-            <div class="row justify-content-center">
-                    <div class="col-8">
-                        <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
                     </div>
-            </div>
-            <div class="row justify-content-center">
-                    <div class="col-12">
-                    Capaian Kabupaten/Kota
-                    </div>
-            </div>
-            </a>
-            <a href="./capaian/puskesmas" class="btn btn-primary">
-            <div class="row justify-content-center">
-                    <div class="col-8">
-                        <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                    </div>
-            </div>
-            <div class="row justify-content-center">
-                    <div class="col-12">
-                    Capaian Pukesmas
-                    </div>
-            </div>    
-            </a>
-            <a href="./capaian/kampung" class="btn btn-primary">
-            <div class="row justify-content-center">
-                    <div class="col-8">
-                        <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                    </div>
-            </div>
-            <div class="row justify-content-center">
-                    <div class="col-12">
-                    Capaian Kampung
-                    </div>
-            </div>        
-           </a>
+                </a>
+            @endforeach
+
         </div>
 
         <div class="jumbotron">
@@ -73,8 +54,8 @@
                     <div class="col-12">
                     Data Induvidu
                     </div>
-                </div>    
-            
+                </div>
+
             </a>
         </div>
 
@@ -90,7 +71,7 @@
                     <div class="col-12">
                     Dashboard data Kabupaten
                     </div>
-                </div>      
+                </div>
             </a>
             <a href="./regional-puskesmas/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
@@ -102,7 +83,7 @@
                     <div class="col-12">
                     Dashboard data Puskesmas
                     </div>
-                </div>   
+                </div>
             </a>
             <a href="./regional-kampung/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
@@ -114,7 +95,7 @@
                     <div class="col-12">
                     Dashboard data Kampung
                     </div>
-                </div>    
+                </div>
            </a>
             <a href="./regional-posyandu/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
@@ -126,7 +107,7 @@
                     <div class="col-12">
                     Dashboard data Posyandu
                     </div>
-                </div>       
+                </div>
             </a>
         </div>
 

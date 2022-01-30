@@ -11,8 +11,19 @@
 
         <div class="jumbotron">
             <h2>Laporan Pencapaian</h2>
-            <a href="./capaian/puskesmas" class="btn btn-primary">Capaian Pukesmas</a>
-            <a href="./capaian/kampung" class="btn btn-primary">Capaian Kampung</a>
+            <?php
+            $capaians = [
+                ["Capaian Antigen", "puskesmas.capaian.antigen.puskesmas"],
+                ["Capaian Antigen Tiap Kampung", "puskesmas.capaian.antigen.kampung"],
+                ["Anak IDL", "puskesmas.capaian.idl"],
+                ["Anak IRL", "puskesmas.capaian.irl"],
+                ["Performa T", "puskesmas.capaian.t"],
+                ["Desa UCI", "puskesmas.capaian.uci"]
+            ];
+            ?>
+            @foreach($capaians as $capaian)
+                <a href="{{route($capaian[1])}}" class="btn btn-primary">{{$capaian[0]}}</a>
+            @endforeach
         </div>
 
         <div class="jumbotron">
