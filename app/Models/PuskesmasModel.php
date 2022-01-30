@@ -346,4 +346,9 @@ class PuskesmasModel extends Model
             ->where("id_posyandu","=",$id)
             ->get();
     }
+
+    public function getListPuskesmas()
+    {
+        return DB::table("puskesmas")->select("id_puskesmas","nama_puskesmas")->get();
+    }
 }
