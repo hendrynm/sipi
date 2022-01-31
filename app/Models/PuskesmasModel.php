@@ -388,10 +388,11 @@ class PuskesmasModel extends Model
     public function posEntriKirim(Request $request)
     {
         DB::table("imunisasi")
-            ->where("id_anak","=",$request->id_anak)
+            ->where("id_anak","=",$request->idAnak)
             ->where("id_antigen","=",$request->antigen)
             ->update([
-                "tanggal_pemberian" => $request->tanggal,
+                "tanggal_pemberian" => (string)date_format(date_create($request->tanggal), "Y-m-d"),
+                "tempat_imunisasi" => $request->lokasi,
                 "status" => "sudah"
             ]);
     }

@@ -58,7 +58,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <a href="../data-anak" class="btn btn-primary">Edit Data Personal</a>
+                <a href="../../data-anak/edit/{{ $data->id_anak }}" class="btn btn-primary">Edit Data Personal</a>
             </div>
         </div>
 
@@ -120,8 +120,10 @@
         <div class="jumbotron">
             <div class="row justify-content-center">
                 <div class="col-8">
-                    <form action="../kirim" method="post">
+                    <form action="./kirim" method="post">
                         @csrf
+                        <input type="hidden" id="lokasi" name="lokasi" value="{{ $data->nama_posyandu }}">
+                        <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
                         <div class="form-group">
                             <label for="antigen"> <b> Antigen :</b></label>
                             <select class="custom-select" id="antigen" name="antigen">
@@ -137,8 +139,7 @@
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="antigenIsValid" required>
-                            <label class="form-check-label" for="antigenIsValid">Data Antigen diatas sudah
-                                benar</label>
+                            <label class="form-check-label" for="antigenIsValid">Data Antigen diatas sudah benar</label>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>

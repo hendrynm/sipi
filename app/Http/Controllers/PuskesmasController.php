@@ -258,24 +258,4 @@ class PuskesmasController extends Controller
         (new PuskesmasModel)->posEntriKirim($request);
         return redirect("/puskesmas/posyandu/dashboard");
     }
-
-    public function posTambah()
-    {
-        return view();
-    }
-
-    public function posTambahKirim()
-    {
-        return ;
-    }
-
-    public function posEdit($id)
-    {
-        return ;
-    }
-
-    public function posEditKirim(Request $request)
-    {
-        return ;
-    }
 }
