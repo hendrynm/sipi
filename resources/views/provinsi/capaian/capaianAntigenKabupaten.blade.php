@@ -155,7 +155,7 @@
                     xAxes: [{
                         stacked: true,
                         id: "bar-x-axis1",
-                        barThickness: 20,
+                        maxBarThickness: 20,
                         ticks: {
                             autoSkip: false,
                             maxRotation: 90,
@@ -165,7 +165,7 @@
                         display: false,
                         stacked: true,
                         id: "bar-x-axis2",
-                        barThickness: 35,
+                        maxBarThickness: 35,
                         type: 'category',
                         categoryPercentage: 0.8,
                         barPercentage: 0.9,
