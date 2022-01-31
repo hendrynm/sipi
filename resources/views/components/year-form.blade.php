@@ -8,3 +8,11 @@
         <option value="{{date('Y')}}" {{$tahunForm == date('Y') ? 'selected' : '' }}>{{date('Y')}}</option>
     </select>
 </div>
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('select[name="tahunForm"]').selectpicker();
+        });
+    </script>
+@endpush

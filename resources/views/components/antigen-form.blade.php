@@ -6,3 +6,11 @@
         @endforeach
     </select>
 </div>
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('select[name="antigenForm"]').selectpicker();
+        });
+    </script>
+@endpush
