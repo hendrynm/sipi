@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AksesProvinsi;
 use App\Http\Middleware\AksesKabupaten;
 use App\Http\Middleware\AksesPuskesmas;
+use App\Http\Middleware\AksesEksternal;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\PuskesmasController;
+use App\Http\Controllers\EksternalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -272,5 +274,35 @@ Route::prefix("/puskesmas")
             Route::post("/edit/kirim",          [PuskesmasController::class,"posEditKirim"]);
             Route::get("/entri/{id}",           [PuskesmasController::class,"posEntri"]);
             Route::post("/entri/kirim",         [PuskesmasController::class,"posEntriKirim"]);
+        });
+    });
+
+Route::prefix("/eksternal")
+    ->middleware([AksesEksternal::class])
+    ->group(function ()
+    {
+        Route::prefix("/data-anak")->group(function ()
+        {
+            Route::get("/dashboard",            [EksternalController::class,"dataDashboard"])->name("eks.anak");
+            Route::get("/detail/{id}",          [EksternalController::class,"dataDetail"]);
+            Route::get("/edit/{id}",            [EksternalController::class,"dataEdit"]);
+            Route::post("/edit/kirim",          [EksternalController::class,"dataEditKirim"]);
+            Route::get("/tambah",               [EksternalController::class,"dataTambah"]);
+            Route::post("/tambah/kirim",        [EksternalController::class,"dataTambahKirim"]);
+        });
+
+        Route::prefix("posyandu")->group(function ()
+        {
+            Route::get("/dashboard",            [EksternalController::class,"posDashboard"]);
+            Route::get("/belum",                [EksternalController::class,"posBelumImunisasi"]);
+            Route::get("/belum/{id}",           [EksternalController::class,"posBelumImunisasiCari"]);
+            Route::post("/pilih",               [EksternalController::class,"posMulaiPilih"]);
+            Route::get("/mulai/{id}",           [EksternalController::class,"posMulai"]);
+            Route::get("/tambah",               [EksternalController::class,"dataTambah"]);
+            Route::post("/tambah/kirim",        [EksternalController::class,"posTambahKirim"]);
+            Route::get("/edit/{id}",            [EksternalController::class,"dataEdit"]);
+            Route::post("/edit/kirim",          [EksternalController::class,"posEditKirim"]);
+            Route::get("/entri/{id}",           [EksternalController::class,"posEntri"]);
+            Route::post("/entri/kirim",         [EksternalController::class,"posEntriKirim"]);
         });
     });
