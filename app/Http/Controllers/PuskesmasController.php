@@ -221,7 +221,7 @@ class PuskesmasController extends Controller
     {
         if ($request->ajax())
         {
-            $data = (new PuskesmasModel)->posBelumImunisasi($id);
+            $data = (new PuskesmasModel)->posBelumImunisasi($id, $this->id_pus());
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
@@ -232,48 +232,33 @@ class PuskesmasController extends Controller
     public function posMulaiPilih(Request $request)
     {
         $id = $request->posyandu;
-        return redirect("/puskesmas/posyandu/mulai/.$id.");
+        return redirect("/puskesmas/posyandu/mulai/$id");
     }
 
-    public function posMulai($id)
+    public function posMulai(Request $request, $id)
     {
-//        $kueri = (new PuskesmasModel)->daftarPosyandu();
-        return view("puskesmas.posyandu.mulai");
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel)->posMulai($id);
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("puskesmas.posyandu.mulaiPosyandu");
     }
 
-    public function posCari()
+    public function posEntri($id)
     {
-        return view("puskesmas.posyandu.cari");
-    }
-
-    public function posTambah()
-    {
-        return view();
-    }
-
-    public function posTambahKirim()
-    {
-        return ;
-    }
-
-    public function posEdit($id)
-    {
-        return ;
-    }
-
-    public function posEditKirim(Request $request)
-    {
-        return ;
-    }
-
-    public function posEntri($id, $tanggal)
-    {
-        return ;
+        $kueri = (new PuskesmasModel)->dataDetail($id);
+        $kueri2 = (new PuskesmasModel)->dataDetailImunisasi($id);
+        $kueri3 = (new PuskesmasModel)->posEntri($id);
+        return view("puskesmas.posyandu.entriPosyandu",["data"=>$kueri,"data2"=>$kueri2],["data3"=>$kueri3]);
     }
 
     public function posEntriKirim(Request $request)
     {
-        return ;
+        (new PuskesmasModel)->posEntriKirim($request);
+        return redirect("/puskesmas/posyandu/dashboard");
     }
 
     public function getListPuskesmasByKabupatenId($id)

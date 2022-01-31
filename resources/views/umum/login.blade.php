@@ -25,8 +25,9 @@
                         <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" alt="">
                     </div>
                     <div class="col-6">
-                        <h1>Aplikasi Sistem Pelaporan Imunisasi </h1>
-                        <h1>Provinsi Papua Barat</h1>
+                        <h1>Aplikasi Sistem Pelaporan Imunisasi <br>
+                        Provinsi Papua Barat</h1>
+                        
                     </div>
                     <div class="col-3">
                     <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-pabar.png")}}" alt="">
@@ -50,8 +51,9 @@
                         </div>
                         <div class="form-group">
                             <div class="row justify-content-center">
-                                <div class="col-4">
+                                <div class="col-md-4 col-sm-12">
                                 <button type="submit" class="btn btn-primary login-button">Login</button>
+                                <br>
                                 <a href="./lupa_password.html" class="text-center">lupa password</a>
                                 </div>
                             </div>

@@ -2,17 +2,6 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.container {
-    margin-top: 2rem;
-}
-
-/* testing */
-.navbar {
-    padding: 0 2rem;
-}
-
-/* testing */
-
 .row {
     margin: 10px;
 }
@@ -64,10 +53,8 @@ form {
 }
 
 .page-item.active .page-link {
-    /* background-color: rgb(102, 103, 117);
-    border-color: rgb(102, 103, 117); */
-    background-color: rgb(81, 134, 231);
-    border-color: rgb(81, 134, 231);
+    background-color: rgb(102, 103, 117);
+    border-color: rgb(102, 103, 117);
 }
 
 .page-link {
@@ -135,7 +122,6 @@ form {
         background-color: #eff4fe;
         padding: 2rem 2rem;
         box-shadow: none;
-        border: none;
     }
 
     .main-dashboard .jumbotron>h2 {
@@ -176,7 +162,7 @@ form {
 
     /* header all */
     .bg-blue {
-        background-color: #D7E3F9;
+        background-color: #fff;
 
     }
 
@@ -201,11 +187,9 @@ form {
 
     .login-header h1 {
         color: #274C7E;
-        font-size: 0.8rem;
+        font-size: 2rem;
         font-weight: 600;
         margin-bottom: 0;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
     }
 
     .login-box {
@@ -261,18 +245,9 @@ form {
     }
 
     .jumbotron {
-        background-color: white;
+        background-color: #F7F7F7;
         /* background-color: whitesmoke; */
-        /* box-shadow: 0px 0px 20px rgb(219, 219, 219); */
-        border: 1.5px solid rgb(225, 225, 225);
-        margin-top: 1rem;
-    }
-
-    .login-header h1 {
-        color: #274C7E;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 0;
+        /* box-shadow: 5px 5px 10px rgb(219, 219, 219); */
     }
 }
 

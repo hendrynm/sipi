@@ -262,11 +262,10 @@ Route::prefix("/puskesmas")
         Route::prefix("posyandu")->group(function ()
         {
             Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"]);
-            Route::get("/belum-imunisasi",      [PuskesmasController::class,"posBelumImunisasi"]);
-            Route::get("/belum-imunisasi/{id}", [PuskesmasController::class,"posBelumImunisasiCari"])->name("pus.belum");
+            Route::get("/belum",                [PuskesmasController::class,"posBelumImunisasi"]);
+            Route::get("/belum/{id}",           [PuskesmasController::class,"posBelumImunisasiCari"]);
             Route::post("/pilih",               [PuskesmasController::class,"posMulaiPilih"]);
             Route::get("/mulai/{id}",           [PuskesmasController::class,"posMulai"]);
-            Route::get("/cari",                 [PuskesmasController::class,"posCari"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
             Route::post("/tambah/kirim",        [PuskesmasController::class,"posTambahKirim"]);
             Route::get("/edit/{id}",            [PuskesmasController::class,"dataEdit"]);

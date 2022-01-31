@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Capaian Antigen Per Kabupaten")
+@section("title","Capaian Antigen Per kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +7,7 @@
 <div class="container">
     <a href="../dashboard.html" class="btn btn-primary">Back</a>
     <hr>
-    <h1>Laporan Capaian Antigen Per Kabupaten</h1>
+    <h1>Laporan Capaian Antigen Per kampung</h1>
     <div class="jumbotron">
 
         {{-- code goes here --}}
