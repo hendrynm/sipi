@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\PuskesmasModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Deprecated;
 use Yajra\DataTables\DataTables;
+use function MongoDB\BSON\toJSON;
 
 class PuskesmasController extends Controller
 {
@@ -272,5 +274,13 @@ class PuskesmasController extends Controller
     public function posEntriKirim(Request $request)
     {
         return ;
+    }
+
+    public function getListPuskesmasByKabupatenId($id)
+    {
+        $pus = DB::table("puskesmas")
+            ->where("id_kabupaten",$id)->pluck('id_puskesmas','nama_puskesmas');
+
+        return response()->json($pus);
     }
 }

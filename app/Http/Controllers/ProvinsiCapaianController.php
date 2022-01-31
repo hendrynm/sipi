@@ -1861,7 +1861,9 @@ class ProvinsiCapaianController extends Controller
 
         $antigens = (new AntigenModel)->getListAntigen();
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
+        $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("

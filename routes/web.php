@@ -33,6 +33,9 @@ Route::post ("/login",      [LoginController::class,    "login"]);
 Route::get  ("/logout",     [LoginController::class,    "logout"]);
 Route::get  ("/lupa",       [LoginController::class,    "lupa"]);
 
+//        AJAX
+Route::get("/data-ajax/puskesmas/{id}", [PuskesmasController::class,"getListPuskesmasByKabupatenId"])->name('data-ajax.puskesmas')->middleware('user.isLogin');
+
 /*
  * ------------------------------------------------------------------------
  * PROVINSI

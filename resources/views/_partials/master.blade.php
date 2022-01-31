@@ -11,6 +11,7 @@
 </main>
 @include("_partials.footer")
 @include("_partials.js")
+@stack('scripts')
 @section("js")
 @show
 </body>
