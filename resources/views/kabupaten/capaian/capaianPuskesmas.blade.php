@@ -10,8 +10,8 @@
         <h1>Laporan Capaian Imunsasi Per Pukesmas</h1>
         <div class="jumbotron">
             <form action="{{route("kabupaten.capaian.antigen.puskesmas")}}" method="get">
-                <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
+                <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
             </form>
