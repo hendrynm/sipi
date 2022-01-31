@@ -9,7 +9,7 @@
         <hr>
         <h1>Laporan Ketercapaian Antigen Tiap Kabupaten</h1>
         <div class="jumbotron">
-            <form action="{{route("provinsi.capaian.antigen.kabupaten")}}" method="get">
+            <form method="get">
                 <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
