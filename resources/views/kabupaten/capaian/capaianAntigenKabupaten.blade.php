@@ -9,7 +9,7 @@
         <h1>Laporan Capaian Imunisasi Per Kabupaten Dan Kota</h1>
 
         <div class="jumbotron">
-            <form action="{{route("kabupaten.capaian.antigen.kabupaten")}}" method="get">
+            <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>

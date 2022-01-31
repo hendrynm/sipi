@@ -9,7 +9,7 @@
         <hr>
         <h1>Laporan Capaian Performa T1, T2, T3, T4, T5</h1>
         <div class="jumbotron">
-            <form action="{{route("kabupaten.capaian.t")}}" method="get">
+            <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>

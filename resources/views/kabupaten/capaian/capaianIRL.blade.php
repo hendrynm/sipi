@@ -9,7 +9,7 @@
         <hr>
         <h1>Laporan Capaian Anak IRL</h1>
         <div class="jumbotron">
-            <form action="{{route("kabupaten.capaian.irl")}}" method="get">
+            <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
