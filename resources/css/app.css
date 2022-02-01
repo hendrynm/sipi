@@ -2,54 +2,60 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.row {
+/* .row {
     margin: 10px;
-}
+} */
 
-h3{
+/* #row-login {
+    margin: 0 !important;
+} */
+
+
+h3 {
     text-align: center;
     font-size: 1.5rem;
 }
 
 
 
-h1{
+h1 {
     text-align: center;
     color: #274C7E;
-    font-weight:600;
+    font-weight: 600;
     margin-bottom: 2rem;
 }
 
-h2{
+h2 {
     font-size: 2rem;
     color: rgb(81, 134, 231);
     /* font-weight: 600; */
 }
 
-.btn-primary{
+.btn-primary {
     background-color: rgb(81, 134, 231);
     margin-left: 5px;
     margin-right: 5px;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
     background-color: rgb(44, 101, 207);
 }
 
-.custom-table{
+.custom-table {
     background-color: rgb(248, 248, 248);
 
 }
 
-form{
+form {
     margin-bottom: 1rem
 }
 
-.table .thead-light th{
+.table .thead-light th {
     background-color: #F7F7F7;
     border-bottom: 1px;
 }
 
-.page-item.active .page-link{
+.page-item.active .page-link {
     background-color: rgb(102, 103, 117);
     border-color: rgb(102, 103, 117);
 }
@@ -60,43 +66,48 @@ form{
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 275px) {
-    .btn-danger{
+    .btn-danger {
         background-color: #E25A56;
     }
-    .btn-primary{
+
+    .btn-primary {
         margin-bottom: 15px;
     }
-    .jumbotron{
+
+    .jumbotron {
         background-color: #F7F7F7;
         /* background-color: whitesmoke; */
         /* box-shadow: 10px 5px 15px rgb(219, 219, 219); */
     }
 
     /* footer all */
-    .footer{
+    .footer {
         margin-top: 2rem;
         background-color: #D7E3F9;
-        padding : 1rem;
+        padding: 1rem;
 
     }
 
-    .footer-text p{
+    .footer-text p {
         color: #274C7F;
         font-size: 0.8rem;
         text-align: center;
 
     }
+
     /* konten dashboard */
-    .main-dashboard{
+    .main-dashboard {
         margin-top: 2rem;
         background-color: #ffff;
     }
-    .main-dashboard .jumbotron{
+
+    .main-dashboard .jumbotron {
         background-color: #eff4fe;
         padding: 2rem 2rem;
         box-shadow: none;
     }
-    .main-dashboard .jumbotron > h2{
+
+    .main-dashboard .jumbotron>h2 {
         /* color: #274C7F; */
         color: #89a5ee;
         font-weight: 500;
@@ -105,18 +116,19 @@ form{
         margin-bottom: 1rem;
 
     }
-    .main-dashboard .jumbotron > a{
+
+    .main-dashboard .jumbotron>a {
         margin-bottom: 1rem;
 
     }
 
     /* konten middle */
-    .main{
+    .main {
         margin-top: 2rem;
     }
 
     /* header all */
-    .bg-blue{
+    .bg-blue {
         background-color: #D7E3F9;
 
     }
@@ -124,28 +136,30 @@ form{
 
     /* login all */
 
-    .login .jumbotron{
+    .login .jumbotron {
         background-color: white;
     }
 
-    .jumbotron form{
+    .jumbotron form {
         margin-top: 2rem;
     }
 
-    .login-header{
+    .login-header {
         background-color: #D7E3F9;
         padding: 0;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
 
     }
-    .login-header h1{
+
+    .login-header h1 {
         color: #274C7E;
         font-size: 2rem;
         font-weight: 600;
         margin-bottom: 0;
     }
-    .login-box{
+
+    .login-box {
         padding: 0 0 4rem 0;
         margin-top: 2rem;
         border-radius: 2rem;
@@ -153,19 +167,20 @@ form{
 
     }
 
-    .login-label{
+    .login-label {
         color: #274C7E;
         font-size: 1.2rem;
     }
 
-    #password, #username{
+    #password,
+    #username {
         background-color: #D7E3F9;
         background-color: white;
         border: 1px solid #89a5ee;
         border-radius: 5rem;
     }
 
-    .login-button{
+    .login-button {
         padding: 0.5rem 2rem;
         font-size: 1.2rem;
         margin: 0 0 2rem 0;
@@ -174,7 +189,7 @@ form{
     }
 
     /* all botton */
-    .btn{
+    .btn {
         border-radius: 5rem;
         padding-right: 2rem;
         padding-left: 2rem;
@@ -187,10 +202,11 @@ form{
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
-    .btn-primary{
+    .btn-primary {
         margin-bottom: 0px;
     }
-    .jumbotron{
+
+    .jumbotron {
         background-color: #F7F7F7;
         /* background-color: whitesmoke; */
         box-shadow: 5px 5px 10px rgb(219, 219, 219);
@@ -198,11 +214,7 @@ form{
 }
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
+@media (min-width: 992px) {}
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
+@media (min-width: 1200px) {}

@@ -15,7 +15,7 @@
                     <form action="./tambah/kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="namaKabupaten">Nama Kabupaten</label>
+                            <label for="namaKabupaten">Nama Kabupaten :</label>
                             <input type="text" class="form-control" id="namaKabupaten" name="namaKabupaten">
                         </div>
                         <div class="form-group">

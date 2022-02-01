@@ -20,7 +20,7 @@
 
         <div class="jumbotron login-box">
             <div class="container-fluid login-header">
-                <div class="row align-items-center">
+                <div class="row align-items-center" id="row-login">
                     <div class="col-3">
                         <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" alt="">
                     </div>

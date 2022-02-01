@@ -15,8 +15,8 @@
                     <form action="./tambah/kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="username">username</label>
-                            <input type="text" class="form-control" id="username" name="username">
+                            <label for="username1">username</label>
+                            <input type="text" class="form-control" id="username1" name="username">
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Instansi</label>
@@ -37,8 +37,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password1">Password</label>
+                            <input type="password" class="form-control" id="password1" name="password">
                         </div>
                         <div class="form-group">
                             <label for="password2">Ketik Ulang Password</label>

@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-<div class="container main-dashboard">
+<div class="container">
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Dasboard Data Sasaran</h1>
-        <hr>
+     
         <div class="jumbotron">
             <table class="table" id="sasaranKampung">
                 <thead>
