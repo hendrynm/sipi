@@ -8,29 +8,22 @@
         <a href="../dashboard" class="btn btn-primary">back</a>
         <h1>Posyandu</h1>
         <br>
-        <hr>
-
-        <div class="jumbotron">
-            <h2>Mulai Data Entri Imunisasi</h2>
-            <br>
-            <br>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form action="./pilih" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group">
-                            <label for="posyandu">Posyandu :</label>
-                            <select class="custom-select" id="posyandu" name="posyandu">
-                                <option selected disabled>Pilih Posyandu</option>
-                                @foreach($data as $data)
-                                    <option value="{{ $data->id_posyandu }}">{{ $data->nama_posyandu }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <button class="btn btn-primary">Mulai Posyandu</button>
-                    </form>
+        <div class="jumbotron custom-table">
+            <form action="./mulai" method="post">
+                @csrf
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Nama Anak" id="nama" name="nama">
+                    </div>
+                    <br>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="NIK" id="nik" name="nik">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">Cari Data</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <hr>
     </div>

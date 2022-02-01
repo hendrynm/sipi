@@ -338,7 +338,8 @@ Route::prefix("/eksternal")
 
         Route::prefix("/data-anak")->group(function ()
         {
-            Route::get("/dashboard",            [EksternalController::class,"dataDashboard"])->name("eks.anak");
+            Route::get("/dashboard",            [EksternalController::class,"dataDashboard"]);
+            Route::post("/cari",                 [EksternalController::class,"dataDashboardKirim"]);
             Route::get("/detail/{id}",          [EksternalController::class,"dataDetail"]);
             Route::get("/edit/{id}",            [EksternalController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [EksternalController::class,"dataEditKirim"]);
@@ -349,14 +350,7 @@ Route::prefix("/eksternal")
         Route::prefix("posyandu")->group(function ()
         {
             Route::get("/dashboard",            [EksternalController::class,"posDashboard"]);
-            Route::get("/belum",                [EksternalController::class,"posBelumImunisasi"]);
-            Route::get("/belum/{id}",           [EksternalController::class,"posBelumImunisasiCari"]);
-            Route::post("/pilih",               [EksternalController::class,"posMulaiPilih"]);
-            Route::get("/mulai/{id}",           [EksternalController::class,"posMulai"]);
-            Route::get("/tambah",               [EksternalController::class,"dataTambah"]);
-            Route::post("/tambah/kirim",        [EksternalController::class,"posTambahKirim"]);
-            Route::get("/edit/{id}",            [EksternalController::class,"dataEdit"]);
-            Route::post("/edit/kirim",          [EksternalController::class,"posEditKirim"]);
+            Route::post("/mulai",           [EksternalController::class,"posMulai"]);
             Route::get("/entri/{id}",           [EksternalController::class,"posEntri"]);
             Route::post("/entri/kirim",         [EksternalController::class,"posEntriKirim"]);
         });

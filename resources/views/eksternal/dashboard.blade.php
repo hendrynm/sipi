@@ -11,6 +11,18 @@
 
     <div class="jumbotron">
         <h2>Data Induvidu</h2>
+        <a href="./data-anak/tambah" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Tambah Data Induvidu
+                </div>
+            </div>
+        </a>
         <a href="./data-anak/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-8">
@@ -19,7 +31,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Data Induvidu
+                    Cari Data Induvidu
                 </div>
             </div>
         </a>

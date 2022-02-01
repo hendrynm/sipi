@@ -58,7 +58,6 @@
                     </tr>
                     </tbody>
                 </table>
-                <a href="../../data-anak/edit/{{ $data->id_anak }}" class="btn btn-primary">Edit Data Personal</a>
             </div>
         </div>
 

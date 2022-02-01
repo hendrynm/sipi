@@ -23,50 +23,20 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $data)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->nik }}</td>
+                        <td>{{ $data->nama_lengkap }}</td>
+                        <td>{{ $data->nama_ibu }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->nama_antigen }}</td>
+                        <td><a href="./entri/{{ $data->id_anak }}" class="btn btn-primary">Entri Imunisasi</a></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
 </html>
-
-@section("js")
-    <script type="text/javascript">
-        $(function () {
-            var table = $('#mulaiPosyandu').DataTable({
-                processing: true,
-                serverSide: true,
-                language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
-                ajax: window.location.href,
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'nik', name: 'nik'},
-                    {data: 'nama_lengkap', name: 'nama_lengkap'},
-                    {data: 'nama_ibu', name: 'nama_ibu'},
-                    {data: 'tanggal_lahir', name: 'usia',
-                        render: function ( data, type, row, meta ){
-                            let tahun = (new Date().getFullYear()) - (new Date(data).getFullYear())
-                            let bulan = (new Date().getMonth()) - (new Date(data).getMonth())
-                            if(bulan < 0)
-                                return (tahun-1) + " tahun " + (bulan+12) + " bulan"
-                            else if(bulan === 0)
-                                return tahun + " tahun " + bulan + " bulan"
-                            else
-                                return tahun + " tahun " + (bulan+12) + " bulan"
-                        },
-                    },
-                    {data: 'nama_antigen', name: 'belum_imunisasi',
-                        render: function (data, type, row, meta ){
-                            return data.split(", ").join("<br/>");
-                        }
-                    },
-                    {data: 'id_anak', name:'action',
-                        render: function ( data, type, row, meta ) {
-                            return '<a href="../entri/' + data + '" class="btn btn-primary">Entri Imunisasi</a>'
-                        },
-                    }
-                ]
-            });
-        });
-    </script>
-@endsection

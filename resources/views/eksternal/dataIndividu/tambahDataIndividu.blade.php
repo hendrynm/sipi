@@ -97,3 +97,12 @@
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(function() {
+            $('#kampung').selectpicker();
+            $('#posyandu').selectpicker();
+        });
+    </script>
+@endsection

@@ -32,7 +32,7 @@ class LoginModel extends Model
                     $request->session()->put("is_pus","true");
                     break;
                 case(4):
-                    $request->session()->put("id_puskesmas",$user->id_puskesmas);
+                    $request->session()->put("id_kabupaten",$user->id_kabupaten);
                     $request->session()->put("is_eks","true");
                     break;
                 default:
