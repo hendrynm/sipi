@@ -117,7 +117,9 @@ class PuskesmasModel extends Model
                 "no_hp" => $request->noHP,
                 "alamat" => $request->alamat,
                 "id_kampung" => $request->kampung,
-                "id_posyandu" => $request->posyandu
+                "id_posyandu" => $request->posyandu,
+                "status_hamil" => $request->isHamil,
+                "tanggal_hamil" => $request->tanggalKehamilan
             ]);
     }
 

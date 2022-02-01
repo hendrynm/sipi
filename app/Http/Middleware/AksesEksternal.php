@@ -16,7 +16,7 @@ class AksesEksternal
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has("id_eksternal"))
+        if(session()->has("is_eks"))
         {
             return $next($request);
         }

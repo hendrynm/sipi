@@ -54,7 +54,9 @@ h3 {
 
 
 .jumbotron.jum-sertif {
-    background-color: #ebf2ff;
+    /* background-color: #ebf2ff; */
+    background: rgb(203, 220, 255);
+    background: linear-gradient(90deg, rgba(203, 220, 255, 0.6418942577030813) 26%, rgba(208, 236, 255, 0.6222864145658263) 100%);
     padding: 2rem 4em 1rem 4em;
 
 }

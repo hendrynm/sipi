@@ -29,6 +29,11 @@ class LoginModel extends Model
                     break;
                 case(3):
                     $request->session()->put("id_puskesmas",$user->id_puskesmas);
+                    $request->session()->put("is_pus","true");
+                    break;
+                case(4):
+                    $request->session()->put("id_puskesmas",$user->id_puskesmas);
+                    $request->session()->put("is_eks","true");
                     break;
                 default:
                     break;

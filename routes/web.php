@@ -333,6 +333,9 @@ Route::prefix("/eksternal")
     ->middleware([AksesEksternal::class])
     ->group(function ()
     {
+        Route::redirect("/","/eksternal/dashboard");
+        Route::get("/dashboard",                [EksternalController::class,"dashboard"]);
+
         Route::prefix("/data-anak")->group(function ()
         {
             Route::get("/dashboard",            [EksternalController::class,"dataDashboard"])->name("eks.anak");
