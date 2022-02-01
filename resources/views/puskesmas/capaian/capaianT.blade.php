@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard" class="btn btn-primary">Back</a>
+        <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Laporan Capaian T1, T2, T3, T4, T5</h1>
         <div class="jumbotron">

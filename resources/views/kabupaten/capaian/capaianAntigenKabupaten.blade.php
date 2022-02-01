@@ -4,7 +4,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="../dashboard" class="btn btn-primary">Back</a>
+        <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Laporan Capaian Imunisasi Per Kabupaten Dan Kota</h1>
 

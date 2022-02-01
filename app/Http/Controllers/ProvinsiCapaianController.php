@@ -11,6 +11,18 @@ use Yajra\DataTables\DataTables;
 
 class ProvinsiCapaianController extends Controller
 {
+    public function kabupaten() {
+        return view('provinsi.capaian.kabupaten.dashboard');
+    }
+
+    public function kampung() {
+        return view('provinsi.capaian.kampung.dashboard');
+    }
+
+    public function puskesmas() {
+        return view('provinsi.capaian.puskesmas.dashboard');
+    }
+
     public function capaianAntigenKabupaten(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $antigenForm = $request->antigenForm ?: 1;

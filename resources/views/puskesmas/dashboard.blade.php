@@ -22,7 +22,20 @@
             ];
             ?>
         @foreach($capaians as $capaian)
-        <a href="{{route($capaian[1])}}" class="btn btn-primary">{{$capaian[0]}}</a>
+            <a href="{{ route($capaian[1]) }}" class="btn btn-primary">
+                <div class="col justify-content-center">
+                    <div class="row justify-content-center" style="height: 60px">
+                        <div class="">
+                            <img class="mx-auto" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            {{$capaian[0]}}
+                        </div>
+                    </div>
+                </div>
+            </a>
         @endforeach
     </div>
 
@@ -57,7 +70,7 @@
                     Modul Posyandu
                 </div>
             </div>
-            
+
         </a>
     </div>
 

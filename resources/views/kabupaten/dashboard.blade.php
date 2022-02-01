@@ -11,33 +11,32 @@
 
     <div class="jumbotron">
         <h2>Laporan Pencapaian</h2>
-        <?php
-        $capaians = [
-            ["Capaian Antigen", "kabupaten.capaian.antigen.kabupaten"],
-            ["Capaian Antigen Tiap Kampung", "kabupaten.capaian.antigen.kampung"],
-            ["Capaian Antigen Tiap Puskesmas", "kabupaten.capaian.antigen.puskesmas"],
-            ["Anak IDL", "kabupaten.capaian.idl"],
-            ["Anak IRL", "kabupaten.capaian.irl"],
-            ["Performa T", "kabupaten.capaian.t"],
-            ["Desa UCI", "kabupaten.capaian.uci"]
-        ];
-        ?>
-        @foreach($capaians as $capaian)
-            <a href="{{ route($capaian[1]) }}" class="btn btn-primary">
-                <div class="col justify-content-center">
-                    <div class="row justify-content-center" style="height: 60px">
-                        <div class="">
-                            <img class="mx-auto" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            {{$capaian[0]}}
-                        </div>
-                    </div>
+
+        <a href="{{route('kabupaten.capaian.kampung.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
                 </div>
-            </a>
-        @endforeach
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Kampung
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('kabupaten.capaian.puskesmas.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Puskesmas
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="jumbotron">
