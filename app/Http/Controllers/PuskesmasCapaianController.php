@@ -11,6 +11,10 @@ use Yajra\DataTables\DataTables;
 
 class PuskesmasCapaianController extends Controller
 {
+    public function puskesmas() {
+        return redirect('/puskesmas/dashboard');
+    }
+
     public function capaianAntigenPuskesmas(Request $request) {
 
         $tahunForm = $request->tahunForm ?: 2020;
