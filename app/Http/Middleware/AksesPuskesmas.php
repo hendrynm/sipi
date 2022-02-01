@@ -16,7 +16,7 @@ class AksesPuskesmas
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has("id_puskesmas"))
+        if(session()->has("is_pus"))
         {
             return $next($request);
         }
