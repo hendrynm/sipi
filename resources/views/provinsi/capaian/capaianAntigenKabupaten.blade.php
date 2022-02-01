@@ -185,7 +185,7 @@
                 title: {
                     display: true,
                     text: 'Target dan Realisasi Tahunan Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -239,7 +239,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Januari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -293,7 +293,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Februari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -347,7 +347,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Maret',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -401,7 +401,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan April',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -455,7 +455,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Mei',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -509,7 +509,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Juni',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -563,7 +563,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Juli',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -617,7 +617,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Agustus',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -671,7 +671,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan September',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -725,7 +725,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Oktober',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -779,7 +779,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan November',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -833,7 +833,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Desember',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

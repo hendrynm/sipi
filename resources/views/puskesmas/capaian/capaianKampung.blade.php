@@ -219,7 +219,7 @@
                 title: {
                     display: true,
                     text: 'Target dan Realisasi Tahunan',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -279,7 +279,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Januari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -339,7 +339,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Februari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -399,7 +399,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Maret',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -459,7 +459,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan April',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -519,7 +519,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Mei',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -579,7 +579,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Juni',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -639,7 +639,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Juli',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -699,7 +699,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Agustus',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -759,7 +759,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan September',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -819,7 +819,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Oktober',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -879,7 +879,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan November',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -939,7 +939,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Desember',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

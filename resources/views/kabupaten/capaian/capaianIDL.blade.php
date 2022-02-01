@@ -130,7 +130,7 @@
                 title: {
                     display: true,
                     text: 'Total Sasaran dan IDL Tahunan Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -207,7 +207,7 @@
                 title: {
                     display: true,
                     text: 'Target (20% Sasaran) dan IDL Quarter 1 Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -284,7 +284,7 @@
                 title: {
                     display: true,
                     text: 'Target (40% Sasaran) dan IDL Quarter 2 Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -361,7 +361,7 @@
                 title: {
                     display: true,
                     text: 'Target (60% Sasaran) dan IDL Quarter 3 Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -438,7 +438,7 @@
                 title: {
                     display: true,
                     text: 'Target (80% Sasaran) dan IDL Quarter 4 Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

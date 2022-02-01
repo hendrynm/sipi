@@ -199,7 +199,7 @@
                 title: {
                     display: true,
                     text: 'Target dan Realisasi Tahunan Tiap Puskesmas',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -253,7 +253,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Januari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -307,7 +307,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Februari',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -361,7 +361,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Maret',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -415,7 +415,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan April',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -469,7 +469,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Mei',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -523,7 +523,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juni',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -577,7 +577,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juli',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -631,7 +631,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Agustus',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -685,7 +685,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan September',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -739,7 +739,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Oktober',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -793,7 +793,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan November',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -847,7 +847,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Desember',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

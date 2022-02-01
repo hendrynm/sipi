@@ -98,7 +98,7 @@
                 title: {
                     display: true,
                     text: 'Total Sasaran dan IRL Tahunan Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -154,7 +154,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 1 Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -210,7 +210,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 2 Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -266,7 +266,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 3 Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -322,7 +322,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 4 Tiap Kabupaten',
-                    fontSize: 14,
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

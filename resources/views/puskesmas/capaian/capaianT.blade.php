@@ -157,8 +157,8 @@
                 },
                 title: {
                     display: true,
-                    text: 'Ketercapaian TT pada WUS Hamil & Tidak Hamil Tiap Kampung',
-                    fontSize: 14,
+                    text: 'Ketercapaian Status T pada WUS Hamil & Tidak Hamil Tiap Kampung',
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -230,8 +230,8 @@
                 },
                 title: {
                     display: true,
-                    text: 'Ketercapaian TT pada WUS Hamil Tiap Kampung',
-                    fontSize: 14,
+                    text: 'Ketercapaian Status T pada WUS Hamil Tiap Kampung',
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -304,8 +304,8 @@
                 },
                 title: {
                     display: true,
-                    text: 'Ketercapaian TT pada WUS Tidak Hamil Tiap Kampung',
-                    fontSize: 14,
+                    text: 'Ketercapaian Status T pada WUS Tidak Hamil Tiap Kampung',
+                    fontSize: 16,
                 },
                 responsive: true,
                 maintainAspectRatio: false

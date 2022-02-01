@@ -192,7 +192,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Imunisasi Tahunan Tiap Antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -269,7 +269,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Januari Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -346,7 +346,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Februari Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -423,7 +423,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Maret Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -500,7 +500,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan April Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -577,7 +577,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Mei Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -654,7 +654,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Juni Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -731,7 +731,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Juli Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -808,7 +808,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Agustus Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -885,7 +885,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan September Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -962,7 +962,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Oktober Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -1039,7 +1039,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan November Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
@@ -1116,7 +1116,7 @@
             title: {
                 display: true,
                 text: 'Target dan Realisasi Bulan Desember Tiap antigen',
-                fontSize: 14,
+                fontSize: 16,
             },
             responsive: true,
             maintainAspectRatio: false
