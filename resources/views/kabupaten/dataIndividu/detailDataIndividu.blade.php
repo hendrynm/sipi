@@ -58,6 +58,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <a href="../pindah/{{ $data->id_anak }}" class="btn btn-primary">Pindah Domisili</a>
             </div>
         </div>
 

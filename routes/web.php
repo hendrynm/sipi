@@ -202,6 +202,8 @@ Route::prefix("/kabupaten")
         {
             Route::get("/dashboard",            [KabupatenController::class,"dataDashboard"])->name("kab.anak");
             Route::get("/detail/{id}",          [KabupatenController::class,"dataDetail"]);
+            Route::get("/pindah/{id}",          [KabupatenController::class,"dataPindah"]);
+            Route::post("/pindah/kirim",        [KabupatenController::class,"dataPindahKirim"]);
         });
 
         Route::prefix("akun")->group(function ()

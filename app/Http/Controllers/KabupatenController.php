@@ -38,6 +38,20 @@ class KabupatenController extends Controller
         return view("kabupaten.dataIndividu.detailDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
+    public function dataPindah($id)
+    {
+        $kueri = (new KabupatenModel)->dataDetail($id);
+        $kueri2 = (new KabupatenModel)->daftarKabupatenAll();
+        $kueri3 = (new KabupatenModel)->daftarPosyanduAll();
+        return view("kabupaten.dataIndividu.pindahKota",["data"=>$kueri,"data2"=>$kueri2,"data3"=>$kueri3]);
+    }
+
+    public function dataPindahKirim(Request $request)
+    {
+        (new KabupatenModel)->dataPindahKirim($request);
+        return redirect("/kabupaten/data/dashboard");
+    }
+
     public function akunDashboard()
     {
         $kueri = (new KabupatenModel)->akunDashboard($this->id_kab());

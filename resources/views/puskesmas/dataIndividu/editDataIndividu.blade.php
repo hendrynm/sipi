@@ -63,8 +63,6 @@
                             </select>
                         </div>
 
-                        {{-- ini bleum di konfigurasi ya hend --}}
-
                         <br>
                         <a data-toggle="collapse" class="form-hamil-button" href="#isHamil" role="button"
                             aria-expanded="false" aria-controls="isHamil">
@@ -74,23 +72,19 @@
                         <br>
 
                         <div class="collapse form-hamil" id="isHamil">
-
                             <div class="form-group">
                                 <label for="isHamil">Status Kehamilan : </label>
-                                <select class="custom-select" id="isHamil">
-                                    <option selected>---- Pilih Status ---</option>
+                                <select class="custom-select" id="isHamil" name="isHamil">
+                                    <option selected disabled>---- Pilih Status ---</option>
                                     <option value="1">Hamil</option>
                                     <option value="1">Tidak Hamil</option>
-
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tanggalKehamilan">Tanggal Kehamilan : </label>
-                                <input type="date" class="form-control" id="tanggalKehamilan">
+                                <input type="date" class="form-control" id="tanggalKehamilan" name="tanggalKehamilan">
                             </div>
                         </div>
-
-                        {{-- ini belum di konfigurasi yang hend --}}
 
                         <button class="btn btn-primary">Simpan Data Personal</button>
                     </form>

@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class KabupatenModel extends Model
 {
+    public function daftarKabupatenAll()
+    {
+        return DB::table("kabupaten")
+            ->select("id_kabupaten","nama_kabupaten")
+            ->get();
+    }
+
+    public function daftarPosyanduAll()
+    {
+        return DB::table("posyandu")
+            ->select("id_posyandu","nama_posyandu")
+            ->get();
+    }
+
     public function daftarPuskesmas($id_kab)
     {
         return DB::table("puskesmas")
@@ -62,6 +76,16 @@ class KabupatenModel extends Model
             ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
             ->where("id_anak","=",$id)
             ->get();
+    }
+
+    public function dataPindahKirim(Request $request)
+    {
+        DB::table("data_individu")
+            ->where("id_anak","=",$request->idAnak)
+            ->update([
+                "id_kabupaten" => $request->kabupatenBaru,
+                "id_posyandu" => $request->posyanduBaru
+            ]);
     }
 
     public function akunDashboard($id_kab)
