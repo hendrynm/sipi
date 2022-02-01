@@ -1,5 +1,7 @@
+{{--http://localhost:8080/project_sipi/t-kampung.php--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Kabupaten/Kota")
+@section("title","Ketercapaian Status T Setiap Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +9,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian T1, T2, T3, T4, T5</h1>
+        <h1>Ketercapaian Status T Setiap Kampung</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>

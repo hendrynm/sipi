@@ -1,5 +1,8 @@
+{{--http://localhost:8080/project_sipi/ketercapaian-kabupaten.php
+--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Provinsi")
+@section("title","Ketercapaian Imunisasi Setiap Kabupaten")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Ketercapaian Antigen Tiap Kabupaten</h1>
+        <h1>Ketercapaian Imunisasi Setiap Kabupaten</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>

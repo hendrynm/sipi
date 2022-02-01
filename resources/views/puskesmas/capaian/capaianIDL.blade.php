@@ -1,5 +1,8 @@
+{{--http://localhost:8080/project_sipi/idl-kampung.php
+--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Provinsi")
+@section("title","Ketercapaian Imunisasi Dasar Lengkap (IDL) Setiap Kampung")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Anak IDL</h1>
+        <h1>Ketercapaian Imunisasi Dasar Lengkap (IDL) Setiap Kampung</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>

@@ -1,5 +1,8 @@
+{{--http://localhost:8080/project_sipi/uci-kabupaten.php
+--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Kabupaten/Kota")
+@section("title","Laporan Desa UCI")
 <?php $quarters = [1, 2, 3, 4] ?>
 <!DOCTYPE html>
 <html lang="id">

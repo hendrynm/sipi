@@ -1,5 +1,8 @@
+{{--http://localhost:8080/project_sipi/irl-kabupaten.php
+--}}
+
 @extends("_partials.master")
-@section("title","Capaian Anak IRL")
+@section("title","Ketercapaian Imunisasi Rutin Lengkap (IRL) Setiap Kabupaten")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Anak IRL</h1>
+        <h1>Ketercapaian Imunisasi Rutin Lengkap (IRL) Setiap Kabupaten</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>

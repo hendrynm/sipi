@@ -1,5 +1,8 @@
+{{--http://localhost:8080/project_sipi/ketercapaian-kampung.php
+--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Kampung")
+@section("title","Ketercapaian Imunisasi Setiap Kampung")
 
     <!DOCTYPE html>
 <html lang="id">
@@ -7,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Imunsasi Per Kampung</h1>
+        <h1>Ketercapaian Imunisasi Setiap Kampung</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>

@@ -1,12 +1,14 @@
+{{--http://localhost:8080/project_sipi/antigen-kabupaten.php--}}
+
 @extends("_partials.master")
-@section("title","Capaian Per Kabupaten/Kota")
+@section("title","Ketercapaian Imunisasi Setiap Antigen Pada Kabupaten")
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Laporan Capaian Imunisasi Per Kabupaten Dan Kota</h1>
+        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Kabupaten</h1>
 
         <div class="jumbotron">
             <form method="get">
