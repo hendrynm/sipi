@@ -35,6 +35,29 @@
                                 <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                             </select>
                         </div>
+
+                        {{-- baru --}}
+
+                        <div class="form-group">
+                            <label for="kabupaten">Kabupaten :</label>
+                            <select class="custom-select" id="kabupaten" name="kabupaten">
+                                <option selected disabled>-- Pilih Kabupaten --</option>
+                                
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="puskesmas">Puskesmas :</label>
+                            <select class="custom-select" id="puskesmas" name="puskesmas">
+                                <option selected disabled>-- Pilih Puskesmas --</option>
+                                <option value="1">Puskesmas X</option>
+                               
+                            </select>
+                        </div>
+
+
+                        {{-- baruend --}}
+
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" name="password">
