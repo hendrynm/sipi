@@ -1,21 +1,104 @@
 {{--http://localhost:8080/project_sipi/t-puskesmas.php--}}
 
 @extends("_partials.master")
-@section("title","Ketercapaian Status T Setiap Puskesmas)
+@section("title","Ketercapaian Status T Setiap Puskesmas")
 
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container">
+    <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Status T Setiap Puskesmas</h1>
-        <div class="jumbotron">
+        <h1>Ketercapaian Status T Setiap Puskesmas aaa</h1>
+        {{-- ini awalnya container --}}
+        <div >
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
             </form>
+
+            <?php
+            $queryArrays = [$query, $query1, $query2]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">Puskemas</th>
+                        <th scope="col">T1 Hamil</th>
+                        <th scope="col">T1 Tidak Hamil</th>
+                        <th scope="col">T1 Total</th>
+                        
+                        <th scope="col">T2 Hamil</th>
+                        <th scope="col">T2 Tidak Hamil</th>
+                        <th scope="col">T2 Total</th>
+
+                        <th scope="col">T3 Hamil</th>
+                        <th scope="col">T3 Tidak Hamil</th>
+                        <th scope="col">T3 Total</th>
+
+                        <th scope="col">T4 Hamil</th>
+                        <th scope="col">T4 Tidak Hamil</th>
+                        <th scope="col">T4 Total</th>
+
+                        <th scope="col">T5 Hamil</th>
+                        <th scope="col">T5 Tidak Hamil</th>
+                        <th scope="col">T5 Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->puskesmas }}</td>
+
+                            <td>{{ $data->t1_hamil }}</td>
+                            <td>{{ $data->t1_tidak_hamil }}</td>
+                            <td>{{ $data->t1_total }}</td>
+
+                            <td>{{ $data->t2_hamil }}</td>
+                            <td>{{ $data->t2_tidak_hamil }}</td>
+                            <td>{{ $data->t2_total }}</td>
+
+                            <td>{{ $data->t3_hamil }}</td>
+                            <td>{{ $data->t3_tidak_hamil }}</td>
+                            <td>{{ $data->t3_total }}</td>
+
+                            <td>{{ $data->t4_hamil }}</td>
+                            <td>{{ $data->t4_tidak_hamil }}</td>
+                            <td>{{ $data->t4_total }}</td>
+
+                            <td>{{ $data->t5_hamil }}</td>
+                            <td>{{ $data->t5_tidak_hamil }}</td>
+                            <td>{{ $data->t5_total }}</td>
+                            
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
 
             <?php
             foreach ($query as $data) {
@@ -77,9 +160,7 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
+
 
             <br>
             <br>
@@ -88,18 +169,7 @@
             </div>
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 4; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
+       
 
 
         <script>

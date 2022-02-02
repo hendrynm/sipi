@@ -5,6 +5,12 @@ body {
 
 }
 
+.t {
+    max-width: 80%;
+    margin-top: 2rem;
+
+}
+
 /* alert */
 .alert-success {
     background-color: #65af7c;

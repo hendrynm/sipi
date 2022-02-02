@@ -19,6 +19,58 @@
             </form>
 
             <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">Puskemas</th>
+                 
+                        <th scope="col">IRL</th>
+                        
+                     
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->puskesmas }}</td>
+                     
+                            <td>{{ $data->irl }}</td>
+                        
+                      
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
+
+
+            <?php
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;
@@ -46,9 +98,7 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
+          
 
             <br>
             <br>
@@ -57,18 +107,7 @@
             </div>
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 4; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
+       
 
 
         <script>
@@ -107,7 +146,7 @@
                 title: {
                     display: true,
                     text: 'Total Sasaran dan IRL Tahunan Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -163,7 +202,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 1 Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -219,7 +258,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 2 Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -275,7 +314,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 3 Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -331,7 +370,7 @@
                 title: {
                     display: true,
                     text: 'Akumulasi IRL Quarter 4 Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false

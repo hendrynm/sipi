@@ -20,7 +20,66 @@
                 <x-submit-button-form></x-submit-button-form>
             </form>
 
+
+            {{-- testing1 --}}
             <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8, $query9, $query10, $query11, $query12]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">Puskemas</th>
+                        <th scope="col">Kampung</th>
+                        <th scope="col">Perempuan</th>
+                        <th scope="col">Laki-laki</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Target</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->puskesmas }}</td>
+                            <td>{{ $data->kampung }}</td>
+                            <td>{{ $data->jumlahP }}</td>
+                            <td>{{ $data->jumlahL }}</td>
+                            <td>{{ $data->jumlah }}</td>
+                            <td>{{$data->target}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
+
+    <?php
+
+            
+
+         
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;
@@ -140,9 +199,7 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
+            
 
             <br>
             <br>
@@ -151,7 +208,7 @@
             </div>
         </div>
 
-        <script>
+        {{-- <script>
             var wrapper = document.getElementById("myHTMLWrapper");
 
             var myHTML = '';
@@ -162,7 +219,7 @@
 
             wrapper.innerHTML = myHTML
 
-        </script>
+        </script> --}}
 
 
         <script>
@@ -222,7 +279,7 @@
                 title: {
                     display: true,
                     text: 'Target dan Realisasi Tahunan',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -282,7 +339,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Januari',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -342,7 +399,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Februari',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -402,7 +459,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Maret',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -462,7 +519,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan April',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -522,7 +579,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Mei',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -582,7 +639,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Juni',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -642,7 +699,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Juli',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -702,7 +759,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Agustus',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -762,7 +819,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan September',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -822,7 +879,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Oktober',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -882,7 +939,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan November',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -942,7 +999,7 @@
                 title: {
                     display: true,
                     text: 'Imunisasi Bulan Desember',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
