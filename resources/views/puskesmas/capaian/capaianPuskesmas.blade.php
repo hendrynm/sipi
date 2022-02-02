@@ -10,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Puskesmas</h1>
+        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Puskesmas aaas</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
@@ -18,6 +18,58 @@
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
             </form>
+
+
+            <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8, $query9, $query10, $query11, $query12]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">Puskemas</th>
+                        <th scope="col">Antigen</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Terget</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->puskesmas }}</td>
+                            <td>{{ $data->kampung }}</td>
+                            <td>{{ $data->jumlahP }}</td>
+                            <td>{{ $data->jumlahL }}</td>
+                            <td>{{ $data->jumlah }}</td>
+                            <td>{{$data->target}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
 
             <?php
             foreach ($query as $data) {
@@ -218,7 +270,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen1) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah1) ?>,
                     xAxisID: "bar-x-axis1",
@@ -295,7 +347,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen2) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah2) ?>,
                     xAxisID: "bar-x-axis1",
@@ -372,7 +424,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen3) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah3) ?>,
                     xAxisID: "bar-x-axis1",
@@ -449,7 +501,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen4) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah4) ?>,
                     xAxisID: "bar-x-axis1",
@@ -526,7 +578,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen5) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah5) ?>,
                     xAxisID: "bar-x-axis1",
@@ -603,7 +655,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen6) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah6) ?>,
                     xAxisID: "bar-x-axis1",
@@ -680,7 +732,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen7) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah7) ?>,
                     xAxisID: "bar-x-axis1",
@@ -757,7 +809,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen8) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah8) ?>,
                     xAxisID: "bar-x-axis1",
@@ -834,7 +886,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen9) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah9) ?>,
                     xAxisID: "bar-x-axis1",
@@ -911,7 +963,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen10) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah10) ?>,
                     xAxisID: "bar-x-axis1",
@@ -988,7 +1040,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen11) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah11) ?>,
                     xAxisID: "bar-x-axis1",
@@ -1065,7 +1117,7 @@
             var data = {
                 labels: <?php echo json_encode($antigen12) ?>,
                 datasets: [{
-                    label: "Imunisasi Lengkap (IDL)",
+                    label: "Jumlah Imunisasi",
                     backgroundColor: 'rgba(240, 168, 36)',
                     data: <?php echo json_encode($jumlah12) ?>,
                     xAxisID: "bar-x-axis1",
