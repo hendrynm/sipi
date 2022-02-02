@@ -5,55 +5,61 @@
 <html lang="id">
 @section("konten")
 <div class="container main-dashboard">
-    <a href="/logout" class="btn btn-danger">Log Out</a>
-    <hr>
-    <h1>Dashboard Provinsi Papua barat</h1>
 
+    
+
+    <a href="/logout" class="btn btn-danger">Log Out</a>
+
+    <hr>
+    <h1>Dashboard Provinsi Papua Barat</h1>
+    
     <div class="jumbotron">
-        <h2>Laporan Pencapaian</h2>
+        <h2>Laporan Capaian</h2>
         <a href="{{route('provinsi.capaian.kabupaten.dashboard')}}" class="btn btn-primary">
             <div class="row justify-content-center">
-                <div class="col-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Kabupaten
-                </div>
-            </div>
-        </a>
-
-        <a href="{{route('provinsi.capaian.kampung.dashboard')}}" class="btn btn-primary">
-            <div class="row justify-content-center">
-                <div class="col-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    Kampung
+                    Capaian Imunisasi Kabupaten
                 </div>
             </div>
         </a>
 
         <a href="{{route('provinsi.capaian.puskesmas.dashboard')}}" class="btn btn-primary">
             <div class="row justify-content-center">
-                <div class="col-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Puskesmas
+                    Capaian Imunisasi Puskesmas
                 </div>
             </div>
         </a>
 
+
+        <a href="{{route('provinsi.capaian.kampung.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Capaian Imunisasi Kampung
+                </div>
+            </div>
+        </a>
+
+        
     </div>
 
     <div class="jumbotron">
-        <h2>Data Induvidu</h2>
+        <h2>Data Individu</h2>
         <a href="./data-anak/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-8">
@@ -62,7 +68,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Data Induvidu
+                    Data Individu
                 </div>
             </div>
 

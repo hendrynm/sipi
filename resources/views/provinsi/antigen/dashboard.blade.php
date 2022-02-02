@@ -5,6 +5,26 @@
 <html lang="id">
 @section("konten")
     <div class="container">
+            {{-- alert hijau --}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{-- isi pesan disini --}}
+        Isi pesan alert
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    {{-- alert merah --}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         {{-- isi pesan disini --}}
+         Isi pesan alert
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
         <a href=".." class="btn btn-primary">Back</a>
         <hr>
         <h1>Dasboard Data Antigen</h1>

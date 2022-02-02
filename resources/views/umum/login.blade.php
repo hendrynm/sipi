@@ -54,7 +54,7 @@
                                 <div class="col-md-4 col-sm-12">
                                 <button type="submit" class="btn btn-primary login-button">Login</button>
                                 <br>
-                                <a href="./lupa_password.html" class="text-center">lupa password</a>
+                                <a href="./lupa" class="text-center">lupa password</a>
                                 </div>
                             </div>
 

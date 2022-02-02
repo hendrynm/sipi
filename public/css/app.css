@@ -1,5 +1,28 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
+
+
+
+}
+
+/* alert */
+.alert-success {
+    background-color: #65af7c;
+    border: none;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #E25A56;
+    border: none;
+    color: white;
+}
+
+/* alertend */
+
+.body-login {
+    background-image: url(../images/bg/dot.png);
+    background-repeat: repeat;
 }
 
 .container {
@@ -241,7 +264,7 @@ form {
     /* konten dashboard */
     .main-dashboard {
         margin-top: 2rem;
-        background-color: #ffff;
+        /* background-color: #ffff; */
     }
 
     .main-dashboard .jumbotron {

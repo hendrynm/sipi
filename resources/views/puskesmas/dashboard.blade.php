@@ -5,6 +5,8 @@
 <html lang="id">
 @section("konten")
 <div class="container main-dashboard">
+
+
     <a href="/logout" class="btn btn-danger">Log Out</a>
     <hr>
     <h1>Dashboard {{ $data->nama_puskesmas }}</h1>

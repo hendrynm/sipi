@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 @include("_partials.head")
-<body>
+<body class="body-login">
 
 <main>
     @section("konten")

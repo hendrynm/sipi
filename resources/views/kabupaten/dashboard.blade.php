@@ -5,6 +5,9 @@
 <html lang="id">
 @section("konten")
 <div class="container main-dashboard">
+    
+
+
     <a href="/logout" class="btn btn-danger">log out</a>
     <hr>
     <h1>Dasboard Kabupaten/Kota {{ $data->nama_kabupaten }}</h1>
