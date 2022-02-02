@@ -178,29 +178,14 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
-
+          
             <br>
             <br>
 
-            <div id="myHTMLWrapper">
-            </div>
+           
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 12; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
+       
 
 
         <script>

@@ -20,6 +20,59 @@
             </form>
 
             <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">Puskemas</th>
+                        <th scope="col">Kampung</th>
+                 
+                        <th scope="col">IRL</th>
+                        
+                     
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->puskesmas }}</td>
+                            <td>{{ $data->kampung }}</td>
+                     
+                            <td>{{ $data->irl }}</td>
+                        
+                      
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
+
+            <?php
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;

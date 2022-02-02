@@ -45,7 +45,7 @@
                         <th scope="col">Puskemas</th>
                         <th scope="col">Antigen</th>
                         <th scope="col">Jumlah</th>
-                        <th scope="col">Terget</th>
+                        <th scope="col">Target</th>
 
                     </tr>
                     </thead>
@@ -55,9 +55,7 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $data->kabupaten }}</td>
                             <td>{{ $data->puskesmas }}</td>
-                            <td>{{ $data->kampung }}</td>
-                            <td>{{ $data->jumlahP }}</td>
-                            <td>{{ $data->jumlahL }}</td>
+                            <td>{{ $data->antigen }}</td>
                             <td>{{ $data->jumlah }}</td>
                             <td>{{$data->target}}</td>
                         </tr>
@@ -165,28 +163,13 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
-
+          
             <br>
             <br>
 
-            <div id="myHTMLWrapper">
-            </div>
+           
         </div>
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 12; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
+       
 
 
         <script>

@@ -18,9 +18,7 @@
                 <x-submit-button-form></x-submit-button-form>
             </form>
 
-            <?php
-            $queryArrays = [$query, $query1, $query2]
-            ?>
+           
 
 {{-- tabel 1 --}}
             <div style="height: 500px;">
