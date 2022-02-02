@@ -20,6 +20,55 @@
             </form>
 
             <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8, $query9, $query10, $query11, $query12]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Puskemas</th>
+                        <th scope="col">Perempuan</th>
+                        <th scope="col">Laki-Laki</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Target</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->puskesmas }}</td>
+                            <td>{{ $data->jumlahP }}</td>
+                            <td>{{ $data->jumlahL }}</td>
+                            <td>{{ $data->jumlah }}</td>
+                            <td>{{$data->target}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
+
+            <?php
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;
@@ -126,29 +175,8 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <br>
-            <br>
-
-            <div id="myHTMLWrapper">
-            </div>
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 12; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
 
 
         <script>
@@ -202,7 +230,7 @@
                 title: {
                     display: true,
                     text: 'Target dan Realisasi Tahunan Tiap Puskesmas',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -256,7 +284,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Januari',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -310,7 +338,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Februari',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -364,7 +392,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Maret',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -418,7 +446,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan April',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -472,7 +500,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Mei',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -526,7 +554,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juni',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -580,7 +608,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juli',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -634,7 +662,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Agustus',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -688,7 +716,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan September',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -742,7 +770,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Oktober',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -796,7 +824,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan November',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -850,7 +878,7 @@
                 title: {
                     display: true,
                     text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Desember',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false

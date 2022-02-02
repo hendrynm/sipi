@@ -18,6 +18,51 @@
             </form>
 
             <?php
+            $queryArrays = [$query, $query1, $query2, $query3, $query4]
+            ?>
+
+            @for($i = 0; $i < count($queryArrays); $i++)
+                @if($i == 0)
+                    <div style="height: 500px;">
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <br>
+                    <br>
+
+                @else
+                    <div style="height: 500px;"><canvas id="myChart{{$i}}"></canvas><br><br></div>
+
+                @endif
+                <table class="table" id="table{{$i}}">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kabupaten</th>
+                        <th scope="col">IDL</th>
+                        <th scope="col">Target</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($queryArrays[$i] as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->kabupaten }}</td>
+                            <td>{{ $data->idl }}</td>
+                            <td>{{ $data->sasaran }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <hr>
+            @endfor
+        </div>
+    </div>
+
+            <?php
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $idl[] = $data->idl;
@@ -46,30 +91,10 @@
 
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <br>
-            <br>
-
-            <div id="myHTMLWrapper">
-            </div>
+       
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 4; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-
-        </script>
-
+    
 
         <script>
             var data = {
@@ -128,7 +153,7 @@
                 title: {
                     display: true,
                     text: 'Total Sasaran dan IDL Tahunan Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -205,7 +230,7 @@
                 title: {
                     display: true,
                     text: 'Target (20% Sasaran) dan IDL Quarter 1 Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -282,7 +307,7 @@
                 title: {
                     display: true,
                     text: 'Target (40% Sasaran) dan IDL Quarter 2 Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -359,7 +384,7 @@
                 title: {
                     display: true,
                     text: 'Target (60% Sasaran) dan IDL Quarter 3 Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -436,7 +461,7 @@
                 title: {
                     display: true,
                     text: 'Target (80% Sasaran) dan IDL Quarter 4 Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false

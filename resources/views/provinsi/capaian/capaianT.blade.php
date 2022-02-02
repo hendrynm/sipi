@@ -6,15 +6,191 @@
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container">
+    <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Ketercapaian Status T Setiap Kabupaten</h1>
-        <div class="jumbotron">
+        <div>
             <form method="get">
                 <x-year-form :tahunForm="$tahunForm"></x-year-form>
                 <x-submit-button-form></x-submit-button-form>
             </form>
+
+            <div style="height: 500px;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <table class="table" id="table0">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Kabupaten</th>
+                    <th scope="col">T1 Hamil</th>
+                    <th scope="col">T1 Tidak Hamil</th>
+                    <th scope="col">T1 Total</th>
+                    
+                    <th scope="col">T2 Hamil</th>
+                    <th scope="col">T2 Tidak Hamil</th>
+                    <th scope="col">T2 Total</th>
+
+                    <th scope="col">T3 Hamil</th>
+                    <th scope="col">T3 Tidak Hamil</th>
+                    <th scope="col">T3 Total</th>
+
+                    <th scope="col">T4 Hamil</th>
+                    <th scope="col">T4 Tidak Hamil</th>
+                    <th scope="col">T4 Total</th>
+
+                    <th scope="col">T5 Hamil</th>
+                    <th scope="col">T5 Tidak Hamil</th>
+                    <th scope="col">T5 Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($query as $data)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $data->kabupaten }}</td>
+
+                        <td>{{ $data->t1_hamil }}</td>
+                        <td>{{ $data->t1_tidak_hamil }}</td>
+                        <td>{{ $data->t1_total }}</td>
+
+                        <td>{{ $data->t2_hamil }}</td>
+                        <td>{{ $data->t2_tidak_hamil }}</td>
+                        <td>{{ $data->t2_total }}</td>
+
+                        <td>{{ $data->t3_hamil }}</td>
+                        <td>{{ $data->t3_tidak_hamil }}</td>
+                        <td>{{ $data->t3_total }}</td>
+
+                        <td>{{ $data->t4_hamil }}</td>
+                        <td>{{ $data->t4_tidak_hamil }}</td>
+                        <td>{{ $data->t4_total }}</td>
+
+                        <td>{{ $data->t5_hamil }}</td>
+                        <td>{{ $data->t5_tidak_hamil }}</td>
+                        <td>{{ $data->t5_total }}</td>
+                        
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <hr>
+
+            {{-- tabel 2 --}}
+            <div style="height: 500px;"><canvas id="myChart1"></canvas><br><br></div>
+            <table class="table" id="table1">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Kabupaten</th>
+                    <th scope="col">T1 Hamil</th>
+                    
+                    
+                    <th scope="col">T2 Hamil</th>
+                   
+
+                    <th scope="col">T3 Hamil</th>
+                   
+                    <th scope="col">T4 Hamil</th>
+                    
+
+                    <th scope="col">T5 Hamil</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($query2 as $data)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $data->kabupaten }}</td>
+
+                        <td>{{ $data->t1_hamil }}</td>
+                        
+
+                        <td>{{ $data->t2_hamil }}</td>
+                        
+
+                        <td>{{ $data->t3_hamil }}</td>
+                        
+
+                        <td>{{ $data->t4_hamil }}</td>
+                        
+                        <td>{{ $data->t5_hamil }}</td>
+                        
+                        
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <hr>
+
+            {{-- tabel 3 --}}
+            <div style="height: 500px;"><canvas id="myChart2"></canvas><br><br></div>
+            <table class="table" id="table2">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Kabupaten</th>
+                  
+                    <th scope="col">T1 Tidak Hamil</th>
+                    
+                    
+                   
+                    <th scope="col">T2 Tidak Hamil</th>
+                    
+
+                   
+                    <th scope="col">T3 Tidak Hamil</th>
+
+
+
+                    <th scope="col">T4 Tidak Hamil</th>
+
+
+
+                    <th scope="col">T5 Tidak Hamil</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($query2 as $data)
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $data->kabupaten }}</td>
+
+
+                        <td>{{ $data->t1_tidak_hamil }}</td>
+
+
+
+                        <td>{{ $data->t2_tidak_hamil }}</td>
+
+
+
+                        <td>{{ $data->t3_tidak_hamil }}</td>
+
+
+
+                        <td>{{ $data->t4_tidak_hamil }}</td>
+
+
+
+                        <td>{{ $data->t5_tidak_hamil }}</td>
+
+                        
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <br>
+            <br>
+            <hr>
 
             <?php
             foreach ($query as $data) {
@@ -73,28 +249,10 @@
             }
             ?>
 
-            <div style="height: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <br>
-            <br>
-
-            <div id="myHTMLWrapper">
-            </div>
+           
         </div>
 
-        <script>
-            var wrapper = document.getElementById("myHTMLWrapper");
-
-            var myHTML = '';
-
-            for (var i = 0; i < 4; i++) {
-                myHTML += '<div style="height: 500px;"><canvas id="myChart' + (i + 1) + '"></canvas><br><br></div>';
-            }
-
-            wrapper.innerHTML = myHTML
-        </script>
+        
 
 
         <script>
@@ -151,7 +309,7 @@
                 title: {
                     display: true,
                     text: 'Ketercapaian Status T pada WUS Hamil & Tidak Hamil Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -224,7 +382,7 @@
                 title: {
                     display: true,
                     text: 'Ketercapaian Status T pada WUS Hamil Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -298,7 +456,7 @@
                 title: {
                     display: true,
                     text: 'Ketercapaian Status T pada WUS Tidak Hamil Tiap Kabupaten',
-                    fontSize: 16,
+                    fontSize: 32,
                 },
                 responsive: true,
                 maintainAspectRatio: false
