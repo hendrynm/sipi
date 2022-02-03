@@ -281,9 +281,6 @@ Route::prefix("/puskesmas")
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
             Route::post("/tambah/kirim",        [PuskesmasController::class,"dataTambahKirim"]);
 
-            // baru gak tau moga ajah gak error
-            Route::get("/konfirmasi-hapus",     [PuskesmasController::class,"konfrimasiHapus"]);
-            Route::get("/hapus",                [PuskesmasController::class,"hapus"]);
         });
 
         Route::prefix("akun")->group(function ()
