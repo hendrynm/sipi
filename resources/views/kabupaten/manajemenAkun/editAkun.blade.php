@@ -39,15 +39,16 @@
                         </div>
                         @endif
 
-                        {{-- baru --}}
-
+                        {{-- value kabupaten = value kabupaten itu sendiri --}}
+{{--
                         <div class="form-group">
                             <label for="kabupaten">Kabupaten :</label>
                             <select class="custom-select" id="kabupaten" name="kabupaten">
                                 <option selected disabled>-- Pilih Kabupaten --</option>
 
                             </select>
-                        </div>
+                        </div> --}}
+
 
                         <div class="form-group">
                             <label for="puskesmas">Puskesmas :</label>
