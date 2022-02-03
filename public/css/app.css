@@ -17,6 +17,15 @@ body {
 
 /* konfirmasi hapus end */
 
+/* laporan bulanan start */
+.laporan-bulanan {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* laporan bulanan end */
+
 .t {
     max-width: 80%;
     margin-top: 2rem;

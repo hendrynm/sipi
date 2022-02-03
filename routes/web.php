@@ -67,6 +67,8 @@ Route::prefix("/provinsi")
         Route::prefix("/capaian")->group(function ()
         {
 
+            Route::get("/laporanBulanan",         [ProvinsiCapaianController::class,"laporanBulanan"])->name('provinsi.capaian.laporanBulanan');
+
             Route::prefix("/kabupaten")->group(function ()
             {
                 Route::get("/dashboard",         [ProvinsiCapaianController::class,"kabupaten"])->name('provinsi.capaian.kabupaten.dashboard');

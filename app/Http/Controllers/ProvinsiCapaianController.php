@@ -11,6 +11,39 @@ use Yajra\DataTables\DataTables;
 
 class ProvinsiCapaianController extends Controller
 {
+//    kerjaan naufal di bawah, naufal testing
+    public function laporanBulanan() {
+
+        $query = DB::select("
+        SELECT kabupaten.nama_kabupaten as kabupaten,
+          puskesmas.nama_puskesmas as puskesmas,
+          kampung.nama_kampung as kampung,
+          kampung.bayi_lahir_L as sasaran_bayi_lahir_L,
+          kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
+          (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
+          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L as persen_jumlahL,
+          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
+          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P as persen_jumlahP,
+  SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 THEN 1 ELSE 0 END) as jumlah,
+        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = 2012 THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P) as persen_jumlah
+        FROM kampung
+          LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
+          LEFT JOIN imunisasi ON imunisasi.id_anak = data_individu.id_anak
+          LEFT JOIN antigen ON imunisasi.id_antigen = antigen.id_antigen
+          LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
+          LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
+        WHERE kabupaten.id_kabupaten = 7
+          AND puskesmas.id_puskesmas = 92
+        GROUP BY kampung.id_kampung
+        ORDER BY kampung.id_kampung
+        ");
+
+        return view('provinsi.capaian.laporanBulanan', ["query" => $query]);
+    }
+
+//    kerjaan naufal di atas
+
     public function kabupaten() {
         return view('provinsi.capaian.kabupaten.dashboard');
     }
