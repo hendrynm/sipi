@@ -11,6 +11,10 @@ use function MongoDB\BSON\toJSON;
 
 class PuskesmasController extends Controller
 {
+
+    
+
+
     public function id_pus()
     {
         return session()->get("id_puskesmas");

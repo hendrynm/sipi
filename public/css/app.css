@@ -5,6 +5,18 @@ body {
 
 }
 
+
+/* konfrimasi hapus start */
+
+.konfirmasi {
+    color: #E25A56;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+/* konfirmasi hapus end */
+
 .t {
     max-width: 80%;
     margin-top: 2rem;
