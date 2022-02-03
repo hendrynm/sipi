@@ -107,6 +107,8 @@
             </div>
         </div>
 
+        <a href="./konfirmasi-hapus" class="btn btn-danger">Hapus Data Anak</a>
+
         <br>
         <br>
         <h2>Data Imunisasi</h2>

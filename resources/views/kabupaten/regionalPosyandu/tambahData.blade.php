@@ -18,6 +18,16 @@
                             <label for="namaPosyandu">Nama Posyandu</label>
                             <input type="text" class="form-control" name="namaPosyandu">
                         </div>
+                        {{-- perbaiki dari sini ya , filter select--}}
+                        <div class="form-group">
+                            <label for="puskesmas">Nama Puskesmas :</label>
+                            <select class="form-control custom-select" id="puskesmas" name="kampung" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled>Pilih Kampung</option>
+                                {{-- @foreach($data2 as $data2)
+                                    <option data-tokens="{{ $data2->nama_kampung }}" value="{{ $data2->id_kampung }}"{{ ($data->id_kampung === $data2->id_kampung) ? " selected":" " }}>{{$data2->nama_kampung}}</option>
+                                @endforeach
+                            </select> --}}
+                        </div>
                         <div class="form-group">
                             <label for="kampung">Nama Kampung :</label>
                             <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true">
@@ -27,6 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        {{-- sampain sini  --}}
                         <div class="form-group">
                             <label for="alamatLengkap">Alamat Lengkap Posyandu :</label>
                             <input type="text" class="form-control" name="alamatLengkap">

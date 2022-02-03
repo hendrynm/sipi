@@ -63,6 +63,7 @@
                     <form action="../kirim" method="post">
                         @csrf
                         <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
+                        {{-- perbaiki dari sini ya, filter selectna --}}
                         <div class="form-group">
                             <label for="kabupatenBaru">Kabupaten/Kota Baru : </label>
                             <select class="form-control custom-select" id="kabupatenBaru" data-show-subtext="true" data-live-search="true">
@@ -72,6 +73,26 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="puskesmasBaru">Puskesmas Baru : </label>
+                            <select class="form-control custom-select" id="puskesmasBaru" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled> --- </option>
+                                {{-- @foreach($data2 as $data2)
+                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kampungbaru">Kampung Baru : </label>
+                            <select class="form-control custom-select" id="kampungbaru" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled> --- </option>
+                                {{-- @foreach($data2 as $data2)
+                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="posyanduBaru">Posyandu Baru : </label>
                             <select class="form-control custom-select" id="posyanduBaru" data-show-subtext="true" data-live-search="true">

@@ -15,31 +15,32 @@
     <div class="jumbotron">
         <h2>Laporan Pencapaian</h2>
 
-        <a href="{{route('kabupaten.capaian.kampung.dashboard')}}" class="btn btn-primary">
+        <a href="{{route('kabupaten.capaian.puskesmas.dashboard')}}" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Kampung
+                    laporan Puskesmas
+                </div>
+            </div>
+        </a>
+        <a href="{{route('kabupaten.capaian.kampung.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Kampung
                 </div>
             </div>
         </a>
 
-        <a href="{{route('kabupaten.capaian.puskesmas.dashboard')}}" class="btn btn-primary">
-            <div class="row justify-content-center">
-                <div class="col-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/data-induvidu.png")}}" width="60" height="60">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    Puskesmas
-                </div>
-            </div>
-        </a>
+        
     </div>
 
     <div class="jumbotron">
