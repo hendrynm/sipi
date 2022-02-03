@@ -12,7 +12,7 @@ use function MongoDB\BSON\toJSON;
 class PuskesmasController extends Controller
 {
 
-    
+
 
 
     public function id_pus()
@@ -45,6 +45,20 @@ class PuskesmasController extends Controller
         return view("puskesmas.dataIndividu.detailDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
+    public function dataCetakIDL($id)
+    {
+        $kueri = (new PuskesmasModel)->dataDetail($id);
+        $kueri2 = (new PuskesmasModel)->dataDetailImunisasiIDL($id);
+        return view("puskesmas.dataIndividu.sertifIDL",["data"=>$kueri,"data2"=>$kueri2]);
+    }
+
+    public function dataCetakIRL($id)
+    {
+        $kueri = (new PuskesmasModel)->dataDetail($id);
+        $kueri2 = (new PuskesmasModel)->dataDetailImunisasiIRL($id);
+        return view("puskesmas.dataIndividu.sertifIRL",["data"=>$kueri,"data2"=>$kueri2]);
+    }
+
     public function dataEdit($id)
     {
         $kueri = (new PuskesmasModel)->dataEdit($id);
@@ -67,8 +81,14 @@ class PuskesmasController extends Controller
 
     public function dataTambahKirim(Request $request)
     {
-        (new PuskesmasModel)->dataTambahKirim($request);
-        return redirect("/puskesmas/data-anak/dashboard");
+        $kueri = (new PuskesmasModel)->dataTambahKirim($request);
+        if($kueri->id_anak > 0)
+        {
+            $request->session()->flash("sukses","Data berhasil disimpan");
+            return redirect("/puskesmas/data-anak/detail/$kueri->id_anak");
+        }
+        $request->session()->flash("gagal","Data gagal disimpan");
+        return redirect("/puskesmas/data-anak/detail/$request->idAnak");
     }
 
     public function akunDashboard()

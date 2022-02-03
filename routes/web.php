@@ -276,6 +276,9 @@ Route::prefix("/puskesmas")
         {
             Route::get("/dashboard",            [PuskesmasController::class,"dataDashboard"])->name("pus.anak");
             Route::get("/detail/{id}",          [PuskesmasController::class,"dataDetail"]);
+            Route::get("/detail/{id}/cetak-idl",[PuskesmasController::class,"dataCetakIDL"]);
+            Route::get("/detail/{id}/cetak-irl",[PuskesmasController::class,"dataCetakIRL"]);
+            Route::get("/hapus/{id}",           [EksternalController::class,"dataHapus"]);
             Route::get("/edit/{id}",            [PuskesmasController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [PuskesmasController::class,"dataEditKirim"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
@@ -321,6 +324,7 @@ Route::prefix("/puskesmas")
             Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"]);
             Route::get("/belum",                [PuskesmasController::class,"posBelumImunisasi"]);
             Route::get("/belum/{id}",           [PuskesmasController::class,"posBelumImunisasiCari"]);
+            Route::get("/belum/cetak",          [PuskesmasController::class,"posBelumImunisasiCetak"]);
             Route::post("/pilih",               [PuskesmasController::class,"posMulaiPilih"]);
             Route::get("/mulai/{id}",           [PuskesmasController::class,"posMulai"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
@@ -346,6 +350,7 @@ Route::prefix("/eksternal")
             Route::get("/detail/{id}",          [EksternalController::class,"dataDetail"]);
             Route::get("/edit/{id}",            [EksternalController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [EksternalController::class,"dataEditKirim"]);
+            Route::get("/hapus/{id}",           [EksternalController::class,"dataHapus"]);
             Route::get("/tambah",               [EksternalController::class,"dataTambah"]);
             Route::post("/tambah/kirim",        [EksternalController::class,"dataTambahKirim"]);
         });

@@ -107,7 +107,11 @@
                 <td>{{ $data2->nama_antigen }}</td>
                 <td>{{ $data2->tanggal_pemberian }}</td>
                 <td>{{ $data2->tempat_imunisasi }}</td>
-                <td>{{ $data2->status }} imunisasi</td>
+                @if($data2->status === "belum")
+                    <td style="color:#E25A56">{{ $data2->status }} imunisasi</td>
+                @else
+                    <td>{{ $data2->status }} imunisasi</td>
+                @endif
             </tr>
             @endforeach
             </tbody>

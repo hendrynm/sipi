@@ -66,13 +66,21 @@
                             </select>
                         </div>
 
+                        <br>
+                        <a data-toggle="collapse" class="form-hamil-button" href="#isHamil" role="button"
+                           aria-expanded="false" aria-controls="isHamil">
+                            + tambah status kehamilan
+                        </a>
+                        <br>
+                        <br>
+
                         <div class="collapse form-hamil" id="isHamil">
                             <div class="form-group">
                                 <label for="isHamil">Status Kehamilan : </label>
                                 <select class="custom-select" id="isHamil" name="isHamil">
                                     <option selected disabled>---- Pilih Status ---</option>
-                                    <option value="1">Hamil</option>
-                                    <option value="1">Tidak Hamil</option>
+                                    <option value="hamil">Hamil</option>
+                                    <option value="">Tidak Hamil</option>
                                 </select>
                             </div>
                             <div class="form-group">

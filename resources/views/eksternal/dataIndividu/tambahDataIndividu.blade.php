@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kampung">Kampung : </label>
-                            <select class="custom-select" id="kampung" name="kampung">
+                            <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled>Pilih kampung</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
-                            <select class="custom-select" id="posyandu" name="posyandu">
+                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled>Pilih Posyandu</option>
                                 @foreach($data2 as $data2)
                                     <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>
@@ -97,7 +97,7 @@
                         <div class="collapse form-hamil" id="isHamil">
                             <div class="form-group">
                                 <label for="isHamil">Status Kehamilan : </label>
-                                <select class="custom-select" id="isHamil" name="isHamil">
+                                <select class=custom-select" id="isHamil" name="isHamil">
                                     <option selected disabled>---- Pilih Status ---</option>
                                     <option value="1">Hamil</option>
                                     <option value="1">Tidak Hamil</option>

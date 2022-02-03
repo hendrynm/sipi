@@ -207,4 +207,9 @@ class KabupatenController extends Controller
         }
         return view("kabupaten.sasaran.dashboard");
     }
+
+    public function sasaranDetail($id)
+    {
+
+    }
 }

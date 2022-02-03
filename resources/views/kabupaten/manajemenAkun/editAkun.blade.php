@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="./dashboard" class="btn btn-primary">Back</a>
+        <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>Edit Akun Kabupaten {{ $data->nama_kabupaten }}</h1>
         <div class="jumbotron">
@@ -27,6 +27,7 @@
                             <label for="nama">Email :</label>
                             <input type="text" class="form-control" name="email" value="{{ $data->email }}">
                         </div>
+                        @if(!($data->id_user === session()->get("id_user")))
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
                             <select class="custom-select" name="level">
@@ -36,6 +37,7 @@
                                 <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                             </select>
                         </div>
+                        @endif
 
                         {{-- baru --}}
 
@@ -43,7 +45,7 @@
                             <label for="kabupaten">Kabupaten :</label>
                             <select class="custom-select" id="kabupaten" name="kabupaten">
                                 <option selected disabled>-- Pilih Kabupaten --</option>
-                                
+
                             </select>
                         </div>
 
@@ -52,7 +54,7 @@
                             <select class="custom-select" id="puskesmas" name="puskesmas">
                                 <option selected disabled>-- Pilih Puskesmas --</option>
                                 <option value="1">Puskesmas X</option>
-                               
+
                             </select>
                         </div>
 

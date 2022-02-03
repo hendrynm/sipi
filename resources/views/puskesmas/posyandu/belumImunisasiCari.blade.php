@@ -9,10 +9,6 @@
 
         <h1>Data Anak Belum Imunisasi</h1>
         <br>
-        <a href="./belum/cetak" class="btn btn-primary">Print Data</a>
-        <br>
-        <br>
-        <br>
 
         <!-- primitif -->
         <table class="table" id="belumImunisasi">
@@ -63,6 +59,20 @@
                     },
                     {data: 'alamat', name: 'alamat'},
                     {data: 'no_hp', name: 'no_hp'},
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'print',
+                        autoPrint: false,
+                        messageTop: '<h1>Data Anak yang Belum Imunisasi</h1>',
+                        customize: function ( win ) {
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    },
+                    'pageLength'
                 ]
             });
         });

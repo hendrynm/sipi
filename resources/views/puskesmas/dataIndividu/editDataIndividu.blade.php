@@ -16,6 +16,7 @@
                     <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idAnak" value="{{ $data->id_anak }}">
+                        <input type="hidden" name="kampung" value="{{ $data->id_kampung }}">
                         <div class="form-group">
                             <label for="namaLengkap">Nama Lengkap : </label>
                             <input type="text" class="form-control" id="namaLengkap" name="namaLengkap" value="{{ $data->nama_lengkap }}">
@@ -75,14 +76,15 @@
                             <div class="form-group">
                                 <label for="isHamil">Status Kehamilan : </label>
                                 <select class="custom-select" id="isHamil" name="isHamil">
-                                    <option selected disabled>---- Pilih Status ---</option>
-                                    <option value="1">Hamil</option>
-                                    <option value="1">Tidak Hamil</option>
+                                    <option disabled>---- Pilih Status ---</option>
+                                    <option value="hamil" {{ $data->status_hamil === "hamil" ? "selected" : ""
+                                    }}>Hamil</option>
+                                    <option value="" {{ $data->status_hamil === null ? "selected" : "" }}>Tidak Hamil</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tanggalKehamilan">Tanggal Kehamilan : </label>
-                                <input type="date" class="form-control" id="tanggalKehamilan" name="tanggalKehamilan">
+                                <input type="date" class="form-control" id="tanggalKehamilan" name="tanggalKehamilan" value="{{ $data->tanggal_hamil }}">
                             </div>
                         </div>
 
