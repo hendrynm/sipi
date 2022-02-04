@@ -339,6 +339,7 @@ Route::prefix("/puskesmas")
             Route::get("/unduh-format", [ExcelController::class, "unduhFormat"])->name('unduh.format');
             Route::get("/unduh-data-anak", [ExcelController::class, "unduhDataAnak"])->name('unduh.data.anak');
             Route::get("/unduh-data-antigen", [ExcelController::class, "unduhDataAntigen"])->name('unduh.data.antigen');
+            Route::post("/unduh-data-antigen", [ExcelController::class, "updateData"])->name('update.excel');
         });
     });
 
