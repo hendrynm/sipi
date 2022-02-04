@@ -63,6 +63,9 @@
             <p>
                 file yang diupload hanya dapat dientri oleh puskesmas yang sama
             </p>
+            <a href="{{route('unduh.format')}}" class="btn btn-primary">Unduh Format Excel</a>
+            <a href="{{route('unduh.data.antigen')}}" class="btn btn-primary">Unduh Data Id Antigen</a>
+            <a href="{{route('unduh.data.anak')}}" class="btn btn-primary">Unduh Data Id Anak</a>
             <form>
                 <div class="form-group">
                   <label for="fileOffline">Masukan File format .xlsx</label>

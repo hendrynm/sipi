@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\KabupatenCapaianController;
 use App\Http\Controllers\ProvinsiCapaianController;
 use App\Http\Controllers\PuskesmasCapaianController;
@@ -335,6 +336,9 @@ Route::prefix("/puskesmas")
             Route::post("/edit/kirim",          [PuskesmasController::class,"posEditKirim"]);
             Route::get("/entri/{id}",           [PuskesmasController::class,"posEntri"]);
             Route::post("/entri/kirim",         [PuskesmasController::class,"posEntriKirim"]);
+            Route::get("/unduh-format", [ExcelController::class, "unduhFormat"])->name('unduh.format');
+            Route::get("/unduh-data-anak", [ExcelController::class, "unduhDataAnak"])->name('unduh.data.anak');
+            Route::get("/unduh-data-antigen", [ExcelController::class, "unduhDataAntigen"])->name('unduh.data.antigen');
         });
     });
 
