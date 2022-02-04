@@ -324,7 +324,7 @@ Route::prefix("/puskesmas")
 
         Route::prefix("posyandu")->group(function ()
         {
-            Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"]);
+            Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"])->name('puskesmas.posyandu.dashboard');
             Route::get("/belum",                [PuskesmasController::class,"posBelumImunisasi"]);
             Route::get("/belum/{id}",           [PuskesmasController::class,"posBelumImunisasiCari"]);
             Route::get("/belum/cetak",          [PuskesmasController::class,"posBelumImunisasiCetak"]);

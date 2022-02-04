@@ -5,6 +5,14 @@
 <html lang="id">
 @section("konten")
     <div class="container">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{$message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
                       {{-- alert hijau --}}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{-- isi pesan disini --}}
@@ -70,7 +78,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="excelFile">Masukan File format .xlsx</label>
-                  <input required type="file" class="form-control-file" id="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                  <input required type="file" class="form-control-file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                 </div>
                 <x-submit-button-form></x-submit-button-form>
               </form>

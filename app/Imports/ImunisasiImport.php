@@ -3,10 +3,13 @@
 namespace App\Imports;
 
 use App\Models\Imunisasi;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Row;
 
-class ImunisasiImport implements OnEachRow
+class ImunisasiImport implements OnEachRow, WithHeadingRow
 {
     /**
     * @param array $row
@@ -19,22 +22,26 @@ class ImunisasiImport implements OnEachRow
         $rowIndex = $row->getIndex();
         $row      = $row->toArray();
 
-        @dd($row);
-
-        if (!isset($row[0])) {
+        if (!isset($row['no'])) {
             return null;
         }
 
-        if (!isset($row[1])) {
+        if (!isset($row['id_anak'])) {
             return null;
         }
 
-        if (!isset($row[2])) {
+        if (!isset($row['id_antigen'])) {
             return null;
         }
 
-        Imunisasi::where('id_anak', $row[1])->where('id_antigen', $row[2])->update(['status' => 'sudah', 'tanggal_pemberian' => $row[3]], 'tempat_imunisasi' => $row[4]);
+        if (!isset($row['tanggal_pemberian'])) {
+            return null;
+        }
 
+        $date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_pemberian']));
+//        @dd($date);
+
+        Imunisasi::where('id_anak', $row['id_anak'])->where('id_antigen', $row['id_antigen'])->update(['status' => 'sudah', 'tanggal_pemberian' => $date]);
 
     }
 }

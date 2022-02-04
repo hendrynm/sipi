@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Exports\AnakExport;
 use App\Exports\AntigenExport;
 use App\Exports\IndividuExport;
+use App\Imports\ImunisasiImport;
+use App\Models\Imunisasi;
 use App\Models\Individu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -28,14 +31,19 @@ class ExcelController extends Controller
     }
 
     public function updateData(Request $request) {
-        @dd($request->file('excelFile'));
         if (!Storage::disk('public')->exists('data')) {
             Storage::disk('public')->makeDirectory('data');
         }
 
         $fileExcel = $request->file('excelFile');
 
-        $filename = Carbon::now()->format('Ymd His') . '.' . $request->file('excelFile')->extension();
-        @dd(Storage::disk('public')->put('data/' . $filename, $fileExcel));
+//        $filename = Carbon::now()->format('YmdHis') . '.' . $request->file('excelFile')->extension();
+        $path = Storage::disk('public')->put('data/', $fileExcel);
+
+        $file = Storage::disk('public')->path($path);
+
+        Excel::import(new ImunisasiImport(), $file);
+
+        return redirect(route('puskesmas.posyandu.dashboard'))->with(['success', 'Data berhasil diupdate']);
     }
 }
