@@ -8,7 +8,7 @@
 <html lang="id">
 @section("konten")
     <div class="container-fluid t">
-        <a href="./dashboard" class="btn btn-primary">Back</a>
+        <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>laporan Bulanan</h1>
         <div>

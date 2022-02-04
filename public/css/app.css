@@ -56,8 +56,18 @@ body {
 
 }
 
-.tabel-antigen {
+.data-total {
+    background-color: #d4d4d4;
+}
+
+.tabel-antigen:nth-of-type(n) {
     background-color: #dce7fa !important;
+
+}
+
+.tabel-antigen:nth-of-type(2n) {
+    background-color: #c8d8f3 !important;
+
 }
 
 .no-padding {

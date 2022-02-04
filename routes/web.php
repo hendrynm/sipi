@@ -177,6 +177,7 @@ Route::prefix("/kabupaten")
 
         Route::prefix("/capaian")->group(function ()
         {
+            Route::get("/laporanBulanan",         [KabupatenCapaianController::class,"laporanBulanan"])->name('kabupaten.capaian.laporanBulanan');
             Route::prefix("/kampung")->group(function ()
             {
                 Route::get("/dashboard",         [KabupatenCapaianController::class,"kampung"])->name('kabupaten.capaian.kampung.dashboard');
