@@ -24,7 +24,7 @@
                             <input type="text" class="form-control" id="namaIbuKandung" name="namaIbuKandung">
                         </div>
                         <div class="form-group">
-                            <label for="noHP">NIK : </label>
+                            <label for="nik">NIK : </label>
                             <input type="text" class="form-control" id="nik" name="nik">
                         </div>
                         <div class="form-group">

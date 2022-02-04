@@ -5,6 +5,23 @@
 <html lang="id">
 @section("konten")
     <div class="container">
+        @if(session()->has("sukses"))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get("sukses") }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if(session()->has("gagal"))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session()->get("gagal") }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Data Anak</h1>
@@ -76,11 +93,10 @@
                     </tr>
 
                     @if($data->jenis_kelamin === "P")
-                    <!-- hanya berlaku untuk perempuan -->
-                    <tr>
-                        <th scope="row">Status T :</th>
-                        <td>{{ $data->status_t }}</td>
-                    </tr>
+                        <tr>
+                            <th scope="row">Status T :</th>
+                            <td>{{ $data->status_t ?? "-"}}</td>
+                        </tr>
                     @endif
                     </tbody>
                 </table>
@@ -107,7 +123,11 @@
                 <td>{{ $data2->nama_antigen }}</td>
                 <td>{{ $data2->tanggal_pemberian }}</td>
                 <td>{{ $data2->tempat_imunisasi }}</td>
-                <td>{{ $data2->status }} imunisasi</td>
+                @if($data2->status === "belum")
+                    <td style="color:#E25A56">{{ $data2->status }} imunisasi</td>
+                @else
+                    <td>{{ $data2->status }} imunisasi</td>
+                @endif
             </tr>
             @endforeach
             </tbody>

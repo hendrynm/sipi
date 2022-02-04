@@ -303,6 +303,13 @@ class KabupatenModel extends Model
             ->get();
     }
 
+    public function sasaranTarget($id)
+    {
+        return DB::table("kampung")
+            ->where("id_kampung","=",$id)
+            ->first();
+    }
+
     public function getListKabupaten()
     {
         return DB::table("kabupaten")->select("id_kabupaten","nama_kabupaten")->get();

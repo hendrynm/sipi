@@ -45,8 +45,14 @@ class EksternalController extends Controller
 
     public function dataTambahKirim(Request $request)
     {
-        (new EksternalModel)->dataTambahKirim($request);
-        return redirect("/eksternal/data-anak/dashboard");
+        $kueri = (new EksternalModel)->dataTambahKirim($request);
+        if($kueri->id_anak > 0)
+        {
+            return redirect("/eksternal/data-anak/detail/$kueri->id_anak")
+                ->with("sukses","Data berhasil disimpan");
+        }
+        return redirect("/eksternal/data-anak/tambah-data")
+            ->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
     }
 
     public function posDashboard()
@@ -57,7 +63,12 @@ class EksternalController extends Controller
     public function posMulai(Request $request)
     {
         $kueri = (new EksternalModel)->posMulai($request);
-        return view("eksternal.posyandu.mulaiPosyandu",["data"=>$kueri]);
+        if(count($kueri) > 0)
+        {
+            return view("eksternal.posyandu.mulaiPosyandu",["data"=>$kueri])
+                ->with("sukses","Data berhasil disimpan");
+        }
+        return redirect("/eksternal/posyandu/dashboard")->with("gagal","Data Anak tidak ditemukan");
     }
 
     public function posEntri($id)
@@ -70,6 +81,7 @@ class EksternalController extends Controller
 
     public function posEntriKirim(Request $request)
     {
-        return redirect("/eksternal/posyandu/dashboard");
+        (new EksternalModel)->posEntriKirim($request);
+        return redirect("/eksternal/posyandu/entri/$request->idAnak")->with("sukses","Data berhasil disimpan");
     }
 }

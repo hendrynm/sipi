@@ -5,25 +5,24 @@
 <html lang="id">
 @section("konten")
     <div class="container">
+        @if(session()->has("sukses"))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get("sukses") }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
-               {{-- alert hijau --}}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{-- isi pesan disini --}}
-        Isi pesan alert
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        @if(session()->has("gagal"))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session()->get("gagal") }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
-
-    {{-- alert merah --}}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-         {{-- isi pesan disini --}}
-         Isi pesan alert
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Dasboard Data Kampung</h1>

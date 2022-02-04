@@ -30,7 +30,7 @@
                         <td>{{ $data->nama_lengkap }}</td>
                         <td>{{ $data->nama_ibu }}</td>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->nama_antigen }}</td>
+                        <td>{!! str_replace(", ","<br>",$data->nama_antigen) !!}</td>
                         <td><a href="./entri/{{ $data->id_anak }}" class="btn btn-primary">Entri Imunisasi</a></td>
                     </tr>
                 @endforeach

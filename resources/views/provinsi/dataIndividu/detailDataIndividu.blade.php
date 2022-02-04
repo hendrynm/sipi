@@ -76,11 +76,10 @@
                     </tr>
 
                     @if($data->jenis_kelamin === "P")
-                    <!-- hanya berlaku untuk perempuan -->
-                    <tr>
-                        <th scope="row">Status T :</th>
-                        <td>{{ $data->status_t }}</td>
-                    </tr>
+                        <tr>
+                            <th scope="row">Status T :</th>
+                            <td>{{ $data->status_t ?? "-"}}</td>
+                        </tr>
                     @endif
                     </tbody>
                 </table>

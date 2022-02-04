@@ -84,11 +84,9 @@ class PuskesmasController extends Controller
         $kueri = (new PuskesmasModel)->dataTambahKirim($request);
         if($kueri->id_anak > 0)
         {
-            $request->session()->flash("sukses","Data berhasil disimpan");
-            return redirect("/puskesmas/data-anak/detail/$kueri->id_anak");
+            return redirect("/puskesmas/data-anak/detail/$kueri->id_anak")->with("sukses","Data berhasil disimpan");
         }
-        $request->session()->flash("gagal","Data gagal disimpan");
-        return redirect("/puskesmas/data-anak/detail/$request->idAnak");
+        return redirect("/puskesmas/data-anak/tambah-data")->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
     }
 
     public function akunDashboard()
@@ -188,8 +186,12 @@ class PuskesmasController extends Controller
 
     public function kampungSasaranUbahKirim(Request $request)
     {
-        (new PuskesmasModel)->kampungSasaranUbahKirim($request);
-        return redirect("/puskesmas/regional-kampung/dashboard");
+        $kueri = (new PuskesmasModel)->kampungSasaranUbahKirim($request);
+        if($kueri > 0)
+        {
+            return redirect("/puskesmas/regional-kampung/sasaran/$request->idKampung")->with("sukses","Data berhasil disimpan");
+        }
+        return redirect("/puskesmas/regional-kampung/sasaran/$request->idKampungg")->with("gagal","Data gagal disimpan");
     }
 
     public function posyanduDashboard(Request $request)
@@ -282,7 +284,7 @@ class PuskesmasController extends Controller
     public function posEntriKirim(Request $request)
     {
         (new PuskesmasModel)->posEntriKirim($request);
-        return redirect("/puskesmas/posyandu/dashboard");
+        return redirect("/puskesmas/posyandu/entri/$request->idAnak")->with("sukses","Data berhasil disimpan");
     }
 
     public function getListPuskesmasByKabupatenId($id)

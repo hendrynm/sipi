@@ -62,21 +62,40 @@ class EksternalModel extends Model
 
     public function dataTambahKirim(Request $request)
     {
-        DB::table("data_individu")
-            ->where("id_anak","=",$request->idAnak)
-            ->update([
+        $kueri = DB::table("data_individu")
+            ->insert([
                 "nama_lengkap" => $request->namaLengkap,
-                "nama_ibu" => $request->namaIbu,
+                "nama_ibu" => $request->namaIbuKandung,
                 "nik" => $request->nik,
                 "tanggal_lahir" => $request->tanggalLahir,
                 "jenis_kelamin" => $request->jenisKelamin,
                 "no_hp" => $request->noHP,
                 "alamat" => $request->alamat,
-                "id_kampung" => $request->kampung,
                 "id_posyandu" => $request->posyandu,
-                "status_hamil" => $request->isHamil,
-                "tanggal_hamil" => $request->tanggalKehamilan
+                "id_kampung" => $request->kampung,
+                "status_hamil" => $request->isHamil ?: null,
+                "tanggal_hamil" => $request->tanggalKehamilan ?: null
             ]);
+        if($kueri > 0)
+        {
+            $id = DB::table("data_individu")
+                ->orderByDesc("id_anak")
+                ->first();
+            $data = DB::table("antigen")
+                ->get();
+
+            foreach ($data as $d)
+            {
+                DB::table("imunisasi")
+                    ->insert([
+                        "id_anak" => $id->id_anak,
+                        "id_antigen" => $d->id_antigen,
+                        "status" => "belum"
+                    ]);
+            }
+            return $id;
+        }
+        return 0;
     }
 
     public function posMulai(Request $request)

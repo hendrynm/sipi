@@ -5,31 +5,23 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        @if ($message = Session::get('success'))
+        @if(session()->has("sukses"))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{$message}}
+                {{ session()->get("sukses") }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @endif
-                      {{-- alert hijau --}}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{-- isi pesan disini --}}
-        Isi pesan alert
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{-- isi pesan disini --}}
-        Isi pesan alert
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
+        @if(session()->has("gagal"))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session()->get("gagal") }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <a href="../dashboard" class="btn btn-primary">back</a>
         <h1>Posyandu</h1>
@@ -54,7 +46,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="posyandu">Posyandu :</label>
-                            <select class="custom-select" id="posyandu" name="posyandu">
+                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled>Pilih Posyandu</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_posyandu }}">{{ $data->nama_posyandu }}</option>
@@ -89,3 +81,11 @@
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(function() {
+            $('#posyandu').selectpicker();
+        });
+    </script>
+@endsection

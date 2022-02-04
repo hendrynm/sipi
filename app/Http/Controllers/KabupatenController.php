@@ -208,8 +208,9 @@ class KabupatenController extends Controller
         return view("kabupaten.sasaran.dashboard");
     }
 
-    public function sasaranDetail($id)
+    public function sasaranTarget($id)
     {
-
+        $kueri = (new KabupatenModel)->sasaranTarget($id);
+        return view("kabupaten.sasaran.target",["data"=>$kueri]);
     }
 }

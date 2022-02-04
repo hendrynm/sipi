@@ -311,7 +311,7 @@ class PuskesmasModel extends Model
 
     public function kampungSasaranUbahKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "bayi_lahir_L" => $request->khLaki,
@@ -332,8 +332,8 @@ class PuskesmasModel extends Model
                 "sd_5_P" => $request->s5Perempuan,
                 "sd_6_L" => $request->s6Laki,
                 "sd_6_P" => $request->s6Perempuan,
-                "wusHamil" => $request->wusHamil,
-                "wusTidakHamil" => $request->wusTidakHamil
+                "wus_hamil" => $request->wusHamil,
+                "wus_tidak_hamil" => $request->wusTidakHamil
             ]);
     }
 
@@ -436,5 +436,10 @@ class PuskesmasModel extends Model
                 "tempat_imunisasi" => $request->lokasi,
                 "status" => "sudah"
             ]);
+        $idl = DB::table("imunisasi")
+            ->where("id_anak","=",$request->idAnak)
+            ->get();
+        $idl_cek = 1;
+
     }
 }
