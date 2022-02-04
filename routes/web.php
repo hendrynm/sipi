@@ -267,6 +267,8 @@ Route::prefix("/puskesmas")
 
         Route::prefix("/capaian")->group(function ()
         {
+            Route::get("/laporanBulanan",         [PuskesmasCapaianController::class,"laporanBulanan"])->name('puskesmas.capaian.laporanBulanan');
+
             Route::get ("/dashboard",            [PuskesmasCapaianController::class,"puskesmas"])->name("puskesmas.capaian.dashboard");
             Route::get  ("/puskesmas",           [PuskesmasCapaianController::class,"capaianAntigenPuskesmas"])->name("puskesmas.capaian.antigen.puskesmas");
             Route::get  ("/kampung",            [PuskesmasCapaianController::class,"capaianAntigenKampung"])->name("puskesmas.capaian.antigen.kampung");
