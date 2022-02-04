@@ -1,0 +1,63 @@
+{{-- antigen 4 --}}
+                            <td>{{ $data->jumlahL4 }}</td>
+                            <td>{{ $data->persen_jumlahL4 }}</td>
+                            <td>{{ $data->jumlahP4 }}</td>
+                            <td>{{ $data->persen_jumlahP4 }}</td>
+                            <td>{{ $data->total4 }}</td>
+                            <td>{{ $data->persen_total4 }}</td>
+
+                            {{-- antigen 5 --}}
+                            <td>{{ $data->jumlahL5 }}</td>
+                            <td>{{ $data->persen_jumlahL5 }}</td>
+                            <td>{{ $data->jumlahP5 }}</td>
+                            <td>{{ $data->persen_jumlahP5 }}</td>
+                            <td>{{ $data->total5 }}</td>
+                            <td>{{ $data->persen_total5 }}</td>
+
+                            {{-- antigen 6 --}}
+                            <td>{{ $data->jumlahL6 }}</td>
+                            <td>{{ $data->persen_jumlahL6 }}</td>
+                            <td>{{ $data->jumlahP6 }}</td>
+                            <td>{{ $data->persen_jumlahP6 }}</td>
+                            <td>{{ $data->total6 }}</td>
+                            <td>{{ $data->persen_total6 }}</td>
+
+                            {{-- antigen 7 --}}
+                            <td>{{ $data->jumlahL7 }}</td>
+                            <td>{{ $data->persen_jumlahL7 }}</td>
+                            <td>{{ $data->jumlahP7 }}</td>
+                            <td>{{ $data->persen_jumlahP7 }}</td>
+                            <td>{{ $data->total7 }}</td>
+                            <td>{{ $data->persen_total7 }}</td>
+
+                            {{-- antigen 8 --}}
+                            <td>{{ $data->jumlahL8 }}</td>
+                            <td>{{ $data->persen_jumlahL8 }}</td>
+                            <td>{{ $data->jumlahP8 }}</td>
+                            <td>{{ $data->persen_jumlahP8 }}</td>
+                            <td>{{ $data->total8 }}</td>
+                            <td>{{ $data->persen_total8 }}</td>
+
+                            {{-- antigen 9 --}}
+                            <td>{{ $data->jumlahL9 }}</td>
+                            <td>{{ $data->persen_jumlahL9 }}</td>
+                            <td>{{ $data->jumlahP9 }}</td>
+                            <td>{{ $data->persen_jumlahP9 }}</td>
+                            <td>{{ $data->total9 }}</td>
+                            <td>{{ $data->persen_total9 }}</td>
+
+                            {{-- antigen 10 --}}
+                            <td>{{ $data->jumlahL10 }}</td>
+                            <td>{{ $data->persen_jumlahL10 }}</td>
+                            <td>{{ $data->jumlahP10 }}</td>
+                            <td>{{ $data->persen_jumlahP10 }}</td>
+                            <td>{{ $data->total10 }}</td>
+                            <td>{{ $data->persen_total10 }}</td>
+
+                            {{-- antigen 12 --}}
+                            <td>{{ $data->jumlahL12 }}</td>
+                            <td>{{ $data->persen_jumlahL12 }}</td>
+                            <td>{{ $data->jumlahP12 }}</td>
+                            <td>{{ $data->persen_jumlahP12 }}</td>
+                            <td>{{ $data->total12 }}</td>
+                            <td>{{ $data->persen_total12 }}</td>

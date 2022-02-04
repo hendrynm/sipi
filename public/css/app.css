@@ -6,7 +6,10 @@ body {
 }
 
 
+
+
 /* konfrimasi hapus start */
+
 
 .konfirmasi {
     color: #E25A56;
@@ -18,16 +21,68 @@ body {
 /* konfirmasi hapus end */
 
 /* laporan bulanan start */
+
+.laporan-bulanan-heading {
+    color: #7a7a7a;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
 .laporan-bulanan {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+    font-size: 0.8rem;
+
 }
+
+.laporan-bulanan1 {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0.8rem;
+
+}
+
+.hilang {
+    color: #F7F7F7 !important;
+    border-bottom: 0px solid #F7F7F7 !important;
+    /* border-color: white !important; */
+}
+
+.data-dasar {
+    background-color: #dce7fa;
+
+}
+
+.tabel-antigen {
+    background-color: #dce7fa !important;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-padding-border {
+    padding: 0;
+    border-right: 1px dashed #c4ccdf;
+    margin-bottom: 0 !important;
+}
+
+
 
 /* laporan bulanan end */
 
 .t {
     max-width: 80%;
+    margin-top: 2rem;
+
+}
+
+
+.t2 {
+    max-width: 90%;
     margin-top: 2rem;
 
 }

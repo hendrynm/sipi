@@ -7,14 +7,14 @@
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container-fluid t2">
+    <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
         <h1>laporan Bulanan</h1>
         <div>
 
             {{-- help buatin form ini thx --}}
-            <form action="./laporanBulanan" method="get">
+            <form action="./laporanBulanan" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="tahunForm">Tahun</label>
@@ -45,50 +45,50 @@
             {{-- ini untuk header --}}
                 @switch($i)
                     @case(0)
-                        <h2 class="laporan-bulanan-heading">Januari</h2>
+                        <h2>laporan Bulanan Januari</h2>
                         @break
                     @case(1)
-                        <h2 class="laporan-bulanan-heading">Februari</h2>
+                        <h2>laporan Bulanan Februari</h2>
                         @break
                     @case(2)
-                        <h2 class="laporan-bulanan-heading">Maret</h2>
+                        <h2>laporan Bulanan Maret</h2>
                         @break
                     @case(3)
-                        <h2 class="laporan-bulanan-heading">Apri</h2>
+                        <h2>laporan Bulanan Apri</h2>
                         @break
                     @case(4)
-                        <h2 class="laporan-bulanan-heading">Mei</h2>
+                        <h2>laporan Bulanan Mei</h2>
                         @break
                     @case(5)
-                        <h2 class="laporan-bulanan-heading">Juni</h2>
+                        <h2>laporan Bulanan Juni</h2>
                         @break
                     @case(6)
-                        <h2 class="laporan-bulanan-heading">Juli</h2>
+                        <h2>laporan Bulanan Juli</h2>
                         @break
                     @case(7)
-                        <h2 class="laporan-bulanan-heading">Agustus</h2>
+                        <h2>laporan Bulanan Agustus</h2>
                         @break
                     @case(8)
-                        <h2 class="laporan-bulanan-heading">September</h2>
+                        <h2>laporan Bulanan September</h2>
                         @break
                     @case(9)
-                        <h2 class="laporan-bulanan-heading">Oktober</h2>
+                        <h2>laporan Bulanan Oktober</h2>
                         @break
                     @case(10)
-                        <h2 class="laporan-bulanan-heading">November</h2>
+                        <h2>laporan Bulanan November</h2>
                         @break
                     @case(11)
-                        <h2 class="laporan-bulanan-heading">Desember</h2>
+                        <h2>laporan Bulanan Desember</h2>
                         @break
                     @default
                         -
                 @endswitch
                 
 
-               
+                <hr>
                 <div class="row">
                     <div class="col-4 no-padding-border">
-                        <table class="table table-borderless laporan-bulanan1" id="table{{$i}}">
+                        <table class="table laporan-bulanan" id="table{{$i}}">
                             <thead class="thead-light">
         
                                 <tr>
@@ -96,17 +96,16 @@
                                     <th scope="col" rowspan="2" class="align-middle">Kabupaten</th>
                                     <th scope="col" rowspan="2" class="align-middle">Puskemas</th>
                                     <th scope="col" rowspan="2" class="align-middle">Kampung</th>
-                                    <th scope="col" class="align-middle hilang">.</th>
         
                             
         
                 
                                 </tr> 
                                 <tr>
-                                    <th scope="col" class="align-middle hilang">.</th>
-                                    {{-- <th scope="col" class="align-middle">Kabupaten</th> --}}
-                                    {{-- <th scope="col" class="align-middle">Puskemas</th>
-                                    <th scope="col" class="align-middle">Kampung</th> --}}
+                                    <th scope="col" class="align-middle">No</th>
+                                    <th scope="col" class="align-middle">Kabupaten</th>
+                                    <th scope="col" class="align-middle">Puskemas</th>
+                                    <th scope="col" class="align-middle">Kampung</th>
         
                             
         
@@ -134,14 +133,14 @@
                         </table>
                     </div>
                     <div class="col-8 no-padding">
-                        <table class="table table-borderless laporan-bulanan" id="table{{$i}}">
+                        <table class="table laporan-bulanan" id="table{{$i}}">
                             <thead class="thead-light">
         
                                 <tr>
-                                    {{-- <th scope="col" rowspan="2" class="align-middle">No</th>
+                                    <th scope="col" rowspan="2" class="align-middle">No</th>
                                     <th scope="col" rowspan="2" class="align-middle">Kabupaten</th>
                                     <th scope="col" rowspan="2" class="align-middle">Puskemas</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Kampung</th> --}}
+                                    <th scope="col" rowspan="2" class="align-middle">Kampung</th>
         
                                     {{-- bayi baru lahir --}}
         
@@ -374,12 +373,12 @@
                             <tbody>
                             @foreach($queryArrays[$i] as $data)
                                 <tr>
-                                    {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
+                                    <th scope="row">{{ $loop->iteration }}</th>
         
                                     {{-- data regional --}}
-                                    {{-- <td>{{ $data->kabupaten }}</td>
+                                    <td>{{ $data->kabupaten }}</td>
                                     <td>{{ $data->puskesmas }}</td>
-                                    <td>{{ $data->kampung }}</td> --}}
+                                    <td>{{ $data->kampung }}</td>
         
         
                                     {{-- bayi lahir --}}

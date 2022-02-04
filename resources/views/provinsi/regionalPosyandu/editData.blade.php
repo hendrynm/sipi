@@ -44,6 +44,8 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        {{-- sampai sini --}}
                         <div class="form-group">
                             <label for="alamatLengkap">Alamat Lengkap Posyandu :</label>
                             <input type="text" class="form-control" name="alamatLengkap" value="{{
