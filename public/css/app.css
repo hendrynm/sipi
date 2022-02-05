@@ -1,8 +1,11 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
 
+}
 
-
+/* all */
+.table {
+    font-size: .9rem;
 }
 
 /* lupa start */
@@ -49,8 +52,8 @@ body {
 }
 
 .laporan-bulanan1 {
-    display: block;
-    overflow-x: auto;
+    /* display: block;
+    overflow-x: auto; */
     white-space: nowrap;
     font-size: 0.8rem;
 
@@ -505,7 +508,7 @@ form {
     }
 
     .btn-primary {
-        margin-bottom: 0px;
+        margin-bottom: 5px;
     }
 
     .jumbotron {

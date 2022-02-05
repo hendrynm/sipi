@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
 <div class="container main-dashboard">
-    <a href="../../dashboard" class="btn btn-danger">Back</a>
+    <a href="../../dashboard" class="btn btn-primary">Back</a>
     <hr>
     <h1>Dashboard Laporan Capaian</h1>
 

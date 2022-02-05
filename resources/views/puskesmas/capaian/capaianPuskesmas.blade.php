@@ -10,7 +10,7 @@
     <div class="container">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Puskesmas aaas</h1>
+        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Puskesmas</h1>
         <div class="jumbotron">
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>

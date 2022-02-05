@@ -91,8 +91,8 @@
                 
 
                
-                <div class="row">
-                    <div class="col-4 no-padding-border">
+                <div class="row justify-content-start">
+                    <div class="col-5 no-padding-border">
                         <table class="table table-borderless laporan-bulanan1" id="table{{$i}}">
                             <thead class="thead-light">
         
@@ -138,7 +138,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-8 no-padding">
+                    <div class="col-7 no-padding">
                         <table class="table table-borderless laporan-bulanan" id="table{{$i}}">
                             <thead class="thead-light">
         

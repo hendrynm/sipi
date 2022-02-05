@@ -9,7 +9,7 @@
     <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Status T Setiap Puskesmas aaas</h1>
+        <h1>Ketercapaian Status T Setiap Puskesmas</h1>
         {{-- ini awalnya container --}}
         <div >
             <form method="get">
