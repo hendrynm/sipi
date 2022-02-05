@@ -8,7 +8,7 @@
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
 
-        <h1>Akun Kabupaten x</h1>
+        <h1>Akun {{ $data->nama }}</h1>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
@@ -30,16 +30,18 @@
                             <label for="nama">Email :</label>
                             <input type="text" class="form-control" id="email" name="email" value="{{ $data->email }}">
                         </div>
-                        <div class="form-group">
-                            <label for="level">Akses Level :</label>
-                            <select class="custom-select" id="level" name="level">
-                                <option disabled>Pilih akses level</option>
-                                <option value="1" {{ $data->level === 1 ? "selected" : ""}}>level 1 - Provinsi Papua barat</option>
-                                <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
-                                <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
-                                <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
-                            </select>
-                        </div>
+                        @if(!($data->id_user === session()->get("id_user")))
+                            <div class="form-group">
+                                <label for="level">Akses Level :</label>
+                                <select class="custom-select" id="level" name="level">
+                                    <option disabled>Pilih akses level</option>
+                                    <option value="1" {{ $data->level === 1 ? "selected" : ""}}>level 1 - Provinsi Papua barat</option>
+                                    <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
+                                    <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
+                                    <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
+                                </select>
+                            </div>
+                        @endif
 
                         {{-- baru --}}
 
@@ -47,7 +49,7 @@
                             <label for="kabupaten">Kabupaten :</label>
                             <select class="custom-select" id="kabupaten" name="kabupaten">
                                 <option selected disabled>-- Pilih Kabupaten --</option>
-                                
+
                             </select>
                         </div>
 
@@ -56,7 +58,7 @@
                             <select class="custom-select" id="puskesmas" name="puskesmas">
                                 <option selected disabled>-- Pilih Puskesmas --</option>
                                 <option value="1">Puskesmas X</option>
-                               
+
                             </select>
                         </div>
 

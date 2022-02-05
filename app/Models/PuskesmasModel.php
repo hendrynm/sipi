@@ -354,7 +354,7 @@ class PuskesmasModel extends Model
             ->first();
         if(
             (Hash::check($request->passwordLama, $user->password)) &&
-            ($request->passwordBaru === $request->passwordBaru2)
+            ($request->passwordBaru == $request->passwordBaru2)
         )
         {
             DB::table("user")

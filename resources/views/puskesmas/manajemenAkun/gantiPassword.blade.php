@@ -25,15 +25,15 @@
                         <input type="hidden" name="idUser" value="{{ $data->id_user }}">
                         <div class="form-group">
                             <label for="PasswordLama">Password Lama :</label>
-                            <input type="password" class="form-control" id="PasswordLama" name="PasswordLama">
+                            <input type="password" class="form-control" id="PasswordLama" name="passwordLama">
                         </div>
                         <div class="form-group">
                             <label for="PasswordBaru">Password Baru :</label>
-                            <input type="password" class="form-control" id="PasswordBaru" name="PasswordBaru">
+                            <input type="password" class="form-control" id="PasswordBaru" name="passwordBaru">
                         </div>
                         <div class="form-group">
                             <label for="PasswordBaru2">Ketik Ulang Password Baru :</label>
-                            <input type="password" class="form-control" id="PasswordBaru2" name="PasswordBaru2">
+                            <input type="password" class="form-control" id="PasswordBaru2" name="passwordBaru2">
                         </div>
                         <button class="btn btn-primary">Ganti Password</button>
                     </form>

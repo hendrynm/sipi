@@ -16,7 +16,7 @@ class LoginModel extends Model
         $password = $request->password;
 
         $user = DB::table("user")->where("username","=",$username)->first();
-        if(Hash::check($password, $user->password)) {
+        if(!is_null($user) && (Hash::check($password, $user->password))) {
             $level = DB::table("level")->where("id_level","=",$user->id_level)->first();
 
             $request->session()->flash("sukses","Selamat Datang " . $user->nama . "!");

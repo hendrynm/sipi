@@ -177,8 +177,8 @@ class ProvinsiModel extends Model
             ->where("id_user","=",$request->idUser)
             ->first();
         if(
-            (Hash::check($request->passwordLama, $user->password)) &&
-            ($request->passwordBaru === $request->passwordBaru2)
+            (Hash::check($request->passwordLama,$user->password)) &&
+            ($request->passwordBaru == $request->passwordBaru2)
         )
         {
             DB::table("user")

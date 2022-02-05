@@ -7,7 +7,7 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Edit Akun Kabupaten {{ $data->nama_kabupaten }}</h1>
+        <h1>Edit Akun {{ $data->nama_kabupaten }}</h1>
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-6">
