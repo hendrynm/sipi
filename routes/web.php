@@ -340,9 +340,8 @@ Route::prefix("/puskesmas")
             Route::get("/entri/{id}",           [PuskesmasController::class,"posEntri"]);
             Route::post("/entri/kirim",         [PuskesmasController::class,"posEntriKirim"]);
             Route::get("/unduh-format", [ExcelController::class, "unduhFormat"])->name('unduh.format');
-            Route::get("/unduh-data-anak", [ExcelController::class, "unduhDataAnak"])->name('unduh.data.anak');
-            Route::get("/unduh-data-antigen", [ExcelController::class, "unduhDataAntigen"])->name('unduh.data.antigen');
-            Route::post("/unduh-data-antigen", [ExcelController::class, "updateData"])->name('update.excel');
+            Route::get("/unduh-data-all", [ExcelController::class, "unduhDataAll"])->name('unduh.data.all');
+            Route::post("/update-data-antigen", [ExcelController::class, "updateData"])->name('update.excel');
         });
     });
 

@@ -64,8 +64,7 @@
                 file yang diupload hanya dapat dientri oleh puskesmas yang sama
             </p>
             <a href="{{route('unduh.format')}}" class="btn btn-primary">Unduh Format Excel</a>
-            <a href="{{route('unduh.data.antigen')}}" class="btn btn-primary">Unduh Data Id Antigen</a>
-            <a href="{{route('unduh.data.anak')}}" class="btn btn-primary">Unduh Data Id Anak</a>
+            <a href="{{route('unduh.data.all')}}" class="btn btn-primary">Unduh Data Id Anak, Id Antigen, Id Posyandu</a>
             <form action="{{route('update.excel')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

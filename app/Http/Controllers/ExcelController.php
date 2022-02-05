@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AnakAntigenPosyanduExport;
 use App\Exports\AnakExport;
 use App\Exports\AntigenExport;
 use App\Exports\IndividuExport;
@@ -44,6 +45,12 @@ class ExcelController extends Controller
 
         Excel::import(new ImunisasiImport(), $file);
 
-        return redirect(route('puskesmas.posyandu.dashboard'))->with(['success', 'Data berhasil diupdate']);
+        $request->session()->flash("sukses","Data berhasil diupdate");
+
+        return redirect(route('puskesmas.posyandu.dashboard'))->with(['sukses', 'Data berhasil diupdate']);
+    }
+
+    public function unduhDataAll() {
+        return Excel::download(new AnakAntigenPosyanduExport(), 'data.xlsx');
     }
 }

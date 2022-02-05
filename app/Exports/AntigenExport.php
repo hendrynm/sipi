@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Antigen;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class AntigenExport implements FromCollection, WithHeadings
+class AntigenExport implements FromCollection, WithHeadings, WithTitle
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -25,5 +26,10 @@ class AntigenExport implements FromCollection, WithHeadings
             'interval_pemberian',
             'target_tahunan'
         ];
+    }
+
+    public function title(): string
+    {
+        return 'Antigen';
     }
 }
