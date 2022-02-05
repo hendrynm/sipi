@@ -59,7 +59,7 @@
                         <h2 class="laporan-bulanan-heading">Maret</h2>
                         @break
                     @case(3)
-                        <h2 class="laporan-bulanan-heading">Apri</h2>
+                        <h2 class="laporan-bulanan-heading">April</h2>
                         @break
                     @case(4)
                         <h2 class="laporan-bulanan-heading">Mei</h2>
@@ -150,9 +150,8 @@
         
                                     {{-- bayi baru lahir --}}
         
-                                    <th scope="col" rowspan="2" class="align-middle">Sasaran Bayi Baru Lahir P</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Sasaran Bayi Baru Lahir L</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Total Sasaran Bayi Lahir</th>
+                                    <th scope="col" colspan="3" class="align-middle">Sasaran Bayi Baru Lahir</th>
+                                   
         
                                     {{-- antigen 1 --}}
                                     <th scope="col" colspan="6" class="tabel-antigen">HBO</th>
@@ -165,9 +164,8 @@
                                     <th scope="col" colspan="6" class="tabel-antigen">OPV1</th>
         
                                     {{-- si --}}
-                                    <th scope="col" rowspan="2" class="align-middle">Sasaran SI P</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Sasaran SI L</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Total Sasaran SI</th>
+                                    <th scope="col" colspan="3" class="align-middle">Sasaran SI</th>
+                                    
         
                                     {{-- antigen 4 --}}
                                     <th scope="col" colspan="6" class="tabel-antigen">DPT/HepB/Hib1</th>
@@ -193,9 +191,8 @@
                                     <th scope="col" colspan="6" class="tabel-antigen">MR</th>
                                     
                                     {{-- Baduta --}}
-                                    <th scope="col" rowspan="2" class="align-middle">Baduta P</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Baduta L</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Total Baduta</th>
+                                    <th scope="col" colspan="3" class="align-middle">Sasaran Baduta</th>
+                        
         
                                     {{-- antigen 12 --}}
                                     <th scope="col" colspan="6" class="tabel-antigen">DPT/HepB/Hib4</th>
@@ -205,9 +202,8 @@
                                     
         
                                     {{-- SD 1 --}}
-                                    <th scope="col" rowspan="2" class="align-middle">SD 1 P</th>
-                                    <th scope="col" rowspan="2" class="align-middle">SD 1 L</th>
-                                    <th scope="col"rowspan="2" class="align-middle">Total SD 1</th>
+                                    <th scope="col" colspan="3" class="align-middle">SD Kelas 1</th>
+                                    
         
                                     {{-- antigen 14 --}}
                                     <th scope="col" colspan="6" class="tabel-antigen">DT</th>
@@ -218,9 +214,8 @@
                                      
         
                                      {{-- SD 2 --}}
-                                     <th scope="col" rowspan="2" class="align-middle">SD 2 P</th>
-                                     <th scope="col" rowspan="2" class="align-middle">SD 2 L</th>
-                                     <th scope="col" rowspan="2" class="align-middle">Total SD 2</th>
+                                     <th scope="col" colspan="3" class="align-middle">SD Kelas 2</th>
+                                     
         
                                       {{-- antigen 16 --}}
                                       <th scope="col" colspan="6" class="tabel-antigen">Td (Kelas 2)</th>
@@ -228,9 +223,7 @@
                                     
         
                                     {{-- SD 5 --}}
-                                    <th scope="col" rowspan="2" class="align-middle">SD 5 P</th>
-                                    <th scope="col" rowspan="2" class="align-middle">SD 5 L</th>
-                                    <th scope="col" rowspan="2" class="align-middle">Total SD 5</th>
+                                    <th scope="col" colspan="3" class="align-middle">Sasaran SD Kelas 5</th>
         
                                     {{-- antigen 17 --}}
                                     <th scope="col" colspan="6" class="tabel-antigen">HPV (Kelas 5)</th>
@@ -239,9 +232,7 @@
                                     <th scope="col" colspan="6" class="tabel-antigen">Td (Kelas 5)</th>
         
                                      {{-- SD 6 --}}
-                                     <th scope="col" rowspan="2" class="align-middle">SD 6 P</th>
-                                     <th scope="col" rowspan="2" class="align-middle">SD 6 L</th>
-                                     <th scope="col" rowspan="2" class="align-middle">Total SD 6</th>
+                                     <th scope="col" colspan="3" class="align-middle">Sasaran SD Kelas 6</th>
          
                                      {{-- antigen 19 --}}
                                      <th scope="col" colspan="6" class="tabel-antigen">HVP (Kelas 6)</th>
@@ -258,9 +249,9 @@
         
                                     {{-- bayi baru lahir --}}
         
-                                    {{-- <th scope="col">Sasaran Bayi Baru Lahir P</th>
-                                    <th scope="col">Sasaran Bayi Baru Lahir L</th>
-                                    <th scope="col">Total Sasaran Bayi Lahir</th> --}}
+                                    <th scope="col">L</th>
+                                    <th scope="col">P</th>
+                                    <th scope="col">Total</th>
         
                                     {{-- antigen 1 --}}
                                     <th scope="col">Jumlah L</th>
@@ -287,9 +278,9 @@
                                     <th scope="col">% Total</th>
         
                                     {{-- si --}}
-                                    {{-- <th scope="col">Sasaran SI P</th>
-                                    <th scope="col">Sasaran SI L</th>
-                                    <th scope="col">Total Sasaran SI</th> --}}
+                                    <th scope="col">L</th>
+                                    <th scope="col">P</th>
+                                    <th scope="col">Total</th>
         
                                     {{-- antigen 4 sampai 11 --}}
                                     @for ($a = 4; $a <= 11; $a++)
@@ -303,9 +294,9 @@
                                     @endfor
         
                                     {{-- Baduta --}}
-                                    {{-- <th scope="col">Baduta P</th>
-                                    <th scope="col">Baduta L</th>
-                                    <th scope="col">Total Baduta</th> --}}
+                                    <th scope="col">L</th>
+                                    <th scope="col">P</th>
+                                    <th scope="col">Total</th>
         
                                     {{-- antigen 12 sampai 13 --}}
                                     @for ($b = 12; $b <= 13; $b++)
@@ -318,9 +309,9 @@
                                     @endfor
         
                                     {{-- SD 1 --}}
-                                    {{-- <th scope="col">SD 1 P</th>
-                                    <th scope="col">SD 1 L</th>
-                                    <th scope="col">Total SD 1</th> --}}
+                                    <th scope="col">L</th>
+                                    <th scope="col">P</th>
+                                    <th scope="col">Total</th>
         
                                     {{-- antigen 14 sampai 15 --}}
                                     @for ($c = 14; $c <= 15; $c++)
@@ -333,10 +324,10 @@
                                     @endfor
         
                                      {{-- SD 2 --}}
-                                     {{-- <th scope="col">SD 2 P</th>
-                                     <th scope="col">SD 2 L</th>
-                                     <th scope="col">Total SD 2</th>
-          --}}
+                                    <th scope="col">L</th>
+                                     <th scope="col">P</th>
+                                     <th scope="col">Total</th>
+          
                                      {{-- antigen 16 --}}
                                      <th scope="col">Jumlah L</th>
                                      <th scope="col">% Jumlah L</th>
@@ -347,9 +338,9 @@
         
         
                                     {{-- SD 5 --}}
-                                    {{-- <th scope="col">SD 5 P</th>
-                                    <th scope="col">SD 5 L</th>
-                                    <th scope="col">Total SD 5</th> --}}
+                                    <th scope="col">L</th>
+                                    <th scope="col">P</th>
+                                    <th scope="col">Total</th>
         
                                     {{-- antigen 17 sampai 18 --}}
                                     @for ($d = 17; $d <= 18; $d++)
@@ -362,9 +353,9 @@
                                     @endfor
         
                                      {{-- SD 6 --}}
-                                     {{-- <th scope="col">SD 6 P</th>
-                                     <th scope="col">SD 6 L</th>
-                                     <th scope="col">Total SD 6</th> --}}
+                                     <th scope="col">L</th>
+                                     <th scope="col">P</th>
+                                     <th scope="col">Total</th>
          
                                      {{-- antigen 19 --}}
                                      <th scope="col">Jumlah L</th>

@@ -11,12 +11,17 @@
         <h1>Ketercapaian Imunisasi Setiap Antigen Pada Kabupaten</h1>
 
         <div class="jumbotron">
-            <form method="get">
-                <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
-                <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                <x-submit-button-form></x-submit-button-form>
-            </form>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="get">
+                        <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-submit-button-form></x-submit-button-form>
+                    </form>
+        
+                </div>
+            </div>
+           
            
 
             <br>

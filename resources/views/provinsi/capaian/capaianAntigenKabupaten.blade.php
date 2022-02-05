@@ -12,11 +12,16 @@
         <hr>
         <h1>Ketercapaian Imunisasi Setiap Kabupaten</h1>
         <div class="jumbotron">
-            <form method="get">
-                <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
-                <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                <x-submit-button-form></x-submit-button-form>
-            </form>
+            <div class="row">
+                <div class="col-md-5">
+                    <form method="get">
+                        <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-submit-button-form></x-submit-button-form>
+                    </form>
+                </div>
+            </div>
+           
 
             <?php
             $queryArrays = [$query, $query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8, $query9, $query10, $query11, $query12]

@@ -47,7 +47,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Imunisasi
+                    Modul Imunisasi
                 </div>
             </div>
         </a>
