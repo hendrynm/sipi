@@ -13,6 +13,32 @@ class EksternalController extends Controller
         return session()->get("id_kabupaten");
     }
 
+    public function id_user()
+    {
+        return session()->get("id_user");
+    }
+
+    public function cekStatus($id)
+    {
+        $kueri1 = (new EksternalModel)->cekIDL($id);
+        if($kueri1 > 0)
+        {
+            (new EksternalModel)->ubahIDL($id);
+        }
+
+        $kueri2 = (new EksternalModel)->cekIRL($id);
+        if($kueri2 > 0)
+        {
+            (new EksternalModel)->ubahIRL($id);
+        }
+
+        $kueri3 = (new EksternalModel)->cekT($id);
+        if($kueri3 > 0)
+        {
+            (new EksternalModel)->ubahT($id, $kueri3);
+        }
+    }
+
     public function dashboard()
     {
         return view("eksternal.dashboard");
@@ -76,12 +102,14 @@ class EksternalController extends Controller
         $kueri = (new EksternalModel)->dataDetail($id);
         $kueri2 = (new EksternalModel)->dataDetailImunisasi($id);
         $kueri3 = (new EksternalModel)->posEntri($id);
-        return view("eksternal.posyandu.entriPosyandu",["data"=>$kueri,"data2"=>$kueri2,"data3"=>$kueri3]);
+        $kueri4 = (new EksternalModel)->posEntriLokasi($this->id_user());
+        return view("eksternal.posyandu.entriPosyandu",["data"=>$kueri,"data2"=>$kueri2,"data3"=>$kueri3,"data4"=>$kueri4]);
     }
 
     public function posEntriKirim(Request $request)
     {
         (new EksternalModel)->posEntriKirim($request);
+        $this->cekStatus($request->idAnak);
         return redirect("/eksternal/posyandu/entri/$request->idAnak")->with("sukses","Data berhasil disimpan");
     }
 }

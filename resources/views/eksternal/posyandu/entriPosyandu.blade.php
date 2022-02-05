@@ -141,7 +141,7 @@
                 <div class="col-8">
                     <form action="./kirim" method="post">
                         @csrf
-                        <input type="hidden" id="lokasi" name="lokasi" value="{{ $data->nama_posyandu }}">
+                        <input type="hidden" id="lokasi" name="lokasi" value="{{ $data4->nama }}">
                         <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
                         <div class="form-group">
                             <label for="antigen"> <b> Antigen :</b></label>

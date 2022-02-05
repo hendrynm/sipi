@@ -11,13 +11,30 @@ use function MongoDB\BSON\toJSON;
 
 class PuskesmasController extends Controller
 {
-
-
-
-
     public function id_pus()
     {
         return session()->get("id_puskesmas");
+    }
+
+    public function cekStatus($id)
+    {
+        $kueri1 = (new PuskesmasModel)->cekIDL($id);
+        if($kueri1 > 0)
+        {
+            (new PuskesmasModel)->ubahIDL($id);
+        }
+
+        $kueri2 = (new PuskesmasModel)->cekIRL($id);
+        if($kueri2 > 0)
+        {
+            (new PuskesmasModel)->ubahIRL($id);
+        }
+
+        $kueri3 = (new PuskesmasModel)->cekT($id);
+        if($kueri3 > 0)
+        {
+            (new PuskesmasModel)->ubahT($id, $kueri3);
+        }
     }
 
     public function dashboard()
@@ -284,6 +301,7 @@ class PuskesmasController extends Controller
     public function posEntriKirim(Request $request)
     {
         (new PuskesmasModel)->posEntriKirim($request);
+        $this->cekStatus($request->idAnak);
         return redirect("/puskesmas/posyandu/entri/$request->idAnak")->with("sukses","Data berhasil disimpan");
     }
 

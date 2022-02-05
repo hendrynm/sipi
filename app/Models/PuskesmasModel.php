@@ -11,6 +11,147 @@ use function Symfony\Component\String\u;
 
 class PuskesmasModel extends Model
 {
+    public function cekIDL($id)
+    {
+        $kueri = DB::table("imunisasi")
+            ->where("id_anak", "=", $id)
+            ->where("id_antigen","<=",11)
+            ->get();
+        $data = $kueri->toArray();
+        $hasil = 1;
+        for($i = 0 ; $i <= 10 ; $i++)
+        {
+            if($data[$i]->status === "belum" && $i !== 9)
+            {
+                $hasil = 0;
+                break;
+            }
+        }
+        return $hasil;
+    }
+
+    public function cekIRL($id)
+    {
+        $kueri = DB::table("imunisasi")
+            ->where("id_anak", "=", $id)
+            ->where("id_antigen",">=",12)
+            ->get();
+        $data = $kueri->toArray();
+        $hasil = 1;
+        for($i = array_key_last($data) ; $i >= 0 ; $i--)
+        {
+            if($data[$i]->status === "belum")
+            {
+                $hasil = 0;
+                break;
+            }
+        }
+        return $hasil;
+    }
+
+    public function cekT($id)
+    {
+        $kueri = DB::table("imunisasi")
+            ->where("id_anak", "=", $id)
+            ->get();
+        $data = $kueri->toArray();
+        $hasil = 0;
+        for($i = 0 ; $i < array_key_last($data) ; $i++)
+        {
+            switch($i)
+            {
+                case(3):
+                    if($data[$i]->status === "sudah")
+                    {
+                        $hasil = 1;
+                    }
+                    else
+                    {
+                        $hasil = 0;
+                        break 2;
+                    }
+                    break;
+                case(7):
+                    if($data[$i]->status === "sudah")
+                    {
+                        $hasil = 2;
+                    }
+                    else
+                    {
+                        $hasil = 1;
+                        break 2;
+                    }
+                    break;
+                case(11):
+                    if($data[$i]->status === "sudah")
+                    {
+                        $hasil = 3;
+                    }
+                    else
+                    {
+                        $hasil = 2;
+                        break 2;
+                    }
+                    break;
+                case(15):
+                    if($data[$i]->status === "sudah")
+                    {
+                        $hasil = 4;
+                    }
+                    else
+                    {
+                        $hasil = 3;
+                        break 2;
+                    }
+                    break;
+                case(18):
+                    if($data[$i]->status === "sudah")
+                    {
+                        $hasil = 5;
+                        break 2;
+                    }
+                    else
+                    {
+                        $hasil = 4;
+                        break 2;
+                    }
+                default:
+                    continue 2;
+            }
+        }
+        return $hasil;
+    }
+
+    public function ubahIDL($id)
+    {
+        DB::table("data_individu")
+            ->where("id_anak","=",$id)
+            ->update([
+                "idl" => 1,
+                "tanggal_idl" => (string) date_format(date_create(),"Y-m-d")
+            ]);
+    }
+
+    public function ubahIRL($id)
+    {
+        DB::table("data_individu")
+            ->where("id_anak","=",$id)
+            ->update([
+                "irl" => 1,
+                "tanggal_irl" => (string) date_format(date_create(),"Y-m-d")
+            ]);
+    }
+
+    public function ubahT($id, $status)
+    {
+        DB::table("data_individu")
+            ->where("id_anak","=",$id)
+            ->update([
+                "status_t" => "T" . $status,
+                "tanggal_t" => (string) date_format(date_create(),"Y-m-d")
+            ]);
+    }
+
     public function daftarPuskesmas($id_pus)
     {
         return DB::table("puskesmas")
