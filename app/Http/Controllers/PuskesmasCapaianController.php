@@ -30,180 +30,180 @@ class PuskesmasCapaianController extends Controller
           kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
           (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
           kampung.surviving_infant_L as sasaran_si_L,
           kampung.surviving_infant_P as sasaran_si_P,
           (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
           kampung.baduta_L as sasaran_baduta_L,
           kampung.baduta_P as sasaran_baduta_P,
           (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
           kampung.sd_1_L as sasaran_sd_1_L,
           kampung.sd_1_P as sasaran_sd_1_P,
           (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
           kampung.sd_2_L as sasaran_sd_2_L,
           kampung.sd_2_P as sasaran_sd_2_P,
           (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
           kampung.sd_5_L as sasaran_sd_5_L,
           kampung.sd_5_P as sasaran_sd_5_P,
           (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
           kampung.sd_6_L as sasaran_sd_6_L,
           kampung.sd_6_P as sasaran_sd_6_P,
           (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
           FROM kampung
@@ -227,180 +227,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -424,180 +424,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -620,180 +620,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
     FROM kampung
@@ -816,180 +816,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1013,180 +1013,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1209,180 +1209,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1405,180 +1405,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1601,180 +1601,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1799,180 +1799,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -1996,180 +1996,180 @@ class PuskesmasCapaianController extends Controller
         kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
         (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-        SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-        SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-        SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
         kampung.surviving_infant_L as sasaran_si_L,
         kampung.surviving_infant_P as sasaran_si_P,
         (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-        SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-        SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-        SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-        SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-        SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-        SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-        SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-        SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
         kampung.baduta_L as sasaran_baduta_L,
         kampung.baduta_P as sasaran_baduta_P,
         (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-        SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-        SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
         kampung.sd_1_L as sasaran_sd_1_L,
         kampung.sd_1_P as sasaran_sd_1_P,
         (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-        SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-        SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
         kampung.sd_2_L as sasaran_sd_2_L,
         kampung.sd_2_P as sasaran_sd_2_P,
         (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-        SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
         kampung.sd_5_L as sasaran_sd_5_L,
         kampung.sd_5_P as sasaran_sd_5_P,
         (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-        SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-        SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
         kampung.sd_6_L as sasaran_sd_6_L,
         kampung.sd_6_P as sasaran_sd_6_P,
         (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-        SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+        ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
         FROM kampung
@@ -2194,180 +2194,180 @@ class PuskesmasCapaianController extends Controller
           kampung.bayi_lahir_P as sasaran_bayi_lahir_P,
           (kampung.bayi_lahir_L+kampung.bayi_lahir_P) as total_sasaran_bayi_lahir,
 
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total1,
-          SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total1,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=1 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total1,
 
 
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total2,
-          SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total2,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=2 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total2,
 
 
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100 as persen_jumlahL3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100 as persen_jumlahP3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total3,
-          SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100 as persen_total3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.bayi_lahir_L*100, 2) as persen_jumlahL3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.bayi_lahir_P*100, 2) as persen_jumlahP3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total3,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=3 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.bayi_lahir_L+kampung.bayi_lahir_P)*100, 2) as persen_total3,
 
           kampung.surviving_infant_L as sasaran_si_L,
           kampung.surviving_infant_P as sasaran_si_P,
           (kampung.surviving_infant_L+kampung.surviving_infant_P) as total_sasaran_si,
 
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total4,
-          SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total4,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=4 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total4,
 
 
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total5,
-          SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total5,
-
-
-
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total6,
-          SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total5,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=5 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total5,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total7,
-          SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total6,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=6 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total6,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total8,
-          SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total7,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=7 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total7,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total9,
-          SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total8,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=8 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total8,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total10,
-          SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total9,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=9 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total9,
 
 
 
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100 as persen_jumlahL11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100 as persen_jumlahP11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total11,
-          SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100 as persen_total11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total10,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=10 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total10,
+
+
+
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.surviving_infant_L*100, 2) as persen_jumlahL11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.surviving_infant_P*100, 2) as persen_jumlahP11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total11,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=11 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.surviving_infant_L + kampung.surviving_infant_P)*100, 2) as persen_total11,
 
           kampung.baduta_L as sasaran_baduta_L,
           kampung.baduta_P as sasaran_baduta_P,
           (kampung.baduta_L+kampung.baduta_P) as total_sasaran_baduta,
 
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total12,
-          SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total12,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=12 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total12,
 
 
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100 as persen_jumlahL13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100 as persen_jumlahP13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total13,
-          SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100 as persen_total13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.baduta_L*100, 2) as persen_jumlahL13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.baduta_P*100, 2) as persen_jumlahP13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total13,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=13 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.baduta_L+kampung.baduta_P)*100, 2) as persen_total13,
 
           kampung.sd_1_L as sasaran_sd_1_L,
           kampung.sd_1_P as sasaran_sd_1_P,
           (kampung.sd_1_L+kampung.sd_1_P) as total_sasaran_sd_1,
 
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total14,
-          SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total14,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=14 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total14,
 
 
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100 as persen_jumlahL15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100 as persen_jumlahP15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total15,
-          SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100 as persen_total15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_1_L*100, 2) as persen_jumlahL15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_1_P*100, 2) as persen_jumlahP15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total15,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=15 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_1_L + kampung.sd_1_P)*100, 2) as persen_total15,
 
           kampung.sd_2_L as sasaran_sd_2_L,
           kampung.sd_2_P as sasaran_sd_2_P,
           (kampung.sd_2_L+kampung.sd_2_P) as total_sasaran_sd_2,
 
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100 as persen_jumlahL16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100 as persen_jumlahP16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total16,
-          SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100 as persen_total16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_2_L*100, 2) as persen_jumlahL16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_2_P*100, 2) as persen_jumlahP16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total16,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=16 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_2_L + kampung.sd_2_P)*100, 2) as persen_total16,
 
           kampung.sd_5_L as sasaran_sd_5_L,
           kampung.sd_5_P as sasaran_sd_5_P,
           (kampung.sd_5_L+kampung.sd_5_P) as total_sasaran_sd_5,
 
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total17,
-          SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total17,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=17 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total17,
 
 
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100 as persen_jumlahL18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100 as persen_jumlahP18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total18,
-          SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100 as persen_total18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_5_L*100, 2) as persen_jumlahL18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_5_P*100, 2) as persen_jumlahP18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total18,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=18 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_5_L + kampung.sd_5_P)*100, 2) as persen_total18,
 
           kampung.sd_6_L as sasaran_sd_6_L,
           kampung.sd_6_P as sasaran_sd_6_P,
           (kampung.sd_6_L+kampung.sd_6_P) as total_sasaran_sd_6,
 
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100 as persen_jumlahL19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100 as persen_jumlahP19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END) as total19,
-          SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100 as persen_total19
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END)/kampung.sd_6_L*100, 2) as persen_jumlahL19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END)/kampung.sd_6_P*100, 2) as persen_jumlahP19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END), 0) as total19,
+          ROUND(SUM(CASE WHEN antigen.id_antigen=19 AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = $tahunForm THEN 1 ELSE 0 END)/(kampung.sd_6_L + kampung.sd_6_P)*100, 2) as persen_total19
 
 
           FROM kampung
@@ -2408,7 +2408,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2432,7 +2432,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2456,7 +2456,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2481,7 +2481,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2506,7 +2506,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2531,7 +2531,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2556,7 +2556,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2581,7 +2581,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2606,7 +2606,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2631,7 +2631,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 9 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 9 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2656,7 +2656,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2681,7 +2681,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2706,7 +2706,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           antigen.nama_antigen as antigen,
-          SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
+          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
           ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
               WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
               WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
@@ -2746,9 +2746,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2768,9 +2768,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2791,9 +2791,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2814,9 +2814,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2837,9 +2837,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2860,9 +2860,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2883,9 +2883,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2906,9 +2906,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2929,9 +2929,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2952,9 +2952,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -2976,9 +2976,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3000,9 +3000,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3023,9 +3023,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.bayi_lahir_L + kampung.bayi_lahir_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3049,9 +3049,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3071,9 +3071,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3094,9 +3094,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3117,9 +3117,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3140,9 +3140,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3163,9 +3163,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3186,9 +3186,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3209,9 +3209,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3232,9 +3232,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3255,9 +3255,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3279,9 +3279,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3303,9 +3303,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3326,9 +3326,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.baduta_L + kampung.baduta_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3352,9 +3352,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3374,9 +3374,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3397,9 +3397,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3420,9 +3420,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3443,9 +3443,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3466,9 +3466,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3489,9 +3489,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3512,9 +3512,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3535,9 +3535,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3558,9 +3558,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3582,9 +3582,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3606,9 +3606,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3629,9 +3629,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_1_L + kampung.sd_1_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3655,9 +3655,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3677,9 +3677,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3700,9 +3700,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3723,9 +3723,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3746,9 +3746,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3769,9 +3769,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3792,9 +3792,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3815,9 +3815,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3838,9 +3838,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3861,9 +3861,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3885,9 +3885,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3909,9 +3909,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3932,9 +3932,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_2_L + kampung.sd_2_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3958,9 +3958,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -3980,9 +3980,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4003,9 +4003,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4026,9 +4026,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4049,9 +4049,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4072,9 +4072,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4095,9 +4095,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4118,9 +4118,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4141,9 +4141,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4164,9 +4164,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4188,9 +4188,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4212,9 +4212,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4235,9 +4235,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_5_L + kampung.sd_5_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4261,9 +4261,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4283,9 +4283,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4306,9 +4306,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4329,9 +4329,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4352,9 +4352,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4375,9 +4375,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4398,9 +4398,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4421,9 +4421,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4444,9 +4444,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4467,9 +4467,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4491,9 +4491,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4515,9 +4515,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4538,9 +4538,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.sd_6_L + kampung.sd_6_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4564,9 +4564,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4586,9 +4586,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 01 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4609,9 +4609,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 02 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4632,9 +4632,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 03 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4655,9 +4655,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 04 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4678,9 +4678,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 05 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4701,9 +4701,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 06 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4724,9 +4724,9 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
     puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-    SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+    ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 07 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
     ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
   FROM kampung
     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4747,9 +4747,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 08 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4770,9 +4770,9 @@ class PuskesmasCapaianController extends Controller
           SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-          SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+          ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 09 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
           ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4794,9 +4794,9 @@ class PuskesmasCapaianController extends Controller
         SELECT kabupaten.nama_kabupaten as kabupaten,
         puskesmas.nama_puskesmas as puskesmas,
         kampung.nama_kampung as kampung,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-        SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+        ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 10 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
         ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
       FROM kampung
         LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4818,9 +4818,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 11 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4841,9 +4841,9 @@ class PuskesmasCapaianController extends Controller
       SELECT kabupaten.nama_kabupaten as kabupaten,
       puskesmas.nama_puskesmas as puskesmas,
       kampung.nama_kampung as kampung,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END) as jumlah,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END) as jumlahP,
-      SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END) as jumlahL,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND data_individu.jenis_kelamin = 'P' THEN 1 ELSE 0 END), 0) as jumlahP,
+      ROUND(SUM(CASE WHEN antigen.id_antigen={$antigenForm} AND imunisasi.status='sudah' AND MONTH(imunisasi.tanggal_pemberian) = 12 AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} AND  data_individu.jenis_kelamin = 'L' THEN 1 ELSE 0 END), 0) as jumlahL,
       ROUND((ROUND(AVG(kampung.surviving_infant_L + kampung.surviving_infant_P),0))*(SELECT (antigen.target_tahunan/100) FROM antigen WHERE antigen.id_antigen={$antigenForm})) as target
     FROM kampung
       LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4878,7 +4878,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+          ROUND(SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
           (kampung.surviving_infant_L + kampung.surviving_infant_P) as sasaran
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4894,7 +4894,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+          ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
           ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)*0.2) as sasaran
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4910,7 +4910,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+          ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
           ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)*0.4) as sasaran
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4926,7 +4926,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+          ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
           ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)*0.6) as sasaran
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4942,7 +4942,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+          ROUND(SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
           ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)*0.8) as sasaran
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -4973,7 +4973,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.irl = 1 AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END) as irl
+          ROUND(SUM(CASE WHEN data_individu.irl = 1 AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as irl
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -4988,7 +4988,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END) as irl
+          ROUND(SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as irl
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5003,7 +5003,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03 OR MONTH(data_individu.tanggal_irl) = 04 OR MONTH(data_individu.tanggal_irl) = 05 OR MONTH(data_individu.tanggal_irl) = 06) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END) as irl
+          ROUND(SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03 OR MONTH(data_individu.tanggal_irl) = 04 OR MONTH(data_individu.tanggal_irl) = 05 OR MONTH(data_individu.tanggal_irl) = 06) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as irl
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5018,7 +5018,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03 OR MONTH(data_individu.tanggal_irl) = 04 OR MONTH(data_individu.tanggal_irl) = 05 OR MONTH(data_individu.tanggal_irl) = 06 OR MONTH(data_individu.tanggal_irl) = 07 OR MONTH(data_individu.tanggal_irl) = 08 OR MONTH(data_individu.tanggal_irl) = 09) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END) as irl
+          ROUND(SUM(CASE WHEN data_individu.irl = 1 AND (MONTH(data_individu.tanggal_irl) = 01 OR MONTH(data_individu.tanggal_irl) = 02 OR MONTH(data_individu.tanggal_irl) = 03 OR MONTH(data_individu.tanggal_irl) = 04 OR MONTH(data_individu.tanggal_irl) = 05 OR MONTH(data_individu.tanggal_irl) = 06 OR MONTH(data_individu.tanggal_irl) = 07 OR MONTH(data_individu.tanggal_irl) = 08 OR MONTH(data_individu.tanggal_irl) = 09) AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as irl
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5033,7 +5033,7 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-          SUM(CASE WHEN data_individu.irl = 1 AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END) as irl
+          ROUND(SUM(CASE WHEN data_individu.irl = 1 AND YEAR(data_individu.tanggal_irl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as irl
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5063,25 +5063,25 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t1_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t1_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t2_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t2_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t3_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t3_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t4_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t4_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t5_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t5_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -5097,25 +5097,25 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t1_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t1_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t2_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t2_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t3_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t3_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t4_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t4_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t5_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t5_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -5131,25 +5131,25 @@ class PuskesmasCapaianController extends Controller
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
           kampung.nama_kampung as kampung,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t1_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t1_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t2_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t2_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t3_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t3_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t4_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t4_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100) as t5_total,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100) as t5_hamil,
-        ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil+kampung.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kampung.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -5187,10 +5187,10 @@ class PuskesmasCapaianController extends Controller
             $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
             kampung.nama_kampung as kampung,
-            SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+            ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
             ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
-            ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
-            (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) >= 20 THEN 'UCI' ELSE 'Non-UCI' END) as uci
+            ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) as ketercapaian,
+            (CASE WHEN ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) >= 20 THEN 'UCI' ELSE 'Non-UCI' END), 0) as uci
                 FROM kampung
                   LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                   LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5204,10 +5204,10 @@ class PuskesmasCapaianController extends Controller
             $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
             kampung.nama_kampung as kampung,
-            SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+            ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
             ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
-            ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
-            (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) >= 40 THEN 'UCI' ELSE 'Non-UCI' END) as uci
+            ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) as ketercapaian,
+            (CASE WHEN ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) >= 40 THEN 'UCI' ELSE 'Non-UCI' END), 0) as uci
                 FROM kampung
                   LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                   LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5221,10 +5221,10 @@ class PuskesmasCapaianController extends Controller
             $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
 	puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+    ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
     ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
-    ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
-    (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) >= 60 THEN 'UCI' ELSE 'Non-UCI' END) as uci
+    ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) as ketercapaian,
+    (CASE WHEN ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) >= 60 THEN 'UCI' ELSE 'Non-UCI' END), 0) as uci
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
@@ -5238,10 +5238,10 @@ class PuskesmasCapaianController extends Controller
             $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
 	puskesmas.nama_puskesmas as puskesmas,
     kampung.nama_kampung as kampung,
-    SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
+    ROUND(SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END), 0) as idl,
     ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
-    ((SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
-    (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) >= 80 THEN 'UCI' ELSE 'Non-UCI' END) as uci
+    ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) as ketercapaian,
+    (CASE WHEN ((ROUND(SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100, 2)) >= 80 THEN 'UCI' ELSE 'Non-UCI' END), 0) as uci
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
           LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
