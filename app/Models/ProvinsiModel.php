@@ -128,7 +128,6 @@ class ProvinsiModel extends Model
     public function akunDashboard()
     {
         return DB::table("user")
-            ->join("level","user.id_level","=","level.id_level")
             ->select("id_user","username","nama","email","level")
             ->get();
     }
@@ -136,9 +135,8 @@ class ProvinsiModel extends Model
     public function akunEdit($id)
     {
         return DB::table("user")
-            ->join("level","user.id_level","=","level.id_level")
             ->where("id_user","=",$id)
-            ->select("id_user","username","nama","email","user.id_level","level")
+            ->select("id_user","username","nama","email","level")
             ->first();
     }
 
@@ -151,17 +149,12 @@ class ProvinsiModel extends Model
                 "nama" => $request->nama,
                 "email" => $request->email,
                 "id_kabupaten" => $request->idKabupaten ?: null,
-                "id_puskesmas" => $request->idPuskesmas ?: null
+                "id_puskesmas" => $request->idPuskesmas ?: null,
+                "level" => $request->level
             ]);
         if(count($kueri1) > 0)
         {
-            $kueri2 = DB::table("level")
-                ->where("id_level","=",$request->idLevel)
-                ->update(["level" => $request->level]);
-            if(count($kueri2) > 0)
-            {
-                return 1;
-            }
+            return 1;
         }
         return 0;
     }
@@ -197,21 +190,13 @@ class ProvinsiModel extends Model
     {
         if($request->password === $request->password2)
         {
-            DB::table("level")
-                ->insert([
-                    "level" => $request->level,
-                    "nama_level" => $request->nama
-                ]);
-            $kueri = DB::table("level")
-                ->orderByDesc("id_level")
-                ->first();
             DB::table("user")
                 ->insert([
                     "nama" => $request->nama,
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
-                    "id_level" => $kueri->id_level,
+                    "level" => $request->level,
                     "id_kabupaten" => $request->idKabupaten ?: null,
                     "id_puskesmas" => $request->idPuskesmas ?: null
                 ]);
@@ -222,15 +207,8 @@ class ProvinsiModel extends Model
 
     public function akunHapusKirim($id)
     {
-        $kueri = DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$id)
-            ->select("id_level")
-            ->first();
-        DB::table("user")
-            ->where("id_user","=",$id)
-            ->delete();
-        DB::table("level")
-            ->where("id_level","=",$kueri->id_level)
             ->delete();
     }
 

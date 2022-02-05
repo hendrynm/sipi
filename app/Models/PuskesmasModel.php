@@ -325,7 +325,6 @@ class PuskesmasModel extends Model
     {
         return DB::table("user")
             ->join("puskesmas","user.id_puskesmas","=","puskesmas.id_puskesmas")
-            ->join("level","user.id_level","=","level.id_level")
             ->where("user.id_puskesmas","=",$id_pus)
             ->select("id_user","nama_puskesmas","username","nama","email","level")
             ->get();
@@ -334,26 +333,21 @@ class PuskesmasModel extends Model
     public function akunEdit($id)
     {
         return DB::table("user")
-            ->join("level","user.id_level","=","level.id_level")
             ->join("puskesmas","user.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("id_user","=",$id)
-            ->select("nama_puskesmas","user.id_level","id_user","level","username","nama","email")
+            ->select("nama_puskesmas","id_user","level","username","nama","email")
             ->first();
     }
 
     public function akunEditKirim(Request $request)
     {
-        DB::table("level")
-            ->where("id_level","=",$request->idLevel)
-            ->update([
-                "level" => $request->level
-            ]);
         DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
                 "nama" => $request->nama,
-                "email" => $request->email
+                "email" => $request->email,
+                "level" => $request->level
             ]);
     }
 
@@ -387,36 +381,21 @@ class PuskesmasModel extends Model
     {
         if($request->password === $request->password2)
         {
-            DB::table("level")
-                ->insert([
-                    "level" => $request->level,
-                    "nama_level" => "default"
-                ]);
-            $kueri = DB::table("level")
-                ->orderByDesc("id_level")
-                ->first();
             DB::table("user")
                 ->insert([
                     "nama" => $request->nama,
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
-                    "id_level" => $kueri->id_level
+                    "level" => $request->level,
                 ]);
         }
     }
 
     public function akunHapusKirim($id)
     {
-        $kueri = DB::table("user")
-            ->where("id_user","=",$id)
-            ->select("id_level")
-            ->first();
         DB::table("user")
             ->where("id_user","=",$id)
-            ->delete();
-        DB::table("level")
-            ->where("id_level","=",$kueri->id_level)
             ->delete();
     }
 

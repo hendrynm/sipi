@@ -92,7 +92,6 @@ class KabupatenModel extends Model
     {
         return DB::table("user")
             ->join("kabupaten","user.id_kabupaten","=","kabupaten.id_kabupaten")
-            ->join("level","user.id_level","=","level.id_level")
             ->where("user.id_kabupaten","=",$id_kab)
             ->select("id_user","nama_kabupaten","username","nama","email","level")
             ->get();
@@ -101,26 +100,21 @@ class KabupatenModel extends Model
     public function akunEdit($id)
     {
         return DB::table("user")
-            ->join("level","user.id_level","=","level.id_level")
             ->join("kabupaten","user.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("id_user","=",$id)
-            ->select("nama_kabupaten","user.id_level","id_user","level","username","nama","email")
+            ->select("nama_kabupaten","id_user","level","username","nama","email")
             ->first();
     }
 
     public function akunEditKirim(Request $request, $id_kab)
     {
-        DB::table("level")
-            ->where("id_level","=",$request->idLevel)
-            ->update([
-                "level" => $request->level
-            ]);
         DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
+                "level" => $request->level,
                 "id_kabupaten" => $id_kab,
                 "id_puskesmas" => $request->idPuskesmas ?: null
             ]);
@@ -159,21 +153,13 @@ class KabupatenModel extends Model
     {
         if($request->password === $request->password2)
         {
-            DB::table("level")
-                ->insert([
-                    "level" => $request->level,
-                    "nama_level" => "default"
-                ]);
-            $kueri = DB::table("level")
-                ->orderByDesc("id_level")
-                ->first();
             DB::table("user")
                 ->insert([
                     "nama" => $request->nama,
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
-                    "id_level" => $kueri->id_level,
+                    "level" => $request->level,
                     "id_kabupaten" => $id_kab,
                     "id_puskesmas" => $request->idPuskesmas ?: null
                 ]);
@@ -184,15 +170,8 @@ class KabupatenModel extends Model
 
     public function akunHapusKirim($id)
     {
-        $kueri = DB::table("user")
-            ->where("id_user","=",$id)
-            ->select("id_level")
-            ->first();
         DB::table("user")
             ->where("id_user","=",$id)
-            ->delete();
-        DB::table("level")
-            ->where("id_level","=",$kueri->id_level)
             ->delete();
         return 1;
     }
