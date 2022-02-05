@@ -14,5 +14,5 @@ class Imunisasi extends Model
      * @var string
      */
     protected $table = 'imunisasi';
-    protected $fillable = ['status', 'tempat_imunisasi', 'tanggal_imunisasi'];
+    protected $fillable = ['status', 'tempat_imunisasi', 'tanggal_pemberian'];
 }

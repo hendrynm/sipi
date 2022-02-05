@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Imunisasi;
+use App\Models\Posyandu;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -38,10 +39,14 @@ class ImunisasiImport implements OnEachRow, WithHeadingRow
             return null;
         }
 
+        $id_posyandu = $row['id_posyandu'];
+        $posyandu_name = Posyandu::where('id_posyandu', $id_posyandu)->first()->nama_posyandu;
         $date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_pemberian']));
 //        @dd($date);
 
-        Imunisasi::where('id_anak', $row['id_anak'])->where('id_antigen', $row['id_antigen'])->update(['status' => 'sudah', 'tanggal_pemberian' => $date]);
+        Imunisasi::where('id_anak', $row['id_anak'])
+            ->where('id_antigen', $row['id_antigen'])
+            ->update(['status' => 'sudah', 'tanggal_pemberian' => $date, 'tempat_imunisasi' => $posyandu_name]);
 
     }
 }

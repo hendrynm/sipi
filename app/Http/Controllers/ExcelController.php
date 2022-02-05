@@ -32,6 +32,9 @@ class ExcelController extends Controller
     }
 
     public function updateData(Request $request) {
+        $request->validate([
+            'excelFile' => 'required|mimes:xlsx,xls'
+        ]);
         if (!Storage::disk('public')->exists('data')) {
             Storage::disk('public')->makeDirectory('data');
         }
