@@ -150,6 +150,8 @@ class ProvinsiModel extends Model
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
+                "id_kabupaten" => $request->idKabupaten ?: null,
+                "id_puskesmas" => $request->idPuskesmas ?: null
             ]);
         if(count($kueri1) > 0)
         {
@@ -209,7 +211,9 @@ class ProvinsiModel extends Model
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
-                    "id_level" => $kueri->id_level
+                    "id_level" => $kueri->id_level,
+                    "id_kabupaten" => $request->idKabupaten ?: null,
+                    "id_puskesmas" => $request->idPuskesmas ?: null
                 ]);
             return 1;
         }

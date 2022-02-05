@@ -80,7 +80,7 @@ class KabupatenModel extends Model
 
     public function dataPindahKirim(Request $request)
     {
-        DB::table("data_individu")
+        return DB::table("data_individu")
             ->where("id_anak","=",$request->idAnak)
             ->update([
                 "id_kabupaten" => $request->kabupatenBaru,
@@ -108,7 +108,7 @@ class KabupatenModel extends Model
             ->first();
     }
 
-    public function akunEditKirim(Request $request)
+    public function akunEditKirim(Request $request, $id_kab)
     {
         DB::table("level")
             ->where("id_level","=",$request->idLevel)
@@ -120,8 +120,11 @@ class KabupatenModel extends Model
             ->update([
                 "username" => $request->username,
                 "nama" => $request->nama,
-                "email" => $request->email
+                "email" => $request->email,
+                "id_kabupaten" => $id_kab,
+                "id_puskesmas" => $request->idPuskesmas ?: null
             ]);
+        return 1;
     }
 
     public function akunGantiPass($id)
@@ -147,10 +150,12 @@ class KabupatenModel extends Model
                 ->update([
                     "password" => Hash::make($request->passwordBaru),
                 ]);
+            return 1;
         }
+        return 0;
     }
 
-    public function akunTambahKirim(Request $request)
+    public function akunTambahKirim(Request $request, $id_kab)
     {
         if($request->password === $request->password2)
         {
@@ -168,9 +173,13 @@ class KabupatenModel extends Model
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
-                    "id_level" => $kueri->id_level
+                    "id_level" => $kueri->id_level,
+                    "id_kabupaten" => $id_kab,
+                    "id_puskesmas" => $request->idPuskesmas ?: null
                 ]);
+            return 1;
         }
+        return 0;
     }
 
     public function akunHapusKirim($id)
@@ -185,6 +194,7 @@ class KabupatenModel extends Model
         DB::table("level")
             ->where("id_level","=",$kueri->id_level)
             ->delete();
+        return 1;
     }
 
     public function kampungDashboard($id_kab)
@@ -204,7 +214,7 @@ class KabupatenModel extends Model
 
     public function kampungEditKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "nama_kampung" => $request->namaKampung,
@@ -214,7 +224,7 @@ class KabupatenModel extends Model
 
     public function kampungTambahKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
                 "kode_kampung" => $request->kodeRegion,
@@ -241,7 +251,7 @@ class KabupatenModel extends Model
 
     public function posyanduEditKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->where("id_posyandu","=",$request->idPosyandu)
             ->update([
                 "nama_posyandu" => $request->namaPosyandu,
@@ -252,7 +262,7 @@ class KabupatenModel extends Model
 
     public function posyanduTambahKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatLengkap,
@@ -277,7 +287,7 @@ class KabupatenModel extends Model
 
     public function puskesmasEditKirim(Request $request)
     {
-        DB::table("puskesmas")
+        return DB::table("puskesmas")
             ->where("id_puskesmas","=",$request->idPuskesmas)
             ->update([
                 "kode_puskesmas" => $request->kodePuskesmas,
@@ -287,7 +297,7 @@ class KabupatenModel extends Model
 
     public function puskesmasTambahKirim(Request $request, $id_kab)
     {
-        DB::table("puskesmas")
+        return DB::table("puskesmas")
             ->insert([
                 "kode_puskesmas" => $request->kodePuskesmas,
                 "nama_puskesmas" => $request->namaPuskesmas,

@@ -30,14 +30,16 @@
                             <label for="nama">Email :</label>
                             <input type="text" class="form-control" id="email" name="email" value="{{ $data->email }}">
                         </div>
-                        <div class="form-group">
-                            <label for="level">Akses Level :</label>
-                            <select class="custom-select" id="level" name="level">
-                                <option disabled>Pilih akses level</option>
-                                <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
-                                <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
-                            </select>
-                        </div>
+                        @if(!($data->id_user === session()->get("id_user")))
+                            <div class="form-group">
+                                <label for="level">Akses Level :</label>
+                                <select class="custom-select" id="level" name="level">
+                                    <option disabled>Pilih akses level</option>
+                                    <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
+                                    <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
+                                </select>
+                            </div>
+                        @endif
                         {{-- baru --}}
 
                         {{-- baruend --}}

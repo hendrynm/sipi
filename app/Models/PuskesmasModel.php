@@ -124,32 +124,50 @@ class PuskesmasModel extends Model
 
     public function ubahIDL($id)
     {
-        DB::table("data_individu")
+        $kueri = DB::table("data_individu")
             ->where("id_anak","=",$id)
-            ->update([
-                "idl" => 1,
-                "tanggal_idl" => (string) date_format(date_create(),"Y-m-d")
-            ]);
+            ->first();
+        if($kueri->idl === 0)
+        {
+            DB::table("data_individu")
+                ->where("id_anak","=",$id)
+                ->update([
+                    "idl" => 1,
+                    "tanggal_idl" => (string) date_format(date_create(),"Y-m-d")
+                ]);
+        }
     }
 
     public function ubahIRL($id)
     {
-        DB::table("data_individu")
+        $kueri = DB::table("data_individu")
             ->where("id_anak","=",$id)
-            ->update([
-                "irl" => 1,
-                "tanggal_irl" => (string) date_format(date_create(),"Y-m-d")
-            ]);
+            ->first();
+        if($kueri->irl === 0)
+        {
+            DB::table("data_individu")
+                ->where("id_anak", "=", $id)
+                ->update([
+                    "irl" => 1,
+                    "tanggal_irl" => (string)date_format(date_create(), "Y-m-d")
+                ]);
+        }
     }
 
     public function ubahT($id, $status)
     {
-        DB::table("data_individu")
+        $kueri = DB::table("data_individu")
             ->where("id_anak","=",$id)
-            ->update([
-                "status_t" => "T" . $status,
-                "tanggal_t" => (string) date_format(date_create(),"Y-m-d")
-            ]);
+            ->first();
+        if($kueri->status_t !== "T".$status)
+        {
+            DB::table("data_individu")
+                ->where("id_anak", "=", $id)
+                ->update([
+                    "status_t" => "T" . $status,
+                    "tanggal_t" => (string)date_format(date_create(), "Y-m-d")
+                ]);
+        }
     }
 
     public function daftarPuskesmas($id_pus)
