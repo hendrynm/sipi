@@ -6,7 +6,7 @@
 @section("konten")
     <div class="container">
         <a href="./" class="btn btn-primary">back</a>
-        <div class="jumbotron">
+        <div class="jumbotron lupa">
             <h1 class="display-5">Prosedur Ganti Password</h1>
             
             <p> <b> Bapak/Ibu yang terhormat, </b><br>
