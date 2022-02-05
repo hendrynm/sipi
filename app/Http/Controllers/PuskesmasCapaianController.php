@@ -2405,27 +2405,27 @@ class PuskesmasCapaianController extends Controller
 
 
         $query = DB::select("
-    SELECT kabupaten.nama_kabupaten as kabupaten,
-          puskesmas.nama_puskesmas as puskesmas,
-          antigen.nama_antigen as antigen,
-          ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
-          ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
-              WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
-              WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
-              WHEN antigen.id_antigen=16 THEN (puskesmas.sd_2_L+puskesmas.sd_2_P)
-              WHEN antigen.id_antigen=17 OR antigen.id_antigen=18 THEN (puskesmas.sd_5_L+puskesmas.sd_5_P)
-              WHEN antigen.id_antigen=19 THEN (puskesmas.sd_6_L+puskesmas.sd_6_P)
-              ELSE (puskesmas.surviving_infant_L+puskesmas.surviving_infant_P) END)*0.95) as target
-        FROM kampung
-          LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
-          LEFT JOIN imunisasi ON imunisasi.id_anak = data_individu.id_anak
-          LEFT JOIN antigen ON imunisasi.id_antigen = antigen.id_antigen
-          LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
-          LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
-        WHERE kabupaten.id_kabupaten = {$kabupatenForm}
-          AND puskesmas.id_puskesmas = {$puskesmasForm}
-        GROUP BY antigen.id_antigen
-        ORDER BY puskesmas.id_puskesmas
+            SELECT kabupaten.nama_kabupaten as kabupaten,
+                  puskesmas.nama_puskesmas as puskesmas,
+                  antigen.nama_antigen as antigen,
+                  ROUND(SUM(CASE WHEN imunisasi.status='sudah' AND YEAR(imunisasi.tanggal_pemberian) = {$tahunForm} THEN 1 ELSE 0 END), 0) as jumlah,
+                  ROUND(AVG(CASE WHEN antigen.id_antigen=1 OR antigen.id_antigen=2 OR antigen.id_antigen=3 THEN (puskesmas.bayi_lahir_L+puskesmas.bayi_lahir_P)
+                      WHEN antigen.id_antigen=12 OR antigen.id_antigen=13 THEN (puskesmas.baduta_L+puskesmas.baduta_P)
+                      WHEN antigen.id_antigen=14 OR antigen.id_antigen=15 THEN (puskesmas.sd_1_L+puskesmas.sd_1_P)
+                      WHEN antigen.id_antigen=16 THEN (puskesmas.sd_2_L+puskesmas.sd_2_P)
+                      WHEN antigen.id_antigen=17 OR antigen.id_antigen=18 THEN (puskesmas.sd_5_L+puskesmas.sd_5_P)
+                      WHEN antigen.id_antigen=19 THEN (puskesmas.sd_6_L+puskesmas.sd_6_P)
+                      ELSE (puskesmas.surviving_infant_L+puskesmas.surviving_infant_P) END)*0.95) as target
+                FROM kampung
+                  LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
+                  LEFT JOIN imunisasi ON imunisasi.id_anak = data_individu.id_anak
+                  LEFT JOIN antigen ON imunisasi.id_antigen = antigen.id_antigen
+                  LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
+                  LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
+                WHERE kabupaten.id_kabupaten = {$kabupatenForm}
+                  AND puskesmas.id_puskesmas = {$puskesmasForm}
+                GROUP BY antigen.id_antigen
+                ORDER BY puskesmas.id_puskesmas
     ");
 
         $query1 = DB::select("
