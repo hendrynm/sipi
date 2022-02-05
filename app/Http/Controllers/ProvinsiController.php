@@ -31,8 +31,12 @@ class ProvinsiController extends Controller
 
     public function antigenEditKirim(Request $request)
     {
-        (new ProvinsiModel)->antigenEditKirim($request);
-        return redirect("/provinsi/antigen/dashboard");
+        $kueri = (new ProvinsiModel)->antigenEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/antigen/dashboard")->with("sukses","Data Antigen berhasil disimpan");
+        }
+        return redirect("/provinsi/antigen/dashboard")->with("gagal","Data Antigen gagal disimpan");
     }
 
     public function antigenTambah()
@@ -42,8 +46,13 @@ class ProvinsiController extends Controller
 
     public function antigenTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->antigenTambahKirim($request);
-        return redirect("/provinsi/antigen/dashboard");
+        $kueri = (new ProvinsiModel)->antigenTambahKirim($request);
+        if($kueri > 0)
+        {
+            return redirect("/provinsi/antigen/dashboard")->with("sukses","Data Antigen berhasil disimpan");
+        }
+        return redirect("/provinsi/antigen/dashboard")->with("gagal","Data Antigen gagal disimpan");
+
     }
 
     /*
@@ -381,8 +390,12 @@ class ProvinsiController extends Controller
 
     public function akunEditKirim(Request $request)
     {
-        (new ProvinsiModel)->akunEditKirim($request);
-        return redirect("/provinsi/akun/dashboard");
+        $kueri = (new ProvinsiModel)->akunEditKirim($request);
+        if($kueri > 0)
+        {
+            return redirect("/provinsi/akun/dashboard")->with("sukses","Data berhasil disimpan");
+        }
+        return redirect("/provinsi/akun/dashboard")->with("gagal","Data gagal disimpan");
     }
 
     public function akunGantiPass($id)
@@ -393,8 +406,12 @@ class ProvinsiController extends Controller
 
     public function akunGantiPassKirim(Request $request)
     {
-        (new ProvinsiModel)->akunGantiPassKirim($request);
-        return redirect("/provinsi/akun/dashboard");
+        $kueri = (new ProvinsiModel)->akunGantiPassKirim($request);
+        if($kueri > 0)
+        {
+            return redirect("/provinsi/akun/dashboard")->with("sukses","Password berhasil diubah");
+        }
+        return redirect("/provinsi/akun/dashboard")->with("gagal","Password gagal diubah");
     }
 
     public function akunTambah()
@@ -404,14 +421,18 @@ class ProvinsiController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->akunTambahKirim($request);
-        return redirect("/provinsi/akun/dashboard");
+        $kueri = (new ProvinsiModel)->akunTambahKirim($request);
+        if($kueri > 0)
+        {
+            return redirect("/provinsi/akun/dashboard")->with("sukses","Akun baru berhasil ditambahkan");
+        }
+        return redirect("/provinsi/akun/dashboard")->with("gagal","Akun baru gagal ditambahkan");
     }
 
     public function akunHapusKirim($id)
     {
         (new ProvinsiModel)->akunHapusKirim($id);
-        return redirect("/provinsi/akun/dashboard");
+        return redirect("/provinsi/akun/dashboard")->with("sukses","Akun berhasil dihapus");
     }
 
     /*
@@ -437,8 +458,12 @@ class ProvinsiController extends Controller
 
     public function kampungEditKirim(Request $request)
     {
-        (new ProvinsiModel)->kampungEditKirim($request);
-        return redirect("/provinsi/regional-kampung/dashboard");
+        $kueri = (new ProvinsiModel)->kampungEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-kampung/dashboard")->with("sukses","Data Kampung berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-kampung/dashboard")->with("gagal","Data Kampung gagal disimpan");
     }
 
     public function kampungTambah()
@@ -449,8 +474,12 @@ class ProvinsiController extends Controller
 
     public function kampungTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->kampungTambahKirim($request);
-        return redirect("/provinsi/regional-kampung/dashboard");
+        $kueri = (new ProvinsiModel)->kampungTambahKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-kampung/dashboard")->with("sukses","Data Kampung berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-kampung/dashboard")->with("gagal","Data Kampung gagal disimpan");
     }
 
     /*
@@ -476,8 +505,12 @@ class ProvinsiController extends Controller
 
     public function posyanduEditKirim(Request $request)
     {
-        (new ProvinsiModel)->posyanduEditKirim($request);
-        return redirect("/provinsi/regional-posyandu/dashboard");
+        $kueri = (new ProvinsiModel)->posyanduEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-posyandu/dashboard")->with("sukses","Data Posyandu berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-posyandu/dashboard")->with("gagal","Data Posyandu gagal disimpan");
     }
 
     public function posyanduTambah()
@@ -488,8 +521,12 @@ class ProvinsiController extends Controller
 
     public function posyanduTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->posyanduTambahKirim($request);
-        return redirect("/provinsi/regional-posyandu/dashboard");
+        $kueri = (new ProvinsiModel)->posyanduTambahKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-posyandu/dashboard")->with("sukses","Data Posyandu berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-posyandu/dashboard")->with("gagal","Data Posyandu gagal disimpan");
     }
 
     public function kabupatenDashboard()
@@ -506,8 +543,12 @@ class ProvinsiController extends Controller
 
     public function kabupatenEditKirim(Request $request)
     {
-        (new ProvinsiModel)->kabupatenEditKirim($request);
-        return redirect("/provinsi/regional-kabupaten/dashboard");
+        $kueri = (new ProvinsiModel)->kabupatenEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-kabupaten/dashboard")->with("sukses","Data Kabupaten berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-kabupaten/dashboard")->with("gagal","Data Kabupaten gagal disimpan");
     }
 
     public function kabupatenTambah()
@@ -517,8 +558,12 @@ class ProvinsiController extends Controller
 
     public function kabupatenTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->kabupatenTambahKirim($request);
-        return redirect("/provinsi/regional-kabupaten/dashboard");
+        $kueri = (new ProvinsiModel)->kabupatenTambahKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-kabupaten/dashboard")->with("sukses","Data Kabupaten berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-kabupaten/dashboard")->with("gagal","Data Kabupaten gagal disimpan");
     }
 
     public function puskesmasDashboard(Request $request)
@@ -541,8 +586,12 @@ class ProvinsiController extends Controller
 
     public function puskesmasEditKirim(Request $request)
     {
-        (new ProvinsiModel)->puskesmasEditKirim($request);
-        return redirect("/provinsi/regional-puskesmas/dashboard");
+        $kueri = (new ProvinsiModel)->puskesmasEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-puskesmas/dashboard")->with("sukses","Data Puskesmas berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-puskesmas/dashboard")->with("gagal","Data Puskesmas gagal disimpan");
     }
 
     public function puskesmasTambah()
@@ -553,8 +602,12 @@ class ProvinsiController extends Controller
 
     public function puskesmasTambahKirim(Request $request)
     {
-        (new ProvinsiModel)->puskesmasTambahKirim($request);
-        return redirect("/provinsi/regional-puskesmas/dashboard");
+        $kueri = (new ProvinsiModel)->puskesmasTambahKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/provinsi/regional-puskesmas/dashboard")->with("sukses","Data Puskesmas berhasil disimpan");
+        }
+        return redirect("/provinsi/regional-puskesmas/dashboard")->with("gagal","Data Puskesmas gagal disimpan");
     }
 
     public function sasaranDashboard(Request $request)

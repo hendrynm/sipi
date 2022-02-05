@@ -52,7 +52,7 @@ class ProvinsiModel extends Model
 
     public function antigenEditKirim(Request $request)
     {
-        DB::table("antigen")
+        return DB::table("antigen")
             ->where("id_antigen","=",$request->idAntigen)
             ->update([
                 "nama_antigen" => $request->namaAntigen,
@@ -64,36 +64,33 @@ class ProvinsiModel extends Model
 
     public function antigenTambahKirim(Request $request)
     {
-        DB::table("antigen")
+        $tambah = DB::table("antigen")
             ->insert([
             "nama_antigen" => $request->namaAntigen,
             "waktu_pemberian" => $request->waktuPemberian,
             "interval_pemberian" => $request->intervalPemberian,
             "target_tahunan" => $request->targetTahunan
         ]);
-    }
-
-    /*
-     * CAPAIAN
-     */
-    public function capaianKabupaten()
-    {
-
-    }
-
-    public function capaianKampung()
-    {
-
-    }
-
-    public function capaianProvinsi()
-    {
-
-    }
-
-    public function capaianPuskesmas()
-    {
-
+        if(count($tambah) > 0)
+        {
+            $id = DB::table("antigen")
+                ->orderByDesc("id_antigen")
+                ->first();
+            $kueri = DB::table("data_individu")
+                ->select("id_anak")
+                ->get();
+            foreach($kueri as $k)
+            {
+                DB::table("imunisasi")
+                    ->insert([
+                        "id_anak" => $k->id_anak,
+                        "id_antigen" => $id->id_antigen,
+                        "status" => "belum"
+                    ]);
+            }
+            return 1;
+        }
+        return 0;
     }
 
     /*
@@ -147,16 +144,24 @@ class ProvinsiModel extends Model
 
     public function akunEditKirim(Request $request)
     {
-        DB::table("user")
+        $kueri1 = DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
             ]);
-        DB::table("level")
-            ->where("id_level","=",$request->idLevel)
-            ->update(["level" => $request->level]);
+        if(count($kueri1) > 0)
+        {
+            $kueri2 = DB::table("level")
+                ->where("id_level","=",$request->idLevel)
+                ->update(["level" => $request->level]);
+            if(count($kueri2) > 0)
+            {
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public function akunGantiPass($id)
@@ -181,7 +186,9 @@ class ProvinsiModel extends Model
                 ->update([
                     "password" => Hash::make($request->passwordBaru),
                 ]);
+            return 1;
         }
+        return 0;
     }
 
     public function akunTambahKirim(Request $request)
@@ -204,7 +211,9 @@ class ProvinsiModel extends Model
                     "password" => Hash::make($request->password),
                     "id_level" => $kueri->id_level
                 ]);
+            return 1;
         }
+        return 0;
     }
 
     public function akunHapusKirim($id)
@@ -237,7 +246,7 @@ class ProvinsiModel extends Model
 
     public function kampungEditKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "nama_kampung" => $request->namaKampung,
@@ -248,7 +257,7 @@ class ProvinsiModel extends Model
 
     public function kampungTambahKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
                 "kode_kampung" => $request->kodeRegion,
@@ -273,7 +282,7 @@ class ProvinsiModel extends Model
 
     public function posyanduEditKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->where("id_posyandu","=",$request->idPosyandu)
             ->update([
                 "nama_posyandu" => $request->namaPosyandu,
@@ -283,7 +292,7 @@ class ProvinsiModel extends Model
 
     public function posyanduTambahKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatLengkap,
@@ -306,7 +315,7 @@ class ProvinsiModel extends Model
 
     public function kabupatenEditKirim(Request $request)
     {
-        DB::table("kabupaten")
+        return DB::table("kabupaten")
             ->where("id_kabupaten","=",$request->idKabupaten)
             ->update([
                 "kode_kabupaten" => $request->kodeRegional,
@@ -316,7 +325,7 @@ class ProvinsiModel extends Model
 
     public function kabupatenTambahKirim(Request $request)
     {
-        DB::table("kabupaten")
+        return DB::table("kabupaten")
             ->insert([
                 "kode_kabupaten" => $request->kodeRegional,
                 "nama_kabupaten" => $request->namaKabupaten
@@ -339,7 +348,7 @@ class ProvinsiModel extends Model
 
     public function puskesmasEditKirim(Request $request)
     {
-        DB::table("puskesmas")
+        return DB::table("puskesmas")
             ->where("id_puskesmas","=",$request->idPuskesmas)
             ->update([
                 "kode_puskesmas" => $request->kodePuskesmas,
@@ -350,7 +359,7 @@ class ProvinsiModel extends Model
 
     public function puskesmasTambahKirim(Request $request)
     {
-        DB::table("puskesmas")
+        return DB::table("puskesmas")
             ->insert([
                 "kode_puskesmas" => $request->kodePuskesmas,
                 "nama_puskesmas" => $request->namaPuskesmas,
