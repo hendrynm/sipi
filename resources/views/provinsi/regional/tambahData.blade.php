@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Kode Region</label>
-                            <input type="text" class="form-control" name="kodeRegion" required>
+                            <input type="text" class="form-control" name="kodeRegion">
                         </div>
 
                         {{-- perbaki filter kabupaten ke puskesmas mulai dari sini --}}
