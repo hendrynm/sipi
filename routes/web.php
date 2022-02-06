@@ -45,6 +45,7 @@ Route::prefix("/data-ajax")
     Route::get("/puskesmas/{id}", [AjaxController::class,"getListPuskesmasByKabupatenId"])->name('data-ajax.puskesmas');
     Route::get("/kabupaten", [AjaxController::class,"getListKabupaten"])->name('data-ajax.kabupaten');
     Route::get("/kampung/{id}", [AjaxController::class,"getListKampungByPuskesmasId"])->name('data-ajax.kampung');
+    Route::get("/posyandu/{id}", [AjaxController::class,"getListPosyanduByKampungId"])->name('data-ajax.posyandu');
     Route::get("/uci/puskesmas/{year}/{kabupaten}/{puskesmas}/{quarter}", [PuskesmasCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.puskesmas');
     Route::get("/uci/kabupaten/{year}/{kabupaten}/{quarter}", [KabupatenCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.kabupaten');
     Route::get("/uci/kabupaten/{year}/{quarter}", [ProvinsiCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.provinsi');
