@@ -336,6 +336,31 @@ class PuskesmasModel extends Model
         return -1;
     }
 
+    public function dataKonfirmasi($id)
+    {
+        return DB::table("data_individu")
+            ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
+            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->where("id_anak","=",$id)
+            ->first();
+    }
+
+    public function dataHapus($id)
+    {
+        $kueri = DB::table("imunisasi")
+            ->where("id_anak","=",$id)
+            ->delete();
+        if($kueri > 0)
+        {
+            return DB::table("data_individu")
+                ->where("id_anak","=",$id)
+                ->delete();
+        }
+        return 0;
+    }
+
     public function akunDashboard($id_pus)
     {
         return DB::table("user")
@@ -356,7 +381,7 @@ class PuskesmasModel extends Model
 
     public function akunEditKirim(Request $request)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
@@ -384,19 +409,20 @@ class PuskesmasModel extends Model
             ($request->passwordBaru == $request->passwordBaru2)
         )
         {
-            DB::table("user")
+            return DB::table("user")
                 ->where("id_user","=",$request->idUser)
                 ->update([
                     "password" => Hash::make($request->passwordBaru),
                 ]);
         }
+        return 0;
     }
 
     public function akunTambahKirim(Request $request)
     {
         if($request->password === $request->password2)
         {
-            DB::table("user")
+            return DB::table("user")
                 ->insert([
                     "nama" => $request->nama,
                     "username" => $request->username,
@@ -405,11 +431,12 @@ class PuskesmasModel extends Model
                     "level" => $request->level,
                 ]);
         }
+        return 0;
     }
 
     public function akunHapusKirim($id)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$id)
             ->delete();
     }
@@ -430,7 +457,7 @@ class PuskesmasModel extends Model
 
     public function kampungEditKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "nama_kampung" => $request->namaKampung,
@@ -440,7 +467,7 @@ class PuskesmasModel extends Model
 
     public function kampungTambahKirim(Request $request, $id_pus)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
                 "kode_kampung" => $request->kodeRegion,
@@ -508,7 +535,7 @@ class PuskesmasModel extends Model
 
     public function posyanduEditKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->where("id_posyandu","=",$request->idPosyandu)
             ->update([
                 "nama_posyandu" => $request->namaPosyandu,
@@ -519,7 +546,7 @@ class PuskesmasModel extends Model
 
     public function posyanduTambahKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatLengkap,
@@ -568,7 +595,7 @@ class PuskesmasModel extends Model
 
     public function posEntriKirim(Request $request)
     {
-        DB::table("imunisasi")
+        return DB::table("imunisasi")
             ->where("id_anak","=",$request->idAnak)
             ->where("id_antigen","=",$request->antigen)
             ->update([

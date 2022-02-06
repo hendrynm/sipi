@@ -295,7 +295,8 @@ Route::prefix("/puskesmas")
             Route::get("/detail/{id}",          [PuskesmasController::class,"dataDetail"]);
             Route::get("/detail/{id}/cetak-idl",[PuskesmasController::class,"dataCetakIDL"]);
             Route::get("/detail/{id}/cetak-irl",[PuskesmasController::class,"dataCetakIRL"]);
-            Route::get("/hapus/{id}",           [EksternalController::class,"dataHapus"]);
+            Route::get("/konfirmasi/{id}",      [PuskesmasController::class,"dataKonfirmasi"]);
+            Route::get("/hapus/{id}",           [PuskesmasController::class,"dataHapus"]);
             Route::get("/edit/{id}",            [PuskesmasController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [PuskesmasController::class,"dataEditKirim"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
