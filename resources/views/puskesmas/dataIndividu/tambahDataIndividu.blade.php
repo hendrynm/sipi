@@ -90,7 +90,7 @@
                         </div>
 
 
-                        <button class="btn btn-primary">Simpan Data Personal</button>
+                        <button class="btn btn-primary" type="submit">Simpan Data Personal</button>
                     </form>
                 </div>
             </div>

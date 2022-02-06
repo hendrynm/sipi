@@ -170,6 +170,13 @@ class PuskesmasModel extends Model
         }
     }
 
+    public function daftarAntigen()
+    {
+        return DB::table("antigen")
+            ->select("id_antigen","nama_antigen")
+            ->get();
+    }
+
     public function daftarPuskesmas($id_pus)
     {
         return DB::table("puskesmas")
@@ -322,7 +329,7 @@ class PuskesmasModel extends Model
                             "status" => "belum"
                         ]);
                 }
-                return $id;
+                return $id->id_anak;
             }
             return 0;
         }
@@ -520,27 +527,14 @@ class PuskesmasModel extends Model
             ]);
     }
 
-    public function posBelumImunisasi($id, $id_pus)
+    public function posLaporan($id, $id_pus)
     {
-        if($id == -1)
-        {
-            return DB::table("data_individu")
-                ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-                ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
-                ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
-                ->where("id_puskesmas","=",$id_pus)
-                ->where("status","=","belum")
-                ->groupBy("data_individu.id_anak")
-                ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
-                ->get();
-        }
         return DB::table("data_individu")
             ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
-            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
-            ->where("id_posyandu","=",$id)
-            ->where("status","=","belum")
-            ->groupBy("data_individu.id_anak")
-            ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->where("id_puskesmas","=",$id_pus)
+            ->where("id_antigen","=",$id)
             ->get();
     }
 

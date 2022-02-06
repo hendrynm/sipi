@@ -44,32 +44,30 @@
             <h2>Notifikasi Imunisasi</h2>
             <a href="./notifikasi" class="btn btn-primary">Kirim Notifikasi Posyandu</a>
         </div> --}}
-        <div class="jumbotron">
-            <h2>Data anak belum Imunisasi</h2>
-            <a href="./belum" class="btn btn-primary">Cek data anak belum Imunisasi</a>
-        </div>
+{{--        <div class="jumbotron">--}}
+{{--            <h2>Data anak belum Imunisasi</h2>--}}
+{{--            <a href="./belum" class="btn btn-primary">Cek data anak belum Imunisasi</a>--}}
+{{--        </div>--}}
 
         <div class="jumbotron">
-            <h2>Data anak belum Imunisasi</h2>
-
-            <form>
-                <div class="form-row">
-                  <div class="col-md-6 mb-3">
-                    <label for="antigen">Antigen :</label>
-                    <select class="custom-select" id="antigen" aria-describedby="antigen">
-                        <option selected disabled value="">Pilih antigen...</option>
-                        <option>...</option>
-                    </select>
-                  </div>
-                 
+            <h2>Laporan Imunisasi Anak</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <form action="./cari" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="antigen">Antigen :</label>
+                            <select class="form-control custom-select" id="antigen" name="antigen" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled>Pilih antigen</option>
+                                @foreach($data2 as $data2)
+                                    <option value="{{ $data2->id_antigen }}">{{ $data2->nama_antigen }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Tampikan Data</button>
+                    </form>
                 </div>
-    
-                <button class="btn btn-primary" type="submit">Tampikan Data</button>
-            </form>
-
-
-           
-
+            </div>
         </div>
 
         <div class="jumbotron">
@@ -121,6 +119,7 @@
     <script>
         $(function() {
             $('#posyandu').selectpicker();
+            $('#antigen').selectpicker();
         });
     </script>
 @endsection

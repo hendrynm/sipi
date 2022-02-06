@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Data Anak Belum Imunisasi")
+@section("title","Laporan Imunisasi Anak")
 
 <!DOCTYPE html>
 <html lang="id">
@@ -7,19 +7,19 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">back</a>
 
-        <h1>Data Anak Belum Imunisasi</h1>
+        <h1>Laporan Imunisasi Anak</h1>
         <br>
 
-        <!-- primitif -->
         <table class="table" id="belumImunisasi">
             <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama Anak</th>
+                <th scope="col" data-priority="1">No</th>
+                <th scope="col" data-priority="2">Nama Anak</th>
                 <th scope="col">Usia</th>
-                <th scope="col">Belum Imunisasi</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">No HP</th>
+                <th scope="col" data-priority="4">Posyandu</th>
+                <th scope="col" data-priority="3">Status</th>
             </tr>
             </thead>
             <tbody>
@@ -35,8 +35,10 @@
             var table = $('#belumImunisasi').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 language: { url: "//cdn.datatables.net/plug-ins/1.11.4/i18n/id.json" },
                 ajax: window.location.href,
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
@@ -52,20 +54,18 @@
                                 return tahun + " tahun " + (bulan+12) + " bulan";
                         },
                     },
-                    {data: 'nama_antigen', name: 'belum_imunisasi',
-                        render: function (data, type, row, meta ){
-                            return data.split(", ").join("<br/>");
-                        }
-                    },
                     {data: 'alamat', name: 'alamat'},
                     {data: 'no_hp', name: 'no_hp'},
+                    {data: 'nama_posyandu', name: 'nama_posyandu'},
+                    {data: 'status', name: 'status'},
                 ],
                 dom: 'Bfrtip',
-                buttons: [
+                buttons: {
+                    buttons: [
                     {
                         extend: 'print',
-                        autoPrint: false,
-                        messageTop: '<h1>Data Anak yang Belum Imunisasi</h1>',
+                        autoPrint: true,
+                        title: '<h1>Laporan Imunisasi Anak</h1>',
                         customize: function ( win ) {
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )
@@ -74,6 +74,7 @@
                     },
                     'pageLength'
                 ]
+               }
             });
         });
     </script>

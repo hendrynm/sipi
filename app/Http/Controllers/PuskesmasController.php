@@ -105,9 +105,9 @@ class PuskesmasController extends Controller
         $kueri = (new PuskesmasModel)->dataTambahKirim($request);
         if($kueri > 0)
         {
-            return redirect("/puskesmas/data-anak/detail/$kueri->id_anak")->with("sukses","Data berhasil disimpan");
+            return redirect("/puskesmas/data-anak/detail/$kueri")->with("sukses","Data berhasil disimpan");
         }
-        else if($kueri === 0)
+        if($kueri === 0)
         {
             return redirect("/puskesmas/data-anak/tambah-data")->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
         }
@@ -259,20 +259,21 @@ class PuskesmasController extends Controller
     public function posDashboard()
     {
         $kueri = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
-        return view("puskesmas.posyandu.dashboard",["data"=>$kueri]);
+        $kueri2 = (new PuskesmasModel)->daftarAntigen();
+        return view("puskesmas.posyandu.dashboard",["data"=>$kueri,"data2"=>$kueri2]);
     }
 
-    public function posBelumImunisasi()
+    public function posLaporanCari(Request $request)
     {
-        $kueri = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
-        return view("puskesmas.posyandu.belumImunisasi",["data2"=>$kueri]);
+        $id = $request->antigen;
+        return redirect("/puskesmas/posyandu/laporan/$id");
     }
 
-    public function posBelumImunisasiCari(Request $request, $id)
+    public function posLaporan(Request $request, $id)
     {
         if ($request->ajax())
         {
-            $data = (new PuskesmasModel)->posBelumImunisasi($id, $this->id_pus());
+            $data = (new PuskesmasModel)->posLaporan($id, $this->id_pus());
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->make(true);
