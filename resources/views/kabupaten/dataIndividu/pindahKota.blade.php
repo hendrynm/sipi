@@ -64,44 +64,66 @@
                         @csrf
                         <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
                         {{-- perbaiki dari sini ya, filter selectna --}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="kabupatenBaru">Kabupaten/Kota Baru : </label>--}}
+{{--                            <select class="form-control custom-select" id="kabupatenBaru" name="kabupatenBaru" data-show-subtext="true" data-live-search="true">--}}
+{{--                                <option selected disabled> --- </option>--}}
+{{--                                @foreach($data2 as $data2)--}}
+{{--                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="puskesmasBaru">Puskesmas Baru : </label>--}}
+{{--                            <select class="form-control custom-select" id="puskesmasBaru" name="puskesmasBaru" data-show-subtext="true" data-live-search="true">--}}
+{{--                                <option selected disabled> --- </option>--}}
+{{--                                --}}{{-- @foreach($data2 as $data2)--}}
+{{--                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>--}}
+{{--                                @endforeach --}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="form-group">--}}
+{{--                            <label for="kampungbaru">Kampung Baru : </label>--}}
+{{--                            <select class="form-control custom-select" id="kampungbaru" name="kampungbaru" data-show-subtext="true" data-live-search="true">--}}
+{{--                                <option selected disabled> --- </option>--}}
+{{--                                 @foreach($data2 as $data2)--}}
+{{--                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>--}}
+{{--                                @endforeach --}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="form-group">--}}
+{{--                            <label for="posyanduBaru">Posyandu Baru : </label>--}}
+{{--                            <select class="form-control custom-select" id="posyanduBaru" name="posyanduBaru" data-show-subtext="true" data-live-search="true">--}}
+{{--                                <option selected disabled> --- </option>--}}
+{{--                                @foreach($data3 as $data3)--}}
+{{--                                    <option value="{{ $data3->id_posyandu }}">{{ $data3->nama_posyandu }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+                        <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
+                        <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
                         <div class="form-group">
-                            <label for="kabupatenBaru">Kabupaten/Kota Baru : </label>
-                            <select class="form-control custom-select" id="kabupatenBaru" data-show-subtext="true" data-live-search="true">
+                            <label for="kampung">Kampung Baru : </label>
+                            <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled> --- </option>
-                                @foreach($data2 as $data2)
-                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="puskesmasBaru">Puskesmas Baru : </label>
-                            <select class="form-control custom-select" id="puskesmasBaru" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled> --- </option>
-                                {{-- @foreach($data2 as $data2)
-                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>
-                                @endforeach --}}
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="kampungbaru">Kampung Baru : </label>
-                            <select class="form-control custom-select" id="kampungbaru" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled> --- </option>
-                                {{-- @foreach($data2 as $data2)
-                                <option value="{{ $data2->id_kabupaten }}">{{ $data2->nama_kabupaten }}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="posyanduBaru">Posyandu Baru : </label>
-                            <select class="form-control custom-select" id="posyanduBaru" data-show-subtext="true" data-live-search="true">
+                            <label for="posyandu">Posyandu Baru : </label>
+                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
                                 <option selected disabled> --- </option>
                                 @foreach($data3 as $data3)
                                     <option value="{{ $data3->id_posyandu }}">{{ $data3->nama_posyandu }}</option>
                                 @endforeach
                             </select>
                         </div>
+
+
+
+
                         <div class="form-check">
                             <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
                                    value="option1" aria-label="..." required>
@@ -115,11 +137,32 @@
 @endsection
 </html>
 
-@section("js")
+@push('scripts')
     <script>
-        $(function() {
-            $('#kabupatenBaru').selectpicker();
-            $('#posyanduBaru').selectpicker();
+        $(document).ready(function() {
+            $('select[id="posyandu"]').selectpicker();
+            $('select[id="kampung"]').on('change', function() {
+                $('select[id="posyandu"]').empty();
+                var cityID = $(this).val();
+                if(cityID) {
+                    $.ajax({
+                        url: '/data-ajax/posyandu/' + cityID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            console.log(data);
+                            $('select[id="posyandu"]').empty();
+                            $('select[id="posyandu"]').append('<option disabled></option>');
+                            $.each(data, function(key, value) {
+                                $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                            });
+                            $('select[id="posyandu"]').selectpicker('refresh');
+                        }
+                    });
+                }else{
+                    $('select[id="posyandu"]').empty();
+                }
+            });
         });
     </script>
-@endsection
+@endpush
