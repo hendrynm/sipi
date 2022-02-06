@@ -21,7 +21,6 @@ class ProvinsiCapaianController extends Controller
 
 
 
-
     // bulan January
         $query = DB::select("
           SELECT kabupaten.nama_kabupaten as kabupaten,

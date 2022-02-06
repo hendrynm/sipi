@@ -24,15 +24,9 @@
                         </div>
 
                         {{-- perbaki filter kabupaten ke puskesmas mulai dari sini --}}
-                        <div class="form-group">
-                            <label for="puskesmas">Nama Kabupaten :</label>
-                            <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih Kabupaten</option>
-                                {{-- @foreach($data2 as $data2)
-                                    <option data-tokens="{{ $data2->nama_puskesmas }}" value="{{ $data2->id_puskesmas }}">{{$data2->nama_puskesmas}}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
+                        <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
+                        {{-- perbaki filter kabupaten ke puskesmas sampai sini --}}
+
                         <div class="form-group">
                             <label for="puskesmas">Nama Puskesmas :</label>
                             <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
@@ -42,7 +36,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{-- perbaiki sampai sini --}}
 
                         <button class="btn btn-primary">Simpan</button>
                     </form>

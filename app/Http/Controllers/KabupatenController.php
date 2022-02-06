@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KabupatenModel;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class KabupatenController extends Controller
@@ -256,5 +257,13 @@ class KabupatenController extends Controller
     {
         $kueri = (new KabupatenModel)->sasaranTarget($id);
         return view("kabupaten.sasaran.target",["data"=>$kueri]);
+    }
+
+    public function getListKabupaten()
+    {
+        $kab = DB::table("kabupaten")
+           ->pluck('id_kabupaten','nama_kabupaten');
+
+        return response()->json($kab);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\KabupatenCapaianController;
 use App\Http\Controllers\ProvinsiCapaianController;
@@ -37,8 +38,13 @@ Route::get  ("/logout",     [LoginController::class,    "logout"]);
 Route::get  ("/lupa",       [LoginController::class,    "lupa"]);
 
 //        AJAX
-Route::prefix("/data-ajax")->middleware('user.isLogin')->group(function () {
-    Route::get("/puskesmas/{id}", [PuskesmasController::class,"getListPuskesmasByKabupatenId"])->name('data-ajax.puskesmas');
+Route::prefix("/data-ajax")
+    ->middleware('user.isLogin')
+    ->group(function () {
+    Route::get("/puskesmas/all", [AjaxController::class,"getListPuskesmasAll"])->name('data-ajax.puskesmas.all');
+    Route::get("/puskesmas/{id}", [AjaxController::class,"getListPuskesmasByKabupatenId"])->name('data-ajax.puskesmas');
+    Route::get("/kabupaten", [AjaxController::class,"getListKabupaten"])->name('data-ajax.kabupaten');
+    Route::get("/kampung/{id}", [AjaxController::class,"getListKampungByPuskesmasId"])->name('data-ajax.kampung');
     Route::get("/uci/puskesmas/{year}/{kabupaten}/{puskesmas}/{quarter}", [PuskesmasCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.puskesmas');
     Route::get("/uci/kabupaten/{year}/{kabupaten}/{quarter}", [KabupatenCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.kabupaten');
     Route::get("/uci/kabupaten/{year}/{quarter}", [ProvinsiCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.provinsi');
