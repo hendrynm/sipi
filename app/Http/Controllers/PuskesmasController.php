@@ -85,8 +85,12 @@ class PuskesmasController extends Controller
 
     public function dataEditKirim(Request $request)
     {
-        (new PuskesmasModel)->dataEditKirim($request);
-        return redirect("/puskesmas/data-anak/dashboard");
+        $kueri = (new PuskesmasModel)->dataEditKirim($request);
+        if(count($kueri) > 0)
+        {
+            return redirect("/puskesmas/data-anak/dashboard")->with("sukses","Data Individu berhasil disimpan");
+        }
+        return redirect("/puskesmas/data-anak/dashboard")->with("gagal","Data Individu gagal disimpan");
     }
 
     public function dataTambah()
@@ -99,11 +103,15 @@ class PuskesmasController extends Controller
     public function dataTambahKirim(Request $request)
     {
         $kueri = (new PuskesmasModel)->dataTambahKirim($request);
-        if($kueri->id_anak > 0)
+        if($kueri > 0)
         {
             return redirect("/puskesmas/data-anak/detail/$kueri->id_anak")->with("sukses","Data berhasil disimpan");
         }
-        return redirect("/puskesmas/data-anak/tambah-data")->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
+        else if($kueri === 0)
+        {
+            return redirect("/puskesmas/data-anak/tambah-data")->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
+        }
+        return redirect("/puskesmas/data-anak/tambah-data")->with("gagal","Data Individu sudah ada. Data baru gagal disimpan");
     }
 
     public function akunDashboard()

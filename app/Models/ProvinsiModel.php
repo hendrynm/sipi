@@ -142,7 +142,7 @@ class ProvinsiModel extends Model
 
     public function akunEditKirim(Request $request)
     {
-        $kueri1 = DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
@@ -152,11 +152,6 @@ class ProvinsiModel extends Model
                 "id_puskesmas" => $request->idPuskesmas ?: null,
                 "level" => $request->level
             ]);
-        if(count($kueri1) > 0)
-        {
-            return 1;
-        }
-        return 0;
     }
 
     public function akunGantiPass($id)

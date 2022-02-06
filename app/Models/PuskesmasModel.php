@@ -104,7 +104,7 @@ class PuskesmasModel extends Model
                         break 2;
                     }
                     break;
-                case(18):
+                case(17):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 5;
@@ -267,7 +267,7 @@ class PuskesmasModel extends Model
 
     public function dataEditKirim(Request $request)
     {
-        DB::table("data_individu")
+        return DB::table("data_individu")
             ->where("id_anak","=",$request->idAnak)
             ->update([
                 "nama_lengkap" => $request->namaLengkap,
@@ -285,40 +285,48 @@ class PuskesmasModel extends Model
 
     public function dataTambahKirim(Request $request)
     {
-        $kueri = DB::table("data_individu")
-            ->insert([
-                "nama_lengkap" => $request->namaLengkap,
-                "nama_ibu" => $request->namaIbuKandung,
-                "nik" => $request->nik,
-                "tanggal_lahir" => $request->tanggalLahir,
-                "jenis_kelamin" => $request->jenisKelamin,
-                "no_hp" => $request->noHP,
-                "alamat" => $request->alamat,
-                "id_posyandu" => $request->posyandu,
-                "id_kampung" => $request->kampung,
-                "status_hamil" => $request->isHamil ?: null,
-                "tanggal_hamil" => $request->tanggalKehamilan ?: null
-            ]);
-        if($kueri > 0)
+        $cek = DB::table("data_individu")
+            ->where("nama_ibu","=",$request->namaIbuKandung)
+            ->where("jenis_kelamin","=",$request->jenisKelamin)
+            ->where("tanggal_lahir","=",$request->tanggalLahir)
+            ->get();
+        if(count($cek) === 0)
         {
-            $id = DB::table("data_individu")
-                ->orderByDesc("id_anak")
-                ->first();
-            $data = DB::table("antigen")
-                ->get();
-
-            foreach ($data as $d)
+            $kueri = DB::table("data_individu")
+                ->insert([
+                    "nama_lengkap" => $request->namaLengkap,
+                    "nama_ibu" => $request->namaIbuKandung,
+                    "nik" => $request->nik,
+                    "tanggal_lahir" => $request->tanggalLahir,
+                    "jenis_kelamin" => $request->jenisKelamin,
+                    "no_hp" => $request->noHP,
+                    "alamat" => $request->alamat,
+                    "id_posyandu" => $request->posyandu,
+                    "id_kampung" => $request->kampung,
+                    "status_hamil" => $request->isHamil ?: null,
+                    "tanggal_hamil" => $request->tanggalKehamilan ?: null
+                ]);
+            if($kueri > 0)
             {
-                DB::table("imunisasi")
-                    ->insert([
-                        "id_anak" => $id->id_anak,
-                        "id_antigen" => $d->id_antigen,
-                        "status" => "belum"
-                    ]);
+                $id = DB::table("data_individu")
+                    ->orderByDesc("id_anak")
+                    ->first();
+                $data = DB::table("antigen")
+                    ->get();
+                foreach ($data as $d)
+                {
+                    DB::table("imunisasi")
+                        ->insert([
+                            "id_anak" => $id->id_anak,
+                            "id_antigen" => $d->id_antigen,
+                            "status" => "belum"
+                        ]);
+                }
+                return $id;
             }
-            return $id;
+            return 0;
         }
-        return 0;
+        return -1;
     }
 
     public function akunDashboard($id_pus)
@@ -574,10 +582,5 @@ class PuskesmasModel extends Model
                 "tempat_imunisasi" => $request->lokasi,
                 "status" => "sudah"
             ]);
-        $idl = DB::table("imunisasi")
-            ->where("id_anak","=",$request->idAnak)
-            ->get();
-        $idl_cek = 1;
-
     }
 }
