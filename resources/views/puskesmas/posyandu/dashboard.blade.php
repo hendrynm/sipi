@@ -50,6 +50,29 @@
         </div>
 
         <div class="jumbotron">
+            <h2>Data anak belum Imunisasi</h2>
+
+            <form>
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label for="antigen">Antigen :</label>
+                    <select class="custom-select" id="antigen" aria-describedby="antigen">
+                        <option selected disabled value="">Pilih antigen...</option>
+                        <option>...</option>
+                    </select>
+                  </div>
+                 
+                </div>
+    
+                <button class="btn btn-primary" type="submit">Tampikan Data</button>
+            </form>
+
+
+           
+
+        </div>
+
+        <div class="jumbotron">
             <h2>Mulai Data Entri Imunisasi</h2>
             <br>
             <br>
