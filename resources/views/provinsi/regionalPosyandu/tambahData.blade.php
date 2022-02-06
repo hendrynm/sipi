@@ -17,7 +17,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaPosyandu">Nama Posyandu</label>
-                            <input type="text" class="form-control" name="namaPosyandu">
+                            <input type="text" class="form-control" name="namaPosyandu" required>
                         </div>
 
                          {{-- perbaiki filer select mulai dari sini | kabupaten -> puskesmas -> kampung --}}
@@ -25,8 +25,8 @@
                         <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
                         <div class="form-group">
                             <label for="kampung">Nama Kampung :</label>
-                            <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih Kampung</option>
+                            <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value="">Pilih Kampung</option>
                                 @foreach($data2 as $data2)
                                     <option data-tokens="{{ $data2->nama_kampung }}" value="{{ $data2->id_kampung }}">{{ $data2->nama_kampung }}</option>
                                 @endforeach
@@ -35,7 +35,7 @@
                         {{-- perbaiki sampai sini --}}
                         <div class="form-group">
                             <label for="alamatLengkap">Alamat Lengkap Posyandu :</label>
-                            <input type="text" class="form-control" name="alamatLengkap">
+                            <input type="text" class="form-control" name="alamatLengkap" required>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>

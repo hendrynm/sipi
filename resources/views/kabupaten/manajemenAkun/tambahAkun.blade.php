@@ -16,20 +16,20 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="username">username</label>
-                            <input type="text" class="form-control" name="username">
+                            <input type="text" class="form-control" name="username" required>
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Instansi</label>
-                            <input type="text" class="form-control" name="nama">
+                            <input type="text" class="form-control" name="nama" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
-                            <select class="custom-select" name="level">
-                                <option selected>Pilih akses level</option>
+                            <select class="custom-select" name="level" required>
+                                <option selected value="">Pilih akses level</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>
                                 <option value="3">level 3 - Pukesmas</option>
                                 <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label for="puskesmas">Puskesmas :</label>
                             <select class="custom-select" id="puskesmas" name="puskesmas">
-                                <option selected disabled>-- Pilih Puskesmas --</option>
+                                <option selected disabled value="">-- Pilih Puskesmas --</option>
                                 <option value="1">Puskesmas X</option>
                                
                             </select>
@@ -60,11 +60,11 @@
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                         <div class="form-group">
                             <label for="password2">Ketik Ulang Password</label>
-                            <input type="password" class="form-control" name="password2">
+                            <input type="password" class="form-control" name="password2" required>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>

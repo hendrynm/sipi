@@ -16,11 +16,11 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Kampung</label>
-                            <input type="text" class="form-control" name="namaKampung">
+                            <input type="text" class="form-control" name="namaKampung" required>
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Kode Region</label>
-                            <input type="text" class="form-control" name="kodeRegion">
+                            <input type="text" class="form-control" name="kodeRegion" required>
                         </div>
 
                         {{-- perbaki filter kabupaten ke puskesmas mulai dari sini --}}
@@ -29,7 +29,7 @@
 
                         <div class="form-group">
                             <label for="puskesmas">Nama Puskesmas :</label>
-                            <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
+                            <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true" required>
                                 <option selected disabled>Pilih Pukesmas</option>
                                 @foreach($data2 as $data2)
                                     <option data-tokens="{{ $data2->nama_puskesmas }}" value="{{ $data2->id_puskesmas }}">{{$data2->nama_puskesmas}}</option>

@@ -17,40 +17,40 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaLengkap">Nama Lengkap : </label>
-                            <input type="text" class="form-control" id="namaLengkap" name="namaLengkap">
+                            <input type="text" class="form-control" id="namaLengkap" name="namaLengkap" required>
                         </div>
                         <div class="form-group">
                             <label for="namaIbuKandung">Nama Ibu Kandung : </label>
-                            <input type="text" class="form-control" id="namaIbuKandung" name="namaIbuKandung">
+                            <input type="text" class="form-control" id="namaIbuKandung" name="namaIbuKandung" required>
                         </div>
                         <div class="form-group">
                             <label for="nik">NIK : </label>
-                            <input type="text" class="form-control" id="nik" name="nik">
+                            <input type="text" class="form-control" id="nik" name="nik" >
                         </div>
                         <div class="form-group">
                             <label for="tanggalLahir">Tanggal Lahir : </label>
-                            <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir">
+                            <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir" required>
                         </div>
                         <div class="form-group">
                             <label for="jenisKelamin">Jenis Kelamin : </label>
-                            <select class="custom-select" id="jenisKelamin" name="jenisKelamin">
-                                <option selected disabled>Pilih Jenis Kelamin</option>
+                            <select class="custom-select" id="jenisKelamin" name="jenisKelamin" required>
+                                <option selected disabled value="">Pilih Jenis Kelamin</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="noHP">No HP: </label>
-                            <input type="text" class="form-control" id="noHP" name="noHP">
+                            <input type="text" class="form-control" id="noHP" name="noHP" required>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat Tinggal: </label>
-                            <input type="text" class="form-control" id="alamat" name="alamat">
+                            <input type="text" class="form-control" id="alamat" name="alamat" required>
                         </div>
                         <div class="form-group">
                             <label for="kampung">Kampung : </label>
-                            <select class="custom-select" id="kampung" name="kampung">
-                                <option selected disabled>Pilih kampung</option>
+                            <select class="custom-select" id="kampung" name="kampung" required>
+                                <option selected disabled value="">Pilih kampung</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
                                 @endforeach
@@ -58,8 +58,8 @@
                         </div>
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
-                            <select class="custom-select" id="posyandu" name="posyandu">
-                                <option selected disabled>Pilih Posyandu</option>
+                            <select class="custom-select" id="posyandu" name="posyandu" required>
+                                <option selected disabled value="">Pilih Posyandu</option>
                                 @foreach($data2 as $data2)
                                     <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>
                                 @endforeach

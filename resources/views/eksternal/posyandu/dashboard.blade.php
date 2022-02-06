@@ -23,7 +23,7 @@
             </div>
         @endif
         <a href="../dashboard" class="btn btn-primary">back</a>
-        <h1>Posyandu</h1>
+        <h1>Modul Entri Imunisasi</h1>
         <br>
         <div class="jumbotron custom-table">
             <form action="./mulai" method="post">

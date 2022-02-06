@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label for="level">Akses Level :</label>
                                 <select class="custom-select" id="level" name="level">
-                                    <option disabled>Pilih akses level</option>
+                                    <option disabled value="">Pilih akses level</option>
                                     <option value="1" {{ $data->level === 1 ? "selected" : ""}}>level 1 - Provinsi Papua barat</option>
                                     <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
                                     <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>

@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="namaPuskesmas">Nama Puskesmas :</label>
-                            <input type="text" class="form-control" id="namaPuskesmas" name="namaPuskesmas">
+                            <input type="text" class="form-control" id="namaPuskesmas" name="namaPuskesmas" required>
                         </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>

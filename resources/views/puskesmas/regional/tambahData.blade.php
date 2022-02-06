@@ -16,7 +16,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="namaKampung">Nama Kampung</label>
-                            <input type="text" class="form-control" name="namaKampung">
+                            <input type="text" class="form-control" name="namaKampung" required>
                         </div>
                         <div class="form-group">
                             <label for="kodeRegion">Kode Region</label>

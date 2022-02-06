@@ -113,8 +113,8 @@
 
                         <div class="form-group">
                             <label for="posyandu">Posyandu Baru : </label>
-                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled> --- </option>
+                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value=""> --- </option>
                                 @foreach($data3 as $data3)
                                     <option value="{{ $data3->id_posyandu }}">{{ $data3->nama_posyandu }}</option>
                                 @endforeach

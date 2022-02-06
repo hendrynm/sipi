@@ -147,8 +147,8 @@
                         <input type="hidden" id="idPosyandu" name="idPosyandu" value="{{ $data->id_posyandu }}">
                         <div class="form-group">
                             <label for="antigen"> <b> Antigen :</b></label>
-                            <select class="custom-select" id="antigen" name="antigen">
-                                <option selected disabled>Pilih Antigen...</option>
+                            <select class="custom-select" id="antigen" name="antigen" required>
+                                <option selected disabled value="">Pilih Antigen...</option>
                                 @foreach($data3 as $data3)
                                     <option value="{{ $data3->id_antigen }}">{{ $data3->nama_antigen }}</option>
                                 @endforeach
@@ -156,13 +156,13 @@
                         </div>
                         <div class="form-group">
                             <label for="tanggal">Tanggal Posyandu :</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="antigenIsValid" required>
                             <label class="form-check-label" for="antigenIsValid">Data Antigen diatas sudah benar</label>
                         </div>
-                        <button class="btn btn-primary">Simpan</button>
+                        <button class="btn btn-primary" >Simpan</button>
                     </form>
                 </div>
             </div>

@@ -16,16 +16,16 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="kodePuskesmas">Kode Puskesmas :</label>
-                            <input type="text" class="form-control" id="kodePuskesmas" name="kodePuskesmas">
+                            <input type="text" class="form-control" id="kodePuskesmas" name="kodePuskesmas" >
                         </div>
                         <div class="form-group">
                             <label for="namaPuskesmas">Nama Puskesmas :</label>
-                            <input type="text" class="form-control" id="namaPuskesmas" name="namaPuskesmas">
+                            <input type="text" class="form-control" id="namaPuskesmas" name="namaPuskesmas" required>
                         </div>
                         <div class="form-group">
                             <label for="kabupaten">Kabupaten/Kota Puskesmas :</label>
-                            <select class="form-control custom-select" id="kabupaten" name="kabupaten"  data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih Kabupaten/Kota</option>
+                            <select class="form-control custom-select" id="kabupaten" name="kabupaten"  data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value="">Pilih Kabupaten/Kota</option>
                                 @foreach($data2 as $data2)
                                     <option data-tokens="{{ $data2->nama_kabupaten }}" value="{{ $data2->id_kabupaten }}">{{$data2->nama_kabupaten}}</option>
                                 @endforeach
