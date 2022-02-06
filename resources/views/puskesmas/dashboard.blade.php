@@ -51,6 +51,18 @@
                 </div>
             </div>
         </a>
+        <a href="{{route('puskesmas.capaian.laporanBulananKumulatif')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Bulanan Kumulatif
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="jumbotron">

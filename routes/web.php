@@ -77,6 +77,8 @@ Route::prefix("/provinsi")
 
             Route::get("/laporanBulanan",         [ProvinsiCapaianController::class,"laporanBulanan"])->name('provinsi.capaian.laporanBulanan');
 
+            Route::get("/laporanBulananKumulatif",         [ProvinsiCapaianController::class,"laporanBulananKumulatif"])->name('provinsi.capaian.laporanBulananKumulatif');
+
             Route::prefix("/kabupaten")->group(function ()
             {
                 Route::get("/dashboard",         [ProvinsiCapaianController::class,"kabupaten"])->name('provinsi.capaian.kabupaten.dashboard');
@@ -184,6 +186,7 @@ Route::prefix("/kabupaten")
 
         Route::prefix("/capaian")->group(function ()
         {
+            Route::get("/laporanBulananKumulatif",         [KabupatenCapaianController::class,"laporanBulananKumulatif"])->name('kabupaten.capaian.laporanBulananKumulatif');
             Route::get("/laporanBulanan",         [KabupatenCapaianController::class,"laporanBulanan"])->name('kabupaten.capaian.laporanBulanan');
             Route::prefix("/kampung")->group(function ()
             {
@@ -274,6 +277,7 @@ Route::prefix("/puskesmas")
 
         Route::prefix("/capaian")->group(function ()
         {
+            Route::get("/laporanBulananKumulatif",         [PuskesmasCapaianController::class,"laporanBulananKumulatif"])->name('puskesmas.capaian.laporanBulananKumulatif');
             Route::get("/laporanBulanan",         [PuskesmasCapaianController::class,"laporanBulanan"])->name('puskesmas.capaian.laporanBulanan');
 
             Route::get ("/dashboard",            [PuskesmasCapaianController::class,"puskesmas"])->name("puskesmas.capaian.dashboard");

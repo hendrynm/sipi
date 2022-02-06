@@ -6,13 +6,13 @@
 @section("konten")
 <div class="container main-dashboard">
 
-    
+
 
     <a href="/logout" class="btn btn-danger">Log Out</a>
 
     <hr>
     <h1>Dashboard Provinsi Papua Barat</h1>
-    
+
     <div class="jumbotron">
         <h2>Laporan Capaian</h2>
         <a href="{{route('provinsi.capaian.kabupaten.dashboard')}}" class="btn btn-primary">
@@ -68,7 +68,19 @@
             </div>
         </a>
 
-        
+        <a href="{{route('provinsi.capaian.laporanBulananKumulatif')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Bulanan Kumulatif
+                </div>
+            </div>
+        </a>
+
     </div>
 
     <div class="jumbotron">
