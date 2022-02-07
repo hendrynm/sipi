@@ -16,6 +16,11 @@ class PuskesmasController extends Controller
         return session()->get("id_puskesmas");
     }
 
+    public function id_kab()
+    {
+        return session()->get("id_kabupaten");
+    }
+
     public function cekStatus($id)
     {
         $kueri1 = (new PuskesmasModel)->cekIDL($id);
@@ -144,7 +149,7 @@ class PuskesmasController extends Controller
 
     public function akunEditKirim(Request $request)
     {
-        $kueri = (new PuskesmasModel)->akunEditKirim($request);
+        $kueri = (new PuskesmasModel)->akunEditKirim($request, $this->id_pus(), $this->id_kab());
         if($kueri > 0)
         {
             return redirect("/puskesmas/akun/dashboard")->with("sukses","Data akun berhasil disimpan");
@@ -175,7 +180,7 @@ class PuskesmasController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-        $kueri = (new PuskesmasModel)->akunTambahKirim($request);
+        $kueri = (new PuskesmasModel)->akunTambahKirim($request, $this->id_pus(), $this->id_kab());
         if($kueri > 0)
         {
             return redirect("/puskesmas/akun/dashboard")->with("sukses","Data akun berhasil disimpan");
@@ -327,6 +332,11 @@ class PuskesmasController extends Controller
                 ->make(true);
         }
         return view("puskesmas.posyandu.belumImunisasiCari");
+    }
+
+    public function posLaporanNamaAntigen($id)
+    {
+        return (new PuskesmasModel)->namaAntigen($id);
     }
 
     public function posMulaiPilih(Request $request)

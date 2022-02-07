@@ -7,7 +7,7 @@
     <div class="container">
         <a href="../dashboard" class="btn btn-primary">back</a>
 
-        <h1>Laporan Imunisasi Anak</h1>
+        <h1>Laporan Imunisasi Anak - <span class="nama"></span></h1>
         <br>
 
         <table class="table" id="belumImunisasi">
@@ -31,6 +31,16 @@
 
 @section("js")
     <script type="text/javascript">
+        $.ajax({
+            url: window.location.href + "/nama",
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                let nama = data.nama_antigen;
+                $(".nama").append(nama);
+            }
+        });
+
         $(function () {
             var table = $('#belumImunisasi').DataTable({
                 processing: true,
@@ -57,7 +67,7 @@
                     {data: 'alamat', name: 'alamat'},
                     {data: 'no_hp', name: 'no_hp'},
                     {data: 'nama_posyandu', name: 'nama_posyandu'},
-                    {data: 'status', name: 'status'},
+                    {data: 'status', name: 'status'}
                 ],
                 dom: 'Bfrtip',
                 buttons: {
@@ -65,7 +75,7 @@
                     {
                         extend: 'print',
                         autoPrint: true,
-                        title: '<h1>Laporan Imunisasi Anak</h1>',
+                        title: 'Laporan Imunisasi Anak - ',
                         customize: function ( win ) {
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )
