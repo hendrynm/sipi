@@ -50,7 +50,7 @@ class KabupatenController extends Controller
     public function dataPindahKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->dataPindahKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/data/dashboard")->with("sukses","Data Pindah Domisili berhasil disimpan");
         }
@@ -142,7 +142,7 @@ class KabupatenController extends Controller
     public function kampungEditKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->kampungEditKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-kampung/dashboard")->with("sukses","Data Kampung berhasil disimpan");
         }
@@ -158,7 +158,7 @@ class KabupatenController extends Controller
     public function kampungTambahKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->kampungTambahKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-kampung/dashboard")->with("sukses","Data Kampung berhasil disimpan");
         }
@@ -181,7 +181,7 @@ class KabupatenController extends Controller
     public function posyanduEditKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->posyanduEditKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-posyandu/dashboard")->with("sukses","Data Posyandu berhasil disimpan");
         }
@@ -197,7 +197,7 @@ class KabupatenController extends Controller
     public function posyanduTambahKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->posyanduTambahKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-posyandu/dashboard")->with("sukses","Data Posyandu berhasil disimpan");
         }
@@ -219,7 +219,7 @@ class KabupatenController extends Controller
     public function puskesmasEditKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->puskesmasEditKirim($request);
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-puskesmas/dashboard")->with("sukses","Data Puskesmas berhasil disimpan");
         }
@@ -234,7 +234,7 @@ class KabupatenController extends Controller
     public function puskesmasTambahKirim(Request $request)
     {
         $kueri = (new KabupatenModel)->puskesmasTambahKirim($request, $this->id_kab());
-        if(count($kueri) > 0)
+        if($kueri > 0)
         {
             return redirect("/kabupaten/regional-puskesmas/dashboard")->with("sukses","Data Puskesmas berhasil disimpan");
         }

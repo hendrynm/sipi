@@ -108,7 +108,7 @@ class KabupatenModel extends Model
 
     public function akunEditKirim(Request $request, $id_kab)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
@@ -118,7 +118,6 @@ class KabupatenModel extends Model
                 "id_kabupaten" => $id_kab,
                 "id_puskesmas" => $request->idPuskesmas ?: null
             ]);
-        return 1;
     }
 
     public function akunGantiPass($id)
@@ -170,10 +169,9 @@ class KabupatenModel extends Model
 
     public function akunHapusKirim($id)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$id)
             ->delete();
-        return 1;
     }
 
     public function kampungDashboard($id_kab)

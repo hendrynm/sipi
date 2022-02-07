@@ -37,7 +37,7 @@
                     <th scope="col">Nama Anak</th>
                     <th scope="col">Tanggal Lahir</th>
                     <th scope="col">Usia</th>
-                    <th scope="col">Asal Kabupaten/Kota</th>
+                    <th scope="col">Posyandu</th>
                     <th scope="col">#</th>
                 </tr>
                 </thead>
@@ -74,7 +74,7 @@
                                 return tahun + " tahun " + (bulan+12) + " bulan"
                         },
                     },
-                    {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+                    {data: 'nama_posyandu', name: 'nama_posyandu'},
                     {data: 'id_anak', name:'action',
                         render: function ( data, type, row, meta ) {
                             return '<a href="./detail/' + data + '" class="btn btn-primary">Detail</a> <a href="./edit/'

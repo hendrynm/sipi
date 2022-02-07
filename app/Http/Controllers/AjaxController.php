@@ -45,4 +45,12 @@ class AjaxController extends Controller
 
         return response()->json($pos);
     }
+
+    public function getKabupatenById($id)
+    {
+        $kab = DB::table("kabupaten")
+            ->where("id_kabupaten",$id)->pluck('id_kabupaten', 'nama_kabupaten');
+
+        return response()->json($kab);
+    }
 }

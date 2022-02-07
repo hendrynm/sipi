@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="level">Akses Level :</label>
-                            <select class="custom-select" name="level" required>
+                            <select id="level" class="custom-select" name="level" required>
                                 <option selected value="">Pilih akses level</option>
                                 <option value="2">level 2 - Kabupaten/Kota</option>
                                 <option value="3">level 3 - Pukesmas</option>
@@ -42,18 +42,21 @@
                             <label for="kabupaten">Kabupaten :</label>
                             <select class="custom-select" id="kabupaten" name="kabupaten">
                                 <option selected disabled>-- Pilih Kabupaten --</option>
-                                
+
                             </select>
                         </div> --}}
 
-                        <div class="form-group">
-                            <label for="puskesmas">Puskesmas :</label>
-                            <select class="custom-select" id="puskesmas" name="puskesmas">
-                                <option selected disabled value="">-- Pilih Puskesmas --</option>
-                                <option value="1">Puskesmas X</option>
-                               
-                            </select>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="puskesmas">Puskesmas :</label>--}}
+{{--                            <select class="custom-select" id="puskesmas" name="puskesmas">--}}
+{{--                                <option selected disabled value="">-- Pilih Puskesmas --</option>--}}
+{{--                                <option value="1">Puskesmas X</option>--}}
+{{--                               --}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+                        <x-kabupaten-form-ajax-default :kabupatenDefault="Session::get('id_kabupaten')"></x-kabupaten-form-ajax-default>
+                        <x-puskesmas-form-ajax-default-kabupaten></x-puskesmas-form-ajax-default-kabupaten>
 
 
                         {{-- baruend --}}
@@ -76,3 +79,34 @@
     </div>
 @endsection
 </html>
+
+@section("js")
+    <script>
+        $(document).ready(function() {
+            $('select[id="level"]').on('change', function() {
+                var levelId = $(this).val();
+                levelId = parseInt(levelId);
+                console.log(levelId);
+                if(levelId === 1) {
+                    $('#kabupaten-form-ajax').hide();
+                    $('#puskesmas-form-ajax').hide();
+                    $('select[id="kabupaten"]').prop('required', false);
+                    $('select[id="puskesmas"]').prop('required', false);
+                }
+                if(levelId === 2) {
+                    $('#kabupaten-form-ajax').show();
+                    $('#puskesmas-form-ajax').hide();
+                    $('select[id="kabupaten"]').prop('required', true);
+                    $('select[id="puskesmas"]').prop('required', false);
+                }
+                if(levelId >= 3) {
+                    $('#kabupaten-form-ajax').show();
+                    $('#puskesmas-form-ajax').show();
+                    $('select[id="kabupaten"]').prop('required', true);
+                    $('select[id="puskesmas"]').prop('required', true);
+                }
+            });
+        });
+    </script>
+@endsection
+

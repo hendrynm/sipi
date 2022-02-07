@@ -106,11 +106,9 @@
                 @if($data->irl === 1)
                     <a href="./{{ $data->id_anak }}/cetak-irl" class="btn btn-primary">Cetak Sertifikat IRL</a>
                 @endif
-                <a href="./konfirmasi-hapus" class="btn btn-danger">Hapus Data Anak</a>
+                <a href="../konfirmasi/{{ $data->id_anak }}" class="btn btn-danger">Hapus Data Anak</a>
             </div>
         </div>
-
-
 
         <br>
         <br>

@@ -13,7 +13,7 @@
     <div class="jumbotron">
         <div class="row justify-content-center">
             <div class="col-md-6">
-               
+
                 <br>
                 <h2>Data Personal</h2>
                 <table class="table ">
@@ -63,8 +63,7 @@
                 <br>
 
                 <h2 class="konfirmasi">Apakah Anda yakin akan menghapus data ini?</h2>
-                {{-- ini masih belum jalan --}}
-                <a href="./hapus" class="btn btn-danger">Hapus</a>
+                <a href="../hapus/{{ $data->id_anak }}" class="btn btn-danger">Hapus</a>
             </div>
         </div>
 

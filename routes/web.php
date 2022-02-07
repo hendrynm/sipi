@@ -46,6 +46,7 @@ Route::prefix("/data-ajax")
     Route::get("/kabupaten", [AjaxController::class,"getListKabupaten"])->name('data-ajax.kabupaten');
     Route::get("/kampung/{id}", [AjaxController::class,"getListKampungByPuskesmasId"])->name('data-ajax.kampung');
     Route::get("/posyandu/{id}", [AjaxController::class,"getListPosyanduByKampungId"])->name('data-ajax.posyandu');
+    Route::get("/get-kabupaten/{id}", [AjaxController::class,"getKabupatenById"])->name('data-ajax.kabupaten');
     Route::get("/uci/puskesmas/{year}/{kabupaten}/{puskesmas}/{quarter}", [PuskesmasCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.puskesmas');
     Route::get("/uci/kabupaten/{year}/{kabupaten}/{quarter}", [KabupatenCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.kabupaten');
     Route::get("/uci/kabupaten/{year}/{quarter}", [ProvinsiCapaianController::class,"getListUciByQuarterId"])->name('data-ajax.uci.provinsi');
@@ -295,7 +296,8 @@ Route::prefix("/puskesmas")
             Route::get("/detail/{id}",          [PuskesmasController::class,"dataDetail"]);
             Route::get("/detail/{id}/cetak-idl",[PuskesmasController::class,"dataCetakIDL"]);
             Route::get("/detail/{id}/cetak-irl",[PuskesmasController::class,"dataCetakIRL"]);
-            Route::get("/hapus/{id}",           [EksternalController::class,"dataHapus"]);
+            Route::get("/konfirmasi/{id}",      [PuskesmasController::class,"dataKonfirmasi"]);
+            Route::get("/hapus/{id}",           [PuskesmasController::class,"dataHapus"]);
             Route::get("/edit/{id}",            [PuskesmasController::class,"dataEdit"]);
             Route::post("/edit/kirim",          [PuskesmasController::class,"dataEditKirim"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);
@@ -339,9 +341,10 @@ Route::prefix("/puskesmas")
         Route::prefix("posyandu")->group(function ()
         {
             Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"])->name('puskesmas.posyandu.dashboard');
-            Route::get("/belum",                [PuskesmasController::class,"posBelumImunisasi"]);
-            Route::get("/belum/{id}",           [PuskesmasController::class,"posBelumImunisasiCari"]);
-            Route::get("/belum/cetak",          [PuskesmasController::class,"posBelumImunisasiCetak"]);
+            Route::post("/cari",                [PuskesmasController::class,"posLaporanCari"]);
+            Route::get("/laporan/{id}",         [PuskesmasController::class,"posLaporan"]);
+            Route::get("/laporan/{id}/nama",    [PuskesmasController::class,"posLaporanNamaAntigen"]);
+            Route::get("/laporan/cetak",        [PuskesmasController::class,"posLaporanCetak"]);
             Route::post("/pilih",               [PuskesmasController::class,"posMulaiPilih"]);
             Route::get("/mulai/{id}",           [PuskesmasController::class,"posMulai"]);
             Route::get("/tambah",               [PuskesmasController::class,"dataTambah"]);

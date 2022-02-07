@@ -11,6 +11,13 @@ use function Symfony\Component\String\u;
 
 class PuskesmasModel extends Model
 {
+    public function namaAntigen($id)
+    {
+        return DB::table("antigen")
+            ->where("id_antigen","=",$id)
+            ->first();
+    }
+
     public function cekIDL($id)
     {
         $kueri = DB::table("imunisasi")
@@ -104,7 +111,7 @@ class PuskesmasModel extends Model
                         break 2;
                     }
                     break;
-                case(18):
+                case(17):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 5;
@@ -170,6 +177,13 @@ class PuskesmasModel extends Model
         }
     }
 
+    public function daftarAntigen()
+    {
+        return DB::table("antigen")
+            ->select("id_antigen","nama_antigen")
+            ->get();
+    }
+
     public function daftarPuskesmas($id_pus)
     {
         return DB::table("puskesmas")
@@ -210,10 +224,9 @@ class PuskesmasModel extends Model
     public function dataDashboard($id_pus)
     {
         return DB::table("data_individu")
-            ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
-            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
-            ->where("puskesmas.id_puskesmas","=",$id_pus)
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->where("id_puskesmas","=",$id_pus)
             ->get();
     }
 
@@ -267,7 +280,7 @@ class PuskesmasModel extends Model
 
     public function dataEditKirim(Request $request)
     {
-        DB::table("data_individu")
+        return DB::table("data_individu")
             ->where("id_anak","=",$request->idAnak)
             ->update([
                 "nama_lengkap" => $request->namaLengkap,
@@ -285,38 +298,71 @@ class PuskesmasModel extends Model
 
     public function dataTambahKirim(Request $request)
     {
-        $kueri = DB::table("data_individu")
-            ->insert([
-                "nama_lengkap" => $request->namaLengkap,
-                "nama_ibu" => $request->namaIbuKandung,
-                "nik" => $request->nik,
-                "tanggal_lahir" => $request->tanggalLahir,
-                "jenis_kelamin" => $request->jenisKelamin,
-                "no_hp" => $request->noHP,
-                "alamat" => $request->alamat,
-                "id_posyandu" => $request->posyandu,
-                "id_kampung" => $request->kampung,
-                "status_hamil" => $request->isHamil ?: null,
-                "tanggal_hamil" => $request->tanggalKehamilan ?: null
-            ]);
+        $cek = DB::table("data_individu")
+            ->where("nama_ibu","=",$request->namaIbuKandung)
+            ->where("jenis_kelamin","=",$request->jenisKelamin)
+            ->where("tanggal_lahir","=",$request->tanggalLahir)
+            ->get();
+        if(count($cek) === 0)
+        {
+            $kueri = DB::table("data_individu")
+                ->insert([
+                    "nama_lengkap" => $request->namaLengkap,
+                    "nama_ibu" => $request->namaIbuKandung,
+                    "nik" => $request->nik,
+                    "tanggal_lahir" => $request->tanggalLahir,
+                    "jenis_kelamin" => $request->jenisKelamin,
+                    "no_hp" => $request->noHP,
+                    "alamat" => $request->alamat,
+                    "id_posyandu" => $request->posyandu,
+                    "id_kampung" => $request->kampung,
+                    "status_hamil" => $request->isHamil ?: null,
+                    "tanggal_hamil" => $request->tanggalKehamilan ?: null
+                ]);
+            if($kueri > 0)
+            {
+                $id = DB::table("data_individu")
+                    ->orderByDesc("id_anak")
+                    ->first();
+                $data = DB::table("antigen")
+                    ->get();
+                foreach ($data as $d)
+                {
+                    DB::table("imunisasi")
+                        ->insert([
+                            "id_anak" => $id->id_anak,
+                            "id_antigen" => $d->id_antigen,
+                            "status" => "belum"
+                        ]);
+                }
+                return $id->id_anak;
+            }
+            return 0;
+        }
+        return -1;
+    }
+
+    public function dataKonfirmasi($id)
+    {
+        return DB::table("data_individu")
+            ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
+            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->where("id_anak","=",$id)
+            ->first();
+    }
+
+    public function dataHapus($id)
+    {
+        $kueri = DB::table("imunisasi")
+            ->where("id_anak","=",$id)
+            ->delete();
         if($kueri > 0)
         {
-            $id = DB::table("data_individu")
-                ->orderByDesc("id_anak")
-                ->first();
-            $data = DB::table("antigen")
-                ->get();
-
-            foreach ($data as $d)
-            {
-                DB::table("imunisasi")
-                    ->insert([
-                        "id_anak" => $id->id_anak,
-                        "id_antigen" => $d->id_antigen,
-                        "status" => "belum"
-                    ]);
-            }
-            return $id;
+            return DB::table("data_individu")
+                ->where("id_anak","=",$id)
+                ->delete();
         }
         return 0;
     }
@@ -339,15 +385,17 @@ class PuskesmasModel extends Model
             ->first();
     }
 
-    public function akunEditKirim(Request $request)
+    public function akunEditKirim(Request $request, $id_pus, $id_kab)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->update([
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
-                "level" => $request->level
+                "level" => $request->level,
+                "id_kabupaten" => $id_kab,
+                "id_puskesmas" => $id_pus
             ]);
     }
 
@@ -369,32 +417,36 @@ class PuskesmasModel extends Model
             ($request->passwordBaru == $request->passwordBaru2)
         )
         {
-            DB::table("user")
+            return DB::table("user")
                 ->where("id_user","=",$request->idUser)
                 ->update([
                     "password" => Hash::make($request->passwordBaru),
                 ]);
         }
+        return 0;
     }
 
-    public function akunTambahKirim(Request $request)
+    public function akunTambahKirim(Request $request, $id_pus, $id_kab)
     {
-        if($request->password === $request->password2)
+        if($request->password == $request->password2)
         {
-            DB::table("user")
+            return DB::table("user")
                 ->insert([
                     "nama" => $request->nama,
                     "username" => $request->username,
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
                     "level" => $request->level,
+                    "id_kabupaten" => $id_kab,
+                    "id_puskesmas" => $id_pus
                 ]);
         }
+        return 0;
     }
 
     public function akunHapusKirim($id)
     {
-        DB::table("user")
+        return DB::table("user")
             ->where("id_user","=",$id)
             ->delete();
     }
@@ -415,7 +467,7 @@ class PuskesmasModel extends Model
 
     public function kampungEditKirim(Request $request)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->where("id_kampung","=",$request->idKampung)
             ->update([
                 "nama_kampung" => $request->namaKampung,
@@ -425,7 +477,7 @@ class PuskesmasModel extends Model
 
     public function kampungTambahKirim(Request $request, $id_pus)
     {
-        DB::table("kampung")
+        return DB::table("kampung")
             ->insert([
                 "nama_kampung" => $request->namaKampung,
                 "kode_kampung" => $request->kodeRegion,
@@ -493,7 +545,7 @@ class PuskesmasModel extends Model
 
     public function posyanduEditKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->where("id_posyandu","=",$request->idPosyandu)
             ->update([
                 "nama_posyandu" => $request->namaPosyandu,
@@ -504,7 +556,7 @@ class PuskesmasModel extends Model
 
     public function posyanduTambahKirim(Request $request)
     {
-        DB::table("posyandu")
+        return DB::table("posyandu")
             ->insert([
                 "nama_posyandu" => $request->namaPosyandu,
                 "alamat_posyandu" => $request->alamatLengkap,
@@ -512,27 +564,14 @@ class PuskesmasModel extends Model
             ]);
     }
 
-    public function posBelumImunisasi($id, $id_pus)
+    public function posLaporan($id, $id_pus)
     {
-        if($id == -1)
-        {
-            return DB::table("data_individu")
-                ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-                ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
-                ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
-                ->where("id_puskesmas","=",$id_pus)
-                ->where("status","=","belum")
-                ->groupBy("data_individu.id_anak")
-                ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
-                ->get();
-        }
         return DB::table("data_individu")
             ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
-            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
-            ->where("id_posyandu","=",$id)
-            ->where("status","=","belum")
-            ->groupBy("data_individu.id_anak")
-            ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->where("id_puskesmas","=",$id_pus)
+            ->where("id_antigen","=",$id)
             ->get();
     }
 
@@ -566,7 +605,7 @@ class PuskesmasModel extends Model
 
     public function posEntriKirim(Request $request)
     {
-        DB::table("imunisasi")
+        return DB::table("imunisasi")
             ->where("id_anak","=",$request->idAnak)
             ->where("id_antigen","=",$request->antigen)
             ->update([
@@ -574,10 +613,5 @@ class PuskesmasModel extends Model
                 "tempat_imunisasi" => $request->lokasi,
                 "status" => "sudah"
             ]);
-        $idl = DB::table("imunisasi")
-            ->where("id_anak","=",$request->idAnak)
-            ->get();
-        $idl_cek = 1;
-
     }
 }

@@ -12,18 +12,22 @@
         });
 
         $(document).ready(function() {
+            var kabupatenDefault = {{$kabupatenDefault}};
+            console.log(kabupatenDefault);
             $('select[id="kabupaten"]').selectpicker();
             $('select[id="kabupaten"]').empty();
             $.ajax({
-                url: '/data-ajax/kabupaten',
+                url: '/data-ajax/get-kabupaten/' + kabupatenDefault,
                 type: "GET",
                 dataType: "json",
                 success:function(data) {
                     console.log(data);
                     $('select[id="kabupaten"]').empty();
+                    $('select[id="kabupaten"]').append('<option></option>');
                     $.each(data, function(key, value) {
                         $('select[id="kabupaten"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                     });
+
                     $('select[id="kabupaten"]').selectpicker('refresh');
                 }
             });
@@ -46,6 +50,7 @@
                             $('select[id="puskesmas"]').append('<option></option>');
                             $.each(data, function(key, value) {
                                 $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+
                             });
                             $('select[id="puskesmas"]').selectpicker('refresh');
                         }

@@ -103,7 +103,7 @@ class EksternalModel extends Model
                         break 2;
                     }
                     break;
-                case(18):
+                case(17):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 5;
