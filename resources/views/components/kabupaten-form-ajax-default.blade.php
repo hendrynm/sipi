@@ -30,6 +30,7 @@
         });
     </script>
     <script>
+        var puskesmasDefault = {{$puskesmasDefault}};
         $(document).ready(function() {
             $('select[id="puskesmas"]').selectpicker();
             $('select[id="kabupaten"]').on('change', function() {
@@ -45,7 +46,11 @@
                             $('select[id="puskesmas"]').empty();
                             $('select[id="puskesmas"]').append('<option disabled></option>');
                             $.each(data, function(key, value) {
-                                $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                                if(value === parseInt(puskesmasDefault)) {
+                                    $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'" selected>'+ key +'</option>');
+                                } else {
+                                    $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                                }
                             });
                             $('select[id="puskesmas"]').selectpicker('refresh');
                         }

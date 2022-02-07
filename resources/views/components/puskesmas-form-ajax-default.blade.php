@@ -7,6 +7,7 @@
 
 @push('scripts')
     <script>
+        var puskesmasDefault = {{$puskesmasDefault}};
         $(document).ready(function() {
             $('select[id="puskesmas"]').selectpicker();
             $.ajax({
@@ -16,7 +17,11 @@
                 success:function(data) {
                     console.log(data);
                     $.each(data, function(key, value) {
-                        $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                        if(value === parseInt(puskesmasDefault)) {
+                            $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'" selected>'+ key +'</option>');
+                        } else {
+                            $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                        }
                     });
                     $('select[id="puskesmas"]').selectpicker('refresh');
                 }
