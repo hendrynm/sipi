@@ -56,22 +56,22 @@
                         </div>
                         {{-- ini untuk input kampung --}}
 
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="kampung">Kampung : </label>
                             <select class="custom-select" id="kampung" name="kampung" required>
                                 <option selected disabled value="">Pilih kampung</option>
-                                @foreach($data as $data)
-                                    <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
+                                @foreach($data3 as $da)
+                                    <option value="{{ $da->id_kampung }}">{{ $da->nama_kampung }}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
-                            <select class="custom-select" id="posyandu" name="posyandu">
-                                <option disabled>Pilih Posyandu</option>
-                                @foreach($data2 as $data2)
-                                    <option value="{{ $data2->id_posyandu }}" {{ $data->id_posyandu === $data2->id_posyandu ? "selected" : "" }}>{{ $data2->nama_posyandu }}</option>
-                                @endforeach
+                            <select class="custom-select" id="posyandu" name="posyandu" required>
+                                <option selected disabled value="">Pilih Posyandu</option>
+{{--                                @foreach($data2 as $data2)--}}
+{{--                                    <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         </div>
 
@@ -107,3 +107,33 @@
     </div>
 @endsection
 </html>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('select[id="posyandu"]').selectpicker();
+            $('select[id="kampung"]').on('change', function() {
+                $('select[id="posyandu"]').empty();
+                var cityID = $(this).val();
+                if(cityID) {
+                    $.ajax({
+                        url: '/data-ajax/posyandu/' + cityID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            console.log(data);
+                            $('select[id="posyandu"]').empty();
+                            $('select[id="posyandu"]').append('<option></option>');
+                            $.each(data, function(key, value) {
+                                $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                            });
+                            $('select[id="posyandu"]').selectpicker('refresh');
+                        }
+                    });
+                }else{
+                    $('select[id="posyandu"]').empty();
+                }
+            });
+        });
+    </script>
+@endpush

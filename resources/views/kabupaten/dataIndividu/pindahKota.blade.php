@@ -152,7 +152,7 @@
                         success:function(data) {
                             console.log(data);
                             $('select[id="posyandu"]').empty();
-                            $('select[id="posyandu"]').append('<option disabled></option>');
+                            $('select[id="posyandu"]').append('<option></option>');
                             $.each(data, function(key, value) {
                                 $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                             });

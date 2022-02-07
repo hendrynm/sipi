@@ -160,7 +160,7 @@ class KabupatenModel extends Model
                     "password" => Hash::make($request->password),
                     "level" => $request->level,
                     "id_kabupaten" => $id_kab,
-                    "id_puskesmas" => $request->idPuskesmas ?: null
+                    "id_puskesmas" => $request->puskesmas ?: null
                 ]);
             return 1;
         }

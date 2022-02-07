@@ -85,7 +85,8 @@ class PuskesmasController extends Controller
     {
         $kueri = (new PuskesmasModel)->dataEdit($id);
         $kueri2 = (new PuskesmasModel)->daftarPosyandu($this->id_pus());
-        return view("puskesmas.dataIndividu.editDataIndividu",["data"=>$kueri,"data2"=>$kueri2]);
+        $kueri3 = (new PuskesmasModel)->daftarKampung($this->id_pus());
+        return view("puskesmas.dataIndividu.editDataIndividu",["data"=>$kueri,"data2"=>$kueri2, "data3"=>$kueri3]);
     }
 
     public function dataEditKirim(Request $request)
