@@ -77,6 +77,14 @@
 @section("js")
     <script>
         $(document).ready(function() {
+            @if(($data->id_user === session()->get("id_user")))
+            console.log("1")
+            $('#kabupaten-form-ajax').hide();
+            $('#puskesmas-form-ajax').hide();
+            $('select[id="kabupaten"]').prop('required', false);
+            $('select[id="puskesmas"]').prop('required', false);
+            @endif
+
             $('select[id="level"]').on('change', function() {
                 var levelId = $(this).val();
                 levelId = parseInt(levelId);

@@ -192,8 +192,8 @@ class ProvinsiModel extends Model
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
                     "level" => $request->level,
-                    "id_kabupaten" => $request->idKabupaten ?: null,
-                    "id_puskesmas" => $request->idPuskesmas ?: null
+                    "id_kabupaten" => $request->kabupaten ?: null,
+                    "id_puskesmas" => $request->puskesmas ?: null
                 ]);
             return 1;
         }
