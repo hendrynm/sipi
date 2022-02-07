@@ -5,6 +5,17 @@
 <html lang="id">
 @section("konten")
     <div class="container">
+     
+    @if(session()->has("gagal"))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session()->get("gagal") }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Tambah Data Anak</h1>
@@ -49,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kampung">Kampung : </label>
-                            <select class="custom-select" id="kampung" name="kampung" required>
+                            <select class="custom-select form-control" id="kampung" name="kampung" required>
                                 <option selected disabled value="">Pilih kampung</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
@@ -58,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
-                            <select class="custom-select" id="posyandu" name="posyandu" required>
+                            <select class="custom-select form-control" id="posyandu" name="posyandu" required>
                                 <option selected disabled value="">Pilih Posyandu</option>
                                 @foreach($data2 as $data2)
                                     <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>
@@ -114,7 +125,7 @@
                         success:function(data) {
                             console.log(data);
                             $('select[id="posyandu"]').empty();
-                            $('select[id="posyandu"]').append('<option disabled></option>');
+                            $('select[id="posyandu"]').append('<option value=""></option>');
                             $.each(data, function(key, value) {
                                 $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                             });
