@@ -11,6 +11,13 @@ use function Symfony\Component\String\u;
 
 class PuskesmasModel extends Model
 {
+    public function namaAntigen($id)
+    {
+        return DB::table("antigen")
+            ->where("id_antigen","=",$id)
+            ->first();
+    }
+
     public function cekIDL($id)
     {
         $kueri = DB::table("imunisasi")
@@ -217,10 +224,9 @@ class PuskesmasModel extends Model
     public function dataDashboard($id_pus)
     {
         return DB::table("data_individu")
-            ->join("kampung","data_individu.id_kampung","=","kampung.id_kampung")
-            ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
-            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
-            ->where("puskesmas.id_puskesmas","=",$id_pus)
+            ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
+            ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->where("id_puskesmas","=",$id_pus)
             ->get();
     }
 
@@ -379,7 +385,7 @@ class PuskesmasModel extends Model
             ->first();
     }
 
-    public function akunEditKirim(Request $request)
+    public function akunEditKirim(Request $request, $id_pus, $id_kab)
     {
         return DB::table("user")
             ->where("id_user","=",$request->idUser)
@@ -387,7 +393,9 @@ class PuskesmasModel extends Model
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
-                "level" => $request->level
+                "level" => $request->level,
+                "id_kabupaten" => $id_kab,
+                "id_puskesmas" => $id_pus
             ]);
     }
 
@@ -418,9 +426,9 @@ class PuskesmasModel extends Model
         return 0;
     }
 
-    public function akunTambahKirim(Request $request)
+    public function akunTambahKirim(Request $request, $id_pus, $id_kab)
     {
-        if($request->password === $request->password2)
+        if($request->password == $request->password2)
         {
             return DB::table("user")
                 ->insert([
@@ -429,6 +437,8 @@ class PuskesmasModel extends Model
                     "email" => $request->email,
                     "password" => Hash::make($request->password),
                     "level" => $request->level,
+                    "id_kabupaten" => $id_kab,
+                    "id_puskesmas" => $id_pus
                 ]);
         }
         return 0;

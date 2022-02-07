@@ -54,6 +54,17 @@
                             <label for="alamat">Alamat Tinggal: </label>
                             <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $data->alamat }}">
                         </div>
+                        {{-- ini untuk input kampung --}}
+
+                        {{-- <div class="form-group">
+                            <label for="kampung">Kampung : </label>
+                            <select class="custom-select" id="kampung" name="kampung" required>
+                                <option selected disabled value="">Pilih kampung</option>
+                                @foreach($data as $data)
+                                    <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
+                                @endforeach
+                            </select>
+                        </div> --}}
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
                             <select class="custom-select" id="posyandu" name="posyandu">

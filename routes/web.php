@@ -343,6 +343,7 @@ Route::prefix("/puskesmas")
             Route::get("/dashboard",            [PuskesmasController::class,"posDashboard"])->name('puskesmas.posyandu.dashboard');
             Route::post("/cari",                [PuskesmasController::class,"posLaporanCari"]);
             Route::get("/laporan/{id}",         [PuskesmasController::class,"posLaporan"]);
+            Route::get("/laporan/{id}/nama",    [PuskesmasController::class,"posLaporanNamaAntigen"]);
             Route::get("/laporan/cetak",        [PuskesmasController::class,"posLaporanCetak"]);
             Route::post("/pilih",               [PuskesmasController::class,"posMulaiPilih"]);
             Route::get("/mulai/{id}",           [PuskesmasController::class,"posMulai"]);

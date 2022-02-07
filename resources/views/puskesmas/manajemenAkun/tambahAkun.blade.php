@@ -34,10 +34,6 @@
                                 <option value="4">Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                             </select>
                         </div>
-                        {{-- baru --}}
-
-                        {{-- baruend --}}
-
 
                         <div class="form-group">
                             <label for="password">Password</label>

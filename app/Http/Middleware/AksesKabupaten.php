@@ -9,7 +9,7 @@ class AksesKabupaten
 {
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has("id_kabupaten"))
+        if(session()->has("is_kab"))
         {
             return $next($request);
         }

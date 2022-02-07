@@ -25,13 +25,11 @@
 
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
-        <h1>Dashboard Majemen Akun {{ $data[0]->nama_puskesmas }}</h1>
+        <h1>Dashboard Majemen Akun</h1>
 
 
         <div class="jumbotron">
-            <h2>Akun Level 1 : Provinsi Papua barat</h2>
-            <p>
-
+            <h2>Akun Level 3 : {{ $data[0]->nama_puskesmas }}</h2>
             </p>
             <a href="./edit/{{ session()->get("id_user") }}" class="btn btn-primary">Edit Akun Utama</a>
             <a href="./ganti-pass/{{ session()->get("id_user") }}" class="btn btn-primary">Ganti Password</a>
