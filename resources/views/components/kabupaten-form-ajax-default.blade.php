@@ -12,25 +12,28 @@
         });
 
         $(document).ready(function() {
+            var kabupatenDefault = {{$kabupatenDefault}};
+            console.log(kabupatenDefault);
             $('select[id="kabupaten"]').selectpicker();
             $('select[id="kabupaten"]').empty();
             $.ajax({
-                url: '/data-ajax/kabupaten',
+                url: '/data-ajax/get-kabupaten/' + kabupatenDefault,
                 type: "GET",
                 dataType: "json",
                 success:function(data) {
                     console.log(data);
                     $('select[id="kabupaten"]').empty();
+                    $('select[id="kabupaten"]').append('<option></option>');
                     $.each(data, function(key, value) {
                         $('select[id="kabupaten"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                     });
+
                     $('select[id="kabupaten"]').selectpicker('refresh');
                 }
             });
         });
     </script>
     <script>
-        var puskesmasDefault = {{$puskesmasDefault}};
         $(document).ready(function() {
             $('select[id="puskesmas"]').selectpicker();
             $('select[id="kabupaten"]').on('change', function() {
@@ -44,13 +47,10 @@
                         success:function(data) {
                             console.log(data);
                             $('select[id="puskesmas"]').empty();
-                            $('select[id="puskesmas"]').append('<option disabled></option>');
+                            $('select[id="puskesmas"]').append('<option></option>');
                             $.each(data, function(key, value) {
-                                if(value === parseInt(puskesmasDefault)) {
-                                    $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'" selected>'+ key +'</option>');
-                                } else {
-                                    $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
-                                }
+                                $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+
                             });
                             $('select[id="puskesmas"]').selectpicker('refresh');
                         }

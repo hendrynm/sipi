@@ -10,7 +10,7 @@
         $(document).ready(function() {
             $('select[id="puskesmas"]').selectpicker();
             $.ajax({
-                url: '/data-ajax/puskesmas/all',
+                url: '/data-ajax/puskesmas/' + $('select[id="kabupaten"]').val(),
                 type: "GET",
                 dataType: "json",
                 success:function(data) {

@@ -43,7 +43,7 @@
                         success:function(data) {
                             console.log(data);
                             $('select[id="puskesmas"]').empty();
-                            $('select[id="puskesmas"]').append('<option disabled></option>');
+                            $('select[id="puskesmas"]').append('<option></option>');
                             $.each(data, function(key, value) {
                                 $('select[id="puskesmas"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                             });
