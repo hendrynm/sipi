@@ -5098,6 +5098,7 @@ ORDER BY kampung.id_kampung
             $kabupatenForm = $id_kabupaten;
             $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
             $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
         }
 
         $puskesmas = [$puskesmas[$puskesmasForm]];

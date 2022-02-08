@@ -21,6 +21,7 @@
                         dataType: "json",
                         success:function(data) {
                             $('select[name="puskesmasForm"]').empty();
+                            $('select[id="puskesmasForm"]').append('<option></option>');
                             $.each(data, function(key, value) {
                                 $('select[name="puskesmasForm"]').append('<option value="'+ value +'">'+ key +'</option>');
                             });

@@ -10,7 +10,9 @@
 @push('scripts')
     <script>
         $(function() {
-            $('select[name="kabupatenForm"]').selectpicker();
+            $('select[id="kabupatenForm"]').append('<option></option>');
+            $('select[id="kabupatenForm"]').selectpicker();
+            $('select[id="kabupatenForm"]').selectpicker('refresh');
         });
     </script>
 @endpush
