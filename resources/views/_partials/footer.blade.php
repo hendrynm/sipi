@@ -1,16 +1,18 @@
 <div class="container-fluid footer">
-        <div class="row justify-content-center align-content-center">
-            <div class="col-md-2">
+        <div class="row justify-content-center">
+            {{-- <div class="col-md-2">
                 <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" width="150" height="150"
                     alt="">
             </div>
-
             <div class="col-md-2">
                 <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-pabar.png")}}" width="150" height="150"
                     alt="">
             </div>
             <div class="col-md-2">
                 <img class="img-fluidd-block m-auto" src="{{ asset("/images/app.png")}}" width="150" height="150" alt="">
+            </div> --}}
+            <div class="col-md-8 self-align-center">
+                <img class="img-fluid d-block m-auto" src="{{ asset("/images/footer2.png")}}" height="700" width="700" alt="">
             </div>
 
         </div>

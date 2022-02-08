@@ -1,8 +1,7 @@
 <nav class="navbar navbar-light bg-blue">
         <a class="navbar-brand" href="#">
             <div class="hide">
-
-                <img class="img-fluid" src="{{ asset("/images/logo-kemenkes-header.png")}}" width="120" height="120" alt="">
+                <img class="img-fluid" src="{{ asset("/images/logo-pabar-header.png")}}" width="100" height="100" alt="">
             </div>
         </a>
         <a class="navbar-brand" href="#">
@@ -10,8 +9,8 @@
         </a>
         <a class="navbar-brand" href="#">
             <div class="hide">
-
-                <img class="img-fluid" src="{{ asset("/images/logo-pabar-header.png")}}" width="80" height="80" alt="">
+                <img class="img-fluid" src="{{ asset("/images/logo-kemenkes-header.png")}}" width="120" height="120" alt="">
+                
             </div>
         </a>
 </nav>
