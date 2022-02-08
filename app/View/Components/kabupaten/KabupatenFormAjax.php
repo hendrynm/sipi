@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class KabupatenFormAjax extends Component
 {
+    public $defaultKabupaten;
     /**
      * Create a new component instance.
      *
@@ -13,7 +14,7 @@ class KabupatenFormAjax extends Component
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

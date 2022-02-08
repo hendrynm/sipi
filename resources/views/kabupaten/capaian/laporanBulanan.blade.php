@@ -18,7 +18,12 @@
                 <div class="col-md-5">
                     <form action="./laporanBulanan" method="get">
                         <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                        <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
+                        @if (Session::get('level') == 1)
+                            <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
+                        @elseif(Session::get('level') == 2)
+                            <x-kabupaten.kabupaten-form-ajax></x-kabupaten.kabupaten-form-ajax>
+                        @endif
+
                         <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
                         <button class="btn btn-primary">Submit</button>
                     </form>

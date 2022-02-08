@@ -20,6 +20,14 @@ class KabupatenCapaianController extends Controller
         $kabupatenForm = $request->kabupaten ?: 1;
         $puskesmasForm = $request->puskesmas ?: 1;
 
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmas ?: $puskesmas[0]->id_puskesmas;
+        }
+
 
 
         // bulan January
@@ -2386,7 +2394,7 @@ class KabupatenCapaianController extends Controller
 
 
 
-        return view('provinsi.capaian.laporanBulanan', ["query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "tahunForm" => $tahunForm, "kabupatenForm" => $kabupatenForm, 'puskesmasForm'=>$puskesmasForm]);
+        return view('kabupaten.capaian.laporanBulanan', ["query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "tahunForm" => $tahunForm, "kabupatenForm" => $kabupatenForm, 'puskesmasForm'=>$puskesmasForm]);
     }
 
     public function laporanBulananKumulatif(Request $request) {
@@ -2396,7 +2404,13 @@ class KabupatenCapaianController extends Controller
         $kabupatenForm = $request->kabupaten ?: 1;
         $puskesmasForm = $request->puskesmas ?: 1;
 
-
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmas ?: $puskesmas[0]->id_puskesmas;
+        }
 
 
         // bulan January
@@ -4782,7 +4796,7 @@ ORDER BY kampung.id_kampung
 
 
 
-        return view('provinsi.capaian.laporanBulananKumulatif', ["query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "tahunForm" => $tahunForm, "kabupatenForm" => $kabupatenForm, 'puskesmasForm'=>$puskesmasForm]);
+        return view('kabupaten.capaian.laporanBulananKumulatif', ["query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "tahunForm" => $tahunForm, "kabupatenForm" => $kabupatenForm, 'puskesmasForm'=>$puskesmasForm]);
     }
 
     public function kampung() {
