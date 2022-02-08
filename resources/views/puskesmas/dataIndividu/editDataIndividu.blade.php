@@ -61,7 +61,7 @@
                             <select class="custom-select" id="kampung" name="kampung" required>
                                 <option selected disabled value="">Pilih kampung</option>
                                 @foreach($data3 as $da)
-                                    <option value="{{ $da->id_kampung }}">{{ $da->nama_kampung }}</option>
+                                    <option value="{{ $da->id_kampung }}" {{$da->id_kampung == $data->id_kampung ? 'selected' : ''}}>{{ $da->nama_kampung }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,9 +69,9 @@
                             <label for="posyandu">Posyandu : </label>
                             <select class="custom-select" id="posyandu" name="posyandu" required>
                                 <option selected disabled value="">Pilih Posyandu</option>
-{{--                                @foreach($data2 as $data2)--}}
-{{--                                    <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>--}}
-{{--                                @endforeach--}}
+                                @foreach($data2 as $da2)
+                                    <option value="{{ $da2->id_posyandu }}" {{$da2->id_posyandu == $data->id_posyandu ? 'selected' : ''}}>{{ $da2->nama_posyandu }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -127,6 +127,8 @@
                             $.each(data, function(key, value) {
                                 $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                             });
+                            $('select[id="posyandu"]').selectpicker('refresh');
+                            $('select[id="posyandu"]').selectpicker('val', {{$data->id_posyandu}});
                             $('select[id="posyandu"]').selectpicker('refresh');
                         }
                     });

@@ -20,7 +20,7 @@
                             <input type="text" class="form-control" name="namaPosyandu" value="{{ $data->nama_posyandu }}">
                         </div>
                         {{-- perbaiki dari sini ya , filter select--}}
-                        <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
+                        <x-kabupaten.puskesmas-form-ajax :defaultPuskesmas="$data->id_puskesmas"></x-kabupaten.puskesmas-form-ajax>
                         <div class="form-group">
                             <label for="kampung">Nama Kampung :</label>
                             <select class="form-control custom-select" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true">
