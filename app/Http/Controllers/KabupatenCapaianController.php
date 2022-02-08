@@ -5103,7 +5103,7 @@ ORDER BY kampung.id_kampung
 
         $antigens = (new AntigenModel)->getListAntigen();
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
-
+        $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
 
         $level = $request->session()->get('level');
@@ -5114,8 +5114,6 @@ ORDER BY kampung.id_kampung
             $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
             $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
         }
-
-        $puskesmas = [$puskesmas[$puskesmasForm]];
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("

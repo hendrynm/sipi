@@ -4799,6 +4799,26 @@ ORDER BY kampung.id_kampung
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
 
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
+
+
 
         $query = DB::select("
             SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -5136,6 +5156,25 @@ ORDER BY kampung.id_kampung
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("
@@ -7270,6 +7309,25 @@ ORDER BY kampung.id_kampung
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
 
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
+
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
@@ -7365,6 +7423,25 @@ ORDER BY kampung.id_kampung
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
 
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
+
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
           puskesmas.nama_puskesmas as puskesmas,
@@ -7454,6 +7531,25 @@ ORDER BY kampung.id_kampung
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -7569,6 +7665,25 @@ ORDER BY kampung.id_kampung
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
         $puskesmas = [$puskesmas[$puskesmasForm]];
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+            $puskesmasForm = $request->puskesmasForm ?: $puskesmas[0]->id_puskesmas;
+        }
+
+
+        if ($level == 3) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $id_puskesmas = $request->session()->get('id_puskesmas');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasById($id_puskesmas);
+            $puskesmasForm = $id_puskesmas;
+        }
 
         return view('puskesmas.capaian.capaianUCI', ['tahunForm' => $tahunForm, 'kabupatenForm' => $kabupatenForm, 'kabupatens' => $kabupatens, 'puskesmas' => $puskesmas, 'puskesmasForm' => $puskesmasForm]);
     }

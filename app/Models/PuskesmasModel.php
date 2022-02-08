@@ -601,6 +601,14 @@ class PuskesmasModel extends Model
             ->get();
     }
 
+    public function getListPuskesmasById($id)
+    {
+        return DB::table("puskesmas")
+            ->where("id_puskesmas","=",$id)
+            ->select("id_puskesmas","nama_puskesmas")
+            ->get();
+    }
+
     public function posEntri($id)
     {
         return DB::table("data_individu")
