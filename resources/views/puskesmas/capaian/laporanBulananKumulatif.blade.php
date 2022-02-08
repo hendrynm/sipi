@@ -16,22 +16,10 @@
             {{-- help buatin form ini thx --}}
             <div class="row">
                 <div class="col-md-5">
-                    <form action="./laporanBulanan" method="get">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group">
-                            <label for="tahunForm">Tahun</label>
-                            <input type="text" class="form-control" id="tahunForm" name="tahunForm">
-                        </div>
-                        <div class="form-group">
-                            <label for="kabupatenForm">Kabupaten</label>
-                            <input type="text" class="form-control" id="kabupatenForm" name="kabupatenForm">
-                        </div>
-                        <div class="form-group">
-                            <label for="puskesmasForm">Puskesmas</label>
-                            <input type="text" class="form-control" id="puskesmasForm" name="puskesmasForm">
-                        </div>
-
-
+                    <form action="./laporanBulananKumulatif" method="get">
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
+                        <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
                         <button class="btn btn-primary">Submit</button>
                     </form>
 
