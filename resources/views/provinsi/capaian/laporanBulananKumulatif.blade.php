@@ -16,7 +16,7 @@
             {{-- help buatin form ini thx --}}
             <div class="row">
                 <div class="col-md-5">
-                    <form action="./laporanBulanan" method="get">
+                    <form action="./laporanBulananKumulatif" method="get">
                         <x-year-form :tahunForm="$tahunForm"></x-year-form>
                         <x-kabupaten-form-ajax></x-kabupaten-form-ajax>
                         <x-puskesmas-form-ajax></x-puskesmas-form-ajax>
