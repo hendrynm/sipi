@@ -60,7 +60,7 @@
 
 
                     <h2>Data Pindah</h2>
-                    <form action="../kirim" method="post">
+                    <form action="./kirim" method="post">
                         @csrf
                         <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
                         {{-- perbaiki dari sini ya, filter selectna --}}

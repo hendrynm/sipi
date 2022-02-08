@@ -303,7 +303,7 @@ class PuskesmasModel extends Model
             ->where("jenis_kelamin","=",$request->jenisKelamin)
             ->where("tanggal_lahir","=",$request->tanggalLahir)
             ->get();
-        if(count($cek) === 0)
+        if($cek === 0)
         {
             $kueri = DB::table("data_individu")
                 ->insert([

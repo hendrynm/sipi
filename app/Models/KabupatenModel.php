@@ -83,7 +83,7 @@ class KabupatenModel extends Model
         return DB::table("data_individu")
             ->where("id_anak","=",$request->idAnak)
             ->update([
-                "id_kabupaten" => $request->kabupaten,
+                "id_kampung" => $request->kampung,
                 "id_posyandu" => $request->posyandu
             ]);
     }

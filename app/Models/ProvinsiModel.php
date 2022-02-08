@@ -71,7 +71,7 @@ class ProvinsiModel extends Model
             "interval_pemberian" => $request->intervalPemberian,
             "target_tahunan" => $request->targetTahunan
         ]);
-        if(count($tambah) > 0)
+        if($tambah > 0)
         {
             $id = DB::table("antigen")
                 ->orderByDesc("id_antigen")
