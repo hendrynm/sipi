@@ -25,9 +25,9 @@
                         <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-pabar.png")}}" alt="">
                     </div>
                     <div class="col-6">
-                        <h1>Aplikasi Sistem Pelaporan Imunisasi <br>
-                        Provinsi Papua Barat</h1>
-                        
+                        {{-- <h1>Aplikasi Sistem Pelaporan Imunisasi <br>
+                        Provinsi Papua Barat</h1> --}}
+                        <img class="img-fluid d-block m-auto" src="{{ asset("/images/sipi2.png")}}" alt="">
                     </div>
                     <div class="col-3">
                         <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" alt="">
