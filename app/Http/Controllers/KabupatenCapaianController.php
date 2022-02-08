@@ -21,6 +21,7 @@ class KabupatenCapaianController extends Controller
         $puskesmasForm = $request->puskesmasForm ?: 1;
 
 
+
         // bulan January
         $query = DB::select("
           SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -4797,6 +4798,12 @@ ORDER BY kampung.id_kampung
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
 
         $query = DB::SELECT("SELECT kabupaten.nama_kabupaten as kabupaten,
           antigen.nama_antigen as antigen,
@@ -5082,8 +5089,18 @@ ORDER BY kampung.id_kampung
 
         $antigens = (new AntigenModel)->getListAntigen();
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
-        $puskesmas = [$puskesmas[$puskesmasForm]];
+
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+            $puskesmas = (new PuskesmasModel())->getListPuskesmasByKabupatenId($id_kabupaten);
+        }
+
+        $puskesmas = [$puskesmas[$puskesmasForm]];
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("
@@ -7215,6 +7232,13 @@ ORDER BY kampung.id_kampung
         $antigens = (new AntigenModel)->getListAntigen();
         $kabupatens = (new KabupatenModel)->getListKabupaten();
 
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
+
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
             $query = DB::select("
         SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -9070,6 +9094,12 @@ ORDER BY kampung.id_kampung
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -9148,6 +9178,12 @@ ORDER BY kampung.id_kampung
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -9222,6 +9258,12 @@ ORDER BY kampung.id_kampung
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
@@ -9334,6 +9376,12 @@ ORDER BY kampung.id_kampung
         $kabupatenForm = $request->kabupatenForm ?: 1;
 
         $kabupatens = (new KabupatenModel)->getListKabupaten();
+        $level = $request->session()->get('level');
+        if ($level == 2) {
+            $id_kabupaten = $request->session()->get('id_kabupaten');
+            $kabupatenForm = $id_kabupaten;
+            $kabupatens = (new KabupatenModel)->getListKabupatenById($id_kabupaten);
+        }
 
         return view('kabupaten.capaian.capaianUCI', ['tahunForm' => $tahunForm, 'kabupatenForm' => $kabupatenForm, 'kabupatens' => $kabupatens]);
     }
@@ -9344,14 +9392,14 @@ ORDER BY kampung.id_kampung
         $query = "";
 
         if ($quarter == 1) {
-            $query = "SELECT kabupaten.nama_kabupaten as kabupaten, 
+            $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
               kampung.nama_kampung as kampung,
               SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
               ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
               ROUND((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
               (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) > 20 THEN 'UCI' ELSE 'Non-UCI' END) as uci
-                  FROM kampung 
+                  FROM kampung
                     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                     LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
                     LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
@@ -9360,14 +9408,14 @@ ORDER BY kampung.id_kampung
                   ORDER BY kampung.id_kampung";
         }
         elseif  ($quarter == 2) {
-            $query = "SELECT kabupaten.nama_kabupaten as kabupaten, 
+            $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
               kampung.nama_kampung as kampung,
               SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
               ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
               ROUND((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
               (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) > 40 THEN 'UCI' ELSE 'Non-UCI' END) as uci
-                  FROM kampung 
+                  FROM kampung
                     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                     LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
                     LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
@@ -9376,14 +9424,14 @@ ORDER BY kampung.id_kampung
                   ORDER BY kampung.id_kampung";
         }
         elseif ($quarter == 3) {
-            $query = "SELECT kabupaten.nama_kabupaten as kabupaten, 
+            $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
               kampung.nama_kampung as kampung,
               SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
               ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
               ROUND((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
               (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND (MONTH(data_individu.tanggal_idl) = 01 OR MONTH(data_individu.tanggal_idl) = 02 OR MONTH(data_individu.tanggal_idl) = 03 OR MONTH(data_individu.tanggal_idl) = 04 OR MONTH(data_individu.tanggal_idl) = 05 OR MONTH(data_individu.tanggal_idl) = 06 OR MONTH(data_individu.tanggal_idl) = 07 OR MONTH(data_individu.tanggal_idl) = 08 OR MONTH(data_individu.tanggal_idl) = 09) AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) > 60 THEN 'UCI' ELSE 'Non-UCI' END) as uci
-                  FROM kampung 
+                  FROM kampung
                     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                     LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
                     LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten
@@ -9392,14 +9440,14 @@ ORDER BY kampung.id_kampung
                   ORDER BY kampung.id_kampung";
         }
         elseif ($quarter == 4) {
-            $query = "SELECT kabupaten.nama_kabupaten as kabupaten, 
+            $query = "SELECT kabupaten.nama_kabupaten as kabupaten,
             puskesmas.nama_puskesmas as puskesmas,
               kampung.nama_kampung as kampung,
               SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END) as idl,
               ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)) as sasaran,
               ROUND((SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) as ketercapaian,
               (CASE WHEN ((SUM(CASE WHEN data_individu.idl = 1 AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END))/(ROUND((kampung.surviving_infant_L + kampung.surviving_infant_P)))*100) > 80 THEN 'UCI' ELSE 'Non-UCI' END) as uci
-                  FROM kampung 
+                  FROM kampung
                     LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
                     LEFT JOIN puskesmas ON puskesmas.id_puskesmas = kampung.id_puskesmas
                     LEFT JOIN kabupaten ON kabupaten.id_kabupaten = puskesmas.id_kabupaten

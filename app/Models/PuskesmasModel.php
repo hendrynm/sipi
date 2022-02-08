@@ -592,6 +592,15 @@ class PuskesmasModel extends Model
         return DB::table("puskesmas")->select("id_puskesmas","nama_puskesmas")->get();
     }
 
+    public function getListPuskesmasByKabupatenId($id)
+    {
+        return DB::table("puskesmas")
+            ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->where("kabupaten.id_kabupaten","=",$id)
+            ->select("puskesmas.id_puskesmas","puskesmas.nama_puskesmas")
+            ->get();
+    }
+
     public function posEntri($id)
     {
         return DB::table("data_individu")
