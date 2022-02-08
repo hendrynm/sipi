@@ -15,6 +15,7 @@ class ProvinsiModel extends Model
         return DB::table("kabupaten")
             ->orderBy("nama_kabupaten")
             ->select("id_kabupaten","nama_kabupaten")
+            ->orderBy("nama_kabupaten")
             ->get();
     }
 
@@ -23,6 +24,7 @@ class ProvinsiModel extends Model
         return DB::table("puskesmas")
             ->orderBy("nama_puskesmas")
             ->select("id_puskesmas","nama_puskesmas")
+            ->orderBy("nama_puskesmas")
             ->get();
     }
 
@@ -31,6 +33,7 @@ class ProvinsiModel extends Model
         return DB::table("kampung")
             ->orderBy("nama_kampung")
             ->select("id_kampung","nama_kampung")
+            ->orderBy("nama_kampung")
             ->get();
     }
 
@@ -103,6 +106,7 @@ class ProvinsiModel extends Model
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
             ->select("id_anak","nik","nama_lengkap","tanggal_lahir","nama_kabupaten")
+            ->orderBy("nama_lengkap")
             ->get();
     }
 
@@ -129,6 +133,8 @@ class ProvinsiModel extends Model
     {
         return DB::table("user")
             ->select("id_user","username","nama","email","level")
+            ->orderBy("level","desc")
+            ->orderBy("nama")
             ->get();
     }
 
@@ -211,6 +217,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("kampung")
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
+            ->orderBy("nama_kampung")
             ->get();
     }
 
@@ -246,6 +253,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("posyandu")
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -280,6 +288,7 @@ class ProvinsiModel extends Model
     public function kabupatenDashboard()
     {
         return DB::table("kabupaten")
+            ->orderBy("nama_kabupaten")
             ->get();
     }
 
@@ -313,6 +322,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("puskesmas")
             ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -348,6 +358,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("kampung")
             ->select("id_kampung","kode_kampung","nama_kampung")
+            ->orderBy("nama_kampung")
             ->get();
     }
 

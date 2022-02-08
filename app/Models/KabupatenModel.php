@@ -14,6 +14,7 @@ class KabupatenModel extends Model
     {
         return DB::table("kabupaten")
             ->select("id_kabupaten","nama_kabupaten")
+            ->orderBy("nama_kabupaten")
             ->get();
     }
 
@@ -21,6 +22,7 @@ class KabupatenModel extends Model
     {
         return DB::table("posyandu")
             ->select("id_posyandu","nama_posyandu")
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -29,6 +31,7 @@ class KabupatenModel extends Model
         return DB::table("puskesmas")
             ->where("id_kabupaten","=",$id_kab)
             ->select("id_puskesmas","nama_puskesmas")
+            ->orderBy("nama_puskesmas")
             ->get();
     }
 
@@ -38,6 +41,7 @@ class KabupatenModel extends Model
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("id_kabupaten","=",$id_kab)
             ->select("id_kampung","nama_kampung")
+            ->orderBy("nama_kampung")
             ->get();
     }
 
@@ -56,6 +60,7 @@ class KabupatenModel extends Model
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("kabupaten.id_kabupaten","=",$id_kab)
+            ->orderBy("nama_lengkap")
             ->get();
     }
 
@@ -94,6 +99,8 @@ class KabupatenModel extends Model
             ->join("kabupaten","user.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("user.id_kabupaten","=",$id_kab)
             ->select("id_user","nama_kabupaten","username","nama","email","level")
+            ->orderBy("level","desc")
+            ->orderBy("nama")
             ->get();
     }
 
@@ -179,6 +186,7 @@ class KabupatenModel extends Model
         return DB::table("kampung")
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("id_kabupaten","=",$id_kab)
+            ->orderBy("nama_kampung")
             ->get();
     }
 
@@ -215,6 +223,7 @@ class KabupatenModel extends Model
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("id_kabupaten","=",$id_kab)
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -252,6 +261,7 @@ class KabupatenModel extends Model
         return DB::table("puskesmas")
             ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("puskesmas.id_kabupaten","=",$id_kab)
+            ->orderBy("nama_puskesmas")
             ->get();
     }
 
@@ -287,6 +297,7 @@ class KabupatenModel extends Model
         return DB::table("kampung")
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("id_kabupaten","=",$id_kab)
+            ->orderBy("nama_kampung")
             ->get();
     }
 

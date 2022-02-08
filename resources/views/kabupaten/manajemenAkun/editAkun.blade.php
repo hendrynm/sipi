@@ -14,7 +14,6 @@
                     <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idUser" value="{{ $data->id_user }}">
-{{--                        <input type="hidden" name="idLevel" value="{{ $data->id_level }}">--}}
                         <div class="form-group">
                             <label for="username">Username :</label>
                             <input type="text" class="form-control" name="username" value="{{ $data->username }}">

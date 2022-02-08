@@ -188,8 +188,8 @@ class PuskesmasModel extends Model
     {
         return DB::table("puskesmas")
             ->where("id_kabupaten","=",$id_pus)
-            ->orderBy("nama_puskesmas")
             ->select("id_puskesmas","nama_puskesmas")
+            ->orderBy("nama_puskesmas")
             ->get();
     }
 
@@ -208,8 +208,8 @@ class PuskesmasModel extends Model
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->join("puskesmas","kampung.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("puskesmas.id_puskesmas","=",$id_pus)
-            ->orderBy("nama_posyandu")
             ->select("id_posyandu","nama_posyandu")
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -227,6 +227,7 @@ class PuskesmasModel extends Model
             ->join("posyandu","data_individu.id_posyandu","=","posyandu.id_posyandu")
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->where("id_puskesmas","=",$id_pus)
+            ->orderBy("nama_lengkap")
             ->get();
     }
 
@@ -373,6 +374,8 @@ class PuskesmasModel extends Model
             ->join("puskesmas","user.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("user.id_puskesmas","=",$id_pus)
             ->select("id_user","nama_puskesmas","username","nama","email","level")
+            ->orderBy("level","desc")
+            ->orderBy("nama")
             ->get();
     }
 
@@ -455,6 +458,7 @@ class PuskesmasModel extends Model
     {
         return DB::table("kampung")
             ->where("id_puskesmas","=",$id_pus)
+            ->orderBy("nama_kampung")
             ->get();
     }
 
@@ -532,6 +536,7 @@ class PuskesmasModel extends Model
         return DB::table("posyandu")
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->where("id_puskesmas","=",$id_pus)
+            ->orderBy("nama_posyandu")
             ->get();
     }
 
@@ -572,6 +577,7 @@ class PuskesmasModel extends Model
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->where("id_puskesmas","=",$id_pus)
             ->where("id_antigen","=",$id)
+            ->orderBy("nama_lengkap")
             ->get();
     }
 
@@ -584,6 +590,7 @@ class PuskesmasModel extends Model
             ->where("status","=","belum")
             ->groupBy("data_individu.id_anak")
             ->select("data_individu.id_anak","nik","nama_lengkap","nama_ibu","tanggal_lahir",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
+            ->orderBy("nama_lengkap")
             ->get();
     }
 
