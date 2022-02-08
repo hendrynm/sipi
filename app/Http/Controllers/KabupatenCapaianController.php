@@ -17,8 +17,8 @@ class KabupatenCapaianController extends Controller
 
         $tahunForm = $request->tahunForm ?: 2020;
 //        idenya kalau udah di level kabupaten $$kabupatenForm ngikutin value akunnya sendiri
-        $kabupatenForm = $request->kabupatenForm ?: 1;
-        $puskesmasForm = $request->puskesmasForm ?: 1;
+        $kabupatenForm = $request->kabupaten ?: 1;
+        $puskesmasForm = $request->puskesmas ?: 1;
 
 
 
@@ -2393,8 +2393,8 @@ class KabupatenCapaianController extends Controller
 
 
         $tahunForm = $request->tahunForm ?: 2020;
-        $kabupatenForm = $request->kabupatenForm ?: 1;
-        $puskesmasForm = $request->puskesmasForm ?: 1;
+        $kabupatenForm = $request->kabupaten ?: 1;
+        $puskesmasForm = $request->puskesmas ?: 1;
 
 
 
