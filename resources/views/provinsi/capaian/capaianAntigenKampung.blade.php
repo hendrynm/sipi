@@ -253,7 +253,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan',
+                    text: 'Capaian Imunisasi {{ $antigenForm }} Tingkat Kampung Tahun {{$tahunForm}}',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -313,7 +313,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Januari',
+                    text: 'Capaian Imunisasi Tingkat Kampung Bulan Januari',
                     fontSize: 32,
                 },
                 responsive: true,

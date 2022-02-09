@@ -221,7 +221,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan Tiap Kabupaten',
+                    text: 'Capaian Imunisasi {{ $antigenForm }} Tingkat Kabupaten Tahun {{$tahunForm}}',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -275,7 +275,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Kabupaten Bulan Januari',
+                    text: 'Capaian Imunisasi Tingkat Kabupaten Bulan Januari',
                     fontSize: 32,
                 },
                 responsive: true,

@@ -17,7 +17,7 @@
             </form>
         </div>
         @foreach($quarters as $quarter)
-        <h2>Laporan Quarter {{$quarter}}</h2>
+        <h2>Laporan Triwulan {{$quarter}}</h2>
         <div class="jumbotron custom-table">
             <table class="table" id="quarter{{$quarter}}">
                 <thead class="thead-light">

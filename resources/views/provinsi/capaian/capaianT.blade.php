@@ -25,25 +25,25 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
-                    <th scope="col">T1 Hamil</th>
-                    <th scope="col">T1 Tidak Hamil</th>
-                    <th scope="col">T1 Total</th>
+                    <th scope="col">T1 Hamil (%)</th>
+                    <th scope="col">T1 Tidak Hamil (%)</th>
+                    <th scope="col">T1 Total (%)</th>
                     
-                    <th scope="col">T2 Hamil</th>
-                    <th scope="col">T2 Tidak Hamil</th>
-                    <th scope="col">T2 Total</th>
+                    <th scope="col">T2 Hamil (%)</th>
+                    <th scope="col">T2 Tidak Hamil (%)</th>
+                    <th scope="col">T2 Total (%)</th>
 
-                    <th scope="col">T3 Hamil</th>
-                    <th scope="col">T3 Tidak Hamil</th>
-                    <th scope="col">T3 Total</th>
+                    <th scope="col">T3 Hamil (%)</th>
+                    <th scope="col">T3 Tidak Hamil (%)</th>
+                    <th scope="col">T3 Total (%)</th>
 
-                    <th scope="col">T4 Hamil</th>
-                    <th scope="col">T4 Tidak Hamil</th>
-                    <th scope="col">T4 Total</th>
+                    <th scope="col">T4 Hamil (%)</th>
+                    <th scope="col">T4 Tidak Hamil (%)</th>
+                    <th scope="col">T4 Total (%)</th>
 
-                    <th scope="col">T5 Hamil</th>
-                    <th scope="col">T5 Tidak Hamil</th>
-                    <th scope="col">T5 Total</th>
+                    <th scope="col">T5 Hamil (%)</th>
+                    <th scope="col">T5 Tidak Hamil (%)</th>
+                    <th scope="col">T5 Total (%)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,18 +87,18 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
-                    <th scope="col">T1 Hamil</th>
+                    <th scope="col">T1 Hamil (%)</th>
                     
                     
-                    <th scope="col">T2 Hamil</th>
+                    <th scope="col">T2 Hamil (%)</th>
                    
 
-                    <th scope="col">T3 Hamil</th>
+                    <th scope="col">T3 Hamil (%)</th>
                    
-                    <th scope="col">T4 Hamil</th>
+                    <th scope="col">T4 Hamil (%)</th>
                     
 
-                    <th scope="col">T5 Hamil</th>
+                    <th scope="col">T5 Hamil (%)</th>
                     
                 </tr>
                 </thead>
@@ -138,23 +138,23 @@
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
                   
-                    <th scope="col">T1 Tidak Hamil</th>
+                    <th scope="col">T1 Tidak Hamil (%)</th>
                     
                     
                    
-                    <th scope="col">T2 Tidak Hamil</th>
+                    <th scope="col">T2 Tidak Hamil (%)</th>
                     
 
                    
-                    <th scope="col">T3 Tidak Hamil</th>
+                    <th scope="col">T3 Tidak Hamil (%)</th>
 
 
 
-                    <th scope="col">T4 Tidak Hamil</th>
+                    <th scope="col">T4 Tidak Hamil (%)</th>
 
 
 
-                    <th scope="col">T5 Tidak Hamil</th>
+                    <th scope="col">T5 Tidak Hamil (%)</th>
 
                 </tr>
                 </thead>

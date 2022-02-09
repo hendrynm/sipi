@@ -229,7 +229,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target (20% Sasaran) dan IDL Quarter 1 Tiap Kabupaten',
+                    text: 'Target (20% Sasaran) dan IDL Triwulan 1 Tiap Kabupaten',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -306,7 +306,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target (40% Sasaran) dan IDL Quarter 2 Tiap Kabupaten',
+                    text: 'Target (40% Sasaran) dan IDL Triwulan 2 Tiap Kabupaten',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -383,7 +383,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target (60% Sasaran) dan IDL Quarter 3 Tiap Kabupaten',
+                    text: 'Target (60% Sasaran) dan IDL Triwulan 3 Tiap Kabupaten',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -460,7 +460,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target (80% Sasaran) dan IDL Quarter 4 Tiap Kabupaten',
+                    text: 'Target (80% Sasaran) dan IDL Triwulan 4 Tiap Kabupaten',
                     fontSize: 32,
                 },
                 responsive: true,

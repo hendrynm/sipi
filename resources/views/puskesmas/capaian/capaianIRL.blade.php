@@ -166,7 +166,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Total Sasaran dan IRL Tahunan Tiap Kampung',
+                    text: 'Total IRL Tahunan Tiap Kampung',
                     fontSize: 16,
                 },
                 responsive: true,
@@ -222,7 +222,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Akumulasi IRL Quarter 1 Tiap Kampung',
+                    text: 'Akumulasi IRL Triwulan 1 Tiap Kampung',
                     fontSize: 16,
                 },
                 responsive: true,
@@ -278,7 +278,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Akumulasi IRL Quarter 2 Tiap Kampung',
+                    text: 'Akumulasi IRL Triwulan 2 Tiap Kampung',
                     fontSize: 16,
                 },
                 responsive: true,
@@ -334,7 +334,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Akumulasi IRL Quarter 3 Tiap Kampung',
+                    text: 'Akumulasi IRL Triwulan 3 Tiap Kampung',
                     fontSize: 16,
                 },
                 responsive: true,
@@ -390,7 +390,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Akumulasi IRL Quarter 4 Tiap Kampung',
+                    text: 'Akumulasi IRL Triwulan 4 Tiap Kampung',
                     fontSize: 16,
                 },
                 responsive: true,
