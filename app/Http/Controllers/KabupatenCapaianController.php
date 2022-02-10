@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antigen;
 use App\Models\AntigenModel;
 use App\Models\PuskesmasModel;
 use App\Models\KabupatenModel;
@@ -5100,6 +5101,7 @@ ORDER BY kampung.id_kampung
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $puskesmasForm = $request->puskesmasForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
+        $antigen_name = Antigen::where('id_antigen', $antigenForm)->first()->nama_antigen;
 
         $antigens = (new AntigenModel)->getListAntigen();
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
@@ -7234,13 +7236,14 @@ ORDER BY kampung.id_kampung
 
         }
 
-        return view('kabupaten.capaian.capaianKampung', ['query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12, 'kabupatens' => $kabupatens, 'puskesmas' => $puskesmas, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'puskesmasForm' => $puskesmasForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm]);
+        return view('kabupaten.capaian.capaianKampung', ['antigen_name' =>$antigen_name, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12, 'kabupatens' => $kabupatens, 'puskesmas' => $puskesmas, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'puskesmasForm' => $puskesmasForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm]);
     }
 
     public function capaianAntigenPuskesmas(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
+        $antigen_name = Antigen::where('id_antigen', $antigenForm)->first()->nama_antigen;
 
         $antigens = (new AntigenModel)->getListAntigen();
         $kabupatens = (new KabupatenModel)->getListKabupaten();
@@ -9100,7 +9103,7 @@ ORDER BY kampung.id_kampung
         }
 
 
-        return view('kabupaten.capaian.capaianPuskesmas', ['kabupatens' => $kabupatens, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12]);
+        return view('kabupaten.capaian.capaianPuskesmas', ['antigen_name' =>$antigen_name, 'kabupatens' => $kabupatens, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12]);
     }
 
     public function capaianIDL(Request $request) {

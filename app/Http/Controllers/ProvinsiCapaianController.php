@@ -4801,6 +4801,7 @@ ORDER BY kampung.id_kampung
     public function capaianAntigenKabupaten(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $antigenForm = $request->antigenForm ?: 1;
+        $antigen_name = Antigen::where('id_antigen', $antigenForm)->first()->nama_antigen;
         $antigens = (new AntigenModel)->getListAntigen();
 
         if ($antigenForm==1 || $antigenForm==2 || $antigenForm==3) {
@@ -6638,7 +6639,7 @@ ORDER BY kampung.id_kampung
 
         }
 
-        return view('provinsi.capaian.capaianAntigenKabupaten', ["query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "query12" => $query12, "tahunForm" => $tahunForm, "antigenForm" => $antigenForm, 'antigens'=>$antigens]);
+        return view('provinsi.capaian.capaianAntigenKabupaten', ['antigen_name' =>$antigen_name, "query" => $query, "query1" => $query1, "query2" => $query2, "query3" => $query3, "query4" => $query4, "query5" => $query5, "query6" => $query6, "query7" => $query7, "query8" => $query8, "query9" => $query9, "query10" => $query10, "query11" => $query11, "query12" => $query12, "tahunForm" => $tahunForm, "antigenForm" => $antigenForm, 'antigens'=>$antigens]);
     }
 
 
@@ -6648,6 +6649,7 @@ ORDER BY kampung.id_kampung
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $puskesmasForm = $request->puskesmasForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
+        $antigen_name = Antigen::where('id_antigen', $antigenForm)->first()->nama_antigen;
 
         $antigens = (new AntigenModel)->getListAntigen();
         $puskesmas = (new PuskesmasModel())->getListPuskesmas();
@@ -8774,13 +8776,14 @@ ORDER BY kampung.id_kampung
 
         }
 
-        return view('provinsi.capaian.capaianAntigenKampung', ['query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12, 'kabupatens' => $kabupatens, 'puskesmas' => $puskesmas, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'puskesmasForm' => $puskesmasForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm]);
+        return view('provinsi.capaian.capaianAntigenKampung', ['antigen_name' =>$antigen_name, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12, 'kabupatens' => $kabupatens, 'puskesmas' => $puskesmas, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'puskesmasForm' => $puskesmasForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm]);
     }
 
     public function capaianAntigenPuskesmas(Request $request) {
         $tahunForm = $request->tahunForm ?: 2020;
         $kabupatenForm = $request->kabupatenForm ?: 1;
         $antigenForm = $request->antigenForm ?: 1;
+        $antigen_name = Antigen::where('id_antigen', $antigenForm)->first()->nama_antigen;
 
         $antigens = (new AntigenModel)->getListAntigen();
         $kabupatens = (new KabupatenModel)->getListKabupaten();
@@ -10633,7 +10636,7 @@ ORDER BY kampung.id_kampung
         }
 
 
-        return view('provinsi.capaian.capaianPuskesmas', ['kabupatens' => $kabupatens, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12]);
+        return view('provinsi.capaian.capaianPuskesmas', ['antigen_name' =>$antigen_name, 'kabupatens' => $kabupatens, 'antigens' => $antigens, 'kabupatenForm' => $kabupatenForm, 'antigenForm' => $antigenForm, 'tahunForm' => $tahunForm, 'query' => $query, 'query1' => $query1, 'query2' => $query2, 'query3' => $query3, 'query4' => $query4, 'query5' => $query5, 'query6' => $query6, 'query7' => $query7, 'query8' => $query8, 'query9' => $query9, 'query10' => $query10, 'query11' => $query11, 'query12' => $query12]);
     }
 
 
