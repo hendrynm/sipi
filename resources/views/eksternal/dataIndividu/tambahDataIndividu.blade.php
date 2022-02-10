@@ -106,3 +106,33 @@
         });
     </script>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('select[id="posyandu"]').selectpicker();
+            $('select[id="kampung"]').on('change', function() {
+                $('select[id="posyandu"]').empty();
+                var cityID = $(this).val();
+                if(cityID) {
+                    $.ajax({
+                        url: '/data-ajax/posyandu/' + cityID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            console.log(data);
+                            $('select[id="posyandu"]').empty();
+                            $('select[id="posyandu"]').append('<option value=""></option>');
+                            $.each(data, function(key, value) {
+                                $('select[id="posyandu"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
+                            });
+                            $('select[id="posyandu"]').selectpicker('refresh');
+                        }
+                    });
+                }else{
+                    $('select[id="posyandu"]').empty();
+                }
+            });
+        });
+    </script>
+@endpush

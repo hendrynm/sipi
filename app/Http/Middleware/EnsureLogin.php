@@ -16,7 +16,12 @@ class EnsureLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has("id_kabupaten"))
+        if(session()->has("is_eks"))
+        {
+            return $next($request);
+        }
+
+        if(session()->has("is_kab"))
         {
             return $next($request);
         }
@@ -26,7 +31,7 @@ class EnsureLogin
             return $next($request);
         }
 
-        if(session()->has("id_puskesmas"))
+        if(session()->has("is_pus"))
         {
             return $next($request);
         }
