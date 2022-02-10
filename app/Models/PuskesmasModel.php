@@ -300,11 +300,11 @@ class PuskesmasModel extends Model
     public function dataTambahKirim(Request $request)
     {
         $cek = DB::table("data_individu")
+            ->where("nik","=",$request->nik)
             ->where("nama_ibu","=",$request->namaIbuKandung)
-            ->where("jenis_kelamin","=",$request->jenisKelamin)
             ->where("tanggal_lahir","=",$request->tanggalLahir)
             ->get();
-        if($cek === 0)
+        if($cek->isEmpty())
         {
             $kueri = DB::table("data_individu")
                 ->insert([

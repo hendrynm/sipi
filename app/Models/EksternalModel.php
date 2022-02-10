@@ -204,40 +204,48 @@ class EksternalModel extends Model
 
     public function dataTambahKirim(Request $request)
     {
-        $kueri = DB::table("data_individu")
-            ->insert([
-                "nama_lengkap" => $request->namaLengkap,
-                "nama_ibu" => $request->namaIbuKandung,
-                "nik" => $request->nik,
-                "tanggal_lahir" => $request->tanggalLahir,
-                "jenis_kelamin" => $request->jenisKelamin,
-                "no_hp" => $request->noHP,
-                "alamat" => $request->alamat,
-                "id_posyandu" => $request->posyandu,
-                "id_kampung" => $request->kampung,
-                "status_hamil" => $request->isHamil ?: null,
-                "tanggal_hamil" => $request->tanggalKehamilan ?: null
-            ]);
-        if($kueri > 0)
+        $cek = DB::table("data_individu")
+            ->where("nik","=",$request->nik)
+            ->where("nama_ibu","=",$request->namaIbuKandung)
+            ->where("tanggal_lahir","=",$request->tanggalLahir)
+            ->get();
+        if($cek->isEmpty())
         {
-            $id = DB::table("data_individu")
-                ->orderByDesc("id_anak")
-                ->first();
-            $data = DB::table("antigen")
-                ->get();
-
-            foreach ($data as $d)
+            $kueri = DB::table("data_individu")
+                ->insert([
+                    "nama_lengkap" => $request->namaLengkap,
+                    "nama_ibu" => $request->namaIbuKandung,
+                    "nik" => $request->nik,
+                    "tanggal_lahir" => $request->tanggalLahir,
+                    "jenis_kelamin" => $request->jenisKelamin,
+                    "no_hp" => $request->noHP,
+                    "alamat" => $request->alamat,
+                    "id_posyandu" => $request->posyandu,
+                    "id_kampung" => $request->kampung,
+                    "status_hamil" => $request->isHamil ?: null,
+                    "tanggal_hamil" => $request->tanggalKehamilan ?: null
+                ]);
+            if($kueri > 0)
             {
-                DB::table("imunisasi")
-                    ->insert([
-                        "id_anak" => $id->id_anak,
-                        "id_antigen" => $d->id_antigen,
-                        "status" => "belum"
-                    ]);
+                $id = DB::table("data_individu")
+                    ->orderByDesc("id_anak")
+                    ->first();
+                $data = DB::table("antigen")
+                    ->get();
+                foreach ($data as $d)
+                {
+                    DB::table("imunisasi")
+                        ->insert([
+                            "id_anak" => $id->id_anak,
+                            "id_antigen" => $d->id_antigen,
+                            "status" => "belum"
+                        ]);
+                }
+                return $id->id_anak;
             }
-            return $id;
+            return 0;
         }
-        return 0;
+        return -1;
     }
 
     public function posMulai(Request $request)

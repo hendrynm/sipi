@@ -76,6 +76,7 @@
                         </div>
 
                         <br>
+                        @if( $data->jenis_kelamin === 'P')
                         <a data-toggle="collapse" class="form-hamil-button" href="#isHamil" role="button"
                             aria-expanded="false" aria-controls="isHamil">
                             + tambah status kehamilan
@@ -98,7 +99,7 @@
                                 <input type="date" class="form-control" id="tanggalKehamilan" name="tanggalKehamilan" value="{{ $data->tanggal_hamil }}">
                             </div>
                         </div>
-
+                        @endif
                         <button class="btn btn-primary">Simpan Data Personal</button>
                     </form>
                 </div>
