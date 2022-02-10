@@ -11,10 +11,19 @@ use function Symfony\Component\String\u;
 
 class PuskesmasModel extends Model
 {
+    public function namaPosyandu($id)
+    {
+        return DB::table("posyandu")
+            ->where("id_posyandu","=",$id)
+            ->select("nama_posyandu")
+            ->first();
+    }
+
     public function namaAntigen($id)
     {
         return DB::table("antigen")
             ->where("id_antigen","=",$id)
+            ->select("nama_antigen")
             ->first();
     }
 
@@ -578,6 +587,18 @@ class PuskesmasModel extends Model
             ->where("id_puskesmas","=",$id_pus)
             ->where("id_antigen","=",$id)
             ->orderBy("nama_lengkap")
+            ->get();
+    }
+
+    public function posBelumImunisasi($id)
+    {
+        return DB::table("data_individu")
+            ->join("imunisasi","data_individu.id_anak","=","imunisasi.id_anak")
+            ->join("antigen","imunisasi.id_antigen","=","antigen.id_antigen")
+            ->where("id_posyandu","=",$id)
+            ->where("status","=","belum")
+            ->groupBy("data_individu.id_anak")
+            ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
             ->get();
     }
 

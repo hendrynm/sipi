@@ -50,10 +50,10 @@
 {{--        </div>--}}
 
         <div class="jumbotron">
-            <h2>Laporan Imunisasi Anak</h2>
+            <h2>Laporan Status Imunisasi Per Antigen</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6 mb-3">
-                    <form action="./cari" method="post">
+                    <form action="./laporan/cari" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="antigen">Antigen :</label>
@@ -71,9 +71,28 @@
         </div>
 
         <div class="jumbotron">
+            <h2>Data Anak Belum Imunisasi Per Posyandu</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="./belum/cari" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label for="posyandu">Posyandu :</label>
+                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
+                                <option selected disabled>Pilih Posyandu</option>
+                                @foreach($data as $data1)
+                                    <option value="{{ $data1->id_posyandu }}">{{ $data1->nama_posyandu }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="btn btn-primary">Tampilkan Data</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron">
             <h2>Mulai Data Entri Imunisasi</h2>
-            <br>
-            <br>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form action="./pilih" method="post">
@@ -92,6 +111,7 @@
                 </div>
             </div>
         </div>
+
         <div class="jumbotron">
             <h2>Entri Posyandu Offline</h2>
             <p>
@@ -118,8 +138,7 @@
 @section("js")
     <script>
         $(function() {
-            $('#posyandu').selectpicker();
-            $('#antigen').selectpicker();
+            $('.custom-select').selectpicker();
         });
     </script>
 @endsection

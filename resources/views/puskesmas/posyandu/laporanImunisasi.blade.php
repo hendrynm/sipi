@@ -10,7 +10,7 @@
         <h1>Laporan Imunisasi Anak - <span class="nama"></span></h1>
         <br>
 
-        <table class="table" id="belumImunisasi">
+        <table class="table" id="laporanImunisasi">
             <thead>
             <tr>
                 <th scope="col" data-priority="1">No</th>
@@ -40,7 +40,7 @@
                 let nama = data.nama_antigen;
 
                 $(function () {
-                    var table = $('#belumImunisasi').DataTable({
+                    var table = $('#laporanImunisasi').DataTable({
                         processing: true,
                         serverSide: true,
                         responsive: true,

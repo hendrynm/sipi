@@ -332,12 +332,35 @@ class PuskesmasController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view("puskesmas.posyandu.belumImunisasiCari");
+        return view("puskesmas.posyandu.laporanImunisasi");
     }
 
     public function posLaporanNamaAntigen($id)
     {
         return (new PuskesmasModel)->namaAntigen($id);
+    }
+
+    public function posBelumImunisasiCari(Request $request)
+    {
+        $id = $request->posyandu;
+        return redirect("/puskesmas/posyandu/belum/$id");
+    }
+
+    public function posBelumImunisasi(Request $request, $id)
+    {
+        if ($request->ajax())
+        {
+            $data = (new PuskesmasModel)->posBelumImunisasi($id);
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view("puskesmas.posyandu.belumImunisasi");
+    }
+
+    public function posBelumImunisasiNamaPosyandu($id)
+    {
+        return (new PuskesmasModel)->namaPosyandu($id);
     }
 
     public function posMulaiPilih(Request $request)
