@@ -16,13 +16,18 @@
         <hr>
         <h1>Ketercapaian Imunisasi Setiap Kampung</h1>
         <div class="jumbotron">
-            <form method="get">
-                <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
-                <x-puskesmas-form :puskesmasForm="$puskesmasForm" :puskesmas="$puskesmas"></x-puskesmas-form>
-                <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
-                <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                <x-submit-button-form></x-submit-button-form>
-            </form>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <form method="get">
+                        <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>
+                        <x-puskesmas-form :puskesmasForm="$puskesmasForm" :puskesmas="$puskesmas"></x-puskesmas-form>
+                        <x-antigen-form :antigenForm="$antigenForm" :antigens="$antigens"></x-antigen-form>
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-submit-button-form></x-submit-button-form>
+                    </form>
+                </div>
+            </div>
+
 
 
             {{-- testing1 --}}
