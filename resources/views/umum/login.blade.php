@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-3">
                         <img class="img-fluid d-block m-auto" src="{{ asset("/images/logo-kemenkes.png")}}" alt="">
-                    
+
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <form action="/login" method="post">
+                        <form action="/login" method="post" id="login">
                             @csrf
                             <div class="form-group">
                                 <label for="username" class="login-label">Username :</label>
@@ -53,7 +53,10 @@
                             <div class="form-group">
                                 <div class="row justify-content-center">
                                     <div class="col-md-4 col-sm-12">
-                                        <button type="submit" class="btn btn-primary login-button">Login</button>
+                                        <button class="g-recaptcha btn btn-primary login-button"
+                                                data-sitekey="6Ldn6nEeAAAAADnRnB2T5BfDQRZCHZt2Nms0B4E3"
+                                                data-callback='onSubmit'
+                                                data-action='submit'>Login</button>
                                         <br>
                                         <a href="./lupa" class="text-center">lupa password</a>
                                     </div>
@@ -67,16 +70,16 @@
                     <div class="col-md-3">
                         <p class="text-center">Supported By :</p>
                     </div>
-                    
+
                 </div>
                 <div class="row justify-content-center ">
-                   
+
                     <div class="col-6">
                         <img class="img-fluid" src="{{ asset("/images/footer-login.png")}}" alt="">
                     </div>
-                  
-                   
-                    
+
+
+
                 </div>
         </div>
 
@@ -86,3 +89,12 @@
 
 @endsection
 </html>
+
+@section('js')
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("login").submit();
+        }
+    </script>
+@endsection
