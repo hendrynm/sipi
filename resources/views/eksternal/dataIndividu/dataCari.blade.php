@@ -32,7 +32,7 @@
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">NIK</th>
+                    <th scope="col">NIK Anak</th>
                     <th scope="col">Nama Anak</th>
                     <th scope="col">Tanggal Lahir</th>
                     <th scope="col">Usia</th>

@@ -43,7 +43,7 @@
                             <td>{{ ($data->jenis_kelamin === "L") ? "Laki-laki" : "Perempuan" }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">NIK :</th>
+                            <th scope="row">NIK Anak:</th>
                             <td>{{ $data->nik }}</td>
                         </tr>
                         </tbody>

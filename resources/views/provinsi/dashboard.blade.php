@@ -185,7 +185,7 @@
     </div>
 
     <div class="jumbotron">
-        <h2>Manjemen Akun Provinsi Papua Barat</h2>
+        <h2>Manajemen Akun Provinsi Papua Barat</h2>
         <a href="./akun/dashboard" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-8">

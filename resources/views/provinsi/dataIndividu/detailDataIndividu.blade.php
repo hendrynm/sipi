@@ -53,7 +53,7 @@
                         <td>{{ $data->nama_posyandu }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">KTP :</th>
+                        <th scope="row">NIK Anak :</th>
                         <td>{{ $data->nik }}</td>
                     </tr>
                     </tbody>

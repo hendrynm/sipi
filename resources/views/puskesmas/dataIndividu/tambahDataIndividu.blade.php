@@ -35,7 +35,7 @@
                             <input type="text" class="form-control" id="namaIbuKandung" name="namaIbuKandung" required>
                         </div>
                         <div class="form-group">
-                            <label for="nik">NIK : </label>
+                            <label for="nik">NIK Anak: </label>
                             <input type="text" class="form-control" id="nik" name="nik" >
                         </div>
                         <div class="form-group">

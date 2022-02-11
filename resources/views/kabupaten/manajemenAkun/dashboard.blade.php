@@ -26,7 +26,7 @@
 
         <a href="../dashboard" class="btn btn-primary">back</a>
         <hr>
-        <h1>Dashboard Majemen Akun </h1>
+        <h1>Dashboard Manajemen Akun </h1>
 
         <div class="jumbotron">
             <h2>Akun Level 2 : {{ $data[0]->nama_kabupaten }}</h2>

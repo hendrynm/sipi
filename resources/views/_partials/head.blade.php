@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield("title") | SIPI Papua Barat</title>
 
-    <link rel="icon" href="img/favicon.jpg">
+    <link rel="icon" href="{{ asset("/images/ico.png") }}">
 
     <!-- css boostrap v4.6 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
