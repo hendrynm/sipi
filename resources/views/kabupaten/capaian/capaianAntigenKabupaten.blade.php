@@ -13,7 +13,7 @@
         @endif
 
         <hr>
-        <h1>Ketercapaian Imunisasi Setiap Antigen Pada Kabupaten</h1>
+        <h1>Ketercapaian Imunisasi Setiap Antigen tingkat Kabupaten</h1>
 
         <div class="jumbotron">
             <div class="row">
@@ -242,7 +242,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Imunisasi Tahunan Tiap Antigen',
+                text: 'Target dan Capaian Imunisasi Tahunan Tiap Antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -319,7 +319,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Januari Tiap antigen',
+                text: 'Target dan Capaian Bulan Januari Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -396,7 +396,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Februari Tiap antigen',
+                text: 'Target dan Capaian Bulan Februari Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -473,7 +473,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Maret Tiap antigen',
+                text: 'Target dan Capaian Bulan Maret Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -550,7 +550,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan April Tiap antigen',
+                text: 'Target dan Capaian Bulan April Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -627,7 +627,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Mei Tiap antigen',
+                text: 'Target dan Capaian Bulan Mei Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -704,7 +704,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Juni Tiap antigen',
+                text: 'Target dan Capaian Bulan Juni Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -781,7 +781,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Juli Tiap antigen',
+                text: 'Target dan Capaian Bulan Juli Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -858,7 +858,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Agustus Tiap antigen',
+                text: 'Target dan Capaian Bulan Agustus Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -935,7 +935,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan September Tiap antigen',
+                text: 'Target dan Capaian Bulan September Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -1012,7 +1012,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Oktober Tiap antigen',
+                text: 'Target dan Capaian Bulan Oktober Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -1089,7 +1089,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan November Tiap antigen',
+                text: 'Target dan Capaian Bulan November Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,
@@ -1166,7 +1166,7 @@
             },
             title: {
                 display: true,
-                text: 'Target dan Realisasi Bulan Desember Tiap antigen',
+                text: 'Target dan Capaian Bulan Desember Tiap antigen',
                 fontSize: 32,
             },
             responsive: true,

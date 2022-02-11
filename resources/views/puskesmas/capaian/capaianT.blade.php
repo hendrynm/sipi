@@ -9,7 +9,7 @@
     <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Status T Setiap Kampung</h1>
+        <h1>Persentase Status T Setiap Kampung</h1>
         <div >
             <form method="get">
                 <x-kabupaten-form :kabupatenForm="$kabupatenForm" :kabupatens="$kabupatens"></x-kabupaten-form>

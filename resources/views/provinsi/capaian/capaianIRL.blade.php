@@ -12,10 +12,17 @@
         <hr>
         <h1>Ketercapaian Imunisasi Rutin Lengkap (IRL) Setiap Kabupaten</h1>
         <div class="jumbotron">
-            <form method="get">
-                <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                <x-submit-button-form></x-submit-button-form>
-            </form>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <form method="get">
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-submit-button-form></x-submit-button-form>
+                    </form>
+                </div>
+            </div>
+
+
+
 
             <?php
             $queryArrays = [$query, $query1, $query2, $query3, $query4]
@@ -83,10 +90,10 @@
             }
             ?>
 
-           
+
         </div>
 
-      
+
 
         <script>
             var data = {

@@ -3,6 +3,11 @@ body {
 
 }
 
+.btn-light{
+    background-color: white;
+    border: 1px solid #a0aec0;
+}
+
 /* all */
 .table {
     font-size: .9rem;
@@ -423,6 +428,29 @@ form {
     /* konten middle */
     .main {
         margin-top: 2rem;
+    }
+
+
+
+    /*posyandu*/
+    .main-dashboard2 .jumbotron {
+        /* background-color: #eff4fe; */
+        background-color: #f4f7ff;
+
+        padding: 2rem 2rem;
+        box-shadow: 0px 0px 5px #c4ccdf;
+        border: none;
+    }
+
+    .main-dashboard2 .jumbotron>h2 {
+        /* color: #274C7F; */
+        /* color: #89a5ee; */
+        color: #3b4f83;
+        font-weight: 600;
+        font-size: 1.8rem;
+        /* border-bottom: 1px dashed #89a5ee; */
+        margin-bottom: 1rem;
+
     }
 
     /* header all */

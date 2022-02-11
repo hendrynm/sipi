@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="id">
 @section("konten")
-    <div class="container">
+    <div class="container main-dashboard2">
         @if(session()->has("sukses"))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get("sukses") }}

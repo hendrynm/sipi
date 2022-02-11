@@ -9,12 +9,17 @@
     <div class="container-fluid t">
         <a href="./dashboard" class="btn btn-primary">Back</a>
         <hr>
-        <h1>Ketercapaian Status T Setiap Kabupaten</h1>
+        <h1>Persentase Status T Setiap Kabupaten</h1>
         <div>
-            <form method="get">
-                <x-year-form :tahunForm="$tahunForm"></x-year-form>
-                <x-submit-button-form></x-submit-button-form>
-            </form>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <form method="get">
+                        <x-year-form :tahunForm="$tahunForm"></x-year-form>
+                        <x-submit-button-form></x-submit-button-form>
+                    </form>
+                </div>
+            </div>
+
 
             <div style="height: 500px;">
                 <canvas id="myChart"></canvas>
@@ -28,7 +33,7 @@
                     <th scope="col">T1 Hamil (%)</th>
                     <th scope="col">T1 Tidak Hamil (%)</th>
                     <th scope="col">T1 Total (%)</th>
-                    
+
                     <th scope="col">T2 Hamil (%)</th>
                     <th scope="col">T2 Tidak Hamil (%)</th>
                     <th scope="col">T2 Total (%)</th>
@@ -71,7 +76,7 @@
                         <td>{{ $data->t5_hamil }}</td>
                         <td>{{ $data->t5_tidak_hamil }}</td>
                         <td>{{ $data->t5_total }}</td>
-                        
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -88,18 +93,18 @@
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
                     <th scope="col">T1 Hamil (%)</th>
-                    
-                    
+
+
                     <th scope="col">T2 Hamil (%)</th>
-                   
+
 
                     <th scope="col">T3 Hamil (%)</th>
-                   
+
                     <th scope="col">T4 Hamil (%)</th>
-                    
+
 
                     <th scope="col">T5 Hamil (%)</th>
-                    
+
                 </tr>
                 </thead>
                 <tbody>
@@ -109,19 +114,19 @@
                         <td>{{ $data->kabupaten }}</td>
 
                         <td>{{ $data->t1_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t2_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t3_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t4_hamil }}</td>
-                        
+
                         <td>{{ $data->t5_hamil }}</td>
-                        
-                        
+
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -137,15 +142,15 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
-                  
-                    <th scope="col">T1 Tidak Hamil (%)</th>
-                    
-                    
-                   
-                    <th scope="col">T2 Tidak Hamil (%)</th>
-                    
 
-                   
+                    <th scope="col">T1 Tidak Hamil (%)</th>
+
+
+
+                    <th scope="col">T2 Tidak Hamil (%)</th>
+
+
+
                     <th scope="col">T3 Tidak Hamil (%)</th>
 
 
@@ -183,7 +188,7 @@
 
                         <td>{{ $data->t5_tidak_hamil }}</td>
 
-                        
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -249,10 +254,10 @@
             }
             ?>
 
-           
+
         </div>
 
-        
+
 
 
         <script>
