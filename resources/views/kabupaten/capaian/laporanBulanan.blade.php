@@ -147,7 +147,7 @@
 
 
                                     {{-- antigen 1 --}}
-                                    <th scope="col" colspan="6" class="tabel-antigen">HBO</th>
+                                    <th scope="col" colspan="6" class="tabel-antigen">HB0</th>
 
 
                                     {{-- antigen 2 --}}
