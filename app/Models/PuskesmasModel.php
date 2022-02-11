@@ -598,6 +598,7 @@ class PuskesmasModel extends Model
             ->where("id_posyandu","=",$id)
             ->where("status","=","belum")
             ->groupBy("data_individu.id_anak")
+            ->orderBy("nama_lengkap")
             ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
             ->get();
     }
