@@ -62,7 +62,7 @@ Route::prefix("/provinsi")
     ->group(function ()
     {
         Route::redirect("/","/provinsi/dashboard");
-        Route::get  ("/dashboard",              [ProvinsiController::class,"index"]);
+        Route::get  ("/dashboard",              [ProvinsiController::class,"index"])->name('provinsi.dashboard');
 
         Route::prefix("/antigen")->group(function ()
         {
@@ -184,7 +184,7 @@ Route::prefix("/kabupaten")
     ->group(function ()
     {
         Route::redirect("/","/kabupaten/dashboard");
-        Route::get("/dashboard",                [KabupatenController::class,"dashboard"]);
+        Route::get("/dashboard",                [KabupatenController::class,"dashboard"])->name('kabupaten.dashboard');
 
         Route::prefix("/capaian")->group(function ()
         {

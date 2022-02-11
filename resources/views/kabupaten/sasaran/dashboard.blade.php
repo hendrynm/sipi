@@ -1,5 +1,5 @@
 @extends("_partials.master")
-@section("title","Dashboard Provinsi")
+@section("title","Dashboard data regional")
 
 <!DOCTYPE html>
 <html lang="id">

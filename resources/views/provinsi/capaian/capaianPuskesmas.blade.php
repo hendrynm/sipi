@@ -8,7 +8,11 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="./dashboard" class="btn btn-primary">Back</a>
+        @if(Session::get('level') == 2)
+            <a href="./dashboard" class="btn btn-primary">Back</a>
+        @elseif(Session::get('level') == 1)
+            <a href="{{route('provinsi.dashboard')}}" class="btn btn-primary">Back</a>
+        @endif
         <hr>
         <h1>Ketercapaian Imunisasi Setiap Puskesmas</h1>
         <div class="jumbotron">

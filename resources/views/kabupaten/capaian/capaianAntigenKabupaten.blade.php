@@ -6,7 +6,12 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-        <a href="./dashboard" class="btn btn-primary">Back</a>
+        @if(Session::get('level') == 2)
+            <a href="{{route("kabupaten.dashboard")}}" class="btn btn-primary">Back</a>
+        @elseif(Session::get('level') == 1)
+            <a href="./dashboard" class="btn btn-primary">Back</a>
+        @endif
+
         <hr>
         <h1>Ketercapaian Imunisasi Setiap Antigen Pada Kabupaten</h1>
 
@@ -18,11 +23,11 @@
                         <x-year-form :tahunForm="$tahunForm"></x-year-form>
                         <x-submit-button-form></x-submit-button-form>
                     </form>
-        
+
                 </div>
             </div>
-           
-           
+
+
 
             <br>
             <br>
