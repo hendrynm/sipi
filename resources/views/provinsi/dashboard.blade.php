@@ -54,6 +54,37 @@
             </div>
         </a>
 
+
+
+
+
+
+        <a href="{{route('provinsi.capaian.laporanBulanan')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Bulanan
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('provinsi.capaian.laporanBulananKumulatif')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Bulanan Kumulatif
+                </div>
+            </div>
+        </a>
+
         <a href="{{route('provinsi.capaian.kabupaten.dashboard')}}" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -89,35 +120,6 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     Laporan Tingkat Kampung
-                </div>
-            </div>
-        </a>
-
-
-
-
-        <a href="{{route('provinsi.capaian.laporanBulanan')}}" class="btn btn-primary">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    Laporan Bulanan
-                </div>
-            </div>
-        </a>
-
-        <a href="{{route('provinsi.capaian.laporanBulananKumulatif')}}" class="btn btn-primary">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    Laporan Bulanan Kumulatif
                 </div>
             </div>
         </a>

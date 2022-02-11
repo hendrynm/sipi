@@ -8,6 +8,12 @@ body {
     font-size: .9rem;
 }
 
+/*antigen*/
+.perhatian{
+    color: red;
+    padding-left: 1rem;
+}
+
 /* lupa start */
 .lupa {
     border: none;

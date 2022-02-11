@@ -30,6 +30,9 @@
         <div class="jumbotron">
             <a href="./tambah" class="btn btn-primary">Tambah Data Antigen</a>
             <br>
+            <div class="perhatian">
+                Perhatikan : Data antigen sangat sesitif mohon untuk berhati-hati dalam *menambahkan* data antigen.
+            </div>
             <br>
             <table class="table" id="dataAntigen">
                 <thead class="thead-light">
