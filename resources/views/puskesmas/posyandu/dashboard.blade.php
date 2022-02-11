@@ -57,8 +57,9 @@
                         @csrf
                         <div class="form-group">
                             <label for="antigen">Antigen :</label>
-                            <select class="form-control custom-select" id="antigen" name="antigen" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih antigen</option>
+                            <select class="form-control custom-select" id="antigen" name="antigen"
+                                    data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value="">Pilih antigen</option>
                                 @foreach($data2 as $data2)
                                     <option value="{{ $data2->id_antigen }}">{{ $data2->nama_antigen }}</option>
                                 @endforeach
@@ -78,8 +79,9 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="posyandu">Posyandu :</label>
-                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih Posyandu</option>
+                            <select class="form-control custom-select" id="posyandu" name="posyandu"
+                                    data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value="">Pilih Posyandu</option>
                                 @foreach($data as $data1)
                                     <option value="{{ $data1->id_posyandu }}">{{ $data1->nama_posyandu }}</option>
                                 @endforeach
@@ -99,8 +101,9 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="posyandu">Posyandu :</label>
-                            <select class="form-control custom-select" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true">
-                                <option selected disabled>Pilih Posyandu</option>
+                            <select class="form-control custom-select" id="posyandu" name="posyandu"
+                                    data-show-subtext="true" data-live-search="true" required>
+                                <option selected disabled value="">Pilih Posyandu</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_posyandu }}">{{ $data->nama_posyandu }}</option>
                                 @endforeach

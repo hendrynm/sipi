@@ -65,7 +65,7 @@
                             {data: 'no_hp', name: 'no_hp'},
                             {data: 'nama_antigen', name: 'nama_antigen',
                                 render: function (data, type, row, meta ){
-                                    return data.split(", ").join(",<br/>");
+                                    return data.split(", ").join(", <br/>");
                                 }
                             }
                         ],

@@ -99,7 +99,7 @@ class KabupatenModel extends Model
             ->join("kabupaten","user.id_kabupaten","=","kabupaten.id_kabupaten")
             ->where("user.id_kabupaten","=",$id_kab)
             ->select("id_user","nama_kabupaten","username","nama","email","level")
-            ->orderBy("level","desc")
+            ->orderBy("level")
             ->orderBy("nama")
             ->get();
     }
