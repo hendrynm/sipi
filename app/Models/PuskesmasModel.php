@@ -383,7 +383,7 @@ class PuskesmasModel extends Model
             ->join("puskesmas","user.id_puskesmas","=","puskesmas.id_puskesmas")
             ->where("user.id_puskesmas","=",$id_pus)
             ->select("id_user","nama_puskesmas","username","nama","email","level")
-            ->orderBy("level","desc")
+            ->orderBy("level")
             ->orderBy("nama")
             ->get();
     }

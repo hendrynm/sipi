@@ -133,7 +133,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("user")
             ->select("id_user","username","nama","email","level")
-            ->orderBy("level","desc")
+            ->orderBy("level")
             ->orderBy("nama")
             ->get();
     }
