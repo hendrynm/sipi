@@ -188,7 +188,7 @@ body {
     text-align: center;
     color: #274C7E;
     /* color: black; */
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
@@ -221,12 +221,19 @@ body {
     }
 }
 
+.sertif-body{
+    background-color: red;
+}
 
 .jumbotron.jum-sertif {
     /* background-color: #ebf2ff; */
     background: rgb(203, 220, 255);
     background: linear-gradient(90deg, rgba(203, 220, 255, 0.6418942577030813) 26%, rgba(208, 236, 255, 0.6222864145658263) 100%);
-    padding: 2rem 4em 1rem 4em;
+    padding: .5rem 2rem .5rem 2rem;
+    border: none;
+    margin-bottom: 1rem;
+
+
 
 }
 
@@ -245,9 +252,10 @@ body {
 
 .jumbotron.jum-sertif>.table td,
 .jumbotron.jum-sertif>.table th {
-    border-top: 1px solid #b6c7e7;
-    border-bottom: 1px solid rgb(182, 199, 231);
+    /*border-top: 1px solid #b6c7e7;*/
+    /*border-bottom: 1px solid rgb(182, 199, 231);*/
     color: #274C7E;
+    padding: .5rem;
 }
 
 .footer-sertif {

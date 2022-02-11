@@ -6,16 +6,23 @@
 @section("konten")
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-3">
-                <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-kemenkes-header.png") }}"
-                     width="180" height="180">
-            </div>
-            <div class="col-6">
-                <h1 class="h1-sertif">Surat Keterangan Imunisasi Dasar Lengkap (IDL)</h1>
-            </div>
-            <div class="col-3">
+            <div class="col-2">
+
                 <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-pabar-header.png") }}" width="130"
                      height="130">
+            </div>
+            <div class="col-8">
+                <h1 class="h1-sertif">Sertifikat Imunisasi Dasar Lengkap (IDL)</h1>
+
+                <p class="text-center">
+                    Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
+                    Bar., Anday,
+                    Manokwari Sel., Kabupaten Manokwari, Papua Bar. 98315
+                </p>
+            </div>
+            <div class="col-2">
+                <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-kemenkes-header.png") }}"
+                     width="130" height="130">
             </div>
         </div>
         <hr>
@@ -26,24 +33,33 @@
 
         <h2 class="text-center h2-sertif">Surat ini diberikan kepada :</h2>
         <div class="row justify-content-center">
-            <div class="col-12">
+            <div class="col-5">
                 <div class="jumbotron jum-sertif">
-                    <table class="table">
+                    <table class="table table-borderless">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Nama Lengkap :</th>
+                            <th scope="row">Nama Lengkap</th>
+                            <th scope="row">:</th>
                             <td>{{ $data->nama_lengkap }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Tanggal Lahir :</th>
+                            <th scope="row">Tanggal Lahir</th>
+                            <th scope="row">:</th>
                             <td>{{ $data->tanggal_lahir }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Jenis Kelamin :</th>
+                            <th scope="row">Jenis Kelamin</th>
+                            <th scope="row">:</th>
                             <td>{{ ($data->jenis_kelamin === "L") ? "Laki-laki" : "Perempuan" }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">NIK Anak:</th>
+                            <th scope="row">NIK Anak</th>
+                            <th scope="row">:</th>
                             <td>{{ $data->nik }}</td>
                         </tr>
                         </tbody>
@@ -106,22 +122,9 @@
                 <hr>
                 <p>
                     <b>Alamat :</b><br>
-                    Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
-                    Bar., Anday,
-                    Manokwari Sel., Kabupaten Manokwari, Papua Bar. 98315
-                </p>
-                <p>
-                    <b>Kontak :</b> <br>
-                    dinaskesehatanprovpapuabarat@gmail.com <br>
-                    rsudpapuabarat@gmail.com
-                </p>
-                <hr>
-                <p>
-
-                    Aplikasi Dikembangkan dan Dimilik Oleh Dinas Kesehatan Provinsi Papua Barat
-
 
                 </p>
+
             </div>
         </div>
     </div>
