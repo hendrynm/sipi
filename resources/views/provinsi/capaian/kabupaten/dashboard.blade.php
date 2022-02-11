@@ -13,12 +13,10 @@
         <h2>Ketercapaian Kabupaten</h2>
         <?php
         $capaians = [
-            ["Capaian Antigen Tiap Kabupaten", "provinsi.capaian.antigen.kabupaten"],
-            ["Capaian Antigen Tiap Kampung", "provinsi.capaian.antigen.kampung"],
-            ["Capaian Antigen Tiap Puskesmas", "provinsi.capaian.antigen.puskesmas"],
-            ["Anak IDL", "provinsi.capaian.idl"],
-            ["Anak IRL", "provinsi.capaian.irl"],
-            ["Performa T", "provinsi.capaian.t"],
+            ["Ketercapaian Antigen Kabupaten", "provinsi.capaian.kampung.capaian.antigen.kabupaten"],
+            ["Ketercapaian IDL Tiap Kabupaten", "provinsi.capaian.idl"],
+            ["Ketercapaian IRL Tiap Kabupaten", "provinsi.capaian.irl"],
+            ["Persentase Status T Tiap Kabupaten", "provinsi.capaian.t"],
             ["Desa UCI", "provinsi.capaian.uci"]
         ];
         ?>

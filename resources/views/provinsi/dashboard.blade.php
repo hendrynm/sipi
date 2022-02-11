@@ -15,7 +15,8 @@
 
     <div class="jumbotron">
         <h2>Laporan Capaian</h2>
-        <a href="{{route('provinsi.capaian.kabupaten.dashboard')}}" class="btn btn-primary">
+
+        <a href="{{route('provinsi.capaian.antigen.kabupaten')}}" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
@@ -23,7 +24,58 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Capaian Imunisasi Kabupaten
+                    Ketercapaian Imunisasi Setiap Kabupaten
+                </div>
+            </div>
+        </a>
+        <a href="{{route('provinsi.capaian.antigen.puskesmas')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Ketercapaian Imunisasi Setiap Puskesmas
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('provinsi.capaian.antigen.kampung')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Ketercapaian Imunisasi Setiap Kampung
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('provinsi.capaian.kabupaten.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan2.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Tingkat Kabupaten
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('provinsi.capaian.kampung.dashboard')}}" class="btn btn-primary">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan2.png")}}" width="60" height="60">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    Laporan Tingkat Puskesmas
                 </div>
             </div>
         </a>
@@ -31,29 +83,18 @@
         <a href="{{route('provinsi.capaian.puskesmas.dashboard')}}" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
+                    <img class="img-fluid" src="{{ asset("/images/icon/laporan2.png")}}" width="60" height="60">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Capaian Imunisasi Puskesmas
+                    Laporan Tingkat Kampung
                 </div>
             </div>
         </a>
 
 
-        <a href="{{route('provinsi.capaian.kampung.dashboard')}}" class="btn btn-primary">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <img class="img-fluid" src="{{ asset("/images/icon/laporan.png")}}" width="60" height="60">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    Capaian Imunisasi Kampung
-                </div>
-            </div>
-        </a>
+
 
         <a href="{{route('provinsi.capaian.laporanBulanan')}}" class="btn btn-primary">
             <div class="row justify-content-center">

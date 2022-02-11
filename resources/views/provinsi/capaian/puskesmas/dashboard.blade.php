@@ -12,15 +12,14 @@
 
 
     <div class="jumbotron">
-        <h2>Ketercapaian Puskesmas</h2>
+        <h2>Ketercapaian Kampung</h2>
 
         <?php
         $capaians = [
-            ["Capaian Antigen", "provinsi.capaian.puskesmas.capaian.antigen.puskesmas"],
-            ["Capaian Antigen Tiap Kampung", "provinsi.capaian.puskesmas.capaian.antigen.kampung"],
-            ["Anak IDL", "provinsi.capaian.puskesmas.capaian.idl"],
-            ["Anak IRL", "provinsi.capaian.puskesmas.capaian.irl"],
-            ["Performa T", "provinsi.capaian.puskesmas.capaian.t"],
+
+            ["Ketercapaian IDL Tiap Kampung", "provinsi.capaian.puskesmas.capaian.idl"],
+            ["Ketercapaian IRL Tiap Kampung", "provinsi.capaian.puskesmas.capaian.irl"],
+            ["Persentase Status T Tiap Kampung", "provinsi.capaian.puskesmas.capaian.t"],
             ["Desa UCI", "provinsi.capaian.puskesmas.capaian.uci"]
         ];
         ?>

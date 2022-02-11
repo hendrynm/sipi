@@ -12,14 +12,13 @@
 
 
     <div class="jumbotron">
-        <h2>Ketercapaian Puskesmas</h2>
+        <h2>Ketercapaian Kampung</h2>
         <?php
         $capaians = [
-            ["Capaian Antigen", "kabupaten.capaian.puskesmas.capaian.antigen.puskesmas"],
-            ["Capaian Antigen Tiap Kampung", "kabupaten.capaian.puskesmas.capaian.antigen.kampung"],
-            ["Anak IDL", "kabupaten.capaian.puskesmas.capaian.idl"],
-            ["Anak IRL", "kabupaten.capaian.puskesmas.capaian.irl"],
-            ["Performa T", "kabupaten.capaian.puskesmas.capaian.t"],
+
+            ["Ketercapaian IDL Tiap Kampung", "kabupaten.capaian.puskesmas.capaian.idl"],
+            ["Ketercapaian IRL Tiap Kampung", "kabupaten.capaian.puskesmas.capaian.irl"],
+            ["Ketercapaian Status T Tiap Kampung", "kabupaten.capaian.puskesmas.capaian.t"],
             ["Desa UCI", "kabupaten.capaian.puskesmas.capaian.uci"]
         ];
         ?>
@@ -39,6 +38,8 @@
                 </div>
             </a>
         @endforeach
+
+
     </div>
 
 

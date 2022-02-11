@@ -278,7 +278,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Tahun {{$tahunForm}},
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Tahun {{$tahunForm}}',
                     fontSize: 32,
                 },
                 responsive: true,

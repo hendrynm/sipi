@@ -18,7 +18,7 @@
                 <x-submit-button-form></x-submit-button-form>
             </form>
 
-           
+
 
 {{-- tabel 1 --}}
             <div style="height: 500px;">
@@ -34,7 +34,7 @@
                     <th scope="col">T1 Hamil (%)</th>
                     <th scope="col">T1 Tidak Hamil (%)</th>
                     <th scope="col">T1 Total (%)</th>
-                    
+
                     <th scope="col">T2 Hamil (%)</th>
                     <th scope="col">T2 Tidak Hamil (%)</th>
                     <th scope="col">T2 Total (%)</th>
@@ -78,7 +78,7 @@
                         <td>{{ $data->t5_hamil }}</td>
                         <td>{{ $data->t5_tidak_hamil }}</td>
                         <td>{{ $data->t5_total }}</td>
-                        
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -96,18 +96,18 @@
                     <th scope="col">Kabupaten</th>
                     <th scope="col">Puskemas</th>
                     <th scope="col">T1 Hamil (%)</th>
-                    
-                    
+
+
                     <th scope="col">T2 Hamil (%)</th>
-                   
+
 
                     <th scope="col">T3 Hamil (%)</th>
-                   
+
                     <th scope="col">T4 Hamil (%)</th>
-                    
+
 
                     <th scope="col">T5 Hamil (%)</th>
-                    
+
                 </tr>
                 </thead>
                 <tbody>
@@ -118,19 +118,19 @@
                         <td>{{ $data->puskesmas }}</td>
 
                         <td>{{ $data->t1_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t2_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t3_hamil }}</td>
-                        
+
 
                         <td>{{ $data->t4_hamil }}</td>
-                        
+
                         <td>{{ $data->t5_hamil }}</td>
-                        
-                        
+
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -147,15 +147,15 @@
                     <th scope="col">No</th>
                     <th scope="col">Kabupaten</th>
                     <th scope="col">Puskemas</th>
-                  
-                    <th scope="col">T1 Tidak Hamil (%)</th>
-                    
-                    
-                   
-                    <th scope="col">T2 Tidak Hamil (%)</th>
-                    
 
-                   
+                    <th scope="col">T1 Tidak Hamil (%)</th>
+
+
+
+                    <th scope="col">T2 Tidak Hamil (%)</th>
+
+
+
                     <th scope="col">T3 Tidak Hamil (%)</th>
 
 
@@ -194,7 +194,7 @@
 
                         <td>{{ $data->t5_tidak_hamil }}</td>
 
-                        
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -203,7 +203,7 @@
             <br>
             <hr>
 
-           
+
         </div>
     </div>
 
@@ -272,10 +272,10 @@
             <br>
             <br>
 
-           
+
         </div>
 
-       
+
 
 
         <script>

@@ -15,11 +15,11 @@
         <h2>Laporan Pencapaian</h2>
         <?php
             $capaians = [
-                ["Capaian Antigen", "puskesmas.capaian.antigen.puskesmas"],
-                ["Capaian Antigen Tiap Kampung", "puskesmas.capaian.antigen.kampung"],
-                ["Anak IDL", "puskesmas.capaian.idl"],
-                ["Anak IRL", "puskesmas.capaian.irl"],
-                ["Performa T", "puskesmas.capaian.t"],
+                ["Ketercapaian Antigen Puskesmas", "puskesmas.capaian.antigen.puskesmas"],
+                ["Ketercapaian Imunisasi Setiap Kampung", "puskesmas.capaian.antigen.kampung"],
+                ["Ketercapaian IDL Tiap Kampung", "puskesmas.capaian.idl"],
+                ["Ketercapaian IRL Tiap Kampung", "puskesmas.capaian.irl"],
+                ["Persentase Status T Tiap Kampung", "puskesmas.capaian.t"],
                 ["Desa UCI", "puskesmas.capaian.uci"]
             ];
             ?>
