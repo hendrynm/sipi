@@ -124,7 +124,6 @@ class ProvinsiController extends Controller
 
     public function akunTambahKirim(Request $request)
     {
-        @dd($request->all());
         $kueri = (new ProvinsiModel)->akunTambahKirim($request);
         if($kueri > 0)
         {
