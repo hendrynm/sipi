@@ -172,10 +172,7 @@ class ProvinsiModel extends Model
         $user = DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->first();
-        if(
-            (Hash::check($request->passwordLama,$user->password)) &&
-            ($request->passwordBaru == $request->passwordBaru2)
-        )
+        if((Hash::check($request->passwordLama, $user->password) || ($request->passwordLama === null)) && ($request->passwordBaru == $request->passwordBaru2))
         {
             DB::table("user")
                 ->where("id_user","=",$request->idUser)
@@ -322,7 +319,7 @@ class ProvinsiModel extends Model
     {
         return DB::table("puskesmas")
             ->join("kabupaten","puskesmas.id_kabupaten","=","kabupaten.id_kabupaten")
-            ->orderBy("nama_posyandu")
+            ->orderBy("nama_puskesmas")
             ->get();
     }
 

@@ -23,10 +23,14 @@
                     <form action="./kirim" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idUser" value="{{ $data->id_user }}">
-                        <div class="form-group">
-                            <label for="PasswordLama">Password Lama :</label>
-                            <input type="password" class="form-control" id="PasswordLama" name="passwordLama">
-                        </div>
+                        @if($data->id_user === session()->get("id_user"))
+                            <div class="form-group">
+                                <label for="PasswordLama">Password Lama :</label>
+                                <input type="password" class="form-control" id="PasswordLama" name="passwordLama">
+                            </div>
+                        @else
+                            <input type="hidden" name="passwordLama" value="">
+                        @endif
                         <div class="form-group">
                             <label for="PasswordBaru">Password Baru :</label>
                             <input type="password" class="form-control" id="PasswordBaru" name="passwordBaru">

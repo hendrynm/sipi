@@ -72,12 +72,17 @@ class EksternalController extends Controller
     public function dataTambahKirim(Request $request)
     {
         $kueri = (new EksternalModel)->dataTambahKirim($request);
-        if($kueri->id_anak > 0)
+        if($kueri > 0)
         {
-            return redirect("/eksternal/data-anak/detail/$kueri->id_anak")
+            return redirect("/eksternal/data-anak/detail/$kueri")
                 ->with("sukses","Data berhasil disimpan");
         }
-        return redirect("/eksternal/data-anak/tambah-data")
+        if($kueri === 0)
+        {
+            return redirect("/eksternal/data-anak/tambah")
+                ->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
+        }
+        return redirect("/eksternal/data-anak/tambah")
             ->with("gagal","Data gagal disimpan, mohon pperiksa kembali");
     }
 

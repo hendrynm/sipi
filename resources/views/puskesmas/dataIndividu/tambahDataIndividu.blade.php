@@ -5,7 +5,7 @@
 <html lang="id">
 @section("konten")
     <div class="container">
-     
+
     @if(session()->has("gagal"))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session()->get("gagal") }}
@@ -16,7 +16,7 @@
     @endif
 
 
-        <a href="../dashboard" class="btn btn-primary">back</a>
+        <a href="./dashboard" class="btn btn-primary">back</a>
         <hr>
         <h1>Tambah Data Anak</h1>
         <br>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kampung">Kampung : </label>
-                            <select class="custom-select form-control" id="kampung" name="kampung" required>
+                            <select class="custom-select form-control" id="kampung" name="kampung" data-show-subtext="true" data-live-search="true" required>
                                 <option selected disabled value="">Pilih kampung</option>
                                 @foreach($data as $data)
                                     <option value="{{ $data->id_kampung }}">{{ $data->nama_kampung }}</option>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label for="posyandu">Posyandu : </label>
-                            <select class="custom-select form-control" id="posyandu" name="posyandu" required>
+                            <select class="custom-select form-control" id="posyandu" name="posyandu" data-show-subtext="true" data-live-search="true" required>
                                 <option selected disabled value="">Pilih Posyandu</option>
                                 @foreach($data2 as $data2)
                                     <option value="{{ $data2->id_posyandu }}">{{ $data2->nama_posyandu }}</option>
@@ -113,7 +113,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('select[id="posyandu"]').selectpicker();
+            $('.form-control').selectpicker();
             $('select[id="kampung"]').on('change', function() {
                 $('select[id="posyandu"]').empty();
                 var cityID = $(this).val();

@@ -27,15 +27,17 @@
                             <input type="text" class="form-control" name="email" value="{{ $data->email }}">
                         </div>
                         @if(!($data->id_user === session()->get("id_user")))
-                        <div class="form-group">
-                            <label for="level">Akses Level :</label>
-                            <select id="level" class="custom-select" name="level">
-                                <option disabled>Pilih akses level</option>
-                                <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
-                                <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
-                                <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
-                            </select>
-                        </div>
+                            <div class="form-group">
+                                <label for="level">Akses Level :</label>
+                                <select id="level" class="custom-select" name="level">
+                                    <option disabled>Pilih akses level</option>
+                                    <option value="2" {{ $data->level === 2 ? "selected" : ""}}>level 2 - Kabupaten/Kota</option>
+                                    <option value="3" {{ $data->level === 3 ? "selected" : ""}}>level 3 - Pukesmas</option>
+                                    <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
+                                </select>
+                            </div>
+                        @else
+                            <input type="hidden" name="level" value="{{ $data->level }}">
                         @endif
 
                         {{-- value kabupaten = value kabupaten itu sendiri --}}

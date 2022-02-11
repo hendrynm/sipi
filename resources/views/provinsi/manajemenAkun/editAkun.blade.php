@@ -40,6 +40,8 @@
                                     <option value="4" {{ $data->level === 4 ? "selected" : ""}}>Level 4 - Rumah Sakit, Klinik Daerah dan Bidan Desa</option>
                                 </select>
                             </div>
+                        @else
+                            <input type="hidden" name="level" value="{{ $data->level }}">
                         @endif
 
                         {{-- baru --}}

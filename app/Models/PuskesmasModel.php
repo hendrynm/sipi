@@ -237,6 +237,7 @@ class PuskesmasModel extends Model
             ->join("kampung","posyandu.id_kampung","=","kampung.id_kampung")
             ->where("id_puskesmas","=",$id_pus)
             ->orderBy("nama_lengkap")
+            ->select("id_anak","nama_lengkap","nik","tanggal_lahir","nama_posyandu",DB::raw('(IF(irl=1, "IDL dan IRL", IF(idl=1, "IDL", "-"))) as status'))
             ->get();
     }
 
@@ -424,10 +425,7 @@ class PuskesmasModel extends Model
         $user = DB::table("user")
             ->where("id_user","=",$request->idUser)
             ->first();
-        if(
-            (Hash::check($request->passwordLama, $user->password)) &&
-            ($request->passwordBaru == $request->passwordBaru2)
-        )
+        if((Hash::check($request->passwordLama, $user->password) || ($request->passwordLama === null)) && ($request->passwordBaru == $request->passwordBaru2))
         {
             return DB::table("user")
                 ->where("id_user","=",$request->idUser)
@@ -599,7 +597,7 @@ class PuskesmasModel extends Model
             ->where("status","=","belum")
             ->groupBy("data_individu.id_anak")
             ->orderBy("nama_lengkap")
-            ->select("nama_lengkap", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
+            ->select("nama_lengkap", "nama_ibu", "tanggal_lahir", "alamat", "no_hp",DB::raw("GROUP_CONCAT(antigen.nama_antigen SEPARATOR ', ') as nama_antigen"))
             ->get();
     }
 

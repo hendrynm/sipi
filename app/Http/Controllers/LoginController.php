@@ -9,14 +9,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view("umum.login");
-    }
-
-    public function login(Request $request)
-    {
-        session()->flush();
-        (new LoginModel)->login($request);
-
         switch(session()->get("level"))
         {
             case (1):
@@ -28,8 +20,15 @@ class LoginController extends Controller
             case (4):
                 return redirect("/eksternal");
             default:
-                return redirect("/");
+                return view("umum.login");
         }
+    }
+
+    public function login(Request $request)
+    {
+        session()->flush();
+        (new LoginModel)->login($request);
+        return redirect("/");
     }
 
     public function logout()

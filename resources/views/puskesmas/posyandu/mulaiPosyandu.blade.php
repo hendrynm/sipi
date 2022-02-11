@@ -15,8 +15,8 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">NIK</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Ibu Kandung</th>
+                    <th scope="col">Nama Anak</th>
+                    <th scope="col">Nama Ibu Kandung</th>
                     <th scope="col">Usia</th>
                     <th scope="col">Belum Imunisasi</th>
                     <th scope="col">#</th>

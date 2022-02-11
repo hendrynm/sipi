@@ -17,6 +17,7 @@
                 <th scope="col" data-priority="2">Nama Anak</th>
                 <th scope="col">Usia</th>
                 <th scope="col">Alamat</th>
+                <th scope="col">Nama Ibu Kandung</th>
                 <th scope="col">No HP</th>
                 <th scope="col" data-priority="3">Belum Imunisasi</th>
             </tr>
@@ -62,6 +63,7 @@
                                 },
                             },
                             {data: 'alamat', name: 'alamat'},
+                            {data: 'nama_ibu', name: 'nama_ibu'},
                             {data: 'no_hp', name: 'no_hp'},
                             {data: 'nama_antigen', name: 'nama_antigen',
                                 render: function (data, type, row, meta ){
