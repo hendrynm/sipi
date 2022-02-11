@@ -229,7 +229,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan Tiap Puskesmas',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas tahun {{ $tahunForm }}',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -283,7 +283,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Januari',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Januari',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -337,7 +337,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Februari',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Februari',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -391,7 +391,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Maret',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Maret',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -445,7 +445,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan April',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan April',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -499,7 +499,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Mei',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Mei',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -553,7 +553,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juni',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Juni',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -607,7 +607,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Juli',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Juli',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -661,7 +661,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Agustus',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Agustus',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -715,7 +715,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan September',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan September',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -769,7 +769,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Oktober',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan Oktober',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -823,7 +823,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan November',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmas Bulan November',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -877,7 +877,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Realisasi Imunisasi Tiap Puskesmas Bulan Desember',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Puskesmass Bulan Desember',
                     fontSize: 32,
                 },
                 responsive: true,

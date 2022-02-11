@@ -77,9 +77,9 @@
 
     <?php
 
-            
 
-         
+
+
             foreach ($query as $data) {
                 $kabupaten[] = $data->kabupaten;
                 $puskesmas[] = $data->puskesmas;
@@ -199,7 +199,7 @@
             }
             ?>
 
-            
+
 
             <br>
             <br>
@@ -278,7 +278,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Target dan Realisasi Tahunan',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Tahun {{$tahunForm}},
                     fontSize: 32,
                 },
                 responsive: true,
@@ -338,7 +338,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Januari',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Januari',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -398,7 +398,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Februari',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Februari',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -458,7 +458,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Maret',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Maret',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -518,7 +518,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan April',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan April',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -578,7 +578,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Mei',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Mei',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -638,7 +638,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Juni',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Juni',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -698,7 +698,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Juli',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Juli',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -758,7 +758,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Agustus',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Agustus',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -818,7 +818,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan September',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan September',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -878,7 +878,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Oktober',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Oktober',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -938,7 +938,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan November',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan November',
                     fontSize: 32,
                 },
                 responsive: true,
@@ -998,7 +998,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Imunisasi Bulan Desember',
+                    text: 'Capaian Imunisasi {{ $nama_antigen }} Tingkat Kampung Bulan Desember',
                     fontSize: 32,
                 },
                 responsive: true,
