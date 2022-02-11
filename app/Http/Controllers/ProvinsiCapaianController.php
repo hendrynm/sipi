@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antigen;
 use App\Models\AntigenModel;
 use App\Models\KabupatenModel;
 use App\Models\PuskesmasModel;
