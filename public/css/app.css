@@ -217,7 +217,7 @@ body {
 
     .table td,
     .table th {
-        background-color: #ebf2ff !important;
+        background-color: transparent !important;
     }
 }
 
@@ -238,8 +238,11 @@ body {
 }
 
 .jumbotron.jum-sertif-tanggal {
-    padding: 1rem;
+    padding: .5rem;
     background-color: #ebf2ff;
+    border: none;
+    color: #3b4f83;
+    margin-bottom: 1rem;
 
 }
 

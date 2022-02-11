@@ -6,16 +6,22 @@
 @section("konten")
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-3">
-                <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-kemenkes-header.png") }}"
-                     width="180" height="180">
-            </div>
-            <div class="col-6">
-                <h1 class="h1-sertif">Surat Keterangan Imunisasi Rutin Lengkap (IRL)</h1>
-            </div>
-            <div class="col-3">
+            <div class="col-2">
                 <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-pabar-header.png") }}" width="130"
                      height="130">
+            </div>
+            <div class="col-8">
+                <h1 class="h1-sertif">Surat Keterangan Imunisasi Rutin Lengkap (IRL)</h1>
+                <p class="text-center">
+                    Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
+                    Bar., Anday,
+                    Manokwari Sel., Kabupaten Manokwari, Papua Bar. 98315
+                </p>
+            </div>
+            <div class="col-2">
+
+                <img class="img-fluid d-block m-auto" src="{{ asset("images/logo-kemenkes-header.png") }}"
+                     width="130" height="130">
             </div>
         </div>
         <hr>
@@ -26,9 +32,9 @@
 
         <h2 class="text-center h2-sertif">Surat ini diberikan kepada :</h2>
         <div class="row justify-content-center">
-            <div class="col-12">
+            <div class="col-5">
                 <div class="jumbotron jum-sertif">
-                    <table class="table">
+                    <table class="table table-borderless">
                         <tbody>
                         <tr>
                             <th scope="row">Nama Lengkap :</th>
@@ -53,8 +59,8 @@
         </div>
 
         <h2 class="text-center h2-sertif">Pada Tanggal :</h2>
-        <div class="row">
-            <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-5">
                 <div class="jumbotron jum-sertif-tanggal">
                     <p class="text-center">{{ date_format(date_create($data->tanggal_irl),"d-m-Y") }}</p>
                 </div>
@@ -63,7 +69,7 @@
 
 
 
-        <h2 class="text-center h2-sertif-telah">Telah melakukan imunisasi dasar lengkap</h2>
+        <h2 class="text-center h2-sertif-telah">Telah melakukan imunisasi rutin lengkap</h2>
         <hr>
 
 
@@ -72,7 +78,7 @@
             <div class="col-12">
                 <div class="jumbotron jum-sertif">
 
-                    <table class="table">
+                    <table class="table table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -99,31 +105,6 @@
         </div>
     </div>
 
-    <div class="container-fluid footer-sertif">
 
-        <div class="row justify-content-center">
-            <div class="col-8 footer-text-sertif">
-                <hr>
-                <p>
-                    <b>Alamat :</b><br>
-                    Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
-                    Bar., Anday,
-                    Manokwari Sel., Kabupaten Manokwari, Papua Bar. 98315
-                </p>
-                <p>
-                    <b>Kontak :</b> <br>
-                    dinaskesehatanprovpapuabarat@gmail.com <br>
-                    rsudpapuabarat@gmail.com
-                </p>
-                <hr>
-                <p>
-
-                    Aplikasi Dikembangkan dan Dimilik Oleh Dinas Kesehatan Provinsi Papua Barat
-
-
-                </p>
-            </div>
-        </div>
-    </div>
 @endsection
 </html>

@@ -69,8 +69,8 @@
         </div>
 
         <h2 class="text-center h2-sertif">Pada Tanggal :</h2>
-        <div class="row">
-            <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-5">
                 <div class="jumbotron jum-sertif-tanggal">
                     <p class="text-center">{{ date_format(date_create($data->tanggal_idl),"d-m-Y") }}</p>
                 </div>
@@ -88,7 +88,7 @@
             <div class="col-12">
                 <div class="jumbotron jum-sertif">
 
-                    <table class="table">
+                    <table class="table table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -115,18 +115,5 @@
         </div>
     </div>
 
-    <div class="container-fluid footer-sertif">
-
-        <div class="row justify-content-center">
-            <div class="col-8 footer-text-sertif">
-                <hr>
-                <p>
-                    <b>Alamat :</b><br>
-
-                </p>
-
-            </div>
-        </div>
-    </div>
 @endsection
 </html>
