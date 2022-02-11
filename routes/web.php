@@ -84,6 +84,7 @@ Route::prefix("/provinsi")
 
             Route::prefix("/kabupaten")->group(function ()
             {
+                Route::get  ("/kabupaten",          [KabupatenCapaianController::class,"capaianAntigenKabupaten"])->name("provinsi.capaian.kampung.capaian.antigen.kabupaten");
                 Route::get("/dashboard",         [ProvinsiCapaianController::class,"kabupaten"])->name('provinsi.capaian.kabupaten.dashboard');
                 Route::get  ("/idl",          [ProvinsiCapaianController::class,"capaianIDL"])->name("provinsi.capaian.idl");
                 Route::get  ("/irl",          [ProvinsiCapaianController::class,"capaianIRL"])->name("provinsi.capaian.irl");
@@ -91,10 +92,12 @@ Route::prefix("/provinsi")
                 Route::get ("/uci",        [ProvinsiCapaianController::class,"capaianUCI"])->name("provinsi.capaian.uci");
             });
 
+
             Route::prefix("/puskesmas")->group(function ()
             {
                 Route::get("/dashboard",         [ProvinsiCapaianController::class,"kampung"])->name('provinsi.capaian.kampung.dashboard');
-                Route::get  ("/kabupaten",          [KabupatenCapaianController::class,"capaianAntigenKabupaten"])->name("provinsi.capaian.kampung.capaian.antigen.kabupaten");
+                Route::get  ("/antigen-puskesmas",           [PuskesmasCapaianController::class,"capaianAntigenPuskesmas"])->name("provinsi.capaian.puskesmas.capaian.antigen.puskesmas");
+
                 Route::get  ("/kampung",            [KabupatenCapaianController::class,"capaianAntigenKampung"])->name("provinsi.capaian.kampung.capaian.antigen.kampung");
                 Route::get  ("/puskesmas",           [KabupatenCapaianController::class,"capaianAntigenPuskesmas"])->name("provinsi.capaian.kampung.capaian.antigen.puskesmas");
                 Route::get  ("/idl",          [KabupatenCapaianController::class,"capaianIDL"])->name("provinsi.capaian.kampung.capaian.idl");
@@ -106,7 +109,6 @@ Route::prefix("/provinsi")
             Route::prefix("/kampung")->group(function ()
             {
                 Route::get("/dashboard",         [ProvinsiCapaianController::class,"puskesmas"])->name('provinsi.capaian.puskesmas.dashboard');
-                Route::get  ("/puskesmas",           [PuskesmasCapaianController::class,"capaianAntigenPuskesmas"])->name("provinsi.capaian.puskesmas.capaian.antigen.puskesmas");
                 Route::get  ("/kampung",            [PuskesmasCapaianController::class,"capaianAntigenKampung"])->name("provinsi.capaian.puskesmas.capaian.antigen.kampung");
                 Route::get  ("/idl",          [PuskesmasCapaianController::class,"capaianIDL"])->name("provinsi.capaian.puskesmas.capaian.idl");
                 Route::get  ("/irl",          [PuskesmasCapaianController::class,"capaianIRL"])->name("provinsi.capaian.puskesmas.capaian.irl");
