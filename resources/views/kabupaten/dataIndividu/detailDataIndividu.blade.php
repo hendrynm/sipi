@@ -62,36 +62,44 @@
             </div>
         </div>
 
-        {{-- if perempuan --}}
-        <h2>Data kehamilan</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="table ">
-                    <tbody>
-                    <tr>
-                        <th scope="row">Status Hamil :</th>
-                        <td>
-                            .
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> Tanggal Kehamilan:</th>
-                        <td>
-                            {{-- tanggal hamil --}}
-                        </td>
-                    </tr>
+        @if($data->jenis_kelamin === "P")
+            <h2>Data kehamilan</h2>
 
-                    @if($data->jenis_kelamin === "P")
-                        <tr>
-                            <th scope="row">Status T :</th>
-                            <td>{{ $data->status_t ?? "-"}}</td>
-                        </tr>
-                    @endif
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="jumbotron isHamil">
+                        <table class="table table-borderless">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Status Hamil :</th>
+                                <td>
+                                    @if($data->status_hamil === "hamil")
+                                        <div class="hamil text-center">
+                                            Sedang Hamil
+                                        </div>
+                                    @else
+                                        <div class="not-hamil text-center">
+                                            Tidak Hamil
+                                        </div>
+                                    @endif
+                                </td>
+                            </tr>
+                            @if($data->status_hamil === "hamil")
+                                <tr>
+                                    <th scope="row"> Tanggal Kehamilan :</th>
+                                    <td>
+                                        {{ $data->tanggal_hamil }}<br>
+                                        {{ (new DateTime())->diff(new DateTime($data->tanggal_hamil))->format("%m bulan") }}
+                                    </td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
-        </div>
-        {{-- end if --}}
+        @endif
 
         <h2>Status Imunisasi</h2>
         <div class="row">

@@ -78,10 +78,9 @@
             </div>
         </div>
 
-        {{-- if perempuan diatas 18 tahun--}}
-       
+       @if($data->jenis_kelamin === "P")
         <h2>Data kehamilan</h2>
-         
+
         <div class="row">
             <div class="col-md-6">
                 <div class="jumbotron isHamil">
@@ -90,34 +89,33 @@
                         <tr>
                             <th scope="row">Status Hamil :</th>
                             <td>
-                                {{-- if dia Hamil --}}
-                                <div class="hamil text-center">
-                                    Sedang Hamil
-                                </div>
-                                {{-- else --}}
-                                <div class="not-hamil text-center">
-                                    Tidak Hamil
-                                </div>
+                                @if($data->status_hamil === "hamil")
+                                    <div class="hamil text-center">
+                                        Sedang Hamil
+                                    </div>
+                                @else
+                                    <div class="not-hamil text-center">
+                                        Tidak Hamil
+                                    </div>
+                                @endif
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row"> Tanggal Kehamilan :</th>
-                            <td>
-                                {{-- tanggal hamil --}}
-                                17-02-2022 <br>
-                                {{-- lama hamil --}}
-                                2 bulan
-                            </td>
-                           
-                        </tr>
-
+                        @if($data->status_hamil === "hamil")
+                            <tr>
+                                <th scope="row"> Tanggal Kehamilan :</th>
+                                <td>
+                                    {{ $data->tanggal_hamil }}<br>
+                                    {{ (new DateTime())->diff(new DateTime($data->tanggal_hamil))->format("%m bulan") }}
+                                </td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
-        {{-- end if --}}
+        @endif
 
         <h2>Status Imunisasi</h2>
         <div class="row">
