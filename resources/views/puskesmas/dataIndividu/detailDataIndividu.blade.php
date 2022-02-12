@@ -78,6 +78,47 @@
             </div>
         </div>
 
+        {{-- if perempuan --}}
+       
+        <h2>Data kehamilan</h2>
+         
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron isHamil">
+                    <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Status Hamil :</th>
+                            <td>
+                                {{-- if dia Hamil --}}
+                                <div class="hamil text-center">
+                                    Sedang Hamil
+                                </div>
+                                {{-- else --}}
+                                <div class="not-hamil text-center">
+                                    Tidak Hamil
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Tanggal Kehamilan :</th>
+                            <td>
+                                {{-- tanggal hamil --}}
+                                17-02-2022 <br>
+                                {{-- lama hamil --}}
+                                2 bulan
+                            </td>
+                           
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        {{-- end if --}}
+
         <h2>Status Imunisasi</h2>
         <div class="row">
             <div class="col-md-6">

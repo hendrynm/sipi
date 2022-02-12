@@ -62,6 +62,37 @@
             </div>
         </div>
 
+        {{-- if perempuan --}}
+        <h2>Data kehamilan</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table ">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Status Hamil :</th>
+                        <td>
+                            .
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Tanggal Kehamilan:</th>
+                        <td>
+                            {{-- tanggal hamil --}}
+                        </td>
+                    </tr>
+
+                    @if($data->jenis_kelamin === "P")
+                        <tr>
+                            <th scope="row">Status T :</th>
+                            <td>{{ $data->status_t ?? "-"}}</td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{-- end if --}}
+
         <h2>Status Imunisasi</h2>
         <div class="row">
             <div class="col-md-6">
