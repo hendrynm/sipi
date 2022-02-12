@@ -11,7 +11,7 @@
                      height="130">
             </div>
             <div class="col-8">
-                <h1 class="h1-sertif">Surat Keterangan Imunisasi Rutin Lengkap (IRL)</h1>
+                <h1 class="h1-sertif">Sertifikat Imunisasi Rutin Lengkap (IRL)</h1>
                 <p class="text-center">
                     Jln. Brigjen Marinir Abraham O. Atururi, Komp. Kantor Gubernur Sel., Kabupaten Manokwari, Papua
                     Bar., Anday,
