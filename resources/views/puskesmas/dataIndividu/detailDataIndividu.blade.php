@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        {{-- if perempuan --}}
+        {{-- if perempuan diatas 18 tahun--}}
        
         <h2>Data kehamilan</h2>
          
