@@ -34,15 +34,19 @@ class PuskesmasModel extends Model
             ->where("id_antigen","<=",11)
             ->get();
         $data = $kueri->toArray();
-        $hasil = 1;
+        $cek[] = 0;
+        $hasil = 0;
+
         for($i = 0 ; $i <= 10 ; $i++)
         {
-            if($data[$i]->status === "belum" && $i !== 9)
-            {
-                $hasil = 0;
-                break;
-            }
+            ($data[$i]->status === "belum" && $i !== 9) ? $cek[$i] = 1 : $cek[$i] = 0;
         }
+
+        for($j = 0 ; $j <= 10 ; $j++)
+        {
+            $hasil += $cek[$j];
+        }
+
         return $hasil;
     }
 
@@ -53,15 +57,19 @@ class PuskesmasModel extends Model
             ->where("id_antigen",">=",12)
             ->get();
         $data = $kueri->toArray();
-        $hasil = 1;
-        for($i = array_key_last($data) ; $i >= 0 ; $i--)
+        $cek[] = 0;
+        $hasil = 0;
+
+        for($i = 0 ; $i <= array_key_last($data) ; $i++)
         {
-            if($data[$i]->status === "belum")
-            {
-                $hasil = 0;
-                break;
-            }
+            ($data[$i]->status === "belum") ? $cek[$i] = 1 : $cek[$i] = 0;
         }
+
+        for($j = 0 ; $j <= array_key_last($data) ; $j++)
+        {
+            $hasil += $cek[$j];
+        }
+
         return $hasil;
     }
 
@@ -72,7 +80,7 @@ class PuskesmasModel extends Model
             ->get();
         $data = $kueri->toArray();
         $hasil = 0;
-        for($i = 0 ; $i < array_key_last($data) ; $i++)
+        for($i = 0 ; $i <= array_key_last($data) ; $i++)
         {
             switch($i)
             {
@@ -81,21 +89,11 @@ class PuskesmasModel extends Model
                     {
                         $hasil = 1;
                     }
-                    else
-                    {
-                        $hasil = 0;
-                        break 2;
-                    }
                     break;
                 case(7):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 2;
-                    }
-                    else
-                    {
-                        $hasil = 1;
-                        break 2;
                     }
                     break;
                 case(11):
@@ -103,34 +101,19 @@ class PuskesmasModel extends Model
                     {
                         $hasil = 3;
                     }
-                    else
-                    {
-                        $hasil = 2;
-                        break 2;
-                    }
                     break;
                 case(15):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 4;
                     }
-                    else
-                    {
-                        $hasil = 3;
-                        break 2;
-                    }
                     break;
                 case(17):
                     if($data[$i]->status === "sudah")
                     {
                         $hasil = 5;
-                        break 2;
                     }
-                    else
-                    {
-                        $hasil = 4;
-                        break 2;
-                    }
+                    break;
                 default:
                     continue 2;
             }
