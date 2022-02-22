@@ -164,7 +164,23 @@
                 <td>{{ $data2->tanggal_pemberian }}</td>
                 <td>{{ $data2->tempat_imunisasi }}</td>
                 @if($data2->status === "belum")
-                    <td style="color:#E25A56">{{ $data2->status }} imunisasi</td>
+                    <td style="color:#E25A56">
+                        <form action="./kirim" method="post">
+                            @csrf
+                            <input type="hidden" id="lokasi" name="lokasi" value="{{ $data->nama_posyandu }}">
+                            <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
+                            <input type="hidden" id="idPosyandu" name="idPosyandu" value="{{ $data->id_posyandu }}">
+                            <input type="hidden" id="antigen" name="antigen" value="{{ $data2->id_antigen }}">
+                            <input type="hidden" id="tanggal" name="tanggal" value="{{ date("Y/m/d") }}">
+                            <button class="btn btn-primary"
+                                    onclick="return confirm('Apakah Anda yakin ingin menyimpan data tersebut? \n\n' +
+                                    'Antigen: {{$data2->nama_antigen}} \n' +
+                                        'Tanggal: {{date("d-m-Y")}} \n' +
+                                       'Lokasi: {{$data->nama_posyandu}}');">
+                                Entri Imunisasi
+                            </button>
+                        </form>
+                    </td>
                 @else
                     <td>{{ $data2->status }} imunisasi</td>
                 @endif
