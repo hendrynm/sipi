@@ -13,6 +13,10 @@ body {
     font-size: .9rem;
 }
 
+.form-entri {
+    margin-bottom: 0;
+}
+
 /* ishamil */
 .isHamil {
     padding: 1rem;

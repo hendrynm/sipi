@@ -146,6 +146,10 @@
         <br>
         <br>
         <h2>Data Imunisasi</h2>
+            <p class="perhatian">
+                Perhatikan, data sangat sensitif, mohon untuk memastikan kebeneran data saat mengentri antigen.
+            </p>
+      
         <table class="table">
             <thead>
             <tr>
@@ -165,7 +169,7 @@
                 <td>{{ $data2->tempat_imunisasi }}</td>
                 @if($data2->status === "belum")
                     <td style="color:#E25A56">
-                        <form action="./kirim" method="post">
+                        <form action="./kirim" method="post" class="form-entri">
                             @csrf
                             <input type="hidden" id="lokasi" name="lokasi" value="{{ $data->nama_posyandu }}">
                             <input type="hidden" id="idAnak" name="idAnak" value="{{ $data->id_anak }}">
