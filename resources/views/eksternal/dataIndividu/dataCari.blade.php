@@ -24,7 +24,7 @@
         @endif
         <a href="./dashboard" class="btn btn-primary">back</a>
         <hr>
-        <h1>Data Induvidu</h1>
+        <h1>Data Individu</h1>
         <br>
 
         <div class="jumbotron custom-table">

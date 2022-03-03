@@ -66,7 +66,7 @@
     </div>
 
     <div class="jumbotron">
-        <h2>Data Induvidu</h2>
+        <h2>Data Individu</h2>
         <a href="./data-anak/dashboard" class="btn btn-primary">
 
             <div class="row justify-content-center">
@@ -76,7 +76,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Data Induvidu
+                    Data Individu
                 </div>
             </div>
 

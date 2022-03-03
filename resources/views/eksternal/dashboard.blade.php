@@ -10,7 +10,7 @@
     <h1>Dashboard Eksternal</h1>
 
     <div class="jumbotron">
-        <h2>Data Induvidu</h2>
+        <h2>Data Individu</h2>
         <a href="./data-anak/tambah" class="btn btn-primary">
             <div class="row justify-content-center">
                 <div class="col-8">
@@ -19,7 +19,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    Tambah Data Induvidu
+                    Tambah Data Individu
                 </div>
             </div>
         </a>

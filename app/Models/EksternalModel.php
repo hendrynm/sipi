@@ -22,7 +22,7 @@ class EksternalModel extends Model
 
         for($i = 0 ; $i <= 10 ; $i++)
         {
-            ($data[$i]->status === "belum" && $i !== 9) ? $cek[$i] = 1 : $cek[$i] = 0;
+            ($data[$i]->status === "sudah") ? $cek[$i] = 1 : $cek[$i] = 0;
         }
 
         for($j = 0 ; $j <= 10 ; $j++)
@@ -30,7 +30,11 @@ class EksternalModel extends Model
             $hasil += $cek[$j];
         }
 
-        return $hasil;
+        if($hasil === 11 || ($hasil === 10 && $data[10]->status === "belum"))
+        {
+            return 1;
+        }
+        return 0;
     }
 
     public function cekIRL($id)
@@ -45,7 +49,7 @@ class EksternalModel extends Model
 
         for($i = 0 ; $i <= array_key_last($data) ; $i++)
         {
-            ($data[$i]->status === "belum") ? $cek[$i] = 1 : $cek[$i] = 0;
+            ($data[$i]->status === "sudah") ? $cek[$i] = 1 : $cek[$i] = 0;
         }
 
         for($j = 0 ; $j <= array_key_last($data) ; $j++)
@@ -53,7 +57,7 @@ class EksternalModel extends Model
             $hasil += $cek[$j];
         }
 
-        return $hasil;
+        return ($hasil === (array_key_last($data) + 1)) ? 1 : 0 ;
     }
 
     public function cekT($id)
