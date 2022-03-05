@@ -14,27 +14,25 @@ class EksternalModel extends Model
     {
         $kueri = DB::table("imunisasi")
             ->where("id_anak", "=", $id)
-            ->where("id_antigen","<=",11)
+            ->where("id_antigen", "<=", 11)
+            ->where("id_antigen","<>",10)
             ->get();
         $data = $kueri->toArray();
-        $cek[] = 0;
-        $hasil = 0;
 
-        for($i = 0 ; $i <= 10 ; $i++)
-        {
-            ($data[$i]->status === "sudah") ? $cek[$i] = 1 : $cek[$i] = 0;
-        }
+        $cek =
+            $data[0]->status === "sudah" &&
+            $data[1]->status === "sudah" &&
+            $data[2]->status === "sudah" &&
+            $data[3]->status === "sudah" &&
+            $data[4]->status === "sudah" &&
+            $data[5]->status === "sudah" &&
+            $data[6]->status === "sudah" &&
+            $data[7]->status === "sudah" &&
+            $data[8]->status === "sudah" &&
+            $data[9]->status === "sudah"
+        ;
 
-        for($j = 0 ; $j <= 10 ; $j++)
-        {
-            $hasil += $cek[$j];
-        }
-
-        if($hasil === 11 || ($hasil === 10 && $data[10]->status === "belum"))
-        {
-            return 1;
-        }
-        return 0;
+        return ($cek) ? 1 : 0 ;
     }
 
     public function cekIRL($id)
@@ -42,22 +40,16 @@ class EksternalModel extends Model
         $kueri = DB::table("imunisasi")
             ->where("id_anak", "=", $id)
             ->where("id_antigen",">=",12)
+            ->where("id_antigen","<=",13)
             ->get();
         $data = $kueri->toArray();
-        $cek[] = 0;
-        $hasil = 0;
 
-        for($i = 0 ; $i <= array_key_last($data) ; $i++)
-        {
-            ($data[$i]->status === "sudah") ? $cek[$i] = 1 : $cek[$i] = 0;
-        }
+        $cek =
+            $data[0]->status === "sudah" &&
+            $data[1]->status === "sudah"
+        ;
 
-        for($j = 0 ; $j <= array_key_last($data) ; $j++)
-        {
-            $hasil += $cek[$j];
-        }
-
-        return ($hasil === (array_key_last($data) + 1)) ? 1 : 0 ;
+        return ($cek) ? 1 : 0 ;
     }
 
     public function cekT($id)
