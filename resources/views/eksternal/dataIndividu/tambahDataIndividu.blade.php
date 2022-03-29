@@ -96,8 +96,8 @@
                                 <label for="isHamil">Status Kehamilan : </label>
                                 <select class=custom-select" id="isHamil" name="isHamil">
                                     <option selected disabled>---- Pilih Status ---</option>
-                                    <option value="1">Hamil</option>
-                                    <option value="1">Tidak Hamil</option>
+                                    <option value="hamil">Hamil</option>
+                                    <option value="">Tidak Hamil</option>
                                 </select>
                             </div>
                             <div class="form-group">
