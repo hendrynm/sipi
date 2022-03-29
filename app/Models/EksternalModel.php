@@ -201,7 +201,7 @@ class EksternalModel extends Model
                     "alamat" => $request->alamat,
                     "id_posyandu" => $request->posyandu,
                     "id_kampung" => $request->kampung,
-                    "status_hamil" => $request->isHamil ?: null,
+                    "status_hamil" => ($request->isHamil === "hamil") ? "hamil" : null,
                     "tanggal_hamil" => $request->tanggalKehamilan ?: null
                 ]);
             if($kueri > 0)

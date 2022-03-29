@@ -281,7 +281,7 @@ class PuskesmasModel extends Model
                 "no_hp" => $request->noHP,
                 "alamat" => $request->alamat,
                 "id_posyandu" => $request->posyandu,
-                "status_hamil" => $request->isHamil ?: null,
+                "status_hamil" => ($request->isHamil === "hamil") ? "hamil" : null,
                 "tanggal_hamil" => $request->tanggalKehamilan ?: null
             ]);
     }
@@ -306,7 +306,7 @@ class PuskesmasModel extends Model
                     "alamat" => $request->alamat,
                     "id_posyandu" => $request->posyandu,
                     "id_kampung" => $request->kampung,
-                    "status_hamil" => $request->isHamil ?: null,
+                    "status_hamil" => ($request->isHamil === "hamil") ? "hamil" : null,
                     "tanggal_hamil" => $request->tanggalKehamilan ?: null
                 ]);
             if($kueri > 0)
