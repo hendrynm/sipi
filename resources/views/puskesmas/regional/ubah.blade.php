@@ -24,7 +24,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="khPerempuan">Perempuan : </label>
-                            <input type="text" class="form-control" id="khPerempuan" name="khPerempuan" value="{{ $data->bayi_lahir_L }}">
+                            <input type="text" class="form-control" id="khPerempuan" name="khPerempuan" value="{{
+                            $data->bayi_lahir_P }}">
                         </div>
                     </div>
                 </div>
