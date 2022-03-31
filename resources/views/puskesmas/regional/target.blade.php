@@ -230,12 +230,12 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>sedang hamil</td>
-                            <td>{{ $data->wus_tidak_hamil }}</td>
+                            <td>{{ $data->wus_hamil }}</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>tidak hamil</td>
-                            <td>{{ $data->wus_hamil }}</td>
+                            <td>{{ $data->wus_tidak_hamil }}</td>
                         </tr>
                         </tbody>
                     </table>
