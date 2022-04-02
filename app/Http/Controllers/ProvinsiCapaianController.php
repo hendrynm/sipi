@@ -10785,25 +10785,25 @@ ORDER BY kampung.id_kampung
 
         $query = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -10816,25 +10816,25 @@ ORDER BY kampung.id_kampung
 
         $query1 = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
@@ -10847,25 +10847,25 @@ ORDER BY kampung.id_kampung
 
         $query2 = DB::select("
     SELECT kabupaten.nama_kabupaten as kabupaten,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t1_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t1_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t1' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t1_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t2_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t2_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t2' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t2_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t3_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t3_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t3' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t3_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t4_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t4_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t4' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t4_tidak_hamil,
 
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
-        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_idl) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil+kabupaten.wus_hamil)*100, 2)) as t5_total,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_hamil)*100, 2)) as t5_hamil,
+        ROUND(ROUND(SUM(CASE WHEN data_individu.status_t='t5' AND data_individu.status_hamil='tidak hamil' AND data_individu.jenis_kelamin='p' AND YEAR(data_individu.tanggal_t) = {$tahunForm} THEN 1 ELSE 0 END)/(kabupaten.wus_tidak_hamil)*100, 2)) as t5_tidak_hamil
 
         FROM kampung
           LEFT JOIN data_individu ON data_individu.id_kampung = kampung.id_kampung
