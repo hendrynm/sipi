@@ -15,7 +15,6 @@ class EksternalModel extends Model
         $kueri = DB::table("imunisasi")
             ->where("id_anak", "=", $id)
             ->where("id_antigen", "<=", 11)
-            ->where("id_antigen","<>",10)
             ->get();
         $data = $kueri->toArray();
 
@@ -29,8 +28,10 @@ class EksternalModel extends Model
             $data[6]->status === "sudah" &&
             $data[7]->status === "sudah" &&
             $data[8]->status === "sudah" &&
-            $data[9]->status === "sudah"
+            $data[9]->status === "sudah" &&
+            $data[10]->status === "sudah"
         ;
+
 
         return ($cek) ? 1 : 0 ;
     }
