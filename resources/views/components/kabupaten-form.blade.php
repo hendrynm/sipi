@@ -1,6 +1,7 @@
 <div class="form-group">
     <label for="kabupatenForm">Kabupaten</label>
-    <select id="kabupatenForm" required class="form-control custom-select" data-show-subtext="true" data-live-search="true" name="kabupatenForm">
+    <select id="kabupatenForm" class="form-control custom-select" data-show-subtext="true" data-live-search="true"
+            name="kabupatenForm" required>
         @foreach($kabupatens as $kab)
             <option value="{{$kab->id_kabupaten}}" {{$kab->id_kabupaten == (int)$kabupatenForm? 'selected': ''}}>{{$kab->nama_kabupaten}}</option>
         @endforeach

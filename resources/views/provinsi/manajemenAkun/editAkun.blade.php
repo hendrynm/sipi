@@ -80,14 +80,18 @@
 @section("js")
     <script>
         $(document).ready(function() {
-            @if(($data->id_user === session()->get("id_user")))
+            @if(($data->id_user === session()->get("id_user")) || ($data->level === 1))
                 console.log("1")
                 $('#kabupaten-form-ajax').hide();
                 $('#puskesmas-form-ajax').hide();
                 $('select[id="kabupaten"]').prop('required', false);
                 $('select[id="puskesmas"]').prop('required', false);
+            @elseif(($data->level === 2))
+                $('#kabupaten-form-ajax').show();
+                $('#puskesmas-form-ajax').hide();
+                $('select[id="kabupaten"]').prop('required', true);
+                $('select[id="puskesmas"]').prop('required', false);
             @endif
-
 
             $('select[id="level"]').on('change', function() {
                 var levelId = $(this).val();

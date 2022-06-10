@@ -2,6 +2,7 @@
     <label for="puskesmasForm">Puskesmas</label>
     <select id="puskesmasForm" required class="form-control custom-select" data-show-subtext="true"
             data-live-search="true" name="puskesmasForm">
+        <option selected disabled value="">Pilih Pukesmas</option>
         @foreach($puskesmas as $pus)
             <option value="{{$pus->id_puskesmas}}" {{$pus->id_puskesmas == (int)$puskesmasForm? 'selected': ''}}>{{$pus->nama_puskesmas}}</option>
         @endforeach

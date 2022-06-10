@@ -2,7 +2,7 @@
     <label for="puskesmas">Nama Puskesmas :</label>
     <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true"
             data-live-search="true" required>
-        <option selected disabled>Pilih Pukesmas</option>
+        <option selected disabled value="">Pilih Pukesmas</option>
     </select>
 </div>
 

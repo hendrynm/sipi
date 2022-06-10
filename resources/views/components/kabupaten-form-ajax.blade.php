@@ -1,8 +1,8 @@
 <div id="kabupaten-form-ajax" class="form-group">
     <label for="kabupaten">Kabupaten</label>
-    <select id="kabupaten" required class="form-control custom-select" data-show-subtext="true"
-            data-live-search="true" name="kabupaten">
-        <option disabled selected>Pilih Kabupaten</option>
+    <select id="kabupaten" class="form-control custom-select" data-show-subtext="true"
+            data-live-search="true" name="kabupaten" required>
+        <option disabled selected value="">Pilih Kabupaten</option>
     </select>
 </div>
 
@@ -22,6 +22,7 @@
                 success:function(data) {
                     console.log(data);
                     $('select[id="kabupaten"]').empty();
+                    $('select[id="kabupaten"]').append('<option></option>');
                     $.each(data, function(key, value) {
                         $('select[id="kabupaten"]').append('<option data-tokens="'+ key +'" value="'+ value +'">'+ key +'</option>');
                     });

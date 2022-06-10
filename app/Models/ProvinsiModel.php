@@ -154,8 +154,8 @@ class ProvinsiModel extends Model
                 "username" => $request->username,
                 "nama" => $request->nama,
                 "email" => $request->email,
-                "id_kabupaten" => $request->idKabupaten ?: null,
-                "id_puskesmas" => $request->idPuskesmas ?: null,
+                "id_kabupaten" => $request->kabupaten ?: null,
+                "id_puskesmas" => $request->puskesmas ?: null,
                 "level" => $request->level
             ]);
     }
