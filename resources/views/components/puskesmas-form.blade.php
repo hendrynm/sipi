@@ -1,6 +1,7 @@
 <div class="form-group">
     <label for="puskesmasForm">Puskesmas</label>
-    <select id="puskesmasForm" required class="form-control custom-select" data-show-subtext="true" data-live-search="true" name="puskesmasForm">
+    <select id="puskesmasForm" required class="form-control custom-select" data-show-subtext="true"
+            data-live-search="true" name="puskesmasForm">
         @foreach($puskesmas as $pus)
             <option value="{{$pus->id_puskesmas}}" {{$pus->id_puskesmas == (int)$puskesmasForm? 'selected': ''}}>{{$pus->nama_puskesmas}}</option>
         @endforeach

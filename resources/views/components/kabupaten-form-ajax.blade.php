@@ -1,6 +1,7 @@
 <div id="kabupaten-form-ajax" class="form-group">
     <label for="kabupaten">Kabupaten</label>
-    <select id="kabupaten" required class="form-control custom-select" data-show-subtext="true" data-live-search="true" name="kabupaten">
+    <select id="kabupaten" required class="form-control custom-select" data-show-subtext="true"
+            data-live-search="true" name="kabupaten">
         <option disabled selected>Pilih Kabupaten</option>
     </select>
 </div>

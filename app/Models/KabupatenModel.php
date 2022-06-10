@@ -123,7 +123,7 @@ class KabupatenModel extends Model
                 "email" => $request->email,
                 "level" => $request->level,
                 "id_kabupaten" => $id_kab,
-                "id_puskesmas" => $request->idPuskesmas ?: null
+                "id_puskesmas" => $request->puskesmas ?: null
             ]);
     }
 

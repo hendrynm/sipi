@@ -1,6 +1,7 @@
 <div id="puskesmas-form-ajax" class="form-group">
     <label for="puskesmas">Nama Puskesmas :</label>
-    <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true" data-live-search="true">
+    <select class="form-control custom-select" id="puskesmas" name="puskesmas" data-show-subtext="true"
+            data-live-search="true" required>
         <option selected disabled>Pilih Pukesmas</option>
     </select>
 </div>
